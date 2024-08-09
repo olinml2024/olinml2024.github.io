@@ -1,0 +1,24 @@
+remote_theme: olindsa2024/minimal-mistakes@copybutton
+logo: "https://qeacourse.github.io/RoboNinjaWarrior/website_graphics/olinlogo.png"
+title: "Machine Learning Fall 2024 @ Olin College"
+repository: olinml2024/olinml2024.github.io
+highlighter: rouge
+
+plugins:
+  - jekyll-paginate
+  - jekyll-spaceship
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+
+defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      toc: true
