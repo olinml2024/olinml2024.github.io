@@ -19,5 +19,3 @@ group :jekyll_plugins do
   gem "rouge"
   gem 'jekyll-spaceship'
 end
-
-gem "webrick", "~> 1.8"

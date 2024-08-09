@@ -2,6 +2,8 @@
 title: ML Test
 toc_sticky: true 
 ---
+{% include common.html %}
+
 
 # Learning Objectives
 * Gain some familiarity with some of the key ideas in machine learning.
@@ -9,10 +11,24 @@ toc_sticky: true
 of this course.
 * Familiarize yourself with computational tools for machine learning.
 * Learn linear regression using a "top-down" approach.
-
 *This document contains a lot of external links. They are there to help
 you learn more if you are interested. You are not required to read/watch
 all the linked material.*
+
+# Testing area
+
+<div class="homework-box" style="--box-bg-color: #e0ffe0;">
+        <div class="homework-header">
+	    <img class="homework-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg"/>
+            <h2 class="homework-title">Problem 3: Trigonometry</h2>
+        </div>
+	<div class="homework-content">
+Here's the problem
+	</div>
+	<div class="homework-solution">
+	    <p>Here's the solution (TODO: add toggle)</p>
+	</div>
+</div>
 
 # Please read the syllabus
 
