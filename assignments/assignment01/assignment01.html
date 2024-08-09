@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<script>
+class AnchorNoProxy extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this._$a = null;
+  }
+  connectedCallback() {
+    const href = this.getAttribute("href") || "#";
+    if (this.dataset.hasOwnProperty('canvas')) {
+        const canvasURL = this.dataset.canvas;
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}" data-canvas="${canvasURL}"><slot></slot></a>`;
+    } else {
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}"><slot></slot></a>`;
+    }
+    this._$a = this.shadowRoot.querySelector("a");
+    this._$a.addEventListener("click", e => {
+      var url = this.getAttribute('href');
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+        window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+        window.open(url, '_blank');
+      }
+    });
+  }
+  static get observedAttributes() { return ["href"]; }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      if (this._$a === null) return;
+      this._$a.setAttribute("href", newValue);
+    }
+  }
+}
+
+customElements.define("a-no-proxy", AnchorNoProxy);
+
+class NoProxy extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+      	window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+      	window.open(this.href, '_blank');
+      }
+    });
+  }
+}
+
+customElements.define("no-proxy", NoProxy, { extends: "a" });
+
+class ConfirmLink extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      const result = confirm(`Are you sure you want to go to '${this.href}'?`);
+      if (!result) e.preventDefault();
+    });
+  }
+}
+
+customElements.define("confirm-link", ConfirmLink, { extends: "a" });
+
+</script>
+
+<!-- begin _includes/seo.html --><title>ML Test - Machine Learning Fall 2024 @ Olin College</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
+<meta property="og:title" content="ML Test">
+<meta property="og:url" content="/assignments/assignment01/assignment01.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="/assignments/assignment01/assignment01.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Machine Learning Fall 2024 @ Olin College Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  <script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="https://qeacourse.github.io/RoboNinjaWarrior/website_graphics/olinlogo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Machine Learning Fall 2024 @ Olin College
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ML Test">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">ML Test
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+	      
+                <ul class="toc__menu">
+  <li><a href="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#please-read-the-syllabus">Please read the syllabus</a></li>
+  <li>
+<a href="#six-big-ideas-in-machine-learning">Six Big Ideas in Machine Learning</a>
+    <ul>
+      <li><a href="#idea-1-correlations-for-the-win">Idea 1: Correlations for the Win?</a></li>
+      <li><a href="#idea-2-theres-no-such-thing-as-a-free-lunch-idea-2-theres-no-such-thing-as-a-free-lunch-unnumbered">Idea 2: There’s No Such Thing as a Free Lunch {#idea-2-theres-no-such-thing-as-a-free-lunch .unnumbered}</a></li>
+      <li><a href="#idea-3-its-all-about-how-you-frame-the-problem">Idea 3: It’s All About How You Frame the Problem</a></li>
+      <li><a href="#idea-4-ml-systems-can-learn-intermediate-representations">Idea 4: ML Systems Can Learn Intermediate Representations</a></li>
+      <li><a href="#idea-5-machine-learning-zoomed-out-idea-5-machine-learning-zoomed-out-unnumbered">Idea 5: Machine Learning Zoomed Out {#idea-5-machine-learning-zoomed-out .unnumbered}</a></li>
+      <li><a href="#idea-6-its-not-all-doom-and-gloom">Idea 6: It’s Not All Doom and Gloom</a></li>
+    </ul>
+  </li>
+  <li><a href="#high-level-taste-of-machine-learning">High Level Taste of Machine Learning</a></li>
+  <li><a href="#mathematical-background">Mathematical Background</a></li>
+  <li><a href="#supervised-learning-problem-setup">Supervised Learning Problem Setup</a></li>
+  <li>
+<a href="#linear-regression-from-the-top-down">Linear Regression from the Top-Down</a>
+    <ul>
+      <li><a href="#motivation-why-learn-about-linear-regression">Motivation: Why Learn About Linear Regression?</a></li>
+    </ul>
+  </li>
+  <li>
+<a href="#getting-a-feel-for-linear-regression">Getting a Feel for Linear Regression</a>
+    <ul>
+      <li><a href="#linear-regression-with-one-input-variable-line-of-best-fit">Linear Regression with One Input Variable: Line of Best Fit</a></li>
+      <li><a href="#linear-regression-with-multiple-input-variables-explorations-in-python">Linear Regression with Multiple Input Variables: Explorations in Python</a></li>
+    </ul>
+  </li>
+</ul>
+	      	
+            </nav>
+          </aside>
+        
+        <h1 id="learning-objectives">Learning Objectives</h1>
+<ul>
+  <li>Gain some familiarity with some of the key ideas in machine learning.</li>
+  <li>Review of mathematical concepts we will be using in the beginning part
+of this course.</li>
+  <li>Familiarize yourself with computational tools for machine learning.</li>
+  <li>Learn linear regression using a “top-down” approach.</li>
+</ul>
+
+<p><em>This document contains a lot of external links. They are there to help
+you learn more if you are interested. You are not required to read/watch
+all the linked material.</em></p>
+
+<h1 id="please-read-the-syllabus">Please read the syllabus</h1>
+
+<p>The syllabus is available on Canvas. Please read it, it contains a lot
+of helpful information. There will be an ungraded competitive game
+around what’s in the syllabus in the next class! If you have any
+questions about the syllabus, please post them on the Discord so we can
+clarify (and practice using Discord as a class). Or if it is a personal
+question, you can always email us or catch us after class.</p>
+
+<h1 id="six-big-ideas-in-machine-learning">Six Big Ideas in Machine Learning</h1>
+
+<p><strong>Note: We suggest you timebox this section to a maximum of 60 minutes
+to start, including the exercise. Beware of the many interesting rabbit
+holes that could consume your day. You can always revisit this later.</strong></p>
+
+<p>Before diving into the specifics of our first machine learning
+algorithm, let’s examine some important ideas in machine learning. Why
+six big ideas? If Rob Martello has taught us anything, it’s that all
+good things come in sixes.</p>
+
+<h2 id="idea-1-correlations-for-the-win">Idea 1: Correlations for the Win?</h2>
+
+<p>ML algorithms learn to exploit correlations in data in order to make
+predictions. For instance, if one was using an ML algorithm to recognize
+whether someone was smiling in an image, the algorithm might learn that
+bright pixels around the mouth region are correlated with smiles (e.g.,
+they indicate that a person’s teeth are showing). This correlation would
+likely be useful for determining whether a new image of a face was a
+smile or not. Now suppose you take this model and apply it to a new
+dataset. You may find that faces that are angry are mistakenly marked as
+smiling! Why? In the case of angry facial expressions the teeth may also
+be showing. Of course you would expect the learning algorithm to be
+smart enough to realize that just using the presence of teeth is not
+enough to conclusively determine whether someone is smiling. Whether or
+not this actually happens is a function of the training data given to
+the ML algorithm. If, for instance, the training set was scraped from
+profile pictures from a dating website, the training set may not contain
+pictures of angry faces. Unfortunately, while exploiting correlations is
+one of the most powerful aspects of ML systems, it is also one of the
+most potentially problematic.</p>
+
+<p><em>Example 1: Reinforcing Hiring Biases</em> You may have heard that <a href="https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G">Amazon
+scrapped a secret AI recruiting tool that showed bias against
+women</a>.
+More specifically, the tool performed automatic keyword analysis of job
+applications to predict whether or not the applicant was worth
+forwarding on to a human for further evaluation. Early in the
+development of this system researchers discovered that the model the
+system had learned placed a negative weight on words such as “women’s”
+as well as the names of some women’s colleges. While there is of course
+no causal link between these words appearing in a job application and
+the suitability of the candidate for the job, there was a <em>correlation</em>
+in the training set between the presence of words such as “women’s” and
+the candidates not being invited for interviews.</p>
+
+<p>Why might such a correlation exist in the training set? There are many
+different possible explanations for this correlation, ranging from overt
+or unconscious bias in the applicant evaluators whose judgments helped
+form the training data to systemic discrimination that denies women
+equal access to educational opportunities in STEM. The important thing
+to take away from this is not <em>why</em> there was a correlation, but that
+the existence of the correlation in the training data caused the model
+to utilize the correlation in order to evaluate new data. Amazon
+realized that this was very bad and decided to take steps to address the
+problem (they say they never used the system to make actual
+job-screening decisions). Despite efforts to prevent the algorithm for
+exploiting such correlations, the group determined that they couldn’t
+fully guarantee that the algorithm had not found another way to achieve
+the same discriminatory outcome and terminated the project.</p>
+
+<p><em>Example 2: Adversarial Machine Learning</em></p>
+
+<p>A second example of an ML algorithm exploiting correlations in training
+data in unexpected ways can be found in computer vision methods for
+object detection. Identifying salient visual objects such as road signs
+and pedestrians is an important building block for applications such as
+autonomous cars. A popular algorithm for this task,
+<a href="https://pjreddie.com/darknet/yolo/">YOLO</a> (You Only Look Once)<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>, can
+identify and localize objects in images with surprising accuracy. For
+instance, in the image below YOLO identified the stop sign in the image
+successfully.</p>
+
+<p><img src="/assignments/assignment01/figures/stopsignyolo.jpeg" alt="image"></p>
+
+<p>While this all seems great, there is a catch. It is very difficult to
+understand <em>how</em> YOLO is making these predictions. That is, what is it
+about this image that causes the YOLO algorithm to be able to tell that
+it is a stop sign? Perhaps it is the white text on the red background.
+Perhaps it is the word “STOP.” In fact, the network that makes this
+prediction is so complex, that it is impossible for us to say
+definitively exactly how it makes its decision. What we do know is that
+the model exploits correlations in the training data between input
+features (pixels) and outputs (object locations) in potentially
+unpredictable ways.</p>
+
+<p><img src="/assignments/assignment01/figures/yolofooled.png" alt="image"></p>
+
+<p>The complexity of the model makes it vulnerable to bad actors (or
+adversaries). Researchers at University of Michigan used a form of ML
+known as <em>adversarial machine learning</em> to <a href="https://iotsecurity.engin.umich.edu/physical-adversarial-examples-for-object-detectors/">create a specially crafted
+sticker that could be attached to a stop sign that would make it
+invisible to the YOLO
+model</a>
+(that is YOLO would not identify it as a stop sign). Clearly, this has
+major implications for the safety of using a model such as this in an
+application like a self-driving car. An example of the attack is shown
+in Figure <a href="#fig:yolofooled">[fig:yolofooled]</a>{reference-type=”ref”
+reference=”fig:yolofooled”}.</p>
+
+<h2 id="idea-2-theres-no-such-thing-as-a-free-lunch-idea-2-theres-no-such-thing-as-a-free-lunch-unnumbered">Idea 2: There’s No Such Thing as a Free Lunch {#idea-2-theres-no-such-thing-as-a-free-lunch .unnumbered}</h2>
+
+<blockquote>
+  <p><a href="https://en.wikipedia.org/wiki/All_models_are_wrong">“All models are wrong, but some
+useful.”</a></p>
+
+  <p>— George Box</p>
+</blockquote>
+
+<p>At the beginning of this document we have a reminder of the basic
+supervised machine learning setup. A one sentence statement of the setup
+is that we try to generalize from a set of training data to construct a
+function $\hat{f}^\star$ that best predicts the corresponding output
+data for unseen input data (e.g., predicting the facial expression of a
+face that was not in the training set based on a training set of sample
+faces). In the previous big idea, we discussed how machine learning
+could go wrong when there are correlations in the data that seem useful
+to the ML algorithm but are ultimately counterproductive to how we’d
+like the system to make decisions. It turns out that even before you
+choose the training data for your algorithm, you must provide an
+<a href="https://en.wikipedia.org/wiki/Inductive_bias">inductive bias</a> to
+constrain the space of possible models you might fit. Examples of common
+inductive biases include the following (the previously linked article
+has some more).</p>
+
+<p>The prediction function $\hat{f}^\star$ should change smoothly as you
+vary the input $\mlvec{x}$.</p>
+
+<p>The prediction function has a particular form (e.g., linear).</p>
+
+<p>The prediction function is sparse (it ignores the majority of the
+inputs).</p>
+
+<p>In fact, there are a whole class of theorems called <a href="https://en.wikipedia.org/wiki/No_free_lunch_theorem">No-Free-Lunch (NFL)
+theorems</a> that
+state that without inductive biases (such as the ones stated above),
+learning from data is essentially impossible. This connects us back to
+the quote from George Box. While the inductive bias we encode into our
+model will never fully represent reality, having this bias is necessary
+to allow the model to do the useful work of making predictions. What’s
+important for us as machine learning scientists and practitioners is to
+be explicit about the biases we are introducing when settling on a
+particular model so that we can best evaluate our results and predict
+the limitations of our systems.</p>
+
+<h2 id="idea-3-its-all-about-how-you-frame-the-problem">Idea 3: It’s All About How You Frame the Problem</h2>
+
+<p>Using Machine Learning algorithms can be a bit disorienting for someone
+used to the typical engineering workflow. A cartoon picture of the
+engineering workflow is that you are given a problem (perhaps it is
+initially difficult to solve or ambiguous), you might reframe the
+problem to make it easier to solve, and then you work to devise a
+solution to the reframed problem. In machine learning, the last step is
+replaced by providing examples of how you’d like your system to work
+(i.e., input / output pairs), and then the creation of the actual system
+is automated by the ML algorithm! Your job as an ML practitioner is to
+reframe the original problem (both by specifying the form of the model
+and giving appropriate training data) so that the ML algorithm can
+compute a solution. If you’ve done the reframing properly, the solution
+to the reframed problem will also be a good solution to the original
+problem.</p>
+
+<p>As an example of when a solution to the reframed problem would not be
+desirable, consider the use of a machine learning algorithm to teach a
+virtual character to walk in a simulated environment. You might reframe
+this problem for the ML algorithm as tasking it with computing a
+controller for the virtual character that moves the character’s center
+of mass forward as fast as possible. The ML algorithm can now search
+over a vast space of possible control strategies to learn the one that
+most quickly propels the center of mass. However, it doesn’t necessarily
+follow that this controller will result in the character walking using a
+normal bipedal gait.</p>
+
+<p><img src="/assignments/assignment01/figures/fallingbot.png" alt="image"></p>
+
+<p>The notion that the solution an algorithm finds might be unpredictable
+to the designer is known as “emergence.” Some cool examples of this
+played out in actual experiments in evolving virtual creatures, which
+are summarized in the paper <a href="https://arxiv.org/pdf/1803.03453.pdf">The Surprising Creativity of Digital
+Evolution</a>. For instance, a
+virtual character learned that falling down, see picture above, and
+getting up was more efficient for locomotion than constantly hopping
+(which is what the designer had intended the system to learn).</p>
+
+<p>For more examples of this sort of thing, consider checking out <a href="https://www.youtube.com/watch?v=bBt0imn77Zg">Karl
+Sims: Evolved Virtual
+Creatures</a> or the short
+article <a href="https://aiweirdness.com/post/172894792687/when-algorithms-surprise-us">When AI Surprises
+Us</a>.
+This also connects back to the age-old debate over whether <a href="https://www.youtube.com/watch?v=DwN6efmhp7E">falling with
+style can be considered
+flying</a>.</p>
+
+<h2 id="idea-4-ml-systems-can-learn-intermediate-representations">Idea 4: ML Systems Can Learn Intermediate Representations</h2>
+
+<p>In the next few weeks we’ll learn about artificial neural networks
+(ANNs). ANNs are biologically inspired algorithms since their
+functioning, at an abstract level, is modeled on the functioning of
+biological neurons (e.g., in the brain).</p>
+
+<p><img src="/assignments/assignment01/figures/Colored_neural_network.pdf" alt="image"></p>
+
+<p>ANNs accept input patterns at an array of virtual neurons called the
+input layer (see Figure above). The neurons in the input layer are connected to
+other neurons via virtual <a href="https://en.wikipedia.org/wiki/Axon">axons</a>
+that control to what extent a particular input neuron activates a
+downstream neuron. The second set of neurons, called the “hidden layer”
+(shown in blue in the middle of the figure), is responsible for
+computing intermediate, hidden representations of the input data. This
+process continues as activations propagate through the network until
+activations are generated at the output layer (shown in green on the
+right of the figure). These outputs could correspond to any salient
+properties of the input (e.g., if the input is an image, the output
+might encode the objects in the image).</p>
+
+<p>What’s amazing about ANNs is that there are learning algorithms for
+setting the connection strengths between these virtual neurons (the
+black arrows in Figure <a href="#fig:ann">[fig:ann]</a>{reference-type=”ref”
+reference=”fig:ann”}) based on training data (input / output pairs).
+These learning algorithms tune the connections strengths (also called
+“weights”) such that for the provided training data the network produces
+the appropriate training outputs (e.g., if you show the network a
+training set of images of cats or dogs, over time the network will
+adjust its weights so that the output is “cat” when the network is
+presented an image of a cat and “dog” if presented an image of a dog).
+The algorithms used to tune the network weights are only concerned with
+reproducing the output patterns, the network is free to choose how it
+represents information within the network (i.e., at the hidden layer).</p>
+
+<p>::: marginfigure
+<img src="/assignments/assignment01/figures/learned_receptive_fields.pdf" alt="image">{width=”\linewidth”}
+[]{#fig:learnedfields label=”fig:learnedfields”}
+:::</p>
+
+<p>What’s super amazing is that we can actually examine the internal
+representations of a neural network to understand how it’s performing
+the computation from input to output. For instance,
+Figure <a href="#fig:learnedfields">[fig:learnedfields]</a>{reference-type=”ref”
+reference=”fig:learnedfields”}<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> shows a visualization of the internal
+representations learned by a network trained to best compress a training
+set of images (these sorts of networks are called “auto-encoders”). The
+receptive fields of each of the hidden units in the network and can be
+understood as specifying how each input pixel activates a particular
+hidden unit (gray corresponds to no activation, black to negative
+activation, and white to positive activation). It’s remarkable that
+these receptive fields have coherent structure: they are localized in
+space, tuned to particular orientations, and tuned to features at a
+particular scale. You can think of these as oriented edge detectors that
+the network learned completely on its own (it was never told to extract
+edges from the images in the training set).</p>
+
+<p>What’s super-duper amazing is that if we compare the receptive fields
+learned by the artificial neural network to the <a href="https://en.wikipedia.org/wiki/Simple_cell">simple
+cells</a> in the primary visual
+cortex of a cat, there are a number of striking similarities. Just as in
+the ANN, the biological neural network responds to edges at particular
+orientations and scales. The scientists Hubel and Wiesel performed the
+pioneering work in neuroscience to establish the properties of receptive
+fields in the primary visual cortex. Consider watching <a href="https://www.youtube.com/watch?v=8VdFf3egwfg">a video of their
+experiment</a> that eventually
+garnered a Nobel prize (note that in the video the static sound
+corresponds to the measurement of spikes in activity of an individual
+neuron in the brain of an anesthetized cat).<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>. The implication of the
+similarity between the receptive fields of the neurons in the cat brain
+and the virtual neurons in the ANN is that they are similar because they
+are fundamentally solving the same problem (i.e., efficiently
+representing visual information). In this light, that they should find
+similar solutions to this problem is not as surprising as it may first
+seem.</p>
+
+<h2 id="idea-5-machine-learning-zoomed-out-idea-5-machine-learning-zoomed-out-unnumbered">Idea 5: Machine Learning Zoomed Out {#idea-5-machine-learning-zoomed-out .unnumbered}</h2>
+
+<p>Historically, most ML courses have been laser-focused on learning about
+learning algorithms (e.g., neural networks, support vector machines,
+decision trees, etc.). In some courses there would be a little bit of
+emphasis on machine learning applications, which have always been
+strongly tied to the research in ML algorithms and theory. The focus on
+ML algorithms also reflected the positioning of these courses within
+Computer Science curricula, which approached the field more from a
+liberal arts perspective rather than an engineering one.</p>
+
+<p>A number of recent trends have made the almost sole focus on learning
+algorithms insufficient for those who want to either use ML in their
+careers or go into ML as a field.</p>
+
+<p>The explosion of data has made the skills necessary for collecting,
+wrangling, exploring, and cleaning data very relevant.</p>
+
+<p>Improvements in the accuracy of ML algorithms coupled with the ability
+to deploy ML systems to a wide variety of devices (e.g., mobile phones)
+means that it is increasingly important to consider how ML systems will
+behave in real-world, highly complex settings.</p>
+
+<p>The first point ties into a set of skills sometimes grouped under “Data
+Science.” While we will have a comparatively lesser focus on this
+skillset than in our dedicated Data Science course, we will be learning
+some of these skills. The second point corresponds to ML systems as
+embedded in larger and more complex contexts. As you’ve seen from some
+of the examples earlier in this document, unexpected things can happen
+when ML algorithms meet messy and/or biased real world data (take for
+example the automated job applicant evaluator). In light of this, again,
+we think that the traditional focus on ML algorithms is not adequate for
+a modern class on ML. Here are two figures to further illustrate this
+point.</p>
+
+<p><img src="/assignments/assignment01/figures/MlSystem.pdf" alt="image"></p>
+
+<p>In the figure above, the box labeled <em>ML Code</em> is the actual learning
+algorithm. But in modern systems, this is but a small fraction of all of
+the tools needed to deploy a real world ML system. This is not to say
+that we will be spending a lot of time learning about each of these
+other boxes (we will learn about some of them), but it helps to have a
+sense of the software ecosystem in which your ML model would be
+deployed.</p>
+
+<p><img src="/assignments/assignment01/figures/sociotechnical.png" alt="image"></p>
+
+<p>In addition to understanding how ML code is situated within larger
+software ecosystems, it is even more important to realize the
+<a href="https://en.wikipedia.org/wiki/Sociotechnical_system">socio-technical
+context</a> in which
+an ML system is deployed. The figure above shows a socio-technical
+analysis of a technology. The figure highlights the need to consider
+contextual factors such as user impacts, culture, and regulations when
+analyzing technologies.</p>
+
+<p>Using the tools of socio-technical systems analysis is becoming
+increasingly popular for analyzing machine learning systems. We’ll be
+digging into some of these resources later in the course, but here are
+two papers in this spirit.</p>
+
+<p><a href="https://link.springer.com/article/10.1007/s11023-017-9417-6">Reframing AI
+Discourse</a></p>
+
+<p><a href="https://dl.acm.org/citation.cfm?id=3287598">Fairness and Abstraction in Sociotechnical
+Systems</a></p>
+
+<h2 id="idea-6-its-not-all-doom-and-gloom">Idea 6: It’s Not All Doom and Gloom</h2>
+
+<p>While we’ll be talking a lot about how ML can go wrong, unleashing
+unexpected consequences, we’ll also be talking about the positive things
+that ML can do. Here are just a couple of resources that discuss such
+systems (not to say that these systems don’t have the potential for
+things to go wrong!). We’ll leave this list deliberately short to give
+you a chance to find your own example in the exercise below.</p>
+
+<p><a href="https://www.springboard.com/blog/ai-for-good/">AI for social good: 7 inspiring
+examples</a></p>
+
+<p><a href="https://medium.com/myplanet-musings/making-the-web-more-accessible-using-machine-learning-8a32eaafdb3a">Machine Learning for Web
+Accessibility</a></p>
+
+<p><a href="https://fpf.org/wp-content/uploads/2016/03/Final_19Times-Data_Mar2016-1.pdf">19 Times Data Analysis Empowered Students and
+Schools</a></p>
+
+<p>Austin Veseliza put together <a href="https://www.notion.so/ML-for-Good-c0cc352c88b04e719c187c8e4a6f5887">a list of links to AI for social good
+projects</a>
+that you might use for inspiration.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup></p>
+
+<p>::::: exercise
+Now, we want to hear from you!</p>
+
+<p>Choose one of the big ideas above and write a short response to it. Your
+response could incorporate something surprising you read, a
+thought-provoking question, your personal experience, an additional
+resource that builds upon or shifts the discussion. We hope that this
+reflection will help scaffold class discussions and get you thinking
+about your interests in the big space that is ML. Also, you have license
+from us to customize the structure of your response as you see fit. As a
+rough guide, you should aim for a response of a 1-2 paragraphs.</p>
+
+<p>::: boxedsolution
+There’s no one right answer here!
+:::</p>
+
+<p>Idea 6 talks about the idea of ML for positive impact. What is one
+example of an ML application (real or imagined) that you think would
+have the largest (or most unambiguously) positive impact on the world?
+Why? Alternatively, what is an example of an ML application (real or
+imagined) that no matter how carefully the designers approach it, should
+just not exist due to the harm it would cause the world? Why?</p>
+
+<p>::: boxedsolution
+There’s no one right answer here!
+:::</p>
+
+<h1 id="high-level-taste-of-machine-learning">High Level Taste of Machine Learning</h1>
+
+<p>We have introduced some really big ideas in machine learning. Now, let’s
+see a quick overview of the categories of machine learning and play
+around with classification (treating it as a black box for now).</p>
+
+<p>:::: exercise
+Briefly explain the difference between supervised and unsupervised
+learning and the difference between classification and regression. You
+can look things up online yourself or check out <a href="https://www.youtube.com/watch?v=1FZ0A1QCMWc">this
+video</a> that frames machine
+learning in 3 categories. If this video isn’t working for you (or if you
+prefer to reading), Mathworks has a decent overview of <a href="https://explore.mathworks.com/interactive-machine-learning-with-matlab">supervised and
+unsupervised
+learning</a>
+along with some <a href="https://www.mathworks.com/videos/series/introduction-to-machine-learning.html?s_tid=srchtitle">other
+videos</a>.</p>
+
+<p>::: boxedsolution
+Supervised learning uses labeled data to find "answers" or make
+predictions. Unsupervised learning looks for patterns in unlableled
+data. Classification is for predicting categories or groups, while
+regression is for predicting numerical values.
+:::</p>
+
+<p>Now we will play around with a simple example of classification to build
+some intuition. We’ll be using a slight variation on the classic <a href="http://archive.ics.uci.edu/ml/datasets/Iris">Iris
+Dataset</a>, which contains 3
+types of irises (the flower, not the eye part) and 4 features describing
+the flowers (lengths and widths of the sepals and petals).</p>
+
+<p>While most of this class will be in Python, we’ll be using the Matlab
+Classification Learner to play around with classification as a black
+box. To do this, we strongly recommend that you use <a href="https://matlab.mathworks.com/">Matlab
+Online</a> (so you don’t need to
+download/update Matlab on your computer or add any toolboxes manually).
+To get set-up, you should:</p>
+
+<p>Go to <a href="https://matlab.mathworks.com/">https://matlab.mathworks.com/</a>. You will need to log into your
+Mathworks account (which may be the same as your student login). Check
+out the <a href="https://wikis.olin.edu/it/doku.php?id=matlab">Olin IT page</a> for
+help (or work with a partner if you run into problems... don’t let
+Matlab access suck up a ton of time).</p>
+
+<p>Get the <a href="https://drive.matlab.com/sharing/eabcff70-ad45-4b72-9ccf-d10b3ce20933">shared data from
+here.</a>
+We suggest you choose Add to My Files in the top left, then add a
+shortcut. This should allow you to access the nirisData.mat file from
+Matlab Online. (If that gives you trouble, you can just download it and
+upload it yourself.)</p>
+
+<p>:::: exercise
+Explore the Classification Learner with the Iris Dataset. We strongly
+suggest <a href="https://youtu.be/f3uUFoLM3vA">this video to guide you through the
+steps</a>, but here are a few notes for your
+reference:</p>
+
+<p>Load the nirisData.mat into your workspace (niris for noisy iris data).</p>
+
+<p>Open the App (see top ribbon) called <strong>Classification Learner</strong> and
+start a <strong>New Session</strong> from the Workspace.</p>
+
+<p>Set the Data Set Variable to nirisData. This should automatically detect
+the "Response" variable that refers to the category of flower that you
+are trying to predict.</p>
+
+<p>Under Validation, be sure to pick <strong>Resubstitution Validation</strong> so that
+we get more consistent results. Then hit Start Session.</p>
+
+<p>Play around with the plots by changing the Predictors (also known as
+“features”). Note what you can observe from these plots (e.g., How
+well can you tell the different types of flowers apart from these plots?
+Do some Predictors give more information than others?)</p>
+
+<p>From the dropdown menu in the middle of the top band, select Linear
+Discriminant and click Train. Congrats, you did machine learning!!
+Observe the accuracy displayed on the left-hand side. Under the plot on
+the right-hand side, you can toggle back and forth between the model
+predictions and the data to see what your model got wrong.</p>
+
+<p>Train and record the results from at least two models in this <a href="https://docs.google.com/spreadsheets/d/1dh4TQbEn25KP0Z0YzHb8IqYpzbTl4e0LC97izIkSEAI/edit?usp=sharing">classwide
+spreadsheet</a>.
+Be sure to record the details of your design choices so that you can
+replicate your results in class. Since this is a communal activity, we
+suggest that you include 1) your model with the highest accuracy and 2)
+a model with parameters that no one else has recorded yet. Here are some
+ideas on things you can manipulate:</p>
+
+<p>Which features are included in the model (Click Feature Selection in the
+top ribbon and uncheck some).</p>
+
+<p>Which type of machine learning model you choose (the dropdown menu that
+includes options like Linear Discriminant and Fine Trees)</p>
+
+<p>Use of PCA to reduce dimensionality or the Advanced button to manipulate
+features of your model.</p>
+
+<p>::: boxedsolution
+Lots of possibilities here. We will talk about this more in class.
+:::
+::::</p>
+
+<h1 id="mathematical-background">Mathematical Background</h1>
+
+<p>::: notice
+For the purposes of this class, we will be consistent with the notation
+we use. Of course, when we link to other resources, they may use other
+notation. If notation is different in a way that causes confusion, we
+will try to point out pitfalls you should watch out for. Please use this
+link to access our guide to <a href="https://github.com/mlfa19/assignments/blob/master/supplementary_documents/notation_conventions.pdf">our notation
+conventions</a>.
+:::</p>
+
+<p>::: externalresources
+In order to engage with this and future assignments, you’ll want to make
+sure you are familiar with the following concepts (links to resources
+embedded below):</p>
+
+<p>Vector-vector multiplication</p>
+
+<p>Section 2.1 of <a href="https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf">Zico Kolter’s Linear Algebra Review and
+Reference</a></p>
+
+<p>Matrix-vector multiplication</p>
+
+<p>Section 2.2 of <a href="https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf">Zico Kolter’s Linear Algebra Review and
+Reference</a></p>
+
+<p>The first bits of the Khan academy video on <a href="https://www.khanacademy.org/math/linear-algebra/matrix-transformations/linear-transformations/v/matrix-vector-products-as-linear-transformations">Linear
+Transformations</a></p>
+
+<p>Partial derivatives and gradients</p>
+
+<p>Khan Academy videos on partial derivatives:
+<a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction">intro</a>,
+<a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-and-graphs">graphical
+understanding</a>,
+and <a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/formal-definition-of-partial-derivatives">formal
+definition</a></p>
+
+<p><a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient">Khan Academy video on
+Gradient</a>
+:::</p>
+
+<p>::::::: exercise
+Here are some diagnostic problems to test some basic understanding of
+the concepts above.</p>
+
+<p>Suppose $f(x, y) = 2x \sin{y} + y^2 x^3$. Calculate
+$\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
+and $\nabla f$.</p>
+
+<p>::: boxedsolution
+$$\begin{aligned}
+\frac{\partial{f}}{\partial{x}} &amp;= 2 \sin y + 3 y^2 x^2 <br>
+\frac{\partial{f}}{\partial{y}} &amp;= 2x \cos y + 2 y x^3 \\ 
+\nabla f &amp;= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3  \end{bmatrix}
+\end{aligned}$$
+:::</p>
+
+<p>Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
+$\mlvec{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
+$\mlvec{x} \cdot \mlvec{y}$, $\mlvec{x}^\top \mlvec{y}$, and
+$\mlvec{x} \mlvec{y}^\top$.</p>
+
+<p>::: boxedsolution
+$$\begin{aligned}
+\mlvec{x} \cdot \mlvec{y} &amp;= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 <br>
+\mlvec{x}^\top \mlvec{y} &amp;= \mlvec{x} \cdot \mlvec{y} = 15 <br>
+\mlvec{x} \mlvec{y}^\top &amp;= \begin{bmatrix} 3 \times 2 &amp; 3 \times 7 &amp; 3 \times 4 \\ -1 \times 2 &amp; -1 \times 7 &amp; -1 \times 4 \\ 4 \times 2 &amp; 4 \times 7 &amp; 4 \times 4 \end{bmatrix} <br>
+&amp;= \begin{bmatrix} 6 &amp; 21 &amp; 12 \\ -2 &amp; -7 &amp; -4 \\ 8 &amp; 28 &amp; 16 \end{bmatrix}
+\end{aligned}$$
+:::</p>
+
+<p>Let
+$\mlmat{A} = \begin{bmatrix} \mlvec{a_1} &amp; \mlvec{a_2} &amp; \ldots &amp; \mlvec{a_n} \end{bmatrix} = \begin{bmatrix} \mlvec{row_1}^\top \\ \mlvec{row_2}^\top \\ \vdots \\ \mlvec{row}_m^\top \end{bmatrix}$</p>
+
+<p>(that is, the matrix $\mlmat{A}$ can either be thought of as consisting
+of the columns $\mlvec{a_1}, \ldots, \mlvec{a_n}$ or the rows
+$\mlvec{row_1}^\top, \ldots, \mlvec{row_m}^\top$). Let $\mlvec{v}$ be an
+arbitrary $n$-dimensional vector.</p>
+
+<p>Compute $\mlmat{A}\mlvec{v}$ in terms of
+$\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
+
+<p>::: boxedsolution
+$$\begin{aligned}
+\mlmat{A} \mlvec{v} &amp;= \mlvec{v}_1 \mlvec{a}_1 + \mlvec{v}_2 \mlvec{a}_2 + \ldots + \mlvec{v}_n \mlvec{a}_n
+\end{aligned}$$
+:::</p>
+
+<p>Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
+$\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
+
+<p>::: boxedsolution
+$$\begin{aligned}
+\mlmat{A} \mlvec{v} &amp;= \begin{bmatrix} \mlvec{v} \cdot \mlvec{row}_1 \\   \mlvec{v} \cdot \mlvec{row}_2 \\ \vdots \\ \mlvec{v} \cdot \mlvec{row}_m \end{bmatrix}
+\end{aligned}$$
+:::
+:::::::</p>
+
+<h1 id="supervised-learning-problem-setup">Supervised Learning Problem Setup</h1>
+
+<p>Suppose you are given a training set of data points,
+$(\mlvec{x_1}, y_1), (\mlvec{x}_2, y_2), \ldots, (\mlvec{x}_n, y_n)$
+where each $\mlvec{x_i}$ represents an element of an input space (e.g.,
+a d-dimensional feature vector) and each $y_i$ represents an element of
+an output space (e.g., a scalar target value). In the supervised
+learning setting, your goal is to determine a function $\hat{f}$ that
+maps from the input space to the output space. For example, if we
+provide an input $\mlvec{x}$ to $\hat{f}$ it would generate the
+predicted output $\hat{y} = \hat{f}(\mlvec{x})$.</p>
+
+<p>We typically also assume that there is some loss function, $\ell$, that
+determines the amount of loss that a particular prediction $\hat{y}<em>i$ incurs due to a mismatch with the actual output $y_i$. We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set. This notion can be expressed with the following equation (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin</em>{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).</p>
+
+<p>$$\begin{aligned}
+\hat{f}^\star &amp;= \argmin_{\hat{f}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}), y_i \right )
+\end{aligned}$$</p>
+
+<h1 id="linear-regression-from-the-top-down">Linear Regression from the Top-Down</h1>
+
+<h2 id="motivation-why-learn-about-linear-regression">Motivation: Why Learn About Linear Regression?</h2>
+
+<p>Before we jump into the <em>what</em> of linear regression, let’s spend a
+little bit of time talking about the <em>why</em> of linear regression. As
+you’ll soon see, linear regression is among the simplest (perhaps <em>the</em>
+simplest) machine learning algorithm. It has many limitations, which
+you’ll also see, but also a of ton strengths. <strong>First, it is a great
+place to start when learning about machine learning</strong> since the
+algorithm can be understood and implemented using a relatively small
+number of mathematical ideas (you’ll be reviewing these ideas later in
+this assignment). In terms of the algorithm itself, it has the following
+very nice properties.</p>
+
+<p><strong>Transparent:</strong> it’s pretty easy to examine the model and understand
+how it arrives at its predictions.</p>
+
+<p><strong>Computationally tractable:</strong> models can be trained efficiently on
+datasets with large numbers of features and data points.</p>
+
+<p><strong>Easy to implement:</strong> linear regression can be implemented using a
+number of different algorithms (e.g., gradient descent, closed-form
+solution). Even if the algorithm is not built into your favorite
+numerical computation library, the algorithm can be implemented in only
+a couple of lines of code.</p>
+
+<p>For linear regression our input data, $\mlvec{x_i}$, are d-dimensional
+vectors (each entry of these vectors can be thought of as a feature),
+our output data, $y_i$, are scalars, and our prediction functions,
+$\hat{f}$, are all of the form
+$\hat{f}(\mlvec{x}) =\mlvec{w} \cdot \mlvec{x} = \mlvec{w}^\top \mlvec{x} = \sum_{i=1}^d w_i x_i$
+for some vector of weights $\mlvec{w}$ (you could think of $\hat{f}$ as
+also taking $\mlvec{w}$ as an input, e.g., writing
+$\hat{f}(\mlvec{x}, \mlvec{w}$). Most of the time we’ll leave
+$\mlvec{w}$ as an implicit input: writing $\hat{f}(\mlvec{x})$).</p>
+
+<p>In the function, $\hat{f}$, the elements of the vector $\mlvec{w}$
+represent weights that multiply various dimensions of the input. For
+instance, if an element of $\mlvec{w}$ is high, that means that as the
+corresponding element of $\mlvec{x}$ increases, the prediction that
+$\hat{f}$ generates would also increase (you may want to mentally think
+through other cases, e.g., what would happen is the element of
+$\mlvec{x}$ decreases, or what would happen if the entry of $\mlvec{w}$
+was large and negative). The products of the weights and the features
+are then summed to arrive at an overall prediction.</p>
+
+<p>Given this model, we can now define our very first machine learning
+algorithm: <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares">ordinary least
+squares</a> (OLS)! In
+the ordinary least squares algorithm, we use our training set to select
+the $\mlvec{w}$ that minimizes the sum of squared differences between
+the model’s predictions and the training outputs. Thinking back to the
+supervised learning problem setup, this corresponds to choosing
+$\ell(y, \hat{y}) = (y - \hat{y})^2$. Therefore, the OLS algorithm will
+use the training data to select the optimal value of $\mlvec{w}$ (called
+$\mlvec{w}^\star$), which minimizes the sum of squared differences
+between the model’s predictions and the training outputs.</p>
+
+<p>$$\begin{aligned}
+\mlvec{w}^\star &amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) , y_i \right) <br>
+\mlvec{w}^\star &amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) - y_i \right)^2 <br>
+&amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \mlvec{w}^\top \mlvec{x_i} - y_i \right)^2
+\end{aligned}$$</p>
+
+<p>::: notice
+Digesting mathematical equations like this can be daunting, but your
+understanding will be increased by unpacking them carefully. Make sure
+you understand what was substituted and why in each of these lines. Make
+sure you understand what each symbol represents. If you are confused,
+ask for help (e.g., post on discord).
+:::</p>
+
+<p>While we haven’t talked at all about how to find $\mlvec{w}^\star$, that
+will be the focus of the next assignment, once we have $\mlvec{w}^\star$
+we can predict a value for a new input point, $\mlvec{x}$, by predicting
+the corresponding (unknown) output, $y$, as
+$\hat{y} = \mlvec{w^\star} \cdot \mlvec{x}$. In this way, we have used
+the training data to learn how to make predictions about unseen data,
+which is the hallmark of supervised machine learning!</p>
+
+<p>::::: exercise
+Draw a scatter plot in 2D (the x-axis is the independent variable and
+the y-axis is the dependent variable). In other words, draw five or so
+data points, placed wherever you like. Next, draw a potential line of
+best fit, a straight line that is as close to your data points. On the
+plot mark the vertical differences between the data points and the line
+(these differences are called the residuals). Draw a second potential
+line of best fit and mark the residuals. From the point of view of
+ordinary least-squares, which of these lines is better (i.e. has the
+smallest residuals)?</p>
+
+<p>:::: boxedsolution
+::: center
+<img src="/assignments/assignment01/figures/exercise3solution.pdf" alt="image">{width=”80%”}
+:::</p>
+
+<p>The red line (line 1) would be better since the residuals are generally
+smaller. Line 2 also has several large residuals, which when squared
+will cause a large penalty for line 2.
+::::
+:::::</p>
+
+<h1 id="getting-a-feel-for-linear-regression">Getting a Feel for Linear Regression</h1>
+
+<p>In this class we’ll be learning about algorithms using both a top-down
+and a bottom-up approach. By bottom-up we mean applying various
+mathematical rules to derive a solution to a problem and only then
+trying to understand how to apply it and how it well it might work for
+various problems. By top-down we mean starting by applying the algorithm
+to various problems and through these applications gaining a sense of
+the algorithm’s properties. We’ll start our investigation of linear
+regression using a <strong>top-down approach</strong>.</p>
+
+<h2 id="linear-regression-with-one-input-variable-line-of-best-fit">Linear Regression with One Input Variable: Line of Best Fit</h2>
+
+<p>If any of what we’ve said so far sounds familiar, it is likely because
+you have seen the idea of a line of best fit in some previous class. To
+understand more intuitively what the OLS algorithm is doing, we want you
+to investigate its behavior when there is a single input variable (i.e.,
+you are computing a line of best fit).</p>
+
+<p>::::::: externalresources
+Use the <a href="http://www.shodor.org/interactivate/activities/Regression/">line of best fit online
+app</a> to
+create some datasets, guess the line of best fit, and then compare the
+results to the OLS solution (line of best fit).</p>
+
+<p>:::::: exercise
+Examine the role that outliers play in determining the line of best fit.
+Does OLS seem sensitive or insensitive to the presence of outliers in
+the data?</p>
+
+<p>:::: boxedsolution
+OLS is very sensitive to outliers. A single outlier can change the slope
+of the line of best fit dramatically. Here is an example of this
+phenomenon.</p>
+
+<p>::: center
+<img src="/assignments/assignment01/figures/outlier.pdf" alt="image">
+:::</p>
+
+<p>Were there any times when the line of best fit didn’t seem to really be
+“best” (e.g., it didn’t seem to capture the trends in the data)?</p>
+
+<p>::: boxedsolution
+This could happen for many reasons. If the dataset is pieceweise linear
+(e.g., composed of multiple line segments), if it has some other
+non-linear form (e.g., if it is quadratic), or if there are outliers.
+:::</p>
+
+<h2 id="linear-regression-with-multiple-input-variables-explorations-in-python">Linear Regression with Multiple Input Variables: Explorations in Python</h2>
+
+<p>::: externalresources
+Work through the <a href="https://colab.research.google.com/drive/1QPsD2URWupxWjpBfKsr7AcIZ2m3VD37T?usp=sharing">Assignment 1 Companion
+Notebook</a>
+to get some practice with <code class="language-plaintext highlighter-rouge">numpy</code> and explore linear regression using a
+top-down approach. You can place your answers directly in the Jupyter
+notebook so that you have them for your records.
+:::</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://www.youtube.com/watch?time_continue=77&v=MPU2HistivI">Cool video of YOLO version
+3</a>,
+<a href="https://www.youtube.com/watch?v=Cgxsv1riJhI">TED talk from the head YOLO
+researcher</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>From <a href="http://www.cnbc.cmu.edu/~tai/nc19journalclubs/Olshausen-Field-CON-2004-1.pdf">Sparse coding of sensory
+inputs</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>There are a variety of opinions on the <a href="https://en.wikipedia.org/wiki/Animal_testing#Ethics">ethics of performing
+research on
+animals</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>This list was part of the original version of this assignment,
+made in 2019. We are glad we can remember one of the many good
+things Austin created at Olin. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2024 Machine Learning Fall 2024 @ Olin College.</div>
+
+      </footer>
+    </div>
+
+    <script src="/assets/js/copyCode.js"></script>
+
+
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

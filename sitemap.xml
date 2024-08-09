@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>/assignments/assignment01/assignment01.html</loc>
+</url>
+<url>
+<loc>/</loc>
+</url>
+<url>
+<loc>/assignments/assignment01/figures/Colored_neural_network.pdf</loc>
+<lastmod>2024-08-09T14:36:34-04:00</lastmod>
+</url>
+<url>
+<loc>/assignments/assignment01/figures/MlSystem.pdf</loc>
+<lastmod>2024-08-09T14:36:34-04:00</lastmod>
+</url>
+<url>
+<loc>/assignments/assignment01/figures/Olshausen-Field-CON-2004-1.pdf</loc>
+<lastmod>2024-08-09T14:36:34-04:00</lastmod>
+</url>
+<url>
+<loc>/assignments/assignment01/figures/ai-anatomy-map.pdf</loc>
+<lastmod>2024-08-09T14:36:34-04:00</lastmod>
+</url>
+<url>
+<loc>/assignments/assignment01/figures/exercise3solution.pdf</loc>
+<lastmod>2024-08-09T14:36:34-04:00</lastmod>
+</url>
+<url>
+<loc>/assignments/assignment01/figures/learned_receptive_fields.pdf</loc>
+<lastmod>2024-08-09T14:36:34-04:00</lastmod>
+</url>
+<url>
+<loc>/assignments/assignment01/figures/outlier.pdf</loc>
+<lastmod>2024-08-09T14:36:34-04:00</lastmod>
+</url>
+</urlset>
