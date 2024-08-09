@@ -7,7 +7,6 @@ URL=git@github.com:olinml2024/olinml2024.github.io.git
 BRANCH=gh-pages
 BRANCH_FROM=main
 DEPLOY_CONFIG=
-BUNDLE=bundle exec
 DRAFTS=
 SRC=$(pwd)
 TEMP=$(mktemp -d -t jgd-XXX)
@@ -25,9 +24,9 @@ echo -e "\nBuilding Jekyll site:"
 rm -rf _site
 
 if [ -r ${DEPLOY_CONFIG} ]; then
-  ${BUNDLE} jekyll build --config _config.yml,${DEPLOY_CONFIG} ${DRAFTS}
+  bundle exec jekyll build --config _config.yml,${DEPLOY_CONFIG} ${DRAFTS}
 else
-  ${BUNDLE} jekyll build ${DRAFTS}
+  bundle exec jekyll build ${DRAFTS}
 fi
 
 if [ ! -e _site ]; then
