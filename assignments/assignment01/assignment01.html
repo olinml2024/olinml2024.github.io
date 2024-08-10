@@ -160,10 +160,97 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 <!-- end custom head snippets -->
 
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<style>
+:root {
+    --box-bg-color: #fff; /* Default background color */
+}
+
+.homework-box {
+    background-color: var(--box-bg-color);
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.homework-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.homework-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Handle missing or empty src attribute */
+.homework-icon[src=""],
+.homework-icon:not([src]) {
+    content: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg');
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.homework-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.homework-content {
+    font-size: 16px;
+    color: #333;
+}
+</style>
+
+<style>
+.solution {
+    display: none; /* Hide solutions by default */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    margin-top: 10px;
+}
+
+.toggle-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.toggle-button.hide-solution {
+    background-color: #dc3545; /* Red background for hide button */
+}
+</style>
+
+
   <script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
-  <body class="layout--single">
+  <body class="layout--problemset">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -235,6 +322,12 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 	      
                 <ul class="toc__menu">
   <li><a href="#learning-objectives">Learning Objectives</a></li>
+  <li>
+<a href="#testing-area">Testing area</a>
+    <ul>
+      <li><a href="#">Problem 3: Trigonometry</a></li>
+    </ul>
+  </li>
   <li><a href="#please-read-the-syllabus">Please read the syllabus</a></li>
   <li>
 <a href="#six-big-ideas-in-machine-learning">Six Big Ideas in Machine Learning</a>
@@ -274,12 +367,69 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
   <li>Review of mathematical concepts we will be using in the beginning part
 of this course.</li>
   <li>Familiarize yourself with computational tools for machine learning.</li>
-  <li>Learn linear regression using a “top-down” approach.</li>
+  <li>Learn linear regression using a “top-down” approach.
+<em>This document contains a lot of external links. They are there to help
+you learn more if you are interested. You are not required to read/watch
+all the linked material.</em>
+</li>
 </ul>
 
-<p><em>This document contains a lot of external links. They are there to help
-you learn more if you are interested. You are not required to read/watch
-all the linked material.</em></p>
+<h1 id="testing-area">Testing area</h1>
+
+<p><i class="fa fa-home"></i></p>
+<toggle-solution>
+        <div class="problem">
+            <h3>Problem 1: Algebra</h3>
+            <p>Solve the equation $3x + 2 = 11$.</p>
+        </div>
+        <div class="solution">
+            <p>Solution: \(x = 3\).</p>
+        </div>
+    </toggle-solution>
+
+<toggle-solution>
+        <div class="problem">
+            <h3>Problem 2: Geometry</h3>
+            <p>Calculate the area of a circle with a radius of 5cm.</p>
+        </div>
+        <div class="solution">
+            <p>Solution: Area = \(π \times r^2 = 78.54 \, \text{cm}^2\).</p>
+        </div>
+    </toggle-solution>
+
+<div class="homework-box" style="--box-bg-color: #e0ffe0;">
+        <div class="homework-header">
+	    <img class="homework-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg">
+            <h2 class="homework-title">Problem 3: Trigonometry</h2>
+        </div>
+	<div class="homework-content">
+Here's the problem $x^2$
+	</div>
+	<div class="homework-solution">
+	    <p>Here's the solution (TODO: add toggle)</p>
+	</div>
+</div>
+
+<div class="tip" style="
+    background-color: #ECF7FF;
+    border-left: 6px solid #0065B4;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #ff6f00;">
+<i class="fa fa-home"></i>
+</p>
+	<p class="tip-content">
+</p>
+<p>Early boarding is very busy and you will be crammed into a room with a lot of other people.  If you have crowd anxiety, you may want to select a <a href="https://google.com">later</a> boarding time.  Here’s an equation $x^2$.</p>
+
+</div>
 
 <h1 id="please-read-the-syllabus">Please read the syllabus</h1>
 
@@ -1024,15 +1174,105 @@ app</a> to
 create some datasets, guess the line of best fit, and then compare the
 results to the OLS solution (line of best fit).</p>
 
-<p>:::::: exercise
-Examine the role that outliers play in determining the line of best fit.
+<div class="tip" style="
+    background-color: #ECF7FF;
+    border-left: 6px solid #0065B4;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #ff6f00;">
+<i class="fas fa-brain"></i>
+</p>
+     <div style="display: normal">
+	<p style="font-size: x-large; font-weight: 900;">Exercise 1</p>
+	
+<p>Examine the role that outliers play in determining the line of best fit.
 Does OLS seem sensitive or insensitive to the presence of outliers in
 the data?</p>
 
-<p>:::: boxedsolution
-OLS is very sensitive to outliers. A single outlier can change the slope
+<p>Test</p>
+
+
+    <button onclick='HideShowElement("solution-1")'>Show / Hide Solution</button>
+
+<div id="solution-1" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>OLS is very sensitive to outliers. A single outlier can change the slope
 of the line of best fit dramatically. Here is an example of this
 phenomenon.</p>
+
+<p>Test</p>
+
+   </div>
+     </div>
+</div>
+</div>
+
+<div class="tip" style="
+    background-color: #ECF7FF;
+    border-left: 6px solid #0065B4;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #ff6f00;">
+<i class="fas fa-brain"></i>
+</p>
+     <div style="display: normal">
+	<p style="font-size: x-large; font-weight: 900;">Exercise 2</p>
+	
+<p>Examine the role that outliers play in determining the line of best fit.
+Does OLS seem sensitive or insensitive to the presence of outliers in
+the data?</p>
+
+<p>Test</p>
+
+
+    <button onclick='HideShowElement("solution-2")'>Show / Hide Solution</button>
+
+<div id="solution-2" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>OLS is very sensitive to outliers. A single outlier can change the slope
+of the line of best fit dramatically. Here is an example of this
+phenomenon.</p>
+
+<p>Test</p>
+
+   </div>
+     </div>
+</div>
+</div>
+
+<p>:::::: exercise</p>
+
+<p>:::: boxedsolution</p>
 
 <p>::: center
 <img src="/assignments/assignment01/figures/outlier.pdf" alt="image">
@@ -1057,6 +1297,10 @@ top-down approach. You can place your answers directly in the Jupyter
 notebook so that you have them for your records.
 :::</p>
 
+<!-- end custom footer snippets -->
+
+<p>&lt;/body&gt;
+&lt;/html&gt;</p>
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1" role="doc-endnote">
@@ -1077,7 +1321,12 @@ animals</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩<
     <li id="fn:4" role="doc-endnote">
       <p>This list was part of the original version of this assignment,
 made in 2019. We are glad we can remember one of the many good
-things Austin created at Olin. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p>
+things Austin created at Olin.</p>
+
+      <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>&lt;!-- start custom footer snippets --&gt;
+</code></pre></div>      </div>
+      <p><a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </div>
