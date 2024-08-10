@@ -1,0 +1,37 @@
+{% capture _ %}{% increment problem_number %}{% endcapture %}
+
+<div class="tip" style="
+    background-color: {{ include.background_color | default:  '#ECF7FF' }};
+    border-left: 6px solid {{ include.border_color | default:  '#0065B4' }};
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: {{ include.bulb_size | default:  '3em' }};
+	    color: {{ include.bulb_color | default:  '#ff6f00' }};">
+<i class="{{ include.icon | default:  'fas fa-brain' }}"/>
+</p>
+     <div style="display: normal">
+	<p style="font-size: x-large; font-weight: 900;">Exercise {{ problem_number }}</p>
+	{{ include.problem | markdownify }}
+
+    <button onclick="HideShowElement(&quot;solution-{{ problem_number }}&quot;)">Show / Hide Solution</button>
+
+<div id="solution-{{ problem_number }}" class="solution" style="
+    background-color: {{ include.background_color | default:  '#cefad0' }};
+    border-left: 6px solid {{ include.border_color | default:  '#6500B4' }};
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+{{ include.solution | markdownify }}
+   </div>
+     </div>
+</div>
+</div>

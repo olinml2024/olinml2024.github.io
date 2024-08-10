@@ -1,3 +1,6 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
 <script type="text/javascript">
 function HideShowElement(divID) {
     const x = document.getElementById(divID);
@@ -55,3 +58,29 @@ function HideShowElement(divID) {
     color: #333;
 }
 </style>
+
+<style>
+.solution {
+    display: none; /* Hide solutions by default */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    margin-top: 10px;
+}
+
+.toggle-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.toggle-button.hide-solution {
+    background-color: #dc3545; /* Red background for hide button */
+}
+</style>
+

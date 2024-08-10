@@ -1,9 +1,8 @@
 ---
 title: ML Test
 toc_sticky: true 
+layout: problemset
 ---
-{% include common.html %}
-
 
 # Learning Objectives
 * Gain some familiarity with some of the key ideas in machine learning.
@@ -17,18 +16,45 @@ all the linked material.*
 
 # Testing area
 
+<i class='fa fa-home'>
+<toggle-solution>
+        <div class="problem">
+            <h3>Problem 1: Algebra</h3>
+            <p>Solve the equation $3x + 2 = 11$.</p>
+        </div>
+        <div class="solution">
+            <p>Solution: \(x = 3\).</p>
+        </div>
+    </toggle-solution>
+
+<toggle-solution>
+        <div class="problem">
+            <h3>Problem 2: Geometry</h3>
+            <p>Calculate the area of a circle with a radius of 5cm.</p>
+        </div>
+        <div class="solution">
+            <p>Solution: Area = \(π \times r^2 = 78.54 \, \text{cm}^2\).</p>
+        </div>
+    </toggle-solution>
+
 <div class="homework-box" style="--box-bg-color: #e0ffe0;">
         <div class="homework-header">
 	    <img class="homework-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg"/>
             <h2 class="homework-title">Problem 3: Trigonometry</h2>
         </div>
 	<div class="homework-content">
-Here's the problem
+Here's the problem $x^2$
 	</div>
 	<div class="homework-solution">
 	    <p>Here's the solution (TODO: add toggle)</p>
 	</div>
 </div>
+
+{% capture tool_tip %}
+Early boarding is very busy and you will be crammed into a room with a lot of other people.  If you have crowd anxiety, you may want to select a [later](https://google.com) boarding time.  Here's an equation $x^2$.
+{% endcapture %}
+{% include tip.html content=tool_tip %}
+
 
 # Please read the syllabus
 
@@ -771,15 +797,45 @@ app](http://www.shodor.org/interactivate/activities/Regression/) to
 create some datasets, guess the line of best fit, and then compare the
 results to the OLS solution (line of best fit).
 
-:::::: exercise
+{% capture problem %}
 Examine the role that outliers play in determining the line of best fit.
 Does OLS seem sensitive or insensitive to the presence of outliers in
 the data?
 
-:::: boxedsolution
+Test
+{% endcapture %}
+
+{% capture solution %}
 OLS is very sensitive to outliers. A single outlier can change the slope
 of the line of best fit dramatically. Here is an example of this
 phenomenon.
+
+Test
+{% endcapture %}
+{% include problem.html problem=problem solution=solution %}
+
+
+{% capture problem %}
+Examine the role that outliers play in determining the line of best fit.
+Does OLS seem sensitive or insensitive to the presence of outliers in
+the data?
+
+Test
+{% endcapture %}
+
+{% capture solution %}
+OLS is very sensitive to outliers. A single outlier can change the slope
+of the line of best fit dramatically. Here is an example of this
+phenomenon.
+
+Test
+{% endcapture %}
+{% include problem.html problem=problem solution=solution %}
+
+
+:::::: exercise
+
+:::: boxedsolution
 
 ::: center
 ![image](figures/outlier.pdf)
@@ -819,3 +875,8 @@ notebook so that you have them for your records.
 [^4]: This list was part of the original version of this assignment,
     made in 2019. We are glad we can remember one of the many good
     things Austin created at Olin.
+
+        {% include footer/custom.html %}
+
+  </body>
+</html>
