@@ -800,17 +800,13 @@ results to the OLS solution (line of best fit).
 {% capture problem %}
 Examine the role that outliers play in determining the line of best fit.
 Does OLS seem sensitive or insensitive to the presence of outliers in
-the data?
-
-Test
+the data? (testing another problem)
 {% endcapture %}
 
 {% capture solution %}
 OLS is very sensitive to outliers. A single outlier can change the slope
 of the line of best fit dramatically. Here is an example of this
 phenomenon.
-
-Test
 {% endcapture %}
 {% include problem.html problem=problem solution=solution %}
 
@@ -819,16 +815,12 @@ Test
 Examine the role that outliers play in determining the line of best fit.
 Does OLS seem sensitive or insensitive to the presence of outliers in
 the data?
-
-Test
 {% endcapture %}
 
 {% capture solution %}
 OLS is very sensitive to outliers. A single outlier can change the slope
 of the line of best fit dramatically. Here is an example of this
 phenomenon.
-
-Test
 {% endcapture %}
 {% include problem.html problem=problem solution=solution %}
 
