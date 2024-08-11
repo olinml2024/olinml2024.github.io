@@ -698,11 +698,13 @@ use the training data to select the optimal value of $\mlvec{w}$ (called
 $\mlvec{w}^\star$), which minimizes the sum of squared differences
 between the model's predictions and the training outputs.
 
-$$\begin{aligned}
-\mlvec{w}^\star &= \argmin_{\mlvec{w}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) , y_i \right) \\
-\mlvec{w}^\star &= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) - y_i \right)^2 \\
+$$
+\begin{align}
+\mlvec{w}^\star &= \argmin_{\mlvec{w}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) , y_i \right) \\ \mlvec{w}^\star \\
+&= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) - y_i \right)^2 \\ 
 &= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \mlvec{w}^\top \mlvec{x_i} - y_i \right)^2
-\end{aligned}$$
+\end{align}
+$$
 
 ::: notice
 Digesting mathematical equations like this can be daunting, but your
