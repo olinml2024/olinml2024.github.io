@@ -245,12 +245,30 @@ function HideShowElement(divID) {
     background-color: #dc3545; /* Red background for hide button */
 }
 </style>
-
-
-  <script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+<body>
+<p>
 
-  <body class="layout--problemset">
+$
+\newcommand{\mlvec}[1]{\mathbf{#1}}
+\newcommand{\mlmat}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+$
+
+
+
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: false,
+    }
+})
+  
+
+  </p>
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -322,18 +340,12 @@ function HideShowElement(divID) {
 	      
                 <ul class="toc__menu">
   <li><a href="#learning-objectives">Learning Objectives</a></li>
-  <li>
-<a href="#testing-area">Testing area</a>
-    <ul>
-      <li><a href="#">Problem 3: Trigonometry</a></li>
-    </ul>
-  </li>
   <li><a href="#please-read-the-syllabus">Please read the syllabus</a></li>
   <li>
 <a href="#six-big-ideas-in-machine-learning">Six Big Ideas in Machine Learning</a>
     <ul>
       <li><a href="#idea-1-correlations-for-the-win">Idea 1: Correlations for the Win?</a></li>
-      <li><a href="#idea-2-theres-no-such-thing-as-a-free-lunch-idea-2-theres-no-such-thing-as-a-free-lunch-unnumbered">Idea 2: There’s No Such Thing as a Free Lunch {#idea-2-theres-no-such-thing-as-a-free-lunch .unnumbered}</a></li>
+      <li><a href="#idea-2-theres-no-such-thing-as-a-free-lunch">Idea 2: There’s No Such Thing as a Free Lunch</a></li>
       <li><a href="#idea-3-its-all-about-how-you-frame-the-problem">Idea 3: It’s All About How You Frame the Problem</a></li>
       <li><a href="#idea-4-ml-systems-can-learn-intermediate-representations">Idea 4: ML Systems Can Learn Intermediate Representations</a></li>
       <li><a href="#idea-5-machine-learning-zoomed-out-idea-5-machine-learning-zoomed-out-unnumbered">Idea 5: Machine Learning Zoomed Out {#idea-5-machine-learning-zoomed-out .unnumbered}</a></li>
@@ -373,63 +385,6 @@ you learn more if you are interested. You are not required to read/watch
 all the linked material.</em>
 </li>
 </ul>
-
-<h1 id="testing-area">Testing area</h1>
-
-<p><i class="fa fa-home"></i></p>
-<toggle-solution>
-        <div class="problem">
-            <h3>Problem 1: Algebra</h3>
-            <p>Solve the equation $3x + 2 = 11$.</p>
-        </div>
-        <div class="solution">
-            <p>Solution: \(x = 3\).</p>
-        </div>
-    </toggle-solution>
-
-<toggle-solution>
-        <div class="problem">
-            <h3>Problem 2: Geometry</h3>
-            <p>Calculate the area of a circle with a radius of 5cm.</p>
-        </div>
-        <div class="solution">
-            <p>Solution: Area = \(π \times r^2 = 78.54 \, \text{cm}^2\).</p>
-        </div>
-    </toggle-solution>
-
-<div class="homework-box" style="--box-bg-color: #e0ffe0;">
-        <div class="homework-header">
-	    <img class="homework-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg">
-            <h2 class="homework-title">Problem 3: Trigonometry</h2>
-        </div>
-	<div class="homework-content">
-Here's the problem $x^2$
-	</div>
-	<div class="homework-solution">
-	    <p>Here's the solution (TODO: add toggle)</p>
-	</div>
-</div>
-
-<div class="tip" style="
-    background-color: #ECF7FF;
-    border-left: 6px solid #0065B4;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-	<p class="tip-bulb" style="
-	    font-family: 'Font Awesome 5 Free';
-	    vertical-align: middle;
-	    font-weight: 900;
-	    font-size: 3em;
-	    color: #ff6f00;">
-<i class="fa fa-home"></i>
-</p>
-	<p class="tip-content">
-</p>
-<p>Early boarding is very busy and you will be crammed into a room with a lot of other people.  If you have crowd anxiety, you may want to select a <a href="https://google.com">later</a> boarding time.  Here’s an equation $x^2$.</p>
-
-</div>
 
 <h1 id="please-read-the-syllabus">Please read the syllabus</h1>
 
@@ -513,7 +468,9 @@ identify and localize objects in images with surprising accuracy. For
 instance, in the image below YOLO identified the stop sign in the image
 successfully.</p>
 
-<p><img src="/assignments/assignment01/figures/stopsignyolo.jpeg" alt="image"></p>
+<div style="text-align: center;">
+<img src="figures/stopsignyolo.jpeg" width="50%">
+</div>
 
 <p>While this all seems great, there is a catch. It is very difficult to
 understand <em>how</em> YOLO is making these predictions. That is, what is it
@@ -526,7 +483,9 @@ the model exploits correlations in the training data between input
 features (pixels) and outputs (object locations) in potentially
 unpredictable ways.</p>
 
-<p><img src="/assignments/assignment01/figures/yolofooled.png" alt="image"></p>
+<div style="text-align: center;">
+<img src="figures/yolofooled.png" width="50%">
+</div>
 
 <p>The complexity of the model makes it vulnerable to bad actors (or
 adversaries). Researchers at University of Michigan used a form of ML
@@ -540,7 +499,7 @@ application like a self-driving car. An example of the attack is shown
 in Figure <a href="#fig:yolofooled">[fig:yolofooled]</a>{reference-type=”ref”
 reference=”fig:yolofooled”}.</p>
 
-<h2 id="idea-2-theres-no-such-thing-as-a-free-lunch-idea-2-theres-no-such-thing-as-a-free-lunch-unnumbered">Idea 2: There’s No Such Thing as a Free Lunch {#idea-2-theres-no-such-thing-as-a-free-lunch .unnumbered}</h2>
+<h2 id="idea-2-theres-no-such-thing-as-a-free-lunch">Idea 2: There’s No Such Thing as a Free Lunch</h2>
 
 <blockquote>
   <p><a href="https://en.wikipedia.org/wiki/All_models_are_wrong">“All models are wrong, but some
@@ -613,7 +572,11 @@ most quickly propels the center of mass. However, it doesn’t necessarily
 follow that this controller will result in the character walking using a
 normal bipedal gait.</p>
 
-<p><img src="/assignments/assignment01/figures/fallingbot.png" alt="image"></p>
+<figure>
+<div style="text-align: center;">
+<img src="figures/fallingbot.png" width="80%">
+</div>
+</figure>
 
 <p>The notion that the solution an algorithm finds might be unpredictable
 to the designer is known as “emergence.” Some cool examples of this
@@ -640,7 +603,15 @@ flying</a>.</p>
 functioning, at an abstract level, is modeled on the functioning of
 biological neurons (e.g., in the brain).</p>
 
-<p><img src="/assignments/assignment01/figures/Colored_neural_network.pdf" alt="image"></p>
+<figure>
+    <div style="text-align: center;">
+        <img src="figures/Colored_neural_network.png" alt="a schematic of a neural network is shown.  Circles represent nodes, which are connected to other nodes using arrows" style="max-width: 50%">
+    </div>
+    <figcaption style="font-size: x-large">
+        Figure 1: <p>An artificial neural network with a single hidden layer.</p>
+
+    </figcaption>
+</figure>
 
 <p>ANNs accept input patterns at an array of virtual neurons called the
 input layer (see Figure above). The neurons in the input layer are connected to
@@ -669,10 +640,15 @@ The algorithms used to tune the network weights are only concerned with
 reproducing the output patterns, the network is free to choose how it
 represents information within the network (i.e., at the hidden layer).</p>
 
-<p>::: marginfigure
-<img src="/assignments/assignment01/figures/learned_receptive_fields.pdf" alt="image">{width=”\linewidth”}
-[]{#fig:learnedfields label=”fig:learnedfields”}
-:::</p>
+<figure>
+    <div style="text-align: center;">
+        <img src="figures/learned_receptive_fields.png" alt="images are shown representing various receptive fields learned by a neural network.  The images show receptive fields with oriented bars." style="max-width: 50%">
+    </div>
+    <figcaption style="font-size: x-large">
+        Figure 2: <p>12x12 receptive fields learned from an neural network trained to optimally compress images</p>
+
+    </figcaption>
+</figure>
 
 <p>What’s super amazing is that we can actually examine the internal
 representations of a neural network to understand how it’s performing
@@ -1105,11 +1081,13 @@ use the training data to select the optimal value of $\mlvec{w}$ (called
 $\mlvec{w}^\star$), which minimizes the sum of squared differences
 between the model’s predictions and the training outputs.</p>
 
-<p>$$\begin{aligned}
-\mlvec{w}^\star &amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) , y_i \right) <br>
-\mlvec{w}^\star &amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) - y_i \right)^2 <br>
+<p>$$
+\begin{align}
+\mlvec{w}^\star &amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) , y_i \right) \\ \mlvec{w}^\star <br>
+&amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) - y_i \right)^2 \\ 
 &amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \mlvec{w}^\top \mlvec{x_i} - y_i \right)^2
-\end{aligned}$$</p>
+\end{align}
+$$</p>
 
 <p>::: notice
 Digesting mathematical equations like this can be daunting, but your
@@ -1257,6 +1235,9 @@ the data?</p>
 of the line of best fit dramatically. Here is an example of this
 phenomenon.</p>
 
+<p><img src="/assignments/assignment01/figures/outlier.pdf" alt="image"></p>
+
+
    </div>
      </div>
 </div>
@@ -1267,7 +1248,6 @@ phenomenon.</p>
 <p>:::: boxedsolution</p>
 
 <p>::: center
-<img src="/assignments/assignment01/figures/outlier.pdf" alt="image">
 :::</p>
 
 <p>Were there any times when the line of best fit didn’t seem to really be
@@ -1383,5 +1363,6 @@ things Austin created at Olin.</p>
 
 
 
-  </body>
+  
+</body>
 </html>
