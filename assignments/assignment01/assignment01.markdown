@@ -5,6 +5,8 @@ layout: problemset
 ---
 
 # Learning Objectives
+
+{% capture content %}
 * Gain some familiarity with some of the key ideas in machine learning.
 * Review of mathematical concepts we will be using in the beginning part
 of this course.
@@ -13,6 +15,8 @@ of this course.
 *This document contains a lot of external links. They are there to help
 you learn more if you are interested. You are not required to read/watch
 all the linked material.*
+{% endcapture %}
+{% include learning_objectives.html content=content %}
 
 # Please read the syllabus
 
@@ -303,7 +307,7 @@ representing visual information). In this light, that they should find
 similar solutions to this problem is not as surprising as it may first
 seem.
 
-## Idea 5: Machine Learning Zoomed Out {#idea-5-machine-learning-zoomed-out .unnumbered}
+## Idea 5: Machine Learning Zoomed Out
 
 Historically, most ML courses have been laser-focused on learning about
 learning algorithms (e.g., neural networks, support vector machines,
@@ -392,9 +396,10 @@ Austin Veseliza put together [a list of links to AI for social good
 projects](https://www.notion.so/ML-for-Good-c0cc352c88b04e719c187c8e4a6f5887)
 that you might use for inspiration.[^4]
 
-::::: exercise
+{% capture content %}
 Now, we want to hear from you!
 
+Part A:
 Choose one of the big ideas above and write a short response to it. Your
 response could incorporate something surprising you read, a
 thought-provoking question, your personal experience, an additional
@@ -404,20 +409,24 @@ about your interests in the big space that is ML. Also, you have license
 from us to customize the structure of your response as you see fit. As a
 rough guide, you should aim for a response of a 1-2 paragraphs.
 
-::: boxedsolution
-There's no one right answer here!
-:::
-
+Part B:
 Idea 6 talks about the idea of ML for positive impact. What is one
 example of an ML application (real or imagined) that you think would
 have the largest (or most unambiguously) positive impact on the world?
 Why? Alternatively, what is an example of an ML application (real or
 imagined) that no matter how carefully the designers approach it, should
 just not exist due to the harm it would cause the world? Why?
+{% endcapture %}
 
-::: boxedsolution
+{% capture solution %}
+Part A:
 There's no one right answer here!
-:::
+
+Part B:
+There's no one right answer here!
+{% endcapture %}
+{% include problem.html problem=content solution=solution  %}
+
 
 # High Level Taste of Machine Learning
 
@@ -425,7 +434,7 @@ We have introduced some really big ideas in machine learning. Now, let's
 see a quick overview of the categories of machine learning and play
 around with classification (treating it as a black box for now).
 
-:::: exercise
+{% capture content %}
 Briefly explain the difference between supervised and unsupervised
 learning and the difference between classification and regression. You
 can look things up online yourself or check out [this
@@ -436,13 +445,16 @@ unsupervised
 learning](https://explore.mathworks.com/interactive-machine-learning-with-matlab)
 along with some [other
 videos](https://www.mathworks.com/videos/series/introduction-to-machine-learning.html?s_tid=srchtitle).
+{% endcapture %}
 
-::: boxedsolution
+{% capture solution %}
 Supervised learning uses labeled data to find \"answers\" or make
 predictions. Unsupervised learning looks for patterns in unlableled
 data. Classification is for predicting categories or groups, while
 regression is for predicting numerical values.
-:::
+{% endcapture %}
+
+{% include problem.html problem=content solution=solution %}
 
 Now we will play around with a simple example of classification to build
 some intuition. We'll be using a slight variation on the classic [Iris
@@ -470,7 +482,7 @@ shortcut. This should allow you to access the nirisData.mat file from
 Matlab Online. (If that gives you trouble, you can just download it and
 upload it yourself.)
 
-:::: exercise
+{% capture content %}
 Explore the Classification Learner with the Iris Dataset. We strongly
 suggest [this video to guide you through the
 steps](https://youtu.be/f3uUFoLM3vA), but here are a few notes for your
@@ -515,85 +527,69 @@ includes options like Linear Discriminant and Fine Trees)
 
 Use of PCA to reduce dimensionality or the Advanced button to manipulate
 features of your model.
+{% endcapture %}
 
-::: boxedsolution
+{% capture solution %}
 Lots of possibilities here. We will talk about this more in class.
-:::
-::::
+{% endcapture %}
+{% include problem.html problem=content solution=solution %}
 
 # Mathematical Background
 
-::: notice
+{% capture content %}
 For the purposes of this class, we will be consistent with the notation
 we use. Of course, when we link to other resources, they may use other
 notation. If notation is different in a way that causes confusion, we
 will try to point out pitfalls you should watch out for. Please use this
 link to access our guide to [our notation
 conventions](https://github.com/mlfa19/assignments/blob/master/supplementary_documents/notation_conventions.pdf).
-:::
+{% endcapture %}
+{% include notice.html content=content %}
 
-::: externalresources
+{% capture content %}
 In order to engage with this and future assignments, you'll want to make
 sure you are familiar with the following concepts (links to resources
 embedded below):
 
-Vector-vector multiplication
 
-Section 2.1 of [Zico Kolter's Linear Algebra Review and
+* Vector-vector multiplication: Section 2.1 of [Zico Kolter's Linear Algebra Review and
 Reference](https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf)
 
-Matrix-vector multiplication
-
-Section 2.2 of [Zico Kolter's Linear Algebra Review and
+* Matrix-vector multiplication
+  - Section 2.2 of [Zico Kolter's Linear Algebra Review and
 Reference](https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf)
-
-The first bits of the Khan academy video on [Linear
+  - The first bits of the Khan academy video on [Linear
 Transformations](https://www.khanacademy.org/math/linear-algebra/matrix-transformations/linear-transformations/v/matrix-vector-products-as-linear-transformations)
 
-Partial derivatives and gradients
-
-Khan Academy videos on partial derivatives:
+* Partial derivatives and gradients
+  - Khan Academy videos on partial derivatives:
 [intro](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction),
 [graphical
 understanding](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-and-graphs),
 and [formal
 definition](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/formal-definition-of-partial-derivatives)
-
-[Khan Academy video on
+  - [Khan Academy video on
 Gradient](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient)
-:::
 
-::::::: exercise
+{% endcapture %}
+{% include external_resources.html content=content %}
+
+
+{% capture content %}
 Here are some diagnostic problems to test some basic understanding of
 the concepts above.
 
+Part A:
 Suppose $f(x, y) = 2x \sin{y} + y^2 x^3$. Calculate
 $\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
 and $\nabla f$.
 
-$$
-\begin{align}
-\frac{\partial{f}}{\partial{x}} &= 2 \sin y + 3 y^2 x^2 \\ 
-\frac{\partial{f}}{\partial{y}} &= 2x \cos y + 2 y x^3 \\ 
-\nabla f &= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
-\end{align}
-$$
-
+Part B:
 Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
 $\mlvec{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
 $\mlvec{x} \cdot \mlvec{y}$, $\mlvec{x}^\top \mlvec{y}$, and
 $\mlvec{x} \mlvec{y}^\top$.
 
-::: boxedsolution
-$$
-\begin{align}
-\mlvec{x} \cdot \mlvec{y} &= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 \\ 
-\mlvec{x}^\top \mlvec{y} &= \mlvec{x} \cdot \mlvec{y} = 15 \\ 
-\mlvec{x} \mlvec{y}^\top &= \begin{bmatrix} 3 \times 2 & 3 \times 7 & 3 \times 4 \\ -1 \times 2 & -1 \times 7 & -1 \times 4 \\ 4 \times 2 & 4 \times 7 & 4 \times 4 \end{bmatrix} \\ 
-&= \begin{bmatrix} 6 & 21 & 12 \\ -2 & -7 & -4 \\ 8 & 28 & 16 \end{bmatrix}
-\end{align}
-$$
-:::
 
 Let
 $\mlmat{A} = \begin{bmatrix} \mlvec{a_1} & \mlvec{a_2} & \ldots & \mlvec{a_n} \end{bmatrix} = \begin{bmatrix} \mlvec{row_1}^\top \\ \mlvec{row_2}^\top \\ \vdots \\ \mlvec{row}_m^\top \end{bmatrix}$
@@ -603,24 +599,49 @@ of the columns $\mlvec{a_1}, \ldots, \mlvec{a_n}$ or the rows
 $\mlvec{row_1}^\top, \ldots, \mlvec{row_m}^\top$). Let $\mlvec{v}$ be an
 arbitrary $n$-dimensional vector.
 
+Part C:
 Compute $\mlmat{A}\mlvec{v}$ in terms of
 $\mlvec{a_1}, \ldots, \mlvec{a_n}$.
 
-::: boxedsolution
+
+Part D:
+Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
+$\mlvec{row_1}, \ldots, \mlvec{row_m}$.
+{% endcapture %}
+
+{% capture solution %}
+Part A:
+$$
+\begin{align}
+\frac{\partial{f}}{\partial{x}} &= 2 \sin y + 3 y^2 x^2 \\ 
+\frac{\partial{f}}{\partial{y}} &= 2x \cos y + 2 y x^3 \\ 
+\nabla f &= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
+\end{align}
+$$
+
+Part B:
+$$
+\begin{align}
+\mlvec{x} \cdot \mlvec{y} &= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 \\ 
+\mlvec{x}^\top \mlvec{y} &= \mlvec{x} \cdot \mlvec{y} = 15 \\ 
+\mlvec{x} \mlvec{y}^\top &= \begin{bmatrix} 3 \times 2 & 3 \times 7 & 3 \times 4 \\ -1 \times 2 & -1 \times 7 & -1 \times 4 \\ 4 \times 2 & 4 \times 7 & 4 \times 4 \end{bmatrix} \\ 
+&= \begin{bmatrix} 6 & 21 & 12 \\ -2 & -7 & -4 \\ 8 & 28 & 16 \end{bmatrix}
+\end{align}
+$$
+
+Part C:
 $$\begin{aligned}
 \mlmat{A} \mlvec{v} &= \mlvec{v}_1 \mlvec{a}_1 + \mlvec{v}_2 \mlvec{a}_2 + \ldots + \mlvec{v}_n \mlvec{a}_n
 \end{aligned}$$
-:::
 
-Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
-$\mlvec{row_1}, \ldots, \mlvec{row_m}$.
-
-::: boxedsolution
+Part D:
 $$\begin{aligned}
 \mlmat{A} \mlvec{v} &= \begin{bmatrix} \mlvec{v} \cdot \mlvec{row}_1 \\   \mlvec{v} \cdot \mlvec{row}_2 \\ \vdots \\ \mlvec{v} \cdot \mlvec{row}_m \end{bmatrix}
 \end{aligned}$$
-:::
-:::::::
+
+{% endcapture %}
+
+{% include problem.html problem=content solution=solution %}
 
 # Supervised Learning Problem Setup
 
@@ -635,7 +656,8 @@ provide an input $\mlvec{x}$ to $\hat{f}$ it would generate the
 predicted output $\hat{y} = \hat{f}(\mlvec{x})$.
 
 We typically also assume that there is some loss function, $\ell$, that
-determines the amount of loss that a particular prediction $\hat{y}_i$ incurs due to a mismatch with the actual output $y_i$. We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set. This notion can be expressed with the following equation (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin_{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).
+determines the amount of loss that a particular prediction ${\hat y_i}$ 
+incurs due to a mismatch with the actual output $y_i$. We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set. This notion can be expressed with the following equation (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin_{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).
 
 $$\begin{aligned}
 \hat{f}^\star &= \argmin_{\hat{f}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}), y_i \right )
@@ -708,13 +730,15 @@ $$
 \end{align}
 $$
 
-::: notice
+{% capture notice %}
 Digesting mathematical equations like this can be daunting, but your
 understanding will be increased by unpacking them carefully. Make sure
 you understand what was substituted and why in each of these lines. Make
 sure you understand what each symbol represents. If you are confused,
 ask for help (e.g., post on discord).
-:::
+{% endcapture %}
+
+{% include notice.html content=notice %}
 
 While we haven't talked at all about how to find $\mlvec{w}^\star$, that
 will be the focus of the next assignment, once we have $\mlvec{w}^\star$
@@ -724,7 +748,7 @@ $\hat{y} = \mlvec{w^\star} \cdot \mlvec{x}$. In this way, we have used
 the training data to learn how to make predictions about unseen data,
 which is the hallmark of supervised machine learning!
 
-::::: exercise
+{% capture content %}
 Draw a scatter plot in 2D (the x-axis is the independent variable and
 the y-axis is the dependent variable). In other words, draw five or so
 data points, placed wherever you like. Next, draw a potential line of
@@ -734,17 +758,18 @@ plot mark the vertical differences between the data points and the line
 line of best fit and mark the residuals. From the point of view of
 ordinary least-squares, which of these lines is better (i.e. has the
 smallest residuals)?
+{% endcapture %}
 
-:::: boxedsolution
-::: center
-![image](figures/exercise3solution.pdf){width="80%"}
-:::
+{% capture solution %}
+<div style="text-align: center;">
+<img src="figures/exercise3solution.png" width="80%">
+</div>
 
 The red line (line 1) would be better since the residuals are generally
 smaller. Line 2 also has several large residuals, which when squared
 will cause a large penalty for line 2.
-::::
-:::::
+{% endcapture %}
+{% include problem.html problem=content solution=solution %}
 
 # Getting a Feel for Linear Regression
 
@@ -765,68 +790,51 @@ understand more intuitively what the OLS algorithm is doing, we want you
 to investigate its behavior when there is a single input variable (i.e.,
 you are computing a line of best fit).
 
-::::::: externalresources
+{% capture problem %}
 Use the [line of best fit online
 app](http://www.shodor.org/interactivate/activities/Regression/) to
 create some datasets, guess the line of best fit, and then compare the
 results to the OLS solution (line of best fit).
 
-{% capture problem %}
-Examine the role that outliers play in determining the line of best fit.
-Does OLS seem sensitive or insensitive to the presence of outliers in
-the data? (testing another problem)
-{% endcapture %}
-
-{% capture solution %}
-OLS is very sensitive to outliers. A single outlier can change the slope
-of the line of best fit dramatically. Here is an example of this
-phenomenon.
-{% endcapture %}
-{% include problem.html problem=problem solution=solution %}
-
-
-{% capture problem %}
+Part A:
 Examine the role that outliers play in determining the line of best fit.
 Does OLS seem sensitive or insensitive to the presence of outliers in
 the data?
+
+Part B:
+Were there any times when the line of best fit didn't seem to really be
+"best" (e.g., it didn't seem to capture the trends in the data)?
 {% endcapture %}
 
 {% capture solution %}
+Part A:
 OLS is very sensitive to outliers. A single outlier can change the slope
 of the line of best fit dramatically. Here is an example of this
 phenomenon.
 
-![image](figures/outlier.pdf)
+<div style="text-align: center;">
+<img src="figures/outlier.png" width="50%"/>
+</div>
+
+Part B:
+This could happen for many reasons. If the dataset is pieceweise linear
+(e.g., composed of multiple line segments), if it has some other
+non-linear form (e.g., if it is quadratic), or if there are outliers.
 
 {% endcapture %}
 {% include problem.html problem=problem solution=solution %}
 
 
-:::::: exercise
-
-:::: boxedsolution
-
-::: center
-:::
-
-Were there any times when the line of best fit didn't seem to really be
-"best" (e.g., it didn't seem to capture the trends in the data)?
-
-::: boxedsolution
-This could happen for many reasons. If the dataset is pieceweise linear
-(e.g., composed of multiple line segments), if it has some other
-non-linear form (e.g., if it is quadratic), or if there are outliers.
-:::
-
 ## Linear Regression with Multiple Input Variables: Explorations in Python
 
-::: externalresources
+{% capture content %}
 Work through the [Assignment 1 Companion
 Notebook](https://colab.research.google.com/drive/1QPsD2URWupxWjpBfKsr7AcIZ2m3VD37T?usp=sharing)
 to get some practice with `numpy` and explore linear regression using a
 top-down approach. You can place your answers directly in the Jupyter
 notebook so that you have them for your records.
-:::
+{% endcapture %}
+{% include external_resources.html content=content %}
 
 [^1]: [Cool video of YOLO version
     3](https://www.youtube.com/watch?time_continue=77&v=MPU2HistivI),
