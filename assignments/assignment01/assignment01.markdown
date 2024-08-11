@@ -14,48 +14,6 @@ of this course.
 you learn more if you are interested. You are not required to read/watch
 all the linked material.*
 
-# Testing area
-
-<i class='fa fa-home'>
-<toggle-solution>
-        <div class="problem">
-            <h3>Problem 1: Algebra</h3>
-            <p>Solve the equation $3x + 2 = 11$.</p>
-        </div>
-        <div class="solution">
-            <p>Solution: \(x = 3\).</p>
-        </div>
-    </toggle-solution>
-
-<toggle-solution>
-        <div class="problem">
-            <h3>Problem 2: Geometry</h3>
-            <p>Calculate the area of a circle with a radius of 5cm.</p>
-        </div>
-        <div class="solution">
-            <p>Solution: Area = \(π \times r^2 = 78.54 \, \text{cm}^2\).</p>
-        </div>
-    </toggle-solution>
-
-<div class="homework-box" style="--box-bg-color: #e0ffe0;">
-        <div class="homework-header">
-	    <img class="homework-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg"/>
-            <h2 class="homework-title">Problem 3: Trigonometry</h2>
-        </div>
-	<div class="homework-content">
-Here's the problem $x^2$
-	</div>
-	<div class="homework-solution">
-	    <p>Here's the solution (TODO: add toggle)</p>
-	</div>
-</div>
-
-{% capture tool_tip %}
-Early boarding is very busy and you will be crammed into a room with a lot of other people.  If you have crowd anxiety, you may want to select a [later](https://google.com) boarding time.  Here's an equation $x^2$.
-{% endcapture %}
-{% include tip.html content=tool_tip %}
-
-
 # Please read the syllabus
 
 The syllabus is available on Canvas. Please read it, it contains a lot
@@ -138,7 +96,9 @@ identify and localize objects in images with surprising accuracy. For
 instance, in the image below YOLO identified the stop sign in the image
 successfully.
 
-![image](figures/stopsignyolo.jpeg)
+<div style="text-align: center;">
+<img src="figures/stopsignyolo.jpeg" width="50%"/>
+</div>
 
 While this all seems great, there is a catch. It is very difficult to
 understand *how* YOLO is making these predictions. That is, what is it
@@ -151,7 +111,9 @@ the model exploits correlations in the training data between input
 features (pixels) and outputs (object locations) in potentially
 unpredictable ways.
 
-![image](figures/yolofooled.png)
+<div style="text-align: center;">
+<img src="figures/yolofooled.png" width="50%"/>
+</div>
 
 The complexity of the model makes it vulnerable to bad actors (or
 adversaries). Researchers at University of Michigan used a form of ML
@@ -165,7 +127,7 @@ application like a self-driving car. An example of the attack is shown
 in Figure [\[fig:yolofooled\]](#fig:yolofooled){reference-type="ref"
 reference="fig:yolofooled"}.
 
-## Idea 2: There's No Such Thing as a Free Lunch {#idea-2-theres-no-such-thing-as-a-free-lunch .unnumbered}
+## Idea 2: There's No Such Thing as a Free Lunch
 
 > ["All models are wrong, but some
 > useful."](https://en.wikipedia.org/wiki/All_models_are_wrong)
@@ -236,7 +198,11 @@ most quickly propels the center of mass. However, it doesn't necessarily
 follow that this controller will result in the character walking using a
 normal bipedal gait.
 
-![image](figures/fallingbot.png)
+<figure>
+<div style="text-align: center;">
+<img src="figures/fallingbot.png" width="80%"/>
+</div>
+</figure>
 
 The notion that the solution an algorithm finds might be unpredictable
 to the designer is known as "emergence." Some cool examples of this
@@ -263,7 +229,10 @@ In the next few weeks we'll learn about artificial neural networks
 functioning, at an abstract level, is modeled on the functioning of
 biological neurons (e.g., in the brain).
 
-![image](figures/Colored_neural_network.pdf)
+{% include figure.html
+        img="figures/Colored_neural_network.png"
+        alt="a schematic of a neural network is shown.  Circles represent nodes, which are connected to other nodes using arrows"
+        caption="An artificial neural network with a single hidden layer." %}
 
 ANNs accept input patterns at an array of virtual neurons called the
 input layer (see Figure above). The neurons in the input layer are connected to
@@ -292,10 +261,11 @@ The algorithms used to tune the network weights are only concerned with
 reproducing the output patterns, the network is free to choose how it
 represents information within the network (i.e., at the hidden layer).
 
-::: marginfigure
-![image](figures/learned_receptive_fields.pdf){width="\\linewidth"}
-[]{#fig:learnedfields label="fig:learnedfields"}
-:::
+{% include figure.html
+        img="figures/learned_receptive_fields.png"
+        alt="images are shown representing various receptive fields learned by a neural network.  The images show receptive fields with oriented bars."
+        caption="12x12 receptive fields learned from an neural network trained to optimally compress images"
+%}
 
 What's super amazing is that we can actually examine the internal
 representations of a neural network to understand how it's performing
@@ -821,6 +791,9 @@ the data?
 OLS is very sensitive to outliers. A single outlier can change the slope
 of the line of best fit dramatically. Here is an example of this
 phenomenon.
+
+![image](figures/outlier.pdf)
+
 {% endcapture %}
 {% include problem.html problem=problem solution=solution %}
 
@@ -830,7 +803,6 @@ phenomenon.
 :::: boxedsolution
 
 ::: center
-![image](figures/outlier.pdf)
 :::
 
 Were there any times when the line of best fit didn't seem to really be

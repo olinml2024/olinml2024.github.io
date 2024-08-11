@@ -1,0 +1,10 @@
+{% capture _ %}{% increment figure_number %}{% endcapture %}
+
+<figure>
+    <div style="text-align: center;">
+        <img src="{{ include.img }}" alt="{{ include.alt }}" style="max-width: {{ include.width | default: "50%" }}"/>
+    </div>
+    <figcaption style="font-size: x-large">
+        Figure {{ figure_number }}: {{ include.caption | markdownify }}
+    </figcaption>
+</figure>
