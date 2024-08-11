@@ -339,7 +339,7 @@ $
       <li><a href="#idea-2-theres-no-such-thing-as-a-free-lunch">Idea 2: There’s No Such Thing as a Free Lunch</a></li>
       <li><a href="#idea-3-its-all-about-how-you-frame-the-problem">Idea 3: It’s All About How You Frame the Problem</a></li>
       <li><a href="#idea-4-ml-systems-can-learn-intermediate-representations">Idea 4: ML Systems Can Learn Intermediate Representations</a></li>
-      <li><a href="#idea-5-machine-learning-zoomed-out-idea-5-machine-learning-zoomed-out-unnumbered">Idea 5: Machine Learning Zoomed Out {#idea-5-machine-learning-zoomed-out .unnumbered}</a></li>
+      <li><a href="#idea-5-machine-learning-zoomed-out">Idea 5: Machine Learning Zoomed Out</a></li>
       <li><a href="#idea-6-its-not-all-doom-and-gloom">Idea 6: It’s Not All Doom and Gloom</a></li>
     </ul>
   </li>
@@ -365,6 +365,26 @@ $
           </aside>
         
         <h1 id="learning-objectives">Learning Objectives</h1>
+
+<div class="tip" style="
+    background-color: #C6EBD5;
+    border-left: 6px solid #000000;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #000000;">
+        <i class="fas fa-brain"></i>
+</p>
+	<div style="layout: normal;">
+	   <p style="font-size: x-large; font-weight: 900;">Learning Objectives</p>
+	   <p class="notice-content">
+</p>
 <ul>
   <li>Gain some familiarity with some of the key ideas in machine learning.</li>
   <li>Review of mathematical concepts we will be using in the beginning part
@@ -376,6 +396,9 @@ you learn more if you are interested. You are not required to read/watch
 all the linked material.</em>
 </li>
 </ul>
+
+        </div>
+</div>
 
 <h1 id="please-read-the-syllabus">Please read the syllabus</h1>
 
@@ -677,7 +700,7 @@ representing visual information). In this light, that they should find
 similar solutions to this problem is not as surprising as it may first
 seem.</p>
 
-<h2 id="idea-5-machine-learning-zoomed-out-idea-5-machine-learning-zoomed-out-unnumbered">Idea 5: Machine Learning Zoomed Out {#idea-5-machine-learning-zoomed-out .unnumbered}</h2>
+<h2 id="idea-5-machine-learning-zoomed-out">Idea 5: Machine Learning Zoomed Out</h2>
 
 <p>Historically, most ML courses have been laser-focused on learning about
 learning algorithms (e.g., neural networks, support vector machines,
@@ -766,10 +789,28 @@ Schools</a></p>
 projects</a>
 that you might use for inspiration.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup></p>
 
-<p>::::: exercise
-Now, we want to hear from you!</p>
+<div class="tip" style="
+    background-color: #ECF7FF;
+    border-left: 6px solid #0065B4;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #ff6f00;">
+<i class="fas fa-question"></i>
+</p>
+     <div style="display: normal">
+	<p style="font-size: x-large; font-weight: 900;">Exercise 1</p>
+	
+<p>Now, we want to hear from you!</p>
 
-<p>Choose one of the big ideas above and write a short response to it. Your
+<p>Part A:
+Choose one of the big ideas above and write a short response to it. Your
 response could incorporate something surprising you read, a
 thought-provoking question, your personal experience, an additional
 resource that builds upon or shifts the discussion. We hope that this
@@ -778,20 +819,37 @@ about your interests in the big space that is ML. Also, you have license
 from us to customize the structure of your response as you see fit. As a
 rough guide, you should aim for a response of a 1-2 paragraphs.</p>
 
-<p>::: boxedsolution
-There’s no one right answer here!
-:::</p>
-
-<p>Idea 6 talks about the idea of ML for positive impact. What is one
+<p>Part B:
+Idea 6 talks about the idea of ML for positive impact. What is one
 example of an ML application (real or imagined) that you think would
 have the largest (or most unambiguously) positive impact on the world?
 Why? Alternatively, what is an example of an ML application (real or
 imagined) that no matter how carefully the designers approach it, should
 just not exist due to the harm it would cause the world? Why?</p>
 
-<p>::: boxedsolution
-There’s no one right answer here!
-:::</p>
+
+    <button onclick='HideShowElement("solution-1")'>Show / Hide Solution</button>
+
+<div id="solution-1" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Part A:
+There’s no one right answer here!</p>
+
+<p>Part B:
+There’s no one right answer here!</p>
+
+   </div>
+     </div>
+</div>
+</div>
 
 <h1 id="high-level-taste-of-machine-learning">High Level Taste of Machine Learning</h1>
 
@@ -799,8 +857,25 @@ There’s no one right answer here!
 see a quick overview of the categories of machine learning and play
 around with classification (treating it as a black box for now).</p>
 
-<p>:::: exercise
-Briefly explain the difference between supervised and unsupervised
+<div class="tip" style="
+    background-color: #ECF7FF;
+    border-left: 6px solid #0065B4;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #ff6f00;">
+<i class="fas fa-question"></i>
+</p>
+     <div style="display: normal">
+	<p style="font-size: x-large; font-weight: 900;">Exercise 2</p>
+	
+<p>Briefly explain the difference between supervised and unsupervised
 learning and the difference between classification and regression. You
 can look things up online yourself or check out <a href="https://www.youtube.com/watch?v=1FZ0A1QCMWc">this
 video</a> that frames machine
@@ -811,12 +886,28 @@ learning</a>
 along with some <a href="https://www.mathworks.com/videos/series/introduction-to-machine-learning.html?s_tid=srchtitle">other
 videos</a>.</p>
 
-<p>::: boxedsolution
-Supervised learning uses labeled data to find "answers" or make
+
+    <button onclick='HideShowElement("solution-2")'>Show / Hide Solution</button>
+
+<div id="solution-2" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Supervised learning uses labeled data to find "answers" or make
 predictions. Unsupervised learning looks for patterns in unlableled
 data. Classification is for predicting categories or groups, while
-regression is for predicting numerical values.
-:::</p>
+regression is for predicting numerical values.</p>
+
+   </div>
+     </div>
+</div>
+</div>
 
 <p>Now we will play around with a simple example of classification to build
 some intuition. We’ll be using a slight variation on the classic <a href="http://archive.ics.uci.edu/ml/datasets/Iris">Iris
@@ -844,8 +935,25 @@ shortcut. This should allow you to access the nirisData.mat file from
 Matlab Online. (If that gives you trouble, you can just download it and
 upload it yourself.)</p>
 
-<p>:::: exercise
-Explore the Classification Learner with the Iris Dataset. We strongly
+<div class="tip" style="
+    background-color: #ECF7FF;
+    border-left: 6px solid #0065B4;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #ff6f00;">
+<i class="fas fa-question"></i>
+</p>
+     <div style="display: normal">
+	<p style="font-size: x-large; font-weight: 900;">Exercise 3</p>
+	
+<p>Explore the Classification Learner with the Iris Dataset. We strongly
 suggest <a href="https://youtu.be/f3uUFoLM3vA">this video to guide you through the
 steps</a>, but here are a few notes for your
 reference:</p>
@@ -890,84 +998,145 @@ includes options like Linear Discriminant and Fine Trees)</p>
 <p>Use of PCA to reduce dimensionality or the Advanced button to manipulate
 features of your model.</p>
 
-<p>::: boxedsolution
-Lots of possibilities here. We will talk about this more in class.
-:::
-::::</p>
+
+    <button onclick='HideShowElement("solution-3")'>Show / Hide Solution</button>
+
+<div id="solution-3" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Lots of possibilities here. We will talk about this more in class.</p>
+
+   </div>
+     </div>
+</div>
+</div>
 
 <h1 id="mathematical-background">Mathematical Background</h1>
 
-<p>::: notice
-For the purposes of this class, we will be consistent with the notation
+<div class="tip" style="
+    background-color: #FDFD96;
+    border-left: 6px solid #000000;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #000000;">
+<i class="fa fa-exclamation-triangle"></i>
+</p>
+	<div style="layout: normal;">
+	   <p style="font-size: x-large; font-weight: 900;">Notice</p>
+	   <p class="notice-content">
+</p>
+<p>For the purposes of this class, we will be consistent with the notation
 we use. Of course, when we link to other resources, they may use other
 notation. If notation is different in a way that causes confusion, we
 will try to point out pitfalls you should watch out for. Please use this
 link to access our guide to <a href="https://github.com/mlfa19/assignments/blob/master/supplementary_documents/notation_conventions.pdf">our notation
-conventions</a>.
-:::</p>
+conventions</a>.</p>
 
-<p>::: externalresources
-In order to engage with this and future assignments, you’ll want to make
+        </div>
+</div>
+
+<div class="tip" style="
+    background-color: #FFD1DC;
+    border-left: 6px solid #000000;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #000000;">
+<i class="fas fa-external-link-alt"></i>
+</p>
+	<div style="layout: normal;">
+	   <p style="font-size: x-large; font-weight: 900;">External Resources</p>
+	   <p class="notice-content">
+</p>
+<p>In order to engage with this and future assignments, you’ll want to make
 sure you are familiar with the following concepts (links to resources
 embedded below):</p>
 
-<p>Vector-vector multiplication</p>
-
-<p>Section 2.1 of <a href="https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf">Zico Kolter’s Linear Algebra Review and
+<ul>
+  <li>
+    <p>Vector-vector multiplication: Section 2.1 of <a href="https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf">Zico Kolter’s Linear Algebra Review and
 Reference</a></p>
-
-<p>Matrix-vector multiplication</p>
-
-<p>Section 2.2 of <a href="https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf">Zico Kolter’s Linear Algebra Review and
-Reference</a></p>
-
-<p>The first bits of the Khan academy video on <a href="https://www.khanacademy.org/math/linear-algebra/matrix-transformations/linear-transformations/v/matrix-vector-products-as-linear-transformations">Linear
-Transformations</a></p>
-
-<p>Partial derivatives and gradients</p>
-
-<p>Khan Academy videos on partial derivatives:
+  </li>
+  <li>Matrix-vector multiplication
+    <ul>
+      <li>Section 2.2 of <a href="https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf">Zico Kolter’s Linear Algebra Review and
+Reference</a>
+</li>
+      <li>The first bits of the Khan academy video on <a href="https://www.khanacademy.org/math/linear-algebra/matrix-transformations/linear-transformations/v/matrix-vector-products-as-linear-transformations">Linear
+Transformations</a>
+</li>
+    </ul>
+  </li>
+  <li>Partial derivatives and gradients
+    <ul>
+      <li>Khan Academy videos on partial derivatives:
 <a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-introduction">intro</a>,
 <a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/partial-derivatives-and-graphs">graphical
 understanding</a>,
 and <a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivatives/v/formal-definition-of-partial-derivatives">formal
-definition</a></p>
+definition</a>
+</li>
+      <li><a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient">Khan Academy video on
+Gradient</a></li>
+    </ul>
+  </li>
+</ul>
 
-<p><a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient">Khan Academy video on
-Gradient</a>
-:::</p>
 
-<p>::::::: exercise
-Here are some diagnostic problems to test some basic understanding of
+        </div>
+</div>
+
+<div class="tip" style="
+    background-color: #ECF7FF;
+    border-left: 6px solid #0065B4;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #ff6f00;">
+<i class="fas fa-question"></i>
+</p>
+     <div style="display: normal">
+	<p style="font-size: x-large; font-weight: 900;">Exercise 4</p>
+	
+<p>Here are some diagnostic problems to test some basic understanding of
 the concepts above.</p>
 
-<p>Suppose $f(x, y) = 2x \sin{y} + y^2 x^3$. Calculate
+<p>Part A:
+Suppose $f(x, y) = 2x \sin{y} + y^2 x^3$. Calculate
 $\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
 and $\nabla f$.</p>
 
-<p>$$
-\begin{align}
-\frac{\partial{f}}{\partial{x}} &amp;= 2 \sin y + 3 y^2 x^2 \\ 
-\frac{\partial{f}}{\partial{y}} &amp;= 2x \cos y + 2 y x^3 \\ 
-\nabla f &amp;= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
-\end{align}
-$$</p>
-
-<p>Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
+<p>Part B:
+Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
 $\mlvec{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
 $\mlvec{x} \cdot \mlvec{y}$, $\mlvec{x}^\top \mlvec{y}$, and
 $\mlvec{x} \mlvec{y}^\top$.</p>
-
-<p>::: boxedsolution
-$$
-\begin{align}
-\mlvec{x} \cdot \mlvec{y} &amp;= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 \\ 
-\mlvec{x}^\top \mlvec{y} &amp;= \mlvec{x} \cdot \mlvec{y} = 15 \\ 
-\mlvec{x} \mlvec{y}^\top &amp;= \begin{bmatrix} 3 \times 2 &amp; 3 \times 7 &amp; 3 \times 4 \\ -1 \times 2 &amp; -1 \times 7 &amp; -1 \times 4 \\ 4 \times 2 &amp; 4 \times 7 &amp; 4 \times 4 \end{bmatrix} \\ 
-&amp;= \begin{bmatrix} 6 &amp; 21 &amp; 12 \\ -2 &amp; -7 &amp; -4 \\ 8 &amp; 28 &amp; 16 \end{bmatrix}
-\end{align}
-$$
-:::</p>
 
 <p>Let
 $\mlmat{A} = \begin{bmatrix} \mlvec{a_1} &amp; \mlvec{a_2} &amp; \ldots &amp; \mlvec{a_n} \end{bmatrix} = \begin{bmatrix} \mlvec{row_1}^\top \\ \mlvec{row_2}^\top \\ \vdots \\ \mlvec{row}_m^\top \end{bmatrix}$</p>
@@ -977,24 +1146,61 @@ of the columns $\mlvec{a_1}, \ldots, \mlvec{a_n}$ or the rows
 $\mlvec{row_1}^\top, \ldots, \mlvec{row_m}^\top$). Let $\mlvec{v}$ be an
 arbitrary $n$-dimensional vector.</p>
 
-<p>Compute $\mlmat{A}\mlvec{v}$ in terms of
+<p>Part C:
+Compute $\mlmat{A}\mlvec{v}$ in terms of
 $\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
 
-<p>::: boxedsolution
-$$\begin{aligned}
-\mlmat{A} \mlvec{v} &amp;= \mlvec{v}_1 \mlvec{a}_1 + \mlvec{v}_2 \mlvec{a}_2 + \ldots + \mlvec{v}_n \mlvec{a}_n
-\end{aligned}$$
-:::</p>
-
-<p>Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
+<p>Part D:
+Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
 $\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
 
-<p>::: boxedsolution
+
+    <button onclick='HideShowElement("solution-4")'>Show / Hide Solution</button>
+
+<div id="solution-4" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Part A:
+$$
+\begin{align}
+\frac{\partial{f}}{\partial{x}} &amp;= 2 \sin y + 3 y^2 x^2 \\ 
+\frac{\partial{f}}{\partial{y}} &amp;= 2x \cos y + 2 y x^3 \\ 
+\nabla f &amp;= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
+\end{align}
+$$</p>
+
+<p>Part B:
+$$
+\begin{align}
+\mlvec{x} \cdot \mlvec{y} &amp;= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 \\ 
+\mlvec{x}^\top \mlvec{y} &amp;= \mlvec{x} \cdot \mlvec{y} = 15 \\ 
+\mlvec{x} \mlvec{y}^\top &amp;= \begin{bmatrix} 3 \times 2 &amp; 3 \times 7 &amp; 3 \times 4 \\ -1 \times 2 &amp; -1 \times 7 &amp; -1 \times 4 \\ 4 \times 2 &amp; 4 \times 7 &amp; 4 \times 4 \end{bmatrix} \\ 
+&amp;= \begin{bmatrix} 6 &amp; 21 &amp; 12 \\ -2 &amp; -7 &amp; -4 \\ 8 &amp; 28 &amp; 16 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>Part C:
+$$\begin{aligned}
+\mlmat{A} \mlvec{v} &amp;= \mlvec{v}_1 \mlvec{a}_1 + \mlvec{v}_2 \mlvec{a}_2 + \ldots + \mlvec{v}_n \mlvec{a}_n
+\end{aligned}$$</p>
+
+<p>Part D:
 $$\begin{aligned}
 \mlmat{A} \mlvec{v} &amp;= \begin{bmatrix} \mlvec{v} \cdot \mlvec{row}_1 \\   \mlvec{v} \cdot \mlvec{row}_2 \\ \vdots \\ \mlvec{v} \cdot \mlvec{row}_m \end{bmatrix}
-\end{aligned}$$
-:::
-:::::::</p>
+\end{aligned}$$</p>
+
+
+   </div>
+     </div>
+</div>
+</div>
 
 <h1 id="supervised-learning-problem-setup">Supervised Learning Problem Setup</h1>
 
@@ -1009,7 +1215,8 @@ provide an input $\mlvec{x}$ to $\hat{f}$ it would generate the
 predicted output $\hat{y} = \hat{f}(\mlvec{x})$.</p>
 
 <p>We typically also assume that there is some loss function, $\ell$, that
-determines the amount of loss that a particular prediction $\hat{y}<em>i$ incurs due to a mismatch with the actual output $y_i$. We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set. This notion can be expressed with the following equation (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin</em>{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).</p>
+determines the amount of loss that a particular prediction ${\hat y_i}$ 
+incurs due to a mismatch with the actual output $y_i$. We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set. This notion can be expressed with the following equation (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin_{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).</p>
 
 <p>$$\begin{aligned}
 \hat{f}^\star &amp;= \argmin_{\hat{f}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}), y_i \right )
@@ -1082,13 +1289,33 @@ between the model’s predictions and the training outputs.</p>
 \end{align}
 $$</p>
 
-<p>::: notice
-Digesting mathematical equations like this can be daunting, but your
+<div class="tip" style="
+    background-color: #FDFD96;
+    border-left: 6px solid #000000;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #000000;">
+<i class="fa fa-exclamation-triangle"></i>
+</p>
+	<div style="layout: normal;">
+	   <p style="font-size: x-large; font-weight: 900;">Notice</p>
+	   <p class="notice-content">
+</p>
+<p>Digesting mathematical equations like this can be daunting, but your
 understanding will be increased by unpacking them carefully. Make sure
 you understand what was substituted and why in each of these lines. Make
 sure you understand what each symbol represents. If you are confused,
-ask for help (e.g., post on discord).
-:::</p>
+ask for help (e.g., post on discord).</p>
+
+        </div>
+</div>
 
 <p>While we haven’t talked at all about how to find $\mlvec{w}^\star$, that
 will be the focus of the next assignment, once we have $\mlvec{w}^\star$
@@ -1098,8 +1325,25 @@ $\hat{y} = \mlvec{w^\star} \cdot \mlvec{x}$. In this way, we have used
 the training data to learn how to make predictions about unseen data,
 which is the hallmark of supervised machine learning!</p>
 
-<p>::::: exercise
-Draw a scatter plot in 2D (the x-axis is the independent variable and
+<div class="tip" style="
+    background-color: #ECF7FF;
+    border-left: 6px solid #0065B4;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #ff6f00;">
+<i class="fas fa-question"></i>
+</p>
+     <div style="display: normal">
+	<p style="font-size: x-large; font-weight: 900;">Exercise 5</p>
+	
+<p>Draw a scatter plot in 2D (the x-axis is the independent variable and
 the y-axis is the dependent variable). In other words, draw five or so
 data points, placed wherever you like. Next, draw a potential line of
 best fit, a straight line that is as close to your data points. On the
@@ -1109,16 +1353,31 @@ line of best fit and mark the residuals. From the point of view of
 ordinary least-squares, which of these lines is better (i.e. has the
 smallest residuals)?</p>
 
-<p>:::: boxedsolution
-::: center
-<img src="/assignments/assignment01/figures/exercise3solution.pdf" alt="image">{width=”80%”}
-:::</p>
+
+    <button onclick='HideShowElement("solution-5")'>Show / Hide Solution</button>
+
+<div id="solution-5" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<div style="text-align: center;">
+<img src="figures/exercise3solution.png" width="80%">
+</div>
 
 <p>The red line (line 1) would be better since the residuals are generally
 smaller. Line 2 also has several large residuals, which when squared
-will cause a large penalty for line 2.
-::::
-:::::</p>
+will cause a large penalty for line 2.</p>
+
+   </div>
+     </div>
+</div>
+</div>
 
 <h1 id="getting-a-feel-for-linear-regression">Getting a Feel for Linear Regression</h1>
 
@@ -1139,82 +1398,42 @@ understand more intuitively what the OLS algorithm is doing, we want you
 to investigate its behavior when there is a single input variable (i.e.,
 you are computing a line of best fit).</p>
 
-<p>::::::: externalresources
-Use the <a href="http://www.shodor.org/interactivate/activities/Regression/">line of best fit online
+<div class="tip" style="
+    background-color: #ECF7FF;
+    border-left: 6px solid #0065B4;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="tip-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #ff6f00;">
+<i class="fas fa-question"></i>
+</p>
+     <div style="display: normal">
+	<p style="font-size: x-large; font-weight: 900;">Exercise 6</p>
+	
+<p>Use the <a href="http://www.shodor.org/interactivate/activities/Regression/">line of best fit online
 app</a> to
 create some datasets, guess the line of best fit, and then compare the
 results to the OLS solution (line of best fit).</p>
 
-<div class="tip" style="
-    background-color: #ECF7FF;
-    border-left: 6px solid #0065B4;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-	<p class="tip-bulb" style="
-	    font-family: 'Font Awesome 5 Free';
-	    vertical-align: middle;
-	    font-weight: 900;
-	    font-size: 3em;
-	    color: #ff6f00;">
-<i class="fas fa-brain"></i>
-</p>
-     <div style="display: normal">
-	<p style="font-size: x-large; font-weight: 900;">Exercise 1</p>
-	
-<p>Examine the role that outliers play in determining the line of best fit.
-Does OLS seem sensitive or insensitive to the presence of outliers in
-the data? (testing another problem)</p>
-
-
-    <button onclick='HideShowElement("solution-1")'>Show / Hide Solution</button>
-
-<div id="solution-1" class="solution" style="
-    background-color: #cefad0;
-    border-left: 6px solid #6500B4;
-    padding: 1em 1em 1em 1em;
-    display: none;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-    <div style="display: normal">
-<p style="font-weight: 900; font-size: x-large">Solution</p>
-
-<p>OLS is very sensitive to outliers. A single outlier can change the slope
-of the line of best fit dramatically. Here is an example of this
-phenomenon.</p>
-
-   </div>
-     </div>
-</div>
-</div>
-
-<div class="tip" style="
-    background-color: #ECF7FF;
-    border-left: 6px solid #0065B4;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-	<p class="tip-bulb" style="
-	    font-family: 'Font Awesome 5 Free';
-	    vertical-align: middle;
-	    font-weight: 900;
-	    font-size: 3em;
-	    color: #ff6f00;">
-<i class="fas fa-brain"></i>
-</p>
-     <div style="display: normal">
-	<p style="font-size: x-large; font-weight: 900;">Exercise 2</p>
-	
-<p>Examine the role that outliers play in determining the line of best fit.
+<p>Part A:
+Examine the role that outliers play in determining the line of best fit.
 Does OLS seem sensitive or insensitive to the presence of outliers in
 the data?</p>
 
+<p>Part B:
+Were there any times when the line of best fit didn’t seem to really be
+“best” (e.g., it didn’t seem to capture the trends in the data)?</p>
 
-    <button onclick='HideShowElement("solution-2")'>Show / Hide Solution</button>
 
-<div id="solution-2" class="solution" style="
+    <button onclick='HideShowElement("solution-6")'>Show / Hide Solution</button>
+
+<div id="solution-6" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -1224,11 +1443,19 @@ the data?</p>
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-<p>OLS is very sensitive to outliers. A single outlier can change the slope
+<p>Part A:
+OLS is very sensitive to outliers. A single outlier can change the slope
 of the line of best fit dramatically. Here is an example of this
 phenomenon.</p>
 
-<p><img src="/assignments/assignment01/figures/outlier.pdf" alt="image"></p>
+<div style="text-align: center;">
+<img src="figures/outlier.png" width="50%">
+</div>
+
+<p>Part B:
+This could happen for many reasons. If the dataset is pieceweise linear
+(e.g., composed of multiple line segments), if it has some other
+non-linear form (e.g., if it is quadratic), or if there are outliers.</p>
 
 
    </div>
@@ -1236,31 +1463,35 @@ phenomenon.</p>
 </div>
 </div>
 
-<p>:::::: exercise</p>
-
-<p>:::: boxedsolution</p>
-
-<p>::: center
-:::</p>
-
-<p>Were there any times when the line of best fit didn’t seem to really be
-“best” (e.g., it didn’t seem to capture the trends in the data)?</p>
-
-<p>::: boxedsolution
-This could happen for many reasons. If the dataset is pieceweise linear
-(e.g., composed of multiple line segments), if it has some other
-non-linear form (e.g., if it is quadratic), or if there are outliers.
-:::</p>
-
 <h2 id="linear-regression-with-multiple-input-variables-explorations-in-python">Linear Regression with Multiple Input Variables: Explorations in Python</h2>
 
-<p>::: externalresources
-Work through the <a href="https://colab.research.google.com/drive/1QPsD2URWupxWjpBfKsr7AcIZ2m3VD37T?usp=sharing">Assignment 1 Companion
+<div class="tip" style="
+    background-color: #FFD1DC;
+    border-left: 6px solid #000000;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+	<p class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: 3em;
+	    color: #000000;">
+<i class="fas fa-external-link-alt"></i>
+</p>
+	<div style="layout: normal;">
+	   <p style="font-size: x-large; font-weight: 900;">External Resources</p>
+	   <p class="notice-content">
+</p>
+<p>Work through the <a href="https://colab.research.google.com/drive/1QPsD2URWupxWjpBfKsr7AcIZ2m3VD37T?usp=sharing">Assignment 1 Companion
 Notebook</a>
 to get some practice with <code class="language-plaintext highlighter-rouge">numpy</code> and explore linear regression using a
 top-down approach. You can place your answers directly in the Jupyter
-notebook so that you have them for your records.
-:::</p>
+notebook so that you have them for your records.</p>
+
+        </div>
+</div>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
