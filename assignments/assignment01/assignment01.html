@@ -257,15 +257,6 @@ $
 \DeclareMathOperator*{\argmin}{arg\,min}
 $
 
-
-
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        processEscapes: false,
-    }
-})
   
 
   </p>
@@ -954,13 +945,13 @@ the concepts above.</p>
 $\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
 and $\nabla f$.</p>
 
-<p>::: boxedsolution
-$$\begin{aligned}
-\frac{\partial{f}}{\partial{x}} &amp;= 2 \sin y + 3 y^2 x^2 <br>
+<p>$$
+\begin{align}
+\frac{\partial{f}}{\partial{x}} &amp;= 2 \sin y + 3 y^2 x^2 \\ 
 \frac{\partial{f}}{\partial{y}} &amp;= 2x \cos y + 2 y x^3 \\ 
-\nabla f &amp;= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3  \end{bmatrix}
-\end{aligned}$$
-:::</p>
+\nabla f &amp;= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
+\end{align}
+$$</p>
 
 <p>Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
 $\mlvec{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
@@ -968,12 +959,14 @@ $\mlvec{x} \cdot \mlvec{y}$, $\mlvec{x}^\top \mlvec{y}$, and
 $\mlvec{x} \mlvec{y}^\top$.</p>
 
 <p>::: boxedsolution
-$$\begin{aligned}
-\mlvec{x} \cdot \mlvec{y} &amp;= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 <br>
-\mlvec{x}^\top \mlvec{y} &amp;= \mlvec{x} \cdot \mlvec{y} = 15 <br>
-\mlvec{x} \mlvec{y}^\top &amp;= \begin{bmatrix} 3 \times 2 &amp; 3 \times 7 &amp; 3 \times 4 \\ -1 \times 2 &amp; -1 \times 7 &amp; -1 \times 4 \\ 4 \times 2 &amp; 4 \times 7 &amp; 4 \times 4 \end{bmatrix} <br>
+$$
+\begin{align}
+\mlvec{x} \cdot \mlvec{y} &amp;= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 \\ 
+\mlvec{x}^\top \mlvec{y} &amp;= \mlvec{x} \cdot \mlvec{y} = 15 \\ 
+\mlvec{x} \mlvec{y}^\top &amp;= \begin{bmatrix} 3 \times 2 &amp; 3 \times 7 &amp; 3 \times 4 \\ -1 \times 2 &amp; -1 \times 7 &amp; -1 \times 4 \\ 4 \times 2 &amp; 4 \times 7 &amp; 4 \times 4 \end{bmatrix} \\ 
 &amp;= \begin{bmatrix} 6 &amp; 21 &amp; 12 \\ -2 &amp; -7 &amp; -4 \\ 8 &amp; 28 &amp; 16 \end{bmatrix}
-\end{aligned}$$
+\end{align}
+$$
 :::</p>
 
 <p>Let
@@ -1269,10 +1262,6 @@ top-down approach. You can place your answers directly in the Jupyter
 notebook so that you have them for your records.
 :::</p>
 
-<!-- end custom footer snippets -->
-
-<p>&lt;/body&gt;
-&lt;/html&gt;</p>
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1" role="doc-endnote">
@@ -1293,12 +1282,7 @@ animals</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩<
     <li id="fn:4" role="doc-endnote">
       <p>This list was part of the original version of this assignment,
 made in 2019. We are glad we can remember one of the many good
-things Austin created at Olin.</p>
-
-      <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>&lt;!-- start custom footer snippets --&gt;
-</code></pre></div>      </div>
-      <p><a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p>
+things Austin created at Olin. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </div>
