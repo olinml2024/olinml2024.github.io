@@ -571,13 +571,13 @@ Suppose $f(x, y) = 2x \sin{y} + y^2 x^3$. Calculate
 $\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
 and $\nabla f$.
 
-::: boxedsolution
-$$\begin{aligned}
-\frac{\partial{f}}{\partial{x}} &= 2 \sin y + 3 y^2 x^2 \\
+$$
+\begin{align}
+\frac{\partial{f}}{\partial{x}} &= 2 \sin y + 3 y^2 x^2 \\ 
 \frac{\partial{f}}{\partial{y}} &= 2x \cos y + 2 y x^3 \\ 
-\nabla f &= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3  \end{bmatrix}
-\end{aligned}$$
-:::
+\nabla f &= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
+\end{align}
+$$
 
 Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
 $\mlvec{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
@@ -585,12 +585,14 @@ $\mlvec{x} \cdot \mlvec{y}$, $\mlvec{x}^\top \mlvec{y}$, and
 $\mlvec{x} \mlvec{y}^\top$.
 
 ::: boxedsolution
-$$\begin{aligned}
-\mlvec{x} \cdot \mlvec{y} &= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 \\
-\mlvec{x}^\top \mlvec{y} &= \mlvec{x} \cdot \mlvec{y} = 15 \\
-\mlvec{x} \mlvec{y}^\top &= \begin{bmatrix} 3 \times 2 & 3 \times 7 & 3 \times 4 \\ -1 \times 2 & -1 \times 7 & -1 \times 4 \\ 4 \times 2 & 4 \times 7 & 4 \times 4 \end{bmatrix} \\
+$$
+\begin{align}
+\mlvec{x} \cdot \mlvec{y} &= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 \\ 
+\mlvec{x}^\top \mlvec{y} &= \mlvec{x} \cdot \mlvec{y} = 15 \\ 
+\mlvec{x} \mlvec{y}^\top &= \begin{bmatrix} 3 \times 2 & 3 \times 7 & 3 \times 4 \\ -1 \times 2 & -1 \times 7 & -1 \times 4 \\ 4 \times 2 & 4 \times 7 & 4 \times 4 \end{bmatrix} \\ 
 &= \begin{bmatrix} 6 & 21 & 12 \\ -2 & -7 & -4 \\ 8 & 28 & 16 \end{bmatrix}
-\end{aligned}$$
+\end{align}
+$$
 :::
 
 Let
@@ -841,8 +843,3 @@ notebook so that you have them for your records.
 [^4]: This list was part of the original version of this assignment,
     made in 2019. We are glad we can remember one of the many good
     things Austin created at Olin.
-
-        {% include footer/custom.html %}
-
-  </body>
-</html>
