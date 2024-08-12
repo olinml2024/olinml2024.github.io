@@ -115,9 +115,12 @@ the model exploits correlations in the training data between input
 features (pixels) and outputs (object locations) in potentially
 unpredictable ways.
 
-<div style="text-align: center;">
-<img src="figures/yolofooled.png" width="50%"/>
-</div>
+{% include figure.html
+        img="figures/yolofooled.png"
+        width="40%"
+        alt="A stop sign is shown with various stickers on it.  On top of the stickers, erroneous identifications of bottles are shown (no bottles are present in the image)."
+        caption="A stop sign with a specially crafted sticker that causes a neural network to fail to identify it as a stop sign." %}
+{% assign yolofooled = figure_number %}
 
 The complexity of the model makes it vulnerable to bad actors (or
 adversaries). Researchers at University of Michigan used a form of ML
@@ -128,8 +131,7 @@ model](https://iotsecurity.engin.umich.edu/physical-adversarial-examples-for-obj
 (that is YOLO would not identify it as a stop sign). Clearly, this has
 major implications for the safety of using a model such as this in an
 application like a self-driving car. An example of the attack is shown
-in Figure [\[fig:yolofooled\]](#fig:yolofooled){reference-type="ref"
-reference="fig:yolofooled"}.
+in {% include figure_reference.html fig_num=yolofooled %}.
 
 ## Idea 2: There's No Such Thing as a Free Lunch
 
@@ -202,11 +204,9 @@ most quickly propels the center of mass. However, it doesn't necessarily
 follow that this controller will result in the character walking using a
 normal bipedal gait.
 
-<figure>
 <div style="text-align: center;">
 <img src="figures/fallingbot.png" width="80%"/>
 </div>
-</figure>
 
 The notion that the solution an algorithm finds might be unpredictable
 to the designer is known as "emergence." Some cool examples of this
@@ -237,9 +237,10 @@ biological neurons (e.g., in the brain).
         img="figures/Colored_neural_network.png"
         alt="a schematic of a neural network is shown.  Circles represent nodes, which are connected to other nodes using arrows"
         caption="An artificial neural network with a single hidden layer." %}
+{% assign annfigure = figure_number %}
 
 ANNs accept input patterns at an array of virtual neurons called the
-input layer (see Figure above). The neurons in the input layer are connected to
+input layer (see {% include figure_reference.html fig_num=annfigure %}). The neurons in the input layer are connected to
 other neurons via virtual [axons](https://en.wikipedia.org/wiki/Axon)
 that control to what extent a particular input neuron activates a
 downstream neuron. The second set of neurons, called the "hidden layer"
@@ -253,8 +254,7 @@ might encode the objects in the image).
 
 What's amazing about ANNs is that there are learning algorithms for
 setting the connection strengths between these virtual neurons (the
-black arrows in Figure [\[fig:ann\]](#fig:ann){reference-type="ref"
-reference="fig:ann"}) based on training data (input / output pairs).
+black arrows in {% include figure_reference.html fig_num=annfigure %}) based on training data (input / output pairs).
 These learning algorithms tune the connections strengths (also called
 "weights") such that for the provided training data the network produces
 the appropriate training outputs (e.g., if you show the network a
@@ -270,12 +270,11 @@ represents information within the network (i.e., at the hidden layer).
         alt="images are shown representing various receptive fields learned by a neural network.  The images show receptive fields with oriented bars."
         caption="12x12 receptive fields learned from an neural network trained to optimally compress images"
 %}
+{% assign learnedfields=figure_number %}
 
 What's super amazing is that we can actually examine the internal
 representations of a neural network to understand how it's performing
-the computation from input to output. For instance,
-Figure [\[fig:learnedfields\]](#fig:learnedfields){reference-type="ref"
-reference="fig:learnedfields"}[^2] shows a visualization of the internal
+the computation from input to output. For instance, {% include figure_reference.html fig_num=learnedfields %}[^2] shows a visualization of the internal
 representations learned by a network trained to best compress a training
 set of images (these sorts of networks are called "auto-encoders"). The
 receptive fields of each of the hidden units in the network and can be
@@ -342,7 +341,7 @@ we think that the traditional focus on ML algorithms is not adequate for
 a modern class on ML. Here are two figures to further illustrate this
 point.
 
-![image](figures/MlSystem.pdf)
+![image](figures/MlSystem.png)
 
 In the figure above, the box labeled *ML Code* is the actual learning
 algorithm. But in modern systems, this is but a small fraction of all of
@@ -399,7 +398,7 @@ that you might use for inspiration.[^4]
 {% capture content %}
 Now, we want to hear from you!
 
-Part A:
+{% capture part_a %}
 Choose one of the big ideas above and write a short response to it. Your
 response could incorporate something surprising you read, a
 thought-provoking question, your personal experience, an additional
@@ -408,8 +407,13 @@ reflection will help scaffold class discussions and get you thinking
 about your interests in the big space that is ML. Also, you have license
 from us to customize the structure of your response as you see fit. As a
 rough guide, you should aim for a response of a 1-2 paragraphs.
+{% endcapture %}
+{% capture part_a_sol %}
+There's no one right answer here!
+{% endcapture %}
+{% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
 
-Part B:
+{% capture part_b %}
 Idea 6 talks about the idea of ML for positive impact. What is one
 example of an ML application (real or imagined) that you think would
 have the largest (or most unambiguously) positive impact on the world?
@@ -417,15 +421,12 @@ Why? Alternatively, what is an example of an ML application (real or
 imagined) that no matter how carefully the designers approach it, should
 just not exist due to the harm it would cause the world? Why?
 {% endcapture %}
-
-{% capture solution %}
-Part A:
-There's no one right answer here!
-
-Part B:
+{% capture part_b_sol %}
 There's no one right answer here!
 {% endcapture %}
-{% include problem.html problem=content solution=solution  %}
+{% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}
+{% endcapture %}
+{% include problem_with_parts.html problem=content %}
 
 
 # High Level Taste of Machine Learning
@@ -515,7 +516,7 @@ Train and record the results from at least two models in this [classwide
 spreadsheet](https://docs.google.com/spreadsheets/d/1dh4TQbEn25KP0Z0YzHb8IqYpzbTl4e0LC97izIkSEAI/edit?usp=sharing).
 Be sure to record the details of your design choices so that you can
 replicate your results in class. Since this is a communal activity, we
-suggest that you include 1) your model with the highest accuracy and 2)
+suggest that you include (1) your model with the highest accuracy and (2)
 a model with parameters that no one else has recorded yet. Here are some
 ideas on things you can manipulate:
 
@@ -576,15 +577,24 @@ Gradient](https://www.khanacademy.org/math/multivariable-calculus/multivariable-
 
 
 {% capture content %}
-Here are some diagnostic problems to test some basic understanding of
-the concepts above.
-
-Part A:
+{% capture parta %}
 Suppose $f(x, y) = 2x \sin{y} + y^2 x^3$. Calculate
 $\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
 and $\nabla f$.
+{% endcapture %}
+{% capture partasol %}
+$$
+\begin{align}
+\frac{\partial{f}}{\partial{x}} &= 2 \sin y + 3 y^2 x^2 \\ 
+\frac{\partial{f}}{\partial{y}} &= 2x \cos y + 2 y x^3 \\ 
+\nabla f &= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
+\end{align}
+$$
+{% endcapture %}
+{% include problem_part.html label="A" subpart=parta solution=partasol %}
 
-Part B:
+
+{% capture partb %}
 Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
 $\mlvec{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
 $\mlvec{x} \cdot \mlvec{y}$, $\mlvec{x}^\top \mlvec{y}$, and
@@ -598,28 +608,8 @@ $\mlmat{A} = \begin{bmatrix} \mlvec{a_1} & \mlvec{a_2} & \ldots & \mlvec{a_n} \e
 of the columns $\mlvec{a_1}, \ldots, \mlvec{a_n}$ or the rows
 $\mlvec{row_1}^\top, \ldots, \mlvec{row_m}^\top$). Let $\mlvec{v}$ be an
 arbitrary $n$-dimensional vector.
-
-Part C:
-Compute $\mlmat{A}\mlvec{v}$ in terms of
-$\mlvec{a_1}, \ldots, \mlvec{a_n}$.
-
-
-Part D:
-Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
-$\mlvec{row_1}, \ldots, \mlvec{row_m}$.
 {% endcapture %}
-
-{% capture solution %}
-Part A:
-$$
-\begin{align}
-\frac{\partial{f}}{\partial{x}} &= 2 \sin y + 3 y^2 x^2 \\ 
-\frac{\partial{f}}{\partial{y}} &= 2x \cos y + 2 y x^3 \\ 
-\nabla f &= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
-\end{align}
-$$
-
-Part B:
+{% capture partbsol %}
 $$
 \begin{align}
 \mlvec{x} \cdot \mlvec{y} &= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 \\ 
@@ -628,20 +618,38 @@ $$
 &= \begin{bmatrix} 6 & 21 & 12 \\ -2 & -7 & -4 \\ 8 & 28 & 16 \end{bmatrix}
 \end{align}
 $$
+{% endcapture %}
+{% include problem_part.html label="B" subpart=partb solution=partbsol %}
 
-Part C:
+
+{% capture partc %}
+Compute $\mlmat{A}\mlvec{v}$ in terms of
+$\mlvec{a_1}, \ldots, \mlvec{a_n}$.
+{% endcapture %}
+
+
+{% capture partcsol %}
 $$\begin{aligned}
 \mlmat{A} \mlvec{v} &= \mlvec{v}_1 \mlvec{a}_1 + \mlvec{v}_2 \mlvec{a}_2 + \ldots + \mlvec{v}_n \mlvec{a}_n
 \end{aligned}$$
+{% endcapture %}
+{% include problem_part.html label="C" subpart=partc solution=partcsol %}
 
-Part D:
+{% capture partd %}
+Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
+$\mlvec{row_1}, \ldots, \mlvec{row_m}$.
+{% endcapture %}
+
+
+{% capture partdsol %}
 $$\begin{aligned}
 \mlmat{A} \mlvec{v} &= \begin{bmatrix} \mlvec{v} \cdot \mlvec{row}_1 \\   \mlvec{v} \cdot \mlvec{row}_2 \\ \vdots \\ \mlvec{v} \cdot \mlvec{row}_m \end{bmatrix}
 \end{aligned}$$
+{% endcapture %}
+{% include problem_part.html label="D" subpart=partd solution=partdsol %}
 
 {% endcapture %}
-
-{% include problem.html problem=content solution=solution %}
+{% include problem_with_parts.html problem=content %}
 
 # Supervised Learning Problem Setup
 
@@ -796,17 +804,12 @@ app](http://www.shodor.org/interactivate/activities/Regression/) to
 create some datasets, guess the line of best fit, and then compare the
 results to the OLS solution (line of best fit).
 
-Part A:
+{% capture parta %}
 Examine the role that outliers play in determining the line of best fit.
 Does OLS seem sensitive or insensitive to the presence of outliers in
 the data?
-
-Part B:
-Were there any times when the line of best fit didn't seem to really be
-"best" (e.g., it didn't seem to capture the trends in the data)?
 {% endcapture %}
-
-{% capture solution %}
+{% capture partasol %}
 Part A:
 OLS is very sensitive to outliers. A single outlier can change the slope
 of the line of best fit dramatically. Here is an example of this
@@ -815,14 +818,23 @@ phenomenon.
 <div style="text-align: center;">
 <img src="figures/outlier.png" width="50%"/>
 </div>
+{% endcapture %}
+{% include problem_part.html label="A" subpart=parta solution=partasol %}
 
-Part B:
+{% capture partb %}
+Were there any times when the line of best fit didn't seem to really be
+"best" (e.g., it didn't appear to capture the trends in the data)?
+{% endcapture %}
+
+{% capture partbsol %}
 This could happen for many reasons. If the dataset is pieceweise linear
 (e.g., composed of multiple line segments), if it has some other
 non-linear form (e.g., if it is quadratic), or if there are outliers.
-
 {% endcapture %}
-{% include problem.html problem=problem solution=solution %}
+{% include problem_part.html label="B" subpart=partb solution=partbsol %}
+{% endcapture %}
+
+{% include problem_with_parts.html problem=problem %}
 
 
 ## Linear Regression with Multiple Input Variables: Explorations in Python

@@ -1,0 +1,19 @@
+{% capture _ %}{% increment subpart_number %}{% endcapture %}
+
+<p style="font-size: x-large; font-weight: 700;">Part {{ include.label }}</p>
+	{{ include.subpart | markdownify }}
+
+<button onclick="HideShowElement(&quot;subpartsolution-{{ subpart_number }}&quot;)">Show / Hide Solution</button>
+
+<div id="subpartsolution-{{ subpart_number }}" class="solution" style="
+    background-color: {{ include.background_color | default:  '#cefad0' }};
+    border-left: 6px solid {{ include.border_color | default:  '#6500B4' }};
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+{{ include.solution | markdownify }}
+</div>
+</div>
