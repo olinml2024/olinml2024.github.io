@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>ML Test - Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Assignment 1 - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,7 +86,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="ML Test">
+<meta property="og:title" content="Assignment 1">
 <meta property="og:url" content="/assignments/assignment01/assignment01.html">
 
 
@@ -308,7 +308,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="ML Test">
+    <meta itemprop="headline" content="Assignment 1">
     
     
     
@@ -316,7 +316,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">ML Test
+          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 1
 </h1>
           
         </header>
@@ -367,24 +367,24 @@ $
         <h1 id="learning-objectives">Learning Objectives</h1>
 
 <div class="tip" style="
-    background-color: #C6EBD5;
     border-left: 6px solid #000000;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
     margin: 2em 2em 2em 2em;">
-	<p class="notice-bulb" style="
+	<div style="background-color: #C6EBD5;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #000000;">
         <i class="fas fa-brain"></i>
-</p>
-	<div style="layout: normal;">
-	   <p style="font-size: xx-large; font-weight: 900;">Learning Objectives</p>
-	   <p class="notice-content">
-</p>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Learning Objectives</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
 <ul>
   <li>Gain some familiarity with some of the key ideas in machine learning.</li>
   <li>Review of mathematical concepts we will be using in the beginning part
@@ -397,7 +397,7 @@ all the linked material.</em>
 </li>
 </ul>
 
-        </div>
+	</div>
 </div>
 
 <h1 id="please-read-the-syllabus">Please read the syllabus</h1>
@@ -735,7 +735,7 @@ we think that the traditional focus on ML algorithms is not adequate for
 a modern class on ML. Here are two figures to further illustrate this
 point.</p>
 
-<p><img src="/assignments/assignment01/figures/MlSystem.png" alt="image"></p>
+<p><img src="/assignments/assignment01/figures/MlSystem.png" alt="A schematic of a machine learning system including all of the relevant components."></p>
 
 <p>In the figure above, the box labeled <em>ML Code</em> is the actual learning
 algorithm. But in modern systems, this is but a small fraction of all of
@@ -745,7 +745,7 @@ other boxes (we will learn about some of them), but it helps to have a
 sense of the software ecosystem in which your ML model would be
 deployed.</p>
 
-<p><img src="/assignments/assignment01/figures/sociotechnical.png" alt="image"></p>
+<p><img src="/assignments/assignment01/figures/sociotechnical.png" alt="A diagram of the sociotechnical view of machine learning.  The system highlights things like policy, culture, and infrastructure."></p>
 
 <p>In addition to understanding how ML code is situated within larger
 software ecosystems, it is even more important to realize the
@@ -789,24 +789,25 @@ Schools</a></p>
 projects</a>
 that you might use for inspiration.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup></p>
 
-<div class="tip" style="
-    background-color: #ECF7FF;
-    border-left: 6px solid #0065B4;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-	<p class="tip-bulb" style="
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
-    </p>
-    <div style="display: normal">
-	    <p style="font-size: xx-large; font-weight: 900;">Exercise 1</p>
-	    
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
 <p>Now, we want to hear from you!</p>
 
 <p style="font-size: x-large; font-weight: 700;">Part A</p>
@@ -863,7 +864,7 @@ just not exist due to the harm it would cause the world? Why?</p>
 </div>
 </div>
 
-    </div>
+</div>
 </div>
 
 <h1 id="high-level-taste-of-machine-learning">High Level Taste of Machine Learning</h1>
@@ -872,23 +873,24 @@ just not exist due to the harm it would cause the world? Why?</p>
 see a quick overview of the categories of machine learning and play
 around with classification (treating it as a black box for now).</p>
 
-<div class="tip" style="
-    background-color: #ECF7FF;
-    border-left: 6px solid #0065B4;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-	<p class="tip-bulb" style="
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #ff6f00;">
-<i class="fas fa-question"></i>
-</p>
-     <div style="display: normal">
-	<p style="font-size: xx-large; font-weight: 900;">Exercise 2</p>
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
 	
 <p>Briefly explain the difference between supervised and unsupervised
 learning and the difference between classification and regression. You
@@ -919,8 +921,8 @@ predictions. Unsupervised learning looks for patterns in unlableled
 data. Classification is for predicting categories or groups, while
 regression is for predicting numerical values.</p>
 
-   </div>
      </div>
+</div>
 </div>
 </div>
 
@@ -950,23 +952,24 @@ shortcut. This should allow you to access the nirisData.mat file from
 Matlab Online. (If that gives you trouble, you can just download it and
 upload it yourself.)</p>
 
-<div class="tip" style="
-    background-color: #ECF7FF;
-    border-left: 6px solid #0065B4;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-	<p class="tip-bulb" style="
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #ff6f00;">
-<i class="fas fa-question"></i>
-</p>
-     <div style="display: normal">
-	<p style="font-size: xx-large; font-weight: 900;">Exercise 3</p>
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 3</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
 	
 <p>Explore the Classification Learner with the Iris Dataset. We strongly
 suggest <a href="https://youtu.be/f3uUFoLM3vA">this video to guide you through the
@@ -1028,32 +1031,32 @@ features of your model.</p>
 
 <p>Lots of possibilities here. We will talk about this more in class.</p>
 
-   </div>
      </div>
+</div>
 </div>
 </div>
 
 <h1 id="mathematical-background">Mathematical Background</h1>
 
 <div class="tip" style="
-    background-color: #FDFD96;
     border-left: 6px solid #000000;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
     margin: 2em 2em 2em 2em;">
-	<p class="notice-bulb" style="
+	<div style="background-color: #FDFD96;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #000000;">
-<i class="fa fa-exclamation-triangle"></i>
-</p>
-	<div style="layout: normal;">
-	   <p style="font-size: xx-large; font-weight: 900;">Notice</p>
-	   <p class="notice-content">
-</p>
+        <i class="fa fa-exclamation-triangle"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Notice</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
 <p>For the purposes of this class, we will be consistent with the notation
 we use. Of course, when we link to other resources, they may use other
 notation. If notation is different in a way that causes confusion, we
@@ -1061,28 +1064,28 @@ will try to point out pitfalls you should watch out for. Please use this
 link to access our guide to <a href="https://github.com/mlfa19/assignments/blob/master/supplementary_documents/notation_conventions.pdf">our notation
 conventions</a>.</p>
 
-        </div>
+	</div>
 </div>
 
 <div class="tip" style="
-    background-color: #FFD1DC;
     border-left: 6px solid #000000;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
     margin: 2em 2em 2em 2em;">
-	<p class="notice-bulb" style="
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #000000;">
-<i class="fas fa-external-link-alt"></i>
-</p>
-	<div style="layout: normal;">
-	   <p style="font-size: xx-large; font-weight: 900;">External Resources</p>
-	   <p class="notice-content">
-</p>
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
 <p>In order to engage with this and future assignments, you’ll want to make
 sure you are familiar with the following concepts (links to resources
 embedded below):</p>
@@ -1118,27 +1121,28 @@ Gradient</a></li>
 </ul>
 
 
-        </div>
+	</div>
 </div>
 
-<div class="tip" style="
-    background-color: #ECF7FF;
-    border-left: 6px solid #0065B4;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-	<p class="tip-bulb" style="
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
-    </p>
-    <div style="display: normal">
-	    <p style="font-size: xx-large; font-weight: 900;">Exercise 4</p>
-	    
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 4</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
 <p style="font-size: x-large; font-weight: 700;">Part A</p>
 
 <p>Suppose $f(x, y) = 2x \sin{y} + y^2 x^3$. Calculate
@@ -1256,7 +1260,7 @@ $\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
 </div>
 
 
-    </div>
+</div>
 </div>
 
 <h1 id="supervised-learning-problem-setup">Supervised Learning Problem Setup</h1>
@@ -1347,31 +1351,31 @@ between the model’s predictions and the training outputs.</p>
 $$</p>
 
 <div class="tip" style="
-    background-color: #FDFD96;
     border-left: 6px solid #000000;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
     margin: 2em 2em 2em 2em;">
-	<p class="notice-bulb" style="
+	<div style="background-color: #FDFD96;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #000000;">
-<i class="fa fa-exclamation-triangle"></i>
-</p>
-	<div style="layout: normal;">
-	   <p style="font-size: xx-large; font-weight: 900;">Notice</p>
-	   <p class="notice-content">
-</p>
+        <i class="fa fa-exclamation-triangle"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Notice</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
 <p>Digesting mathematical equations like this can be daunting, but your
 understanding will be increased by unpacking them carefully. Make sure
 you understand what was substituted and why in each of these lines. Make
 sure you understand what each symbol represents. If you are confused,
 ask for help (e.g., post on discord).</p>
 
-        </div>
+	</div>
 </div>
 
 <p>While we haven’t talked at all about how to find $\mlvec{w}^\star$, that
@@ -1382,23 +1386,24 @@ $\hat{y} = \mlvec{w^\star} \cdot \mlvec{x}$. In this way, we have used
 the training data to learn how to make predictions about unseen data,
 which is the hallmark of supervised machine learning!</p>
 
-<div class="tip" style="
-    background-color: #ECF7FF;
-    border-left: 6px solid #0065B4;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-	<p class="tip-bulb" style="
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #ff6f00;">
-<i class="fas fa-question"></i>
-</p>
-     <div style="display: normal">
-	<p style="font-size: xx-large; font-weight: 900;">Exercise 5</p>
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 5</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
 	
 <p>Draw a scatter plot in 2D (the x-axis is the independent variable and
 the y-axis is the dependent variable). In other words, draw five or so
@@ -1431,8 +1436,8 @@ smallest residuals)?</p>
 smaller. Line 2 also has several large residuals, which when squared
 will cause a large penalty for line 2.</p>
 
-   </div>
      </div>
+</div>
 </div>
 </div>
 
@@ -1455,24 +1460,25 @@ understand more intuitively what the OLS algorithm is doing, we want you
 to investigate its behavior when there is a single input variable (i.e.,
 you are computing a line of best fit).</p>
 
-<div class="tip" style="
-    background-color: #ECF7FF;
-    border-left: 6px solid #0065B4;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
-    margin: 2em 2em 2em 2em;">
-	<p class="tip-bulb" style="
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
-    </p>
-    <div style="display: normal">
-	    <p style="font-size: xx-large; font-weight: 900;">Exercise 6</p>
-	    
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 6</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
 <p>Use the <a href="http://www.shodor.org/interactivate/activities/Regression/">line of best fit online
 app</a> to
 create some datasets, guess the line of best fit, and then compare the
@@ -1532,37 +1538,37 @@ non-linear form (e.g., if it is quadratic), or if there are outliers.</p>
 </div>
 </div>
 
-    </div>
+</div>
 </div>
 
 <h2 id="linear-regression-with-multiple-input-variables-explorations-in-python">Linear Regression with Multiple Input Variables: Explorations in Python</h2>
 
 <div class="tip" style="
-    background-color: #FFD1DC;
     border-left: 6px solid #000000;
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
     margin: 2em 2em 2em 2em;">
-	<p class="notice-bulb" style="
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: 3em;
+	    font-size: xx-large;
 	    color: #000000;">
-<i class="fas fa-external-link-alt"></i>
-</p>
-	<div style="layout: normal;">
-	   <p style="font-size: xx-large; font-weight: 900;">External Resources</p>
-	   <p class="notice-content">
-</p>
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
 <p>Work through the <a href="https://colab.research.google.com/drive/1QPsD2URWupxWjpBfKsr7AcIZ2m3VD37T?usp=sharing">Assignment 1 Companion
 Notebook</a>
 to get some practice with <code class="language-plaintext highlighter-rouge">numpy</code> and explore linear regression using a
 top-down approach. You can place your answers directly in the Jupyter
 notebook so that you have them for your records.</p>
 
-        </div>
+	</div>
 </div>
 
 <div class="footnotes" role="doc-endnotes">
