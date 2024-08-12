@@ -1,6 +1,7 @@
 ---
-title: ML Test
+title: Assignment 1
 toc_sticky: true 
+toc_h_max: 2
 layout: problemset
 ---
 
@@ -341,7 +342,7 @@ we think that the traditional focus on ML algorithms is not adequate for
 a modern class on ML. Here are two figures to further illustrate this
 point.
 
-![image](figures/MlSystem.png)
+![A schematic of a machine learning system including all of the relevant components.](figures/MlSystem.png)
 
 In the figure above, the box labeled *ML Code* is the actual learning
 algorithm. But in modern systems, this is but a small fraction of all of
@@ -351,7 +352,7 @@ other boxes (we will learn about some of them), but it helps to have a
 sense of the software ecosystem in which your ML model would be
 deployed.
 
-![image](figures/sociotechnical.png)
+![A diagram of the sociotechnical view of machine learning.  The system highlights things like policy, culture, and infrastructure.](figures/sociotechnical.png)
 
 In addition to understanding how ML code is situated within larger
 software ecosystems, it is even more important to realize the

@@ -1,20 +1,21 @@
 <div class="tip" style="
-    background-color: {{ include.background_color | default:  '#FFD1DC' }};
     border-left: 6px solid {{ include.border_color | default:  '#000000' }};
-    padding: 1em 1em 1em 1em;
-    display: flex;
-    column-gap: 2rem;
     margin: 2em 2em 2em 2em;">
-	<p class="notice-bulb" style="
+	<div style="background-color: {{ include.background_color | default:  '#FFD1DC' }};
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
 	    font-family: 'Font Awesome 5 Free';
 	    vertical-align: middle;
 	    font-weight: 900;
-	    font-size: {{ include.bulb_size | default:  '3em' }};
+	    font-size: xx-large;
 	    color: {{ include.bulb_color | default:  '#000000' }};">
-<i class="{{ include.icon | default:  'fas fa-external-link-alt' }}"/>
-</p>
-	<div style="layout: normal;">
-	   <p style="font-size: xx-large; font-weight: 900;">External Resources</p>
-	   <p class="notice-content">{{ include.content | markdownify }}</p>
-        </div>
+        <i class="{{ include.icon | default:  'fas fa-external-link-alt' }}"/>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   {{ include.content | markdownify }}
+	</div>
 </div>
