@@ -1,7 +1,7 @@
 ---
 title: Assignment 1
 toc_sticky: true 
-toc_h_max: 2
+toc_h_max: 1
 layout: problemset
 ---
 
