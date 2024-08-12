@@ -382,7 +382,7 @@ $
         <i class="fas fa-brain"></i>
 </p>
 	<div style="layout: normal;">
-	   <p style="font-size: x-large; font-weight: 900;">Learning Objectives</p>
+	   <p style="font-size: xx-large; font-weight: 900;">Learning Objectives</p>
 	   <p class="notice-content">
 </p>
 <ul>
@@ -497,9 +497,15 @@ the model exploits correlations in the training data between input
 features (pixels) and outputs (object locations) in potentially
 unpredictable ways.</p>
 
-<div style="text-align: center;">
-<img src="figures/yolofooled.png" width="50%">
-</div>
+<figure id="figure1">
+    <div style="text-align: center;">
+        <img src="figures/yolofooled.png" alt="A stop sign is shown with various stickers on it.  On top of the stickers, erroneous identifications of bottles are shown (no bottles are present in the image)." style="max-width: 40%">
+    </div>
+    <figcaption style="font-size: xx-large">
+        Figure 1: <p>A stop sign with a specially crafted sticker that causes a neural network to fail to identify it as a stop sign.</p>
+
+    </figcaption>
+</figure>
 
 <p>The complexity of the model makes it vulnerable to bad actors (or
 adversaries). Researchers at University of Michigan used a form of ML
@@ -510,8 +516,7 @@ model</a>
 (that is YOLO would not identify it as a stop sign). Clearly, this has
 major implications for the safety of using a model such as this in an
 application like a self-driving car. An example of the attack is shown
-in Figure <a href="#fig:yolofooled">[fig:yolofooled]</a>{reference-type=”ref”
-reference=”fig:yolofooled”}.</p>
+in <a href="#figure1">Figure 1</a>.</p>
 
 <h2 id="idea-2-theres-no-such-thing-as-a-free-lunch">Idea 2: There’s No Such Thing as a Free Lunch</h2>
 
@@ -586,11 +591,9 @@ most quickly propels the center of mass. However, it doesn’t necessarily
 follow that this controller will result in the character walking using a
 normal bipedal gait.</p>
 
-<figure>
 <div style="text-align: center;">
 <img src="figures/fallingbot.png" width="80%">
 </div>
-</figure>
 
 <p>The notion that the solution an algorithm finds might be unpredictable
 to the designer is known as “emergence.” Some cool examples of this
@@ -617,18 +620,18 @@ flying</a>.</p>
 functioning, at an abstract level, is modeled on the functioning of
 biological neurons (e.g., in the brain).</p>
 
-<figure>
+<figure id="figure2">
     <div style="text-align: center;">
         <img src="figures/Colored_neural_network.png" alt="a schematic of a neural network is shown.  Circles represent nodes, which are connected to other nodes using arrows" style="max-width: 50%">
     </div>
-    <figcaption style="font-size: x-large">
-        Figure 1: <p>An artificial neural network with a single hidden layer.</p>
+    <figcaption style="font-size: xx-large">
+        Figure 2: <p>An artificial neural network with a single hidden layer.</p>
 
     </figcaption>
 </figure>
 
 <p>ANNs accept input patterns at an array of virtual neurons called the
-input layer (see Figure above). The neurons in the input layer are connected to
+input layer (see <a href="#figure2">Figure 2</a>). The neurons in the input layer are connected to
 other neurons via virtual <a href="https://en.wikipedia.org/wiki/Axon">axons</a>
 that control to what extent a particular input neuron activates a
 downstream neuron. The second set of neurons, called the “hidden layer”
@@ -642,8 +645,7 @@ might encode the objects in the image).</p>
 
 <p>What’s amazing about ANNs is that there are learning algorithms for
 setting the connection strengths between these virtual neurons (the
-black arrows in Figure <a href="#fig:ann">[fig:ann]</a>{reference-type=”ref”
-reference=”fig:ann”}) based on training data (input / output pairs).
+black arrows in <a href="#figure2">Figure 2</a>) based on training data (input / output pairs).
 These learning algorithms tune the connections strengths (also called
 “weights”) such that for the provided training data the network produces
 the appropriate training outputs (e.g., if you show the network a
@@ -654,21 +656,19 @@ The algorithms used to tune the network weights are only concerned with
 reproducing the output patterns, the network is free to choose how it
 represents information within the network (i.e., at the hidden layer).</p>
 
-<figure>
+<figure id="figure3">
     <div style="text-align: center;">
         <img src="figures/learned_receptive_fields.png" alt="images are shown representing various receptive fields learned by a neural network.  The images show receptive fields with oriented bars." style="max-width: 50%">
     </div>
-    <figcaption style="font-size: x-large">
-        Figure 2: <p>12x12 receptive fields learned from an neural network trained to optimally compress images</p>
+    <figcaption style="font-size: xx-large">
+        Figure 3: <p>12x12 receptive fields learned from an neural network trained to optimally compress images</p>
 
     </figcaption>
 </figure>
 
 <p>What’s super amazing is that we can actually examine the internal
 representations of a neural network to understand how it’s performing
-the computation from input to output. For instance,
-Figure <a href="#fig:learnedfields">[fig:learnedfields]</a>{reference-type=”ref”
-reference=”fig:learnedfields”}<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> shows a visualization of the internal
+the computation from input to output. For instance, <a href="#figure3">Figure 3</a><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> shows a visualization of the internal
 representations learned by a network trained to best compress a training
 set of images (these sorts of networks are called “auto-encoders”). The
 receptive fields of each of the hidden units in the network and can be
@@ -735,7 +735,7 @@ we think that the traditional focus on ML algorithms is not adequate for
 a modern class on ML. Here are two figures to further illustrate this
 point.</p>
 
-<p><img src="/assignments/assignment01/figures/MlSystem.pdf" alt="image"></p>
+<p><img src="/assignments/assignment01/figures/MlSystem.png" alt="image"></p>
 
 <p>In the figure above, the box labeled <em>ML Code</em> is the actual learning
 algorithm. But in modern systems, this is but a small fraction of all of
@@ -802,15 +802,16 @@ that you might use for inspiration.<sup id="fnref:4" role="doc-noteref"><a href=
 	    font-weight: 900;
 	    font-size: 3em;
 	    color: #ff6f00;">
-<i class="fas fa-question"></i>
-</p>
-     <div style="display: normal">
-	<p style="font-size: x-large; font-weight: 900;">Exercise 1</p>
-	
+        <i class="fas fa-question"></i>
+    </p>
+    <div style="display: normal">
+	    <p style="font-size: xx-large; font-weight: 900;">Exercise 1</p>
+	    
 <p>Now, we want to hear from you!</p>
 
-<p>Part A:
-Choose one of the big ideas above and write a short response to it. Your
+<p style="font-size: x-large; font-weight: 700;">Part A</p>
+
+<p>Choose one of the big ideas above and write a short response to it. Your
 response could incorporate something surprising you read, a
 thought-provoking question, your personal experience, an additional
 resource that builds upon or shifts the discussion. We hope that this
@@ -819,18 +820,9 @@ about your interests in the big space that is ML. Also, you have license
 from us to customize the structure of your response as you see fit. As a
 rough guide, you should aim for a response of a 1-2 paragraphs.</p>
 
-<p>Part B:
-Idea 6 talks about the idea of ML for positive impact. What is one
-example of an ML application (real or imagined) that you think would
-have the largest (or most unambiguously) positive impact on the world?
-Why? Alternatively, what is an example of an ML application (real or
-imagined) that no matter how carefully the designers approach it, should
-just not exist due to the harm it would cause the world? Why?</p>
+<p><button onclick='HideShowElement("subpartsolution-1")'>Show / Hide Solution</button></p>
 
-
-    <button onclick='HideShowElement("solution-1")'>Show / Hide Solution</button>
-
-<div id="solution-1" class="solution" style="
+<div id="subpartsolution-1" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -840,15 +832,38 @@ just not exist due to the harm it would cause the world? Why?</p>
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-<p>Part A:
-There’s no one right answer here!</p>
+<p>There’s no one right answer here!</p>
 
-<p>Part B:
-There’s no one right answer here!</p>
-
-   </div>
-     </div>
 </div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part B</p>
+
+<p>Idea 6 talks about the idea of ML for positive impact. What is one
+example of an ML application (real or imagined) that you think would
+have the largest (or most unambiguously) positive impact on the world?
+Why? Alternatively, what is an example of an ML application (real or
+imagined) that no matter how carefully the designers approach it, should
+just not exist due to the harm it would cause the world? Why?</p>
+
+<p><button onclick='HideShowElement("subpartsolution-2")'>Show / Hide Solution</button></p>
+
+<div id="subpartsolution-2" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>There’s no one right answer here!</p>
+
+</div>
+</div>
+
+    </div>
 </div>
 
 <h1 id="high-level-taste-of-machine-learning">High Level Taste of Machine Learning</h1>
@@ -873,7 +888,7 @@ around with classification (treating it as a black box for now).</p>
 <i class="fas fa-question"></i>
 </p>
      <div style="display: normal">
-	<p style="font-size: x-large; font-weight: 900;">Exercise 2</p>
+	<p style="font-size: xx-large; font-weight: 900;">Exercise 2</p>
 	
 <p>Briefly explain the difference between supervised and unsupervised
 learning and the difference between classification and regression. You
@@ -951,7 +966,7 @@ upload it yourself.)</p>
 <i class="fas fa-question"></i>
 </p>
      <div style="display: normal">
-	<p style="font-size: x-large; font-weight: 900;">Exercise 3</p>
+	<p style="font-size: xx-large; font-weight: 900;">Exercise 3</p>
 	
 <p>Explore the Classification Learner with the Iris Dataset. We strongly
 suggest <a href="https://youtu.be/f3uUFoLM3vA">this video to guide you through the
@@ -985,7 +1000,7 @@ predictions and the data to see what your model got wrong.</p>
 spreadsheet</a>.
 Be sure to record the details of your design choices so that you can
 replicate your results in class. Since this is a communal activity, we
-suggest that you include 1) your model with the highest accuracy and 2)
+suggest that you include (1) your model with the highest accuracy and (2)
 a model with parameters that no one else has recorded yet. Here are some
 ideas on things you can manipulate:</p>
 
@@ -1036,7 +1051,7 @@ features of your model.</p>
 <i class="fa fa-exclamation-triangle"></i>
 </p>
 	<div style="layout: normal;">
-	   <p style="font-size: x-large; font-weight: 900;">Notice</p>
+	   <p style="font-size: xx-large; font-weight: 900;">Notice</p>
 	   <p class="notice-content">
 </p>
 <p>For the purposes of this class, we will be consistent with the notation
@@ -1065,7 +1080,7 @@ conventions</a>.</p>
 <i class="fas fa-external-link-alt"></i>
 </p>
 	<div style="layout: normal;">
-	   <p style="font-size: x-large; font-weight: 900;">External Resources</p>
+	   <p style="font-size: xx-large; font-weight: 900;">External Resources</p>
 	   <p class="notice-content">
 </p>
 <p>In order to engage with this and future assignments, you’ll want to make
@@ -1119,21 +1134,43 @@ Gradient</a></li>
 	    font-weight: 900;
 	    font-size: 3em;
 	    color: #ff6f00;">
-<i class="fas fa-question"></i>
-</p>
-     <div style="display: normal">
-	<p style="font-size: x-large; font-weight: 900;">Exercise 4</p>
-	
-<p>Here are some diagnostic problems to test some basic understanding of
-the concepts above.</p>
+        <i class="fas fa-question"></i>
+    </p>
+    <div style="display: normal">
+	    <p style="font-size: xx-large; font-weight: 900;">Exercise 4</p>
+	    
+<p style="font-size: x-large; font-weight: 700;">Part A</p>
 
-<p>Part A:
-Suppose $f(x, y) = 2x \sin{y} + y^2 x^3$. Calculate
+<p>Suppose $f(x, y) = 2x \sin{y} + y^2 x^3$. Calculate
 $\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
 and $\nabla f$.</p>
 
-<p>Part B:
-Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
+<p><button onclick='HideShowElement("subpartsolution-3")'>Show / Hide Solution</button></p>
+
+<div id="subpartsolution-3" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>$$
+\begin{align}
+\frac{\partial{f}}{\partial{x}} &amp;= 2 \sin y + 3 y^2 x^2 \\ 
+\frac{\partial{f}}{\partial{y}} &amp;= 2x \cos y + 2 y x^3 \\ 
+\nabla f &amp;= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
+\end{align}
+$$</p>
+
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part B</p>
+
+<p>Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
 $\mlvec{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
 $\mlvec{x} \cdot \mlvec{y}$, $\mlvec{x}^\top \mlvec{y}$, and
 $\mlvec{x} \mlvec{y}^\top$.</p>
@@ -1146,18 +1183,9 @@ of the columns $\mlvec{a_1}, \ldots, \mlvec{a_n}$ or the rows
 $\mlvec{row_1}^\top, \ldots, \mlvec{row_m}^\top$). Let $\mlvec{v}$ be an
 arbitrary $n$-dimensional vector.</p>
 
-<p>Part C:
-Compute $\mlmat{A}\mlvec{v}$ in terms of
-$\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
+<p><button onclick='HideShowElement("subpartsolution-4")'>Show / Hide Solution</button></p>
 
-<p>Part D:
-Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
-$\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
-
-
-    <button onclick='HideShowElement("solution-4")'>Show / Hide Solution</button>
-
-<div id="solution-4" class="solution" style="
+<div id="subpartsolution-4" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -1167,17 +1195,7 @@ $\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
-<p>Part A:
-$$
-\begin{align}
-\frac{\partial{f}}{\partial{x}} &amp;= 2 \sin y + 3 y^2 x^2 \\ 
-\frac{\partial{f}}{\partial{y}} &amp;= 2x \cos y + 2 y x^3 \\ 
-\nabla f &amp;= \begin{bmatrix} 2 \sin y + 3 y^2 x^2 \\ 2x \cos y + 2 y x^3 \end{bmatrix} 
-\end{align}
-$$</p>
-
-<p>Part B:
-$$
+<p>$$
 \begin{align}
 \mlvec{x} \cdot \mlvec{y} &amp;= 3 \times 2 + -1 \times 7 + 4 \times 4 = 15 \\ 
 \mlvec{x}^\top \mlvec{y} &amp;= \mlvec{x} \cdot \mlvec{y} = 15 \\ 
@@ -1186,20 +1204,59 @@ $$
 \end{align}
 $$</p>
 
-<p>Part C:
-$$\begin{aligned}
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part C</p>
+
+<p>Compute $\mlmat{A}\mlvec{v}$ in terms of
+$\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
+
+<p><button onclick='HideShowElement("subpartsolution-5")'>Show / Hide Solution</button></p>
+
+<div id="subpartsolution-5" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>$$\begin{aligned}
 \mlmat{A} \mlvec{v} &amp;= \mlvec{v}_1 \mlvec{a}_1 + \mlvec{v}_2 \mlvec{a}_2 + \ldots + \mlvec{v}_n \mlvec{a}_n
 \end{aligned}$$</p>
 
-<p>Part D:
-$$\begin{aligned}
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part D</p>
+
+<p>Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
+$\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
+
+<p><button onclick='HideShowElement("subpartsolution-6")'>Show / Hide Solution</button></p>
+
+<div id="subpartsolution-6" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>$$\begin{aligned}
 \mlmat{A} \mlvec{v} &amp;= \begin{bmatrix} \mlvec{v} \cdot \mlvec{row}_1 \\   \mlvec{v} \cdot \mlvec{row}_2 \\ \vdots \\ \mlvec{v} \cdot \mlvec{row}_m \end{bmatrix}
 \end{aligned}$$</p>
 
-
-   </div>
-     </div>
 </div>
+</div>
+
+
+    </div>
 </div>
 
 <h1 id="supervised-learning-problem-setup">Supervised Learning Problem Setup</h1>
@@ -1305,7 +1362,7 @@ $$</p>
 <i class="fa fa-exclamation-triangle"></i>
 </p>
 	<div style="layout: normal;">
-	   <p style="font-size: x-large; font-weight: 900;">Notice</p>
+	   <p style="font-size: xx-large; font-weight: 900;">Notice</p>
 	   <p class="notice-content">
 </p>
 <p>Digesting mathematical equations like this can be daunting, but your
@@ -1341,7 +1398,7 @@ which is the hallmark of supervised machine learning!</p>
 <i class="fas fa-question"></i>
 </p>
      <div style="display: normal">
-	<p style="font-size: x-large; font-weight: 900;">Exercise 5</p>
+	<p style="font-size: xx-large; font-weight: 900;">Exercise 5</p>
 	
 <p>Draw a scatter plot in 2D (the x-axis is the independent variable and
 the y-axis is the dependent variable). In other words, draw five or so
@@ -1411,29 +1468,25 @@ you are computing a line of best fit).</p>
 	    font-weight: 900;
 	    font-size: 3em;
 	    color: #ff6f00;">
-<i class="fas fa-question"></i>
-</p>
-     <div style="display: normal">
-	<p style="font-size: x-large; font-weight: 900;">Exercise 6</p>
-	
+        <i class="fas fa-question"></i>
+    </p>
+    <div style="display: normal">
+	    <p style="font-size: xx-large; font-weight: 900;">Exercise 6</p>
+	    
 <p>Use the <a href="http://www.shodor.org/interactivate/activities/Regression/">line of best fit online
 app</a> to
 create some datasets, guess the line of best fit, and then compare the
 results to the OLS solution (line of best fit).</p>
 
-<p>Part A:
-Examine the role that outliers play in determining the line of best fit.
+<p style="font-size: x-large; font-weight: 700;">Part A</p>
+
+<p>Examine the role that outliers play in determining the line of best fit.
 Does OLS seem sensitive or insensitive to the presence of outliers in
 the data?</p>
 
-<p>Part B:
-Were there any times when the line of best fit didn’t seem to really be
-“best” (e.g., it didn’t seem to capture the trends in the data)?</p>
+<p><button onclick='HideShowElement("subpartsolution-7")'>Show / Hide Solution</button></p>
 
-
-    <button onclick='HideShowElement("solution-6")'>Show / Hide Solution</button>
-
-<div id="solution-6" class="solution" style="
+<div id="subpartsolution-7" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -1452,15 +1505,34 @@ phenomenon.</p>
 <img src="figures/outlier.png" width="50%">
 </div>
 
-<p>Part B:
-This could happen for many reasons. If the dataset is pieceweise linear
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part B</p>
+
+<p>Were there any times when the line of best fit didn’t seem to really be
+“best” (e.g., it didn’t appear to capture the trends in the data)?</p>
+
+<p><button onclick='HideShowElement("subpartsolution-8")'>Show / Hide Solution</button></p>
+
+<div id="subpartsolution-8" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>This could happen for many reasons. If the dataset is pieceweise linear
 (e.g., composed of multiple line segments), if it has some other
 non-linear form (e.g., if it is quadratic), or if there are outliers.</p>
 
-
-   </div>
-     </div>
 </div>
+</div>
+
+    </div>
 </div>
 
 <h2 id="linear-regression-with-multiple-input-variables-explorations-in-python">Linear Regression with Multiple Input Variables: Explorations in Python</h2>
@@ -1481,7 +1553,7 @@ non-linear form (e.g., if it is quadratic), or if there are outliers.</p>
 <i class="fas fa-external-link-alt"></i>
 </p>
 	<div style="layout: normal;">
-	   <p style="font-size: x-large; font-weight: 900;">External Resources</p>
+	   <p style="font-size: xx-large; font-weight: 900;">External Resources</p>
 	   <p class="notice-content">
 </p>
 <p>Work through the <a href="https://colab.research.google.com/drive/1QPsD2URWupxWjpBfKsr7AcIZ2m3VD37T?usp=sharing">Assignment 1 Companion
