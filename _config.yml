@@ -13,6 +13,10 @@ plugins:
   - jemoji
   - jekyll-include-cache
 
+jekyll-spaceship:
+  mathjax-processor:
+    src:
+      - https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.7/tex-mml-chtml.js
 
 defaults:
   # _pages
