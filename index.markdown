@@ -14,7 +14,7 @@ header:
 
 | Day # | Activity                                                                      |
 |-------|-------------------------------------------------------------------------------|
-| 1     | [Course intro and welcome to ML!](in_class/day01)                            |
+| 1     | [Course intro and welcome to ML!](activities/day01)                            |
 
 
 ##  Assignments
