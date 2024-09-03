@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Day 1 - Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Notation Conventions - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,8 +86,8 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="Day 1">
-<meta property="og:url" content="/activities/day01.html">
+<meta property="og:title" content="Notation Conventions">
+<meta property="og:url" content="/assignments/assignment01/notation_conventions.html">
 
 
 
@@ -101,7 +101,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 
 
-<link rel="canonical" href="/activities/day01.html">
+<link rel="canonical" href="/assignments/assignment01/notation_conventions.html">
 
 
 
@@ -309,7 +309,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Day 1">
+    <meta itemprop="headline" content="Notation Conventions">
     
     
     
@@ -317,7 +317,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Day 1
+          <h1 id="page-title" class="page__title" itemprop="headline">Notation Conventions
 </h1>
           
         </header>
@@ -331,14 +331,57 @@ $
 <i class="fas fa-file-alt"></i> On this page</h4></header>
 	      
                 <ul class="toc__menu">
-  <li><a href="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#notation">Notation</a></li>
 </ul>
 	      	
             </nav>
           </aside>
         
-        <h1 id="learning-objectives">Learning Objectives</h1>
+        <h1 id="notation">Notation</h1>
 
+<h2 id="scalars">Scalars</h2>
+
+<p>We will use lower-case, unbolded letters to refer to scalar quantities. For example, we would refer to the scalar quantity <code class="language-plaintext highlighter-rouge">x</code> using the following notation.</p>
+
+<p>$$
+x
+$$</p>
+
+<h2 id="vectors">Vectors</h2>
+
+<p>We will use lower-case, bolded letters to refer to vector quantities. For example, we would refer to the vector quantity <code class="language-plaintext highlighter-rouge">v</code> using the following notation.</p>
+
+<p>$$
+\mathbf{v}
+$$</p>
+
+<h3 id="vector-indexing">Vector Indexing</h3>
+
+<p>We will use the notation $v_i$ to refer to the i-th element of the vector $\mathbf{v}$.</p>
+
+<h3 id="row-versus-column-vectors">Row Versus Column Vectors</h3>
+
+<p>When we talk about a vector, we will <em>always</em> be referring to a column vector (i.e., a matrix with shape $d \times 1$).</p>
+
+<h2 id="matrices">Matrices</h2>
+
+<p>We will use upper-case, bolded letters to refer to matrix quantities. For example, we would refer to the matrix quantity <code class="language-plaintext highlighter-rouge">A</code> using the following notation.</p>
+
+<p>$$
+\mathbf{A}
+$$</p>
+
+<h3 id="matrix-indexing">Matrix Indexing</h3>
+
+<ol>
+  <li>We will refer to the i-th column of the matrix $\mathbf{A}$ as $\mathbf{a}_{i}$.</li>
+  <li>We do not currently have a shorthand to refer to the i-th row of a matrix, but we reserve the right to define one later.</li>
+  <li>We will refer to the element at row $i$, column $j$ of matrix $\mathbf{A}$ as $a_{i, j}$.</li>
+</ol>
+
+<h2 id="independent-versus-dependent-variables">Independent versus Dependent variables</h2>
+
+<p>We will use <code class="language-plaintext highlighter-rouge">x</code> to refer to independent (i.e., input) variables and <code class="language-plaintext highlighter-rouge">y</code> to refer to dependent (i.e., output) variables. For instance, when describing training data, we will always use <code class="language-plaintext highlighter-rouge">x</code> to refer to the input variables and <code class="language-plaintext highlighter-rouge">y</code> to refer to the output variable.</p>
 
         
       </section>

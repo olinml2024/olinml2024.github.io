@@ -87,7 +87,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
 <meta property="og:title" content="Assignment 1">
-<meta property="og:url" content="/assignments/assignment01/assignment01.html">
+<meta property="og:url" content="/assignments/assignment01/old2021_assignment01.html">
 
 
 
@@ -101,7 +101,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 
 
-<link rel="canonical" href="/assignments/assignment01/assignment01.html">
+<link rel="canonical" href="/assignments/assignment01/old2021_assignment01.html">
 
 
 
@@ -333,8 +333,8 @@ $
                 <ul class="toc__menu">
   <li><a href="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#please-read-the-syllabus">Please read the syllabus</a></li>
-  <li><a href="#the-machine-learning-lifecycle">The Machine Learning Lifecycle</a></li>
   <li><a href="#six-big-ideas-in-machine-learning">Six Big Ideas in Machine Learning</a></li>
+  <li><a href="#high-level-taste-of-machine-learning">High Level Taste of Machine Learning</a></li>
   <li><a href="#mathematical-background">Mathematical Background</a></li>
   <li><a href="#supervised-learning-problem-setup">Supervised Learning Problem Setup</a></li>
   <li><a href="#linear-regression-from-the-top-down">Linear Regression from the Top-Down</a></li>
@@ -388,10 +388,6 @@ around what’s in the syllabus in the next class! If you have any
 questions about the syllabus, please post them on the Discord so we can
 clarify (and practice using Discord as a class). Or if it is a personal
 question, you can always email us or catch us after class.</p>
-
-<h1 id="the-machine-learning-lifecycle">The Machine Learning Lifecycle</h1>
-
-<p>In class, we explored aspects of the machine learning lifecycle. Please read through this short article (about 10 minutes) to continue to build your sense of the big picture: https://www.datacamp.com/blog/machine-learning-lifecycle-explained.</p>
 
 <h1 id="six-big-ideas-in-machine-learning">Six Big Ideas in Machine Learning</h1>
 
@@ -481,12 +477,12 @@ the model exploits correlations in the training data between input
 features (pixels) and outputs (object locations) in potentially
 unpredictable ways.</p>
 
-<figure id="figure1">
+<figure id="figure4">
     <div style="text-align: center;">
         <img src="figures/yolofooled.png" alt="A stop sign is shown with various stickers on it.  On top of the stickers, erroneous identifications of bottles are shown (no bottles are present in the image)." style="max-width: 40%">
     </div>
     <figcaption style="font-size: large">
-        Figure 1: <p>A stop sign with a specially crafted sticker that causes a neural network to fail to identify it as a stop sign.</p>
+        Figure 4: <p>A stop sign with a specially crafted sticker that causes a neural network to fail to identify it as a stop sign.</p>
 
     </figcaption>
 </figure>
@@ -500,7 +496,7 @@ model</a>
 (that is YOLO would not identify it as a stop sign). Clearly, this has
 major implications for the safety of using a model such as this in an
 application like a self-driving car. An example of the attack is shown
-in <a href="#figure1">Figure 1</a>.</p>
+in <a href="#figure4">Figure 4</a>.</p>
 
 <h2 id="idea-2-theres-no-such-thing-as-a-free-lunch">Idea 2: There’s No Such Thing as a Free Lunch</h2>
 
@@ -604,18 +600,18 @@ flying</a>.</p>
 functioning, at an abstract level, is modeled on the functioning of
 biological neurons (e.g., in the brain).</p>
 
-<figure id="figure2">
+<figure id="figure5">
     <div style="text-align: center;">
         <img src="figures/Colored_neural_network.png" alt="a schematic of a neural network is shown.  Circles represent nodes, which are connected to other nodes using arrows" style="max-width: 50%">
     </div>
     <figcaption style="font-size: large">
-        Figure 2: <p>An artificial neural network with a single hidden layer.</p>
+        Figure 5: <p>An artificial neural network with a single hidden layer.</p>
 
     </figcaption>
 </figure>
 
 <p>ANNs accept input patterns at an array of virtual neurons called the
-input layer (see <a href="#figure2">Figure 2</a>). The neurons in the input layer are connected to
+input layer (see <a href="#figure5">Figure 5</a>). The neurons in the input layer are connected to
 other neurons via virtual <a href="https://en.wikipedia.org/wiki/Axon">axons</a>
 that control to what extent a particular input neuron activates a
 downstream neuron. The second set of neurons, called the “hidden layer”
@@ -629,7 +625,7 @@ might encode the objects in the image).</p>
 
 <p>What’s amazing about ANNs is that there are learning algorithms for
 setting the connection strengths between these virtual neurons (the
-black arrows in <a href="#figure2">Figure 2</a>) based on training data (input / output pairs).
+black arrows in <a href="#figure5">Figure 5</a>) based on training data (input / output pairs).
 These learning algorithms tune the connections strengths (also called
 “weights”) such that for the provided training data the network produces
 the appropriate training outputs (e.g., if you show the network a
@@ -640,19 +636,19 @@ The algorithms used to tune the network weights are only concerned with
 reproducing the output patterns, the network is free to choose how it
 represents information within the network (i.e., at the hidden layer).</p>
 
-<figure id="figure3">
+<figure id="figure6">
     <div style="text-align: center;">
         <img src="figures/learned_receptive_fields.png" alt="images are shown representing various receptive fields learned by a neural network.  The images show receptive fields with oriented bars." style="max-width: 50%">
     </div>
     <figcaption style="font-size: large">
-        Figure 3: <p>12x12 receptive fields learned from an neural network trained to optimally compress images</p>
+        Figure 6: <p>12x12 receptive fields learned from an neural network trained to optimally compress images</p>
 
     </figcaption>
 </figure>
 
 <p>What’s super amazing is that we can actually examine the internal
 representations of a neural network to understand how it’s performing
-the computation from input to output. For instance, <a href="#figure3">Figure 3</a><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> shows a visualization of the internal
+the computation from input to output. For instance, <a href="#figure6">Figure 6</a><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> shows a visualization of the internal
 representations learned by a network trained to best compress a training
 set of images (these sorts of networks are called “auto-encoders”). The
 receptive fields of each of the hidden units in the network and can be
@@ -788,7 +784,7 @@ that you might use for inspiration.<sup id="fnref:4" role="doc-noteref"><a href=
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 5</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -805,9 +801,9 @@ about your interests in the big space that is ML. Also, you have license
 from us to customize the structure of your response as you see fit. As a
 rough guide, you should aim for a response of a 1-2 paragraphs.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-1")'>Show / Hide Solution</button></p>
+<p><button onclick='HideShowElement("subpartsolution-9")'>Show / Hide Solution</button></p>
 
-<div id="subpartsolution-1" class="solution" style="
+<div id="subpartsolution-9" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -831,9 +827,9 @@ Why? Alternatively, what is an example of an ML application (real or
 imagined) that no matter how carefully the designers approach it, should
 just not exist due to the harm it would cause the world? Why?</p>
 
-<p><button onclick='HideShowElement("subpartsolution-2")'>Show / Hide Solution</button></p>
+<p><button onclick='HideShowElement("subpartsolution-10")'>Show / Hide Solution</button></p>
 
-<div id="subpartsolution-2" class="solution" style="
+<div id="subpartsolution-10" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -848,6 +844,175 @@ just not exist due to the harm it would cause the world? Why?</p>
 </div>
 </div>
 
+</div>
+</div>
+
+<h1 id="high-level-taste-of-machine-learning">High Level Taste of Machine Learning</h1>
+
+<p>We have introduced some really big ideas in machine learning. Now, let’s
+see a quick overview of the categories of machine learning and play
+around with classification (treating it as a black box for now).</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 6</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Briefly explain the difference between supervised and unsupervised
+learning and the difference between classification and regression. You
+can look things up online yourself or check out <a href="https://www.youtube.com/watch?v=1FZ0A1QCMWc">this
+video</a> that frames machine
+learning in 3 categories. If this video isn’t working for you (or if you
+prefer to reading), Mathworks has a decent overview of <a href="https://explore.mathworks.com/interactive-machine-learning-with-matlab">supervised and
+unsupervised
+learning</a>
+along with some <a href="https://www.mathworks.com/videos/series/introduction-to-machine-learning.html?s_tid=srchtitle">other
+videos</a>.</p>
+
+
+    <button onclick='HideShowElement("solution-6")'>Show / Hide Solution</button>
+
+<div id="solution-6" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Supervised learning uses labeled data to find "answers" or make
+predictions. Unsupervised learning looks for patterns in unlableled
+data. Classification is for predicting categories or groups, while
+regression is for predicting numerical values.</p>
+
+     </div>
+</div>
+</div>
+</div>
+
+<p>Now we will play around with a simple example of classification to build
+some intuition. We’ll be using a slight variation on the classic <a href="http://archive.ics.uci.edu/ml/datasets/Iris">Iris
+Dataset</a>, which contains 3
+types of irises (the flower, not the eye part) and 4 features describing
+the flowers (lengths and widths of the sepals and petals).</p>
+
+<p>While most of this class will be in Python, we’ll be using the Matlab
+Classification Learner to play around with classification as a black
+box. To do this, we strongly recommend that you use <a href="https://matlab.mathworks.com/">Matlab
+Online</a> (so you don’t need to
+download/update Matlab on your computer or add any toolboxes manually).
+To get set-up, you should:</p>
+
+<p>Go to <a href="https://matlab.mathworks.com/">https://matlab.mathworks.com/</a>. You will need to log into your
+Mathworks account (which may be the same as your student login). Check
+out the <a href="https://wikis.olin.edu/it/doku.php?id=matlab">Olin IT page</a> for
+help (or work with a partner if you run into problems... don’t let
+Matlab access suck up a ton of time).</p>
+
+<p>Get the <a href="https://drive.matlab.com/sharing/eabcff70-ad45-4b72-9ccf-d10b3ce20933">shared data from
+here.</a>
+We suggest you choose Add to My Files in the top left, then add a
+shortcut. This should allow you to access the nirisData.mat file from
+Matlab Online. (If that gives you trouble, you can just download it and
+upload it yourself.)</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 7</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Explore the Classification Learner with the Iris Dataset. We strongly
+suggest <a href="https://youtu.be/f3uUFoLM3vA">this video to guide you through the
+steps</a>, but here are a few notes for your
+reference:</p>
+
+<p>Load the nirisData.mat into your workspace (niris for noisy iris data).</p>
+
+<p>Open the App (see top ribbon) called <strong>Classification Learner</strong> and
+start a <strong>New Session</strong> from the Workspace.</p>
+
+<p>Set the Data Set Variable to nirisData. This should automatically detect
+the "Response" variable that refers to the category of flower that you
+are trying to predict.</p>
+
+<p>Under Validation, be sure to pick <strong>Resubstitution Validation</strong> so that
+we get more consistent results. Then hit Start Session.</p>
+
+<p>Play around with the plots by changing the Predictors (also known as
+“features”). Note what you can observe from these plots (e.g., How
+well can you tell the different types of flowers apart from these plots?
+Do some Predictors give more information than others?)</p>
+
+<p>From the dropdown menu in the middle of the top band, select Linear
+Discriminant and click Train. Congrats, you did machine learning!!
+Observe the accuracy displayed on the left-hand side. Under the plot on
+the right-hand side, you can toggle back and forth between the model
+predictions and the data to see what your model got wrong.</p>
+
+<p>Train and record the results from at least two models in this <a href="https://docs.google.com/spreadsheets/d/1dh4TQbEn25KP0Z0YzHb8IqYpzbTl4e0LC97izIkSEAI/edit?usp=sharing">classwide
+spreadsheet</a>.
+Be sure to record the details of your design choices so that you can
+replicate your results in class. Since this is a communal activity, we
+suggest that you include (1) your model with the highest accuracy and (2)
+a model with parameters that no one else has recorded yet. Here are some
+ideas on things you can manipulate:</p>
+
+<p>Which features are included in the model (Click Feature Selection in the
+top ribbon and uncheck some).</p>
+
+<p>Which type of machine learning model you choose (the dropdown menu that
+includes options like Linear Discriminant and Fine Trees)</p>
+
+<p>Use of PCA to reduce dimensionality or the Advanced button to manipulate
+features of your model.</p>
+
+
+    <button onclick='HideShowElement("solution-7")'>Show / Hide Solution</button>
+
+<div id="solution-7" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Lots of possibilities here. We will talk about this more in class.</p>
+
+     </div>
+</div>
 </div>
 </div>
 
@@ -872,12 +1037,12 @@ just not exist due to the harm it would cause the world? Why?</p>
 	</div>
 	<div style="padding: 1em 1em 1em 1em;">
 	   
-<p>For the purposes of this class, we will try to be consistent with the notation
+<p>For the purposes of this class, we will be consistent with the notation
 we use. Of course, when we link to other resources, they may use other
 notation. If notation is different in a way that causes confusion, we
 will try to point out pitfalls you should watch out for. Please use this
-link to access our guide to <a href="notation_conventions">our notation
-conventions</a></p>
+link to access our guide to <a href="https://github.com/mlfa19/assignments/blob/master/supplementary_documents/notation_conventions.pdf">our notation
+conventions</a>.</p>
 
 	</div>
 </div>
@@ -902,7 +1067,7 @@ conventions</a></p>
 	<div style="padding: 1em 1em 1em 1em;">
 	   
 <p>In order to engage with this and future assignments, you’ll want to make
-sure you are familiar with the concepts (links to resources
+sure you are familiar with the following concepts (links to resources
 embedded below):</p>
 
 <ul>
@@ -954,7 +1119,7 @@ Gradient</a></li>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 8</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -964,9 +1129,9 @@ Gradient</a></li>
 $\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
 and $\nabla f$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-3")'>Show / Hide Solution</button></p>
+<p><button onclick='HideShowElement("subpartsolution-11")'>Show / Hide Solution</button></p>
 
-<div id="subpartsolution-3" class="solution" style="
+<div id="subpartsolution-11" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -1002,9 +1167,9 @@ of the columns $\mlvec{a_1}, \ldots, \mlvec{a_n}$ or the rows
 $\mlvec{row_1}^\top, \ldots, \mlvec{row_m}^\top$). Let $\mlvec{v}$ be an
 arbitrary $n$-dimensional vector.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-4")'>Show / Hide Solution</button></p>
+<p><button onclick='HideShowElement("subpartsolution-12")'>Show / Hide Solution</button></p>
 
-<div id="subpartsolution-4" class="solution" style="
+<div id="subpartsolution-12" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -1031,9 +1196,9 @@ $$</p>
 <p>Compute $\mlmat{A}\mlvec{v}$ in terms of
 $\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-5")'>Show / Hide Solution</button></p>
+<p><button onclick='HideShowElement("subpartsolution-13")'>Show / Hide Solution</button></p>
 
-<div id="subpartsolution-5" class="solution" style="
+<div id="subpartsolution-13" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -1055,9 +1220,9 @@ $\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
 <p>Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
 $\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-6")'>Show / Hide Solution</button></p>
+<p><button onclick='HideShowElement("subpartsolution-14")'>Show / Hide Solution</button></p>
 
-<div id="subpartsolution-6" class="solution" style="
+<div id="subpartsolution-14" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -1216,7 +1381,7 @@ which is the hallmark of supervised machine learning!</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 3</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 9</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -1231,9 +1396,9 @@ ordinary least-squares, which of these lines is better (i.e. has the
 smallest residuals)?</p>
 
 
-    <button onclick='HideShowElement("solution-3")'>Show / Hide Solution</button>
+    <button onclick='HideShowElement("solution-9")'>Show / Hide Solution</button>
 
-<div id="solution-3" class="solution" style="
+<div id="solution-9" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -1290,7 +1455,7 @@ you are computing a line of best fit).</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 4</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 10</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -1305,9 +1470,9 @@ results to the OLS solution (line of best fit).</p>
 Does OLS seem sensitive or insensitive to the presence of outliers in
 the data?</p>
 
-<p><button onclick='HideShowElement("subpartsolution-7")'>Show / Hide Solution</button></p>
+<p><button onclick='HideShowElement("subpartsolution-15")'>Show / Hide Solution</button></p>
 
-<div id="subpartsolution-7" class="solution" style="
+<div id="subpartsolution-15" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -1334,9 +1499,9 @@ phenomenon.</p>
 <p>Were there any times when the line of best fit didn’t seem to really be
 “best” (e.g., it didn’t appear to capture the trends in the data)?</p>
 
-<p><button onclick='HideShowElement("subpartsolution-8")'>Show / Hide Solution</button></p>
+<p><button onclick='HideShowElement("subpartsolution-16")'>Show / Hide Solution</button></p>
 
-<div id="subpartsolution-8" class="solution" style="
+<div id="subpartsolution-16" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
