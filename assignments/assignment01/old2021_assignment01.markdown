@@ -28,10 +28,6 @@ questions about the syllabus, please post them on the Discord so we can
 clarify (and practice using Discord as a class). Or if it is a personal
 question, you can always email us or catch us after class.
 
-# The Machine Learning Lifecycle
-
-In class, we explored aspects of the machine learning lifecycle. Please read through this short article (about 10 minutes) to continue to build your sense of the big picture: https://www.datacamp.com/blog/machine-learning-lifecycle-explained. 
-
 # Six Big Ideas in Machine Learning
 
 **Note: We suggest you timebox this section to a maximum of 60 minutes
@@ -434,23 +430,127 @@ There's no one right answer here!
 {% include problem_with_parts.html problem=content %}
 
 
+# High Level Taste of Machine Learning
 
+We have introduced some really big ideas in machine learning. Now, let's
+see a quick overview of the categories of machine learning and play
+around with classification (treating it as a black box for now).
+
+{% capture content %}
+Briefly explain the difference between supervised and unsupervised
+learning and the difference between classification and regression. You
+can look things up online yourself or check out [this
+video](https://www.youtube.com/watch?v=1FZ0A1QCMWc) that frames machine
+learning in 3 categories. If this video isn't working for you (or if you
+prefer to reading), Mathworks has a decent overview of [supervised and
+unsupervised
+learning](https://explore.mathworks.com/interactive-machine-learning-with-matlab)
+along with some [other
+videos](https://www.mathworks.com/videos/series/introduction-to-machine-learning.html?s_tid=srchtitle).
+{% endcapture %}
+
+{% capture solution %}
+Supervised learning uses labeled data to find \"answers\" or make
+predictions. Unsupervised learning looks for patterns in unlableled
+data. Classification is for predicting categories or groups, while
+regression is for predicting numerical values.
+{% endcapture %}
+
+{% include problem.html problem=content solution=solution %}
+
+Now we will play around with a simple example of classification to build
+some intuition. We'll be using a slight variation on the classic [Iris
+Dataset](http://archive.ics.uci.edu/ml/datasets/Iris), which contains 3
+types of irises (the flower, not the eye part) and 4 features describing
+the flowers (lengths and widths of the sepals and petals).
+
+While most of this class will be in Python, we'll be using the Matlab
+Classification Learner to play around with classification as a black
+box. To do this, we strongly recommend that you use [Matlab
+Online](https://matlab.mathworks.com/) (so you don't need to
+download/update Matlab on your computer or add any toolboxes manually).
+To get set-up, you should:
+
+Go to <https://matlab.mathworks.com/>. You will need to log into your
+Mathworks account (which may be the same as your student login). Check
+out the [Olin IT page](https://wikis.olin.edu/it/doku.php?id=matlab) for
+help (or work with a partner if you run into problems\... don't let
+Matlab access suck up a ton of time).
+
+Get the [shared data from
+here.](https://drive.matlab.com/sharing/eabcff70-ad45-4b72-9ccf-d10b3ce20933)
+We suggest you choose Add to My Files in the top left, then add a
+shortcut. This should allow you to access the nirisData.mat file from
+Matlab Online. (If that gives you trouble, you can just download it and
+upload it yourself.)
+
+{% capture content %}
+Explore the Classification Learner with the Iris Dataset. We strongly
+suggest [this video to guide you through the
+steps](https://youtu.be/f3uUFoLM3vA), but here are a few notes for your
+reference:
+
+Load the nirisData.mat into your workspace (niris for noisy iris data).
+
+Open the App (see top ribbon) called **Classification Learner** and
+start a **New Session** from the Workspace.
+
+Set the Data Set Variable to nirisData. This should automatically detect
+the \"Response\" variable that refers to the category of flower that you
+are trying to predict.
+
+Under Validation, be sure to pick **Resubstitution Validation** so that
+we get more consistent results. Then hit Start Session.
+
+Play around with the plots by changing the Predictors (also known as
+"features"). Note what you can observe from these plots (e.g., How
+well can you tell the different types of flowers apart from these plots?
+Do some Predictors give more information than others?)
+
+From the dropdown menu in the middle of the top band, select Linear
+Discriminant and click Train. Congrats, you did machine learning!!
+Observe the accuracy displayed on the left-hand side. Under the plot on
+the right-hand side, you can toggle back and forth between the model
+predictions and the data to see what your model got wrong.
+
+Train and record the results from at least two models in this [classwide
+spreadsheet](https://docs.google.com/spreadsheets/d/1dh4TQbEn25KP0Z0YzHb8IqYpzbTl4e0LC97izIkSEAI/edit?usp=sharing).
+Be sure to record the details of your design choices so that you can
+replicate your results in class. Since this is a communal activity, we
+suggest that you include (1) your model with the highest accuracy and (2)
+a model with parameters that no one else has recorded yet. Here are some
+ideas on things you can manipulate:
+
+Which features are included in the model (Click Feature Selection in the
+top ribbon and uncheck some).
+
+Which type of machine learning model you choose (the dropdown menu that
+includes options like Linear Discriminant and Fine Trees)
+
+Use of PCA to reduce dimensionality or the Advanced button to manipulate
+features of your model.
+{% endcapture %}
+
+{% capture solution %}
+Lots of possibilities here. We will talk about this more in class.
+{% endcapture %}
+{% include problem.html problem=content solution=solution %}
 
 # Mathematical Background
 
 {% capture content %}
-For the purposes of this class, we will try to be consistent with the notation
+For the purposes of this class, we will be consistent with the notation
 we use. Of course, when we link to other resources, they may use other
 notation. If notation is different in a way that causes confusion, we
 will try to point out pitfalls you should watch out for. Please use this
 link to access our guide to [our notation
-conventions](notation_conventions) 
+conventions](https://github.com/mlfa19/assignments/blob/master/supplementary_documents/notation_conventions.pdf).
 {% endcapture %}
 {% include notice.html content=content %}
 
 {% capture content %}
 In order to engage with this and future assignments, you'll want to make
-sure you are familiar with the concepts (links to resources
+sure you are familiar with the following concepts (links to resources
 embedded below):
 
 

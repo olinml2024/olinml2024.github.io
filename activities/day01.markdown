@@ -7,4 +7,3 @@ layout: problemset
 
 # Learning Objectives
 
-Fun new stuff
