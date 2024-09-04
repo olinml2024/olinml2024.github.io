@@ -6,9 +6,9 @@ header:
   overlay_filter: "0.4"
 ---
 
-## How-tos
+<!-- ## How-tos
 
-* TODO
+* TODO -->
 
 ## In-class Activities
 
@@ -21,4 +21,4 @@ header:
 
 | Due at beginning of class # | Assignment                                                              |
 |-----------------------------|-------------------------------------------------------------------------|
-| 2                           | [Linear Regression](assignments/assignment01/assignment01)    |
+| 2                           | [Assignment 1](assignments/assignment01/assignment01)    |
