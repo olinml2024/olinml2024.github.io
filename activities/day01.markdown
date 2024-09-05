@@ -7,7 +7,7 @@ layout: problemset
 
 {% capture agenda %}
 * 1-1:02pm: Everyone come hang out in MAC128.
-* 1:02-1:10pm: Brief orientation to this class
+* 1:02-1:10pm: We'll provide brief orienting remarks about the course!
 * 1:10-1:15pm: Introduction to the our main activity (see below).
 * 1:15-2:05pm: Mapping the Machine Learning Ecosystem
 * 2:05-2:20pm: Report out
@@ -66,7 +66,7 @@ Machine learning is a vast field that touches upon many disciplines.  In this cl
 
 # Mapping the machine learning ecosystem
 
-A few years back when we were originally designing this course, we were struck by this incredible visualization of a machine learining-powered system (the Amazon Echo).  (note: click on the following link to see [the original, high-resolution, vector graphics version](https://anatomyof.ai/img/ai-anatomy-map.pdf)).
+A few years back when we were originally designing this course, we were struck by this incredible visualization of a machine learning-powered system (the Amazon Echo).  (note: click on the following link to see [the original, high-resolution, vector graphics version](https://anatomyof.ai/img/ai-anatomy-map.pdf)).
 
 ![](images/ai-anatomy-map.png)
 
@@ -81,7 +81,7 @@ One of the hallmarks of this course will be in contextualizing machine learning 
 
 ## Step 1: Do Some Background Reading
 
-Read the article [Machine Learning Lifecycle Explained](https://www.datacamp.com/blog/machine-learning-lifecycle-explained).  This article will give you a nice high-level view of what it takes to create a machine learning model.  The article doesn't look at all of the possible dimensions you migh consider, but it does give some good jumping off points (e.g., the article doesn't talk about electricity or environmnetal impacts).
+Read the article [Machine Learning Lifecycle Explained](https://www.datacamp.com/blog/machine-learning-lifecycle-explained).  This article will give you a nice high-level view of what it takes to create a machine learning model.  The article doesn't look at all of the possible dimensions you might consider, but it does give some good jumping off points (e.g., the article doesn't talk about electricity or environmental impacts).
 
 ## Step 2: Choose a Machine Learning System to Map
 
@@ -105,7 +105,7 @@ Here are some prompts to consider to help get you thinking:
 * Who is involved?  Consider data creators, research scientists, data labelers, machine learning engineers, user-experience specialists, consumers, legislators / regulators, etc.
 * Who are the organizations? Of the folks involved, what organizations are they a part of (these could be governmental, commercial, or non-profit).
 * Where are the interaction points?  How do individual or organizations interact with each other?  What is exchanged between them (e.g., knowledge, money, data, computing resources)?
-* With respect to the benefits of the system, consider the experience of the end user (what do they get from using the system?), consider the knock-on benefits to the system creator (e.g., providing more training data), and does anyone else benefit?  With repsect to potential pitfalls (or negative impacts), consider issues of environmental and financial imapct along with the potential for model bias that causes differential impacts to different groups of people that interact with the system (e.g., based on some identty characteristic like race or gender).
+* With respect to the benefits of the system, consider the experience of the end user (what do they get from using the system?), consider the knock-on benefits to the system creator (e.g., providing more training data), and does anyone else benefit?  With respect to potential pitfalls (or negative impacts), consider issues of environmental and financial impact along with the potential for model bias that causes differential impacts to different groups of people that interact with the system (e.g., based on some identity characteristic like race or gender).
 
 ## Step 4: Share Your Map
 
