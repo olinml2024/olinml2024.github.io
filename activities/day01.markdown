@@ -6,21 +6,63 @@ layout: problemset
 ---
 
 {% capture agenda %}
-* 1-1:05pm: Everyone come hang out in MAC128.
-* 1:05-1:10pm: We'll provide brief orienting remarks to the class.  We'll go over the high-level learning goals of the course, talk a little bit about what machine learning is, and discuss the distinction we draw between machine learnign and artificial intelligence.
+* 1-1:02pm: Everyone come hang out in MAC128.
+* 1:02-1:10pm: Brief orientation to this class
 * 1:10-1:15pm: Introduction to the our main activity (see below).
-* 1:15-2:15pm: Mapping the Machine Learning Ecosystem
-* 2:15-2:30pm: Report out
-* 2:30-2:40pm: Orientation to first assignment and basic course logistics.  We'll show you the Canvas page, grading options, how to find office hours, etc.
+* 1:15-2:05pm: Mapping the Machine Learning Ecosystem
+* 2:05-2:20pm: Report out
+* 2:20-2:40pm: Orientation to first assignment and basic course logistics for assignment submissions.  We'll show you the Canvas page, grading options, how to find office hours, etc.
 {% endcapture %}
 
 {% include agenda.html content=agenda %}
 
 # The Big Picture
 
-TODO (discuss key learning objectives, general course philosophy and approach).
+Welcome to Machine Learning!  We're not going to spend a ton of time talking at you today (we want to get you engaging with the material as quickly as possible).  A few quick things.
 
-What is machine learning? Is it different than AI?  How does that distinction relate to what we'll be doing this semester.
+## What is Machine Learning?
+
+As a running example, let's take the idea of creating a computer program to predict various characteristics of a person (e.g., age and gender) from a picture of their face.
+
+<p style="text-align: center;">
+<img alt="A selfie of a professor that has been processed by SeeingAI.  The output of the program says that the image contains a picture of a 43-year old man looking neutral" src="images/paulseeingai.jpg"/>
+</p>
+
+One way to frame machine learning is by contrasting it with the traditional approach to writing an algorithm to solve a problem.  Here is a somewhat cartoonish version.  
+
+```mermaid!
+flowchart LR
+  id1[Data]
+  id2[Hand-coded Program]
+  id3[Output]
+  id1 --> id2
+  id2 --> id3
+```
+
+This might seem like a seemingly impossible task, but it's one that the machine learning approach can be applied to quite easily.  Here is the workflow when adopting a machine learning approach.
+
+```mermaid!
+flowchart LR
+  id1[Data]
+  id2[Machine Learning Algorithm]
+  id3[Program]
+  id4[Desired Outputs]
+  id1 --> id2
+  id2 --> id3
+  id4 --> id2
+```
+
+This picture helps us undertand the potential scope of the machine learning approach.  Is machine learning just what happens in the middle box?  What about the inputs and outputs?  We probably have a lot of questions about those.  Let's take a minute to throw out a few considerations.
+
+
+## Learning Goals
+
+Machine learning is a vast field that touches upon many disciplines.  In this class we aim to take a broad view towards the subject that covers the underlying theory, implementation, and critically evaluating how machine learning systems impact the world and its people.
+
+* Understand a variety of machine learning techniques from both a mathematical and algorithmic perspective.
+* Successfully implement machine learning algorithms in Python (both by using only minimal external libraries and by leveraging standard machine learning libraries).
+* Execute the iterative machine learning workflow of model design, fitting to training data, testing, and interpretation in order to be able to successfully apply machine learning techniques in specific contexts.
+* Predict the potential impacts of a machine learning system when deployed in a real-world context and make design decisions to mitigate potential harmful impacts while maximizing positive impacts.
 
 # Mapping the machine learning ecosystem
 
@@ -52,6 +94,7 @@ Here are some ideas off the top of our heads:
 * The [SeeingAI app](https://apps.apple.com/us/app/seeing-ai/id999062298) (Microsoft's app to make various tasks more accessible for folks who are blind)
 * Job applicant screening tools
 * Self-driving cars
+* Facial recognition software
 * Fitness, health, and safety features in Apple Watches (e.g., fall detection, health monitoring, etc.)
 
 ## Step 3: Make your Map
