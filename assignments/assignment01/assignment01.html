@@ -162,6 +162,21 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    // Loop through the selected divs and manipulate them
+    divs.forEach(div => {
+      // Example: Remove 'hidden' class to show hidden divs
+      if (showSolutions == 'true') {
+        div.removeAttribute('hidden');
+      }
+    });
+});
+</script>
 
 <script type="text/javascript">
 function HideShowElement(divID) {
@@ -809,7 +824,7 @@ about your interests in the big space that is ML. Also, you have license
 from us to customize the structure of your response as you see fit. As a
 rough guide, you should aim for a response of a 1-2 paragraphs.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-1")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-1")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-1" class="solution" style="
     background-color: #cefad0;
@@ -835,7 +850,7 @@ Why? Alternatively, what is an example of an ML application (real or
 imagined) that no matter how carefully the designers approach it, should
 just not exist due to the harm it would cause the world? Why?</p>
 
-<p><button onclick='HideShowElement("subpartsolution-2")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-2")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-2" class="solution" style="
     background-color: #cefad0;
@@ -851,6 +866,7 @@ just not exist due to the harm it would cause the world? Why?</p>
 
 </div>
 </div>
+
 
 </div>
 </div>
@@ -972,7 +988,7 @@ Gradient</a></li>
 $\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
 and $\nabla f$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-3")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-3")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-3" class="solution" style="
     background-color: #cefad0;
@@ -1002,7 +1018,7 @@ $\mlvec{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
 $\mlvec{x} \cdot \mlvec{y}$, $\mlvec{x}^\top \mlvec{y}$, and
 $\mlvec{x} \mlvec{y}^\top$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-4")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-4")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-4" class="solution" style="
     background-color: #cefad0;
@@ -1031,18 +1047,18 @@ $$</p>
 <p>Let
 $\mlmat{A} = \begin{bmatrix} \mlvec{a_1} &amp; \mlvec{a_2} &amp; \ldots &amp; \mlvec{a_n} \end{bmatrix} = \begin{bmatrix} \mlvec{row_1} \\ \mlvec{row_2} \\ \vdots \\ \mlvec{row}_m \end{bmatrix}$</p>
 
-<p>where $\mlvec{row_{m}}$ is a row vector (vectors in this class will default to being column vectors, so here we’re giving it a special name to indicate it’s a row vector).</p>
+<p>where each $\mlvec{row_{i}}$ is a row vector (vectors in this class will default to being column vectors, so here we’re giving it a special name to indicate it’s a row vector).</p>
 
 <p>So, the matrix $\mlmat{A}$ can either be thought of as consisting
 of the columns $\mlvec{a_1}, \ldots, \mlvec{a_n}$ or the rows
-$\mlvec{row_1}, \ldots, \mlvec{row_m}$).</p>
+$\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
 
 <p>Let $\mlvec{v}$ be an arbitrary $n$-dimensional vector.</p>
 
 <p>Compute $\mlmat{A}\mlvec{v}$ in terms of
 $\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-5")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-5")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-5" class="solution" style="
     background-color: #cefad0;
@@ -1066,7 +1082,7 @@ $\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
 <p>Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
 $\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-6")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-6")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-6" class="solution" style="
     background-color: #cefad0;

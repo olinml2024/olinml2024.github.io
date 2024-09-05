@@ -162,6 +162,21 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    // Loop through the selected divs and manipulate them
+    divs.forEach(div => {
+      // Example: Remove 'hidden' class to show hidden divs
+      if (showSolutions == 'true') {
+        div.removeAttribute('hidden');
+      }
+    });
+});
+</script>
 
 <script type="text/javascript">
 function HideShowElement(divID) {
@@ -801,7 +816,7 @@ about your interests in the big space that is ML. Also, you have license
 from us to customize the structure of your response as you see fit. As a
 rough guide, you should aim for a response of a 1-2 paragraphs.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-7")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-7")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-7" class="solution" style="
     background-color: #cefad0;
@@ -827,7 +842,7 @@ Why? Alternatively, what is an example of an ML application (real or
 imagined) that no matter how carefully the designers approach it, should
 just not exist due to the harm it would cause the world? Why?</p>
 
-<p><button onclick='HideShowElement("subpartsolution-8")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-8")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-8" class="solution" style="
     background-color: #cefad0;
@@ -843,6 +858,7 @@ just not exist due to the harm it would cause the world? Why?</p>
 
 </div>
 </div>
+
 
 </div>
 </div>
@@ -884,7 +900,7 @@ along with some <a href="https://www.mathworks.com/videos/series/introduction-to
 videos</a>.</p>
 
 
-    <button onclick='HideShowElement("solution-4")'>Show / Hide Solution</button>
+    <button hidden="true" onclick='HideShowElement("solution-4")' class="togglebutton">Show / Hide Solution</button>
 
 <div id="solution-4" class="solution" style="
     background-color: #cefad0;
@@ -997,7 +1013,7 @@ includes options like Linear Discriminant and Fine Trees)</p>
 features of your model.</p>
 
 
-    <button onclick='HideShowElement("solution-5")'>Show / Hide Solution</button>
+    <button hidden="true" onclick='HideShowElement("solution-5")' class="togglebutton">Show / Hide Solution</button>
 
 <div id="solution-5" class="solution" style="
     background-color: #cefad0;
@@ -1129,7 +1145,7 @@ Gradient</a></li>
 $\frac{\partial{f}}{\partial{x}}$, $\frac{\partial{f}}{\partial{y}}$,
 and $\nabla f$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-9")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-9")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-9" class="solution" style="
     background-color: #cefad0;
@@ -1167,7 +1183,7 @@ of the columns $\mlvec{a_1}, \ldots, \mlvec{a_n}$ or the rows
 $\mlvec{row_1}^\top, \ldots, \mlvec{row_m}^\top$). Let $\mlvec{v}$ be an
 arbitrary $n$-dimensional vector.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-10")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-10")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-10" class="solution" style="
     background-color: #cefad0;
@@ -1196,7 +1212,7 @@ $$</p>
 <p>Compute $\mlmat{A}\mlvec{v}$ in terms of
 $\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-11")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-11")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-11" class="solution" style="
     background-color: #cefad0;
@@ -1220,7 +1236,7 @@ $\mlvec{a_1}, \ldots, \mlvec{a_n}$.</p>
 <p>Compute $\mlmat{A} \mlvec{v}$ in terms of the rows of
 $\mlvec{row_1}, \ldots, \mlvec{row_m}$.</p>
 
-<p><button onclick='HideShowElement("subpartsolution-12")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-12")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-12" class="solution" style="
     background-color: #cefad0;
@@ -1396,7 +1412,7 @@ ordinary least-squares, which of these lines is better (i.e. has the
 smallest residuals)?</p>
 
 
-    <button onclick='HideShowElement("solution-7")'>Show / Hide Solution</button>
+    <button hidden="true" onclick='HideShowElement("solution-7")' class="togglebutton">Show / Hide Solution</button>
 
 <div id="solution-7" class="solution" style="
     background-color: #cefad0;
@@ -1470,7 +1486,7 @@ results to the OLS solution (line of best fit).</p>
 Does OLS seem sensitive or insensitive to the presence of outliers in
 the data?</p>
 
-<p><button onclick='HideShowElement("subpartsolution-13")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-13")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-13" class="solution" style="
     background-color: #cefad0;
@@ -1499,7 +1515,7 @@ phenomenon.</p>
 <p>Were there any times when the line of best fit didn’t seem to really be
 “best” (e.g., it didn’t appear to capture the trends in the data)?</p>
 
-<p><button onclick='HideShowElement("subpartsolution-14")'>Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-14")' class="togglebutton">Show / Hide Solution</button></p>
 
 <div id="subpartsolution-14" class="solution" style="
     background-color: #cefad0;
@@ -1517,6 +1533,7 @@ non-linear form (e.g., if it is quadratic), or if there are outliers.</p>
 
 </div>
 </div>
+
 
 </div>
 </div>

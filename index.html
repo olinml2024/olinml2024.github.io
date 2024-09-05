@@ -162,6 +162,21 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    // Loop through the selected divs and manipulate them
+    divs.forEach(div => {
+      // Example: Remove 'hidden' class to show hidden divs
+      if (showSolutions == 'true') {
+        div.removeAttribute('hidden');
+      }
+    });
+});
+</script>
 
 <script type="text/javascript">
 function HideShowElement(divID) {
@@ -375,7 +390,8 @@ $
   <tbody>
     <tr>
       <td>2</td>
-      <td><a href="assignments/assignment01/assignment01">Assignment 1</a></td>
+      <td>
+<a href="assignments/assignment01/assignment01">Assignment 1</a> (<a href="assignments/assignment01/assignment01?showSolutions=true">with show solution button</a>)</td>
     </tr>
   </tbody>
 </table>

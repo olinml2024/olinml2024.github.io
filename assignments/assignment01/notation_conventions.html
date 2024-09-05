@@ -162,6 +162,21 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    // Loop through the selected divs and manipulate them
+    divs.forEach(div => {
+      // Example: Remove 'hidden' class to show hidden divs
+      if (showSolutions == 'true') {
+        div.removeAttribute('hidden');
+      }
+    });
+});
+</script>
 
 <script type="text/javascript">
 function HideShowElement(divID) {
@@ -361,7 +376,7 @@ $$</p>
 
 <h3 id="row-versus-column-vectors">Row Versus Column Vectors</h3>
 
-<p>When we talk about a vector, we will <em>always</em> be referring to a column vector (i.e., a matrix with shape $d \times 1$).</p>
+<p>When we talk about a vector, unless otherwise specified, we will be referring to a column vector (i.e., a matrix with shape $d \times 1$).</p>
 
 <h2 id="matrices">Matrices</h2>
 
@@ -375,7 +390,7 @@ $$</p>
 
 <ol>
   <li>We will refer to the i-th column of the matrix $\mathbf{A}$ as $\mathbf{a}_{i}$.</li>
-  <li>We do not currently have a shorthand to refer to the i-th row of a matrix, but we reserve the right to define one later.</li>
+  <li>We do not currently have a shorthand to refer to the i-th row of a matrix.</li>
   <li>We will refer to the element at row $i$, column $j$ of matrix $\mathbf{A}$ as $a_{i, j}$.</li>
 </ol>
 
