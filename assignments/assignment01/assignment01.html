@@ -389,7 +389,7 @@ $
 
 <p>This document contains a lot of external links. They are there to help
 you learn more if you are interested. You are not required to read/watch
-all the linked material.*</p>
+all the linked material.</p>
 
 	</div>
 </div>
@@ -398,7 +398,7 @@ all the linked material.*</p>
 
 <h1 id="please-read-the-syllabus">Please read the syllabus</h1>
 
-<p>The syllabus is available on Canvas. Please read it, it contains a lot
+<p>The <a href="https://olin.instructure.com/courses/832/assignments/syllabus">syllabus</a> is available on Canvas. Please read it, it contains a lot
 of helpful information. There will be an ungraded competitive game
 around what’s in the syllabus in the next class! If you have any
 questions about the syllabus, please post them on the Slack so we can
@@ -410,7 +410,7 @@ question, you can always email us or catch us after class.</p>
 
 <h1 id="the-machine-learning-lifecycle">The Machine Learning Lifecycle</h1>
 
-<p>In class, we explored aspects of the machine learning lifecycle. Please read through this short article (about 10 minutes) to continue to build your sense of the big picture: https://www.datacamp.com/blog/machine-learning-lifecycle-explained.</p>
+<p>In class, we explored aspects of the machine learning lifecycle. Please continue to read through <a href="https://www.datacamp.com/blog/machine-learning-lifecycle-explained">this short article to continue to build your sense of the big picture</a> (about 10 minutes).</p>
 
 <h1 id="six-big-ideas-in-machine-learning">Six Big Ideas in Machine Learning</h1>
 
@@ -419,9 +419,7 @@ to start, including the exercise. Beware of the many interesting rabbit
 holes that could consume your day. You can always revisit this later.</strong></p>
 
 <p>Before diving into the specifics of our first machine learning
-algorithm, let’s examine some important ideas in machine learning. Why
-six big ideas? If Rob Martello has taught us anything, it’s that all
-good things come in sixes.</p>
+algorithm, let’s examine some important ideas in machine learning.</p>
 
 <h2 id="idea-1-correlations-for-the-win">Idea 1: Correlations for the Win?</h2>
 
@@ -429,9 +427,9 @@ good things come in sixes.</p>
 predictions. For instance, if one was using an ML algorithm to recognize
 whether someone was smiling in an image, the algorithm might learn that
 bright pixels around the mouth region are correlated with smiles (e.g.,
-they indicate that a person’s teeth are showing). This correlation would
-likely be useful for determining whether a new image of a face was a
-smile or not. Now suppose you take this model and apply it to a new
+these bright pixels could indicate that a person’s teeth are showing). This correlation would
+likely be useful for determining whether a new image of a face was of a smiling person (or not).
+Now suppose you take this model and apply it to a new
 dataset. You may find that faces that are angry are mistakenly marked as
 smiling! Why? In the case of angry facial expressions the teeth may also
 be showing. Of course you would expect the learning algorithm to be
@@ -472,6 +470,8 @@ job-screening decisions). Despite efforts to prevent the algorithm for
 exploiting such correlations, the group determined that they couldn’t
 fully guarantee that the algorithm had not found another way to achieve
 the same discriminatory outcome and terminated the project.</p>
+
+<p>A more modern example of the Amazon AI recruiting tool the task of detecting and <a href="https://www.datacamp.com/blog/understanding-and-mitigating-bias-in-large-language-models-llms">mitigating bias in large language models (LLMs)</a>.  Researchers are hard at work creating additional methods to mitigate and detect biases in these models (you might consider skimming the linked article for a high-level picture of what this looks like in practice.)</p>
 
 <p><em>Example 2: Adversarial Machine Learning</em></p>
 
@@ -777,20 +777,19 @@ unexpected consequences, we’ll also be talking about the positive things
 that ML can do. Here are just a couple of resources that discuss such
 systems (not to say that these systems don’t have the potential for
 things to go wrong!). We’ll leave this list deliberately short to give
-you a chance to find your own example in the exercise below.</p>
+you a chance to find your own example in the exercise below.  Some of these examples are a little old, but they are still good starting points.</p>
 
-<p><a href="https://www.springboard.com/blog/ai-for-good/">AI for social good: 7 inspiring
-examples</a></p>
-
-<p><a href="https://medium.com/myplanet-musings/making-the-web-more-accessible-using-machine-learning-8a32eaafdb3a">Machine Learning for Web
-Accessibility</a></p>
-
-<p><a href="https://fpf.org/wp-content/uploads/2016/03/Final_19Times-Data_Mar2016-1.pdf">19 Times Data Analysis Empowered Students and
-Schools</a></p>
-
-<p>Austin Veseliza put together <a href="https://www.notion.so/ML-for-Good-c0cc352c88b04e719c187c8e4a6f5887">a list of links to AI for social good
+<ul>
+  <li><a href="https://www.springboard.com/blog/ai-for-good/">AI for social good: 7 inspiring
+examples</a></li>
+  <li>While not without controversy, some companies (and researchers) are working on <a href="https://www.deque.com/blog/enhancing-accessibility-with-ai-and-ml/">Enhancing Accessibility with AI and ML</a>.</li>
+  <li><a href="https://fpf.org/wp-content/uploads/2016/03/Final_19Times-Data_Mar2016-1.pdf">19 Times Data Analysis Empowered Students and
+Schools</a></li>
+  <li>Austin Veseliza put together <a href="https://www.notion.so/ML-for-Good-c0cc352c88b04e719c187c8e4a6f5887">a list of links to AI for social good
 projects</a>
-that you might use for inspiration.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup></p>
+that you might use for inspiration.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>
+</li>
+</ul>
 
 <div style="display: normal;
         border-left: 6px solid #0065B4;
@@ -1117,10 +1116,11 @@ It’s hosted on Google Colab, so you can either make your own copy and run it o
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1" role="doc-endnote">
-      <p><a href="https://www.youtube.com/watch?time_continue=77&v=MPU2HistivI">Cool video of YOLO version
+      <p>A <a href="https://www.youtube.com/watch?time_continue=77&v=MPU2HistivI">Cool video of YOLO version
 3</a>,
-<a href="https://www.youtube.com/watch?v=Cgxsv1riJhI">TED talk from the head YOLO
-researcher</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+a <a href="https://www.youtube.com/watch?v=Cgxsv1riJhI">TED talk from the creator of YOLO
+researcher</a>, and
+<a href="https://docs.ultralytics.com/models">newer variants of YOLO have been created by other researchers</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
       <p>From <a href="http://www.cnbc.cmu.edu/~tai/nc19journalclubs/Olshausen-Field-CON-2004-1.pdf">Sparse coding of sensory
