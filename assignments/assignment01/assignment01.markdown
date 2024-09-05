@@ -15,7 +15,7 @@ layout: problemset
 
 This document contains a lot of external links. They are there to help
 you learn more if you are interested. You are not required to read/watch
-all the linked material.*
+all the linked material.
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
@@ -23,7 +23,7 @@ There is a substantial Jupyter notebook that is part of your assignment linked a
 
 # Please read the syllabus
 
-The syllabus is available on Canvas. Please read it, it contains a lot
+The [syllabus](https://olin.instructure.com/courses/832/assignments/syllabus) is available on Canvas. Please read it, it contains a lot
 of helpful information. There will be an ungraded competitive game
 around what's in the syllabus in the next class! If you have any
 questions about the syllabus, please post them on the Slack so we can
@@ -35,7 +35,7 @@ We'll have an optional course-wide Slack workspace for asking questions. Of cour
 
 # The Machine Learning Lifecycle
 
-In class, we explored aspects of the machine learning lifecycle. Please read through this short article (about 10 minutes) to continue to build your sense of the big picture: https://www.datacamp.com/blog/machine-learning-lifecycle-explained. 
+In class, we explored aspects of the machine learning lifecycle. Please continue to read through [this short article to continue to build your sense of the big picture](https://www.datacamp.com/blog/machine-learning-lifecycle-explained) (about 10 minutes).
 
 # Six Big Ideas in Machine Learning
 
@@ -44,9 +44,7 @@ to start, including the exercise. Beware of the many interesting rabbit
 holes that could consume your day. You can always revisit this later.**
 
 Before diving into the specifics of our first machine learning
-algorithm, let's examine some important ideas in machine learning. Why
-six big ideas? If Rob Martello has taught us anything, it's that all
-good things come in sixes.
+algorithm, let's examine some important ideas in machine learning.
 
 ## Idea 1: Correlations for the Win?
 
@@ -54,9 +52,9 @@ ML algorithms learn to exploit correlations in data in order to make
 predictions. For instance, if one was using an ML algorithm to recognize
 whether someone was smiling in an image, the algorithm might learn that
 bright pixels around the mouth region are correlated with smiles (e.g.,
-they indicate that a person's teeth are showing). This correlation would
-likely be useful for determining whether a new image of a face was a
-smile or not. Now suppose you take this model and apply it to a new
+these bright pixels could indicate that a person's teeth are showing). This correlation would
+likely be useful for determining whether a new image of a face was of a smiling person (or not).
+Now suppose you take this model and apply it to a new
 dataset. You may find that faces that are angry are mistakenly marked as
 smiling! Why? In the case of angry facial expressions the teeth may also
 be showing. Of course you would expect the learning algorithm to be
@@ -97,6 +95,8 @@ job-screening decisions). Despite efforts to prevent the algorithm for
 exploiting such correlations, the group determined that they couldn't
 fully guarantee that the algorithm had not found another way to achieve
 the same discriminatory outcome and terminated the project.
+
+A more modern example of the Amazon AI recruiting tool the task of detecting and [mitigating bias in large language models (LLMs)](https://www.datacamp.com/blog/understanding-and-mitigating-bias-in-large-language-models-llms).  Researchers are hard at work creating additional methods to mitigate and detect biases in these models (you might consider skimming the linked article for a high-level picture of what this looks like in practice.)
 
 *Example 2: Adversarial Machine Learning*
 
@@ -390,18 +390,14 @@ unexpected consequences, we'll also be talking about the positive things
 that ML can do. Here are just a couple of resources that discuss such
 systems (not to say that these systems don't have the potential for
 things to go wrong!). We'll leave this list deliberately short to give
-you a chance to find your own example in the exercise below.
+you a chance to find your own example in the exercise below.  Some of these examples are a little old, but they are still good starting points.
 
-[AI for social good: 7 inspiring
+* [AI for social good: 7 inspiring
 examples](https://www.springboard.com/blog/ai-for-good/)
-
-[Machine Learning for Web
-Accessibility](https://medium.com/myplanet-musings/making-the-web-more-accessible-using-machine-learning-8a32eaafdb3a)
-
-[19 Times Data Analysis Empowered Students and
+* While not without controversy, some companies (and researchers) are working on [Enhancing Accessibility with AI and ML](https://www.deque.com/blog/enhancing-accessibility-with-ai-and-ml/).
+* [19 Times Data Analysis Empowered Students and
 Schools](https://fpf.org/wp-content/uploads/2016/03/Final_19Times-Data_Mar2016-1.pdf)
-
-Austin Veseliza put together [a list of links to AI for social good
+* Austin Veseliza put together [a list of links to AI for social good
 projects](https://www.notion.so/ML-for-Good-c0cc352c88b04e719c187c8e4a6f5887)
 that you might use for inspiration.[^4]
 
@@ -574,10 +570,11 @@ It's hosted on Google Colab, so you can either make your own copy and run it on 
 
 
 # Footnotes
-[^1]: [Cool video of YOLO version
+[^1]: A [Cool video of YOLO version
     3](https://www.youtube.com/watch?time_continue=77&v=MPU2HistivI),
-    [TED talk from the head YOLO
-    researcher](https://www.youtube.com/watch?v=Cgxsv1riJhI)
+    a [TED talk from the creator of YOLO
+    researcher](https://www.youtube.com/watch?v=Cgxsv1riJhI), and
+    [newer variants of YOLO have been created by other researchers](https://docs.ultralytics.com/models)
 
 [^2]: From [Sparse coding of sensory
     inputs](http://www.cnbc.cmu.edu/~tai/nc19journalclubs/Olshausen-Field-CON-2004-1.pdf)
