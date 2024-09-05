@@ -22,3 +22,6 @@ header:
 | Due at beginning of class # | Assignment                                                              |
 |-----------------------------|-------------------------------------------------------------------------|
 | 2                           | [Assignment 1](assignments/assignment01/assignment01)    |
+
+## Other Important Documents
+[Notation conventions](assignments/assignment01/notation_conventions) 

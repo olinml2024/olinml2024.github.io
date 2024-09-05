@@ -573,7 +573,7 @@ Please work through the exercises in this Jupyter notebook: [https://colab.resea
 It's hosted on Google Colab, so you can either make your own copy and run it on Colab or download and run it locally (you may have to make small tweaks).
 
 
-# References and Sidebard (Footnotes)
+# Footnotes
 [^1]: [Cool video of YOLO version
     3](https://www.youtube.com/watch?time_continue=77&v=MPU2HistivI),
     [TED talk from the head YOLO
