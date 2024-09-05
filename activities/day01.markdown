@@ -99,7 +99,7 @@ Here are some ideas off the top of our heads:
 
 ## Step 3: Make your Map
 
-Using a sheet of butcher paper, draw a system map of the various stakeholders, stakeholder interactions, inputs into the system (e.g., energy, cost, knowledge), outputs (impacts of the system), potential pitfalls, and opportunities.  As you go, make a list of the key questions that you would like to answer to better understand how your chosen system (if you have time, you may throw these into a search engine or an LLM to see if you can get some quick ideas as to an answer).
+On a whiteboard, draw a system map of the various stakeholders, stakeholder interactions, inputs into the system (e.g., energy, cost, knowledge), outputs (impacts of the system), potential pitfalls, and opportunities.  As you go, make a list of the key questions that you would like to answer to better understand how your chosen system (if you have time, you may throw these into a search engine or an LLM to see if you can get some quick ideas as to an answer).
 
 Here are some prompts to consider to help get you thinking:
 * Who is involved?  Consider data creators, research scientists, data labelers, machine learning engineers, user-experience specialists, consumers, legislators / regulators, etc.
