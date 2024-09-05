@@ -62,13 +62,13 @@ Machine learning is a vast field that touches upon many disciplines.  In this cl
 * Understand a variety of machine learning techniques from both a mathematical and algorithmic perspective.
 * Successfully implement machine learning algorithms in Python (both by using only minimal external libraries and by leveraging standard machine learning libraries).
 * Execute the iterative machine learning workflow of model design, fitting to training data, testing, and interpretation in order to be able to successfully apply machine learning techniques in specific contexts.
-* Predict the potential impacts of a machine learning system when deployed in a real-world context and make design decisions to mitigate potential harmful impacts while maximizing positive impacts.
+* Contemplate the potential impacts of a machine learning system when deployed in a real-world context and make design decisions to mitigate potential harmful impacts while maximizing positive impacts.
 
 # Mapping the machine learning ecosystem
 
 A few years back when we were originally designing this course, we were struck by this incredible visualization of a machine learning-powered system (the Amazon Echo).  (note: click on the following link to see [the original, high-resolution, vector graphics version](https://anatomyof.ai/img/ai-anatomy-map.pdf)).
 
-![](images/ai-anatomy-map.png)
+![](images/ai-anatom    y-map.png)
 
 We don't necessarily recommend diving into the nitty gritty here, but we do want to point out some of the interesting features of this map.
 
