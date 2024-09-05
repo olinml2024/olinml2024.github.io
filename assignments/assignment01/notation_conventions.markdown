@@ -30,7 +30,7 @@ We will use the notation $v_i$ to refer to the i-th element of the vector $\math
 
 ### Row Versus Column Vectors
 
-When we talk about a vector, we will *always* be referring to a column vector (i.e., a matrix with shape $d \times 1$).
+When we talk about a vector, unless otherwise specified, we will be referring to a column vector (i.e., a matrix with shape $d \times 1$).
 
 ## Matrices
 
@@ -43,7 +43,7 @@ $$
 ### Matrix Indexing
 
 1. We will refer to the i-th column of the matrix $\mathbf{A}$ as $\mathbf{a}_{i}$.
-2. We do not currently have a shorthand to refer to the i-th row of a matrix, but we reserve the right to define one later.
+2. We do not currently have a shorthand to refer to the i-th row of a matrix.
 3. We will refer to the element at row $i$, column $j$ of matrix $\mathbf{A}$ as $a_{i, j}$.
 
 ## Independent versus Dependent variables

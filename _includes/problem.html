@@ -20,7 +20,7 @@
 <div  style="display: normal; padding: 1em 1em 1em 1em;">
 	{{ include.problem | markdownify }}
 
-    <button onclick="HideShowElement(&quot;solution-{{ problem_number }}&quot;)">Show / Hide Solution</button>
+    <button hidden="true" onclick="HideShowElement(&quot;solution-{{ problem_number }}&quot;)" class="togglebutton">Show / Hide Solution</button>
 
 <div id="solution-{{ problem_number }}" class="solution" style="
     background-color: {{ include.background_color | default:  '#cefad0' }};

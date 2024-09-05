@@ -527,11 +527,11 @@ $$
 Let
 $\mlmat{A} = \begin{bmatrix} \mlvec{a_1} & \mlvec{a_2} & \ldots & \mlvec{a_n} \end{bmatrix} = \begin{bmatrix} \mlvec{row_1} \\ \mlvec{row_2} \\ \vdots \\ \mlvec{row}_m \end{bmatrix}$
 
-where $\mlvec{row_{m}}$ is a row vector (vectors in this class will default to being column vectors, so here we're giving it a special name to indicate it's a row vector).
+where each $\mlvec{row_{i}}$ is a row vector (vectors in this class will default to being column vectors, so here we're giving it a special name to indicate it's a row vector).
 
 So, the matrix $\mlmat{A}$ can either be thought of as consisting
 of the columns $\mlvec{a_1}, \ldots, \mlvec{a_n}$ or the rows
-$\mlvec{row_1}, \ldots, \mlvec{row_m}$). 
+$\mlvec{row_1}, \ldots, \mlvec{row_m}$. 
 
 
 Let $\mlvec{v}$ be an arbitrary $n$-dimensional vector.
