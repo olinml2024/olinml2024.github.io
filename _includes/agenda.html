@@ -1,0 +1,21 @@
+<div class="tip" style="
+    border-left: 6px solid {{ include.border_color | default:  '#000000' }};
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: {{ include.background_color | default:  '#4c00b0' }};
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: {{ include.bulb_color | default:  '#FFFFFF' }};">
+        <i class="{{ include.icon | default:  'fas fa-list' }}"/>
+</div>
+	<h1 style="font-size: xx-large; font-weight: 900; color: white;">Agenda</h1>
+    </div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   {{ include.content | markdownify }}
+	</div>
+</div>
