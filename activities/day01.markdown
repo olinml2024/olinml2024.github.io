@@ -6,12 +6,12 @@ layout: problemset
 ---
 
 {% capture agenda %}
-* 1-1:02pm: Everyone come hang out in MAC128.
-* 1:02-1:10pm: We'll provide brief orienting remarks about the course!
-* 1:10-1:15pm: Introduction to the our main activity (see below).
-* 1:15-2:05pm: Mapping the Machine Learning Ecosystem
-* 2:05-2:20pm: Report out
-* 2:20-2:40pm: Orientation to first assignment and basic course logistics for assignment submissions.  We'll show you the Canvas page, grading options, how to find office hours, etc.
+* 10:20-10:22am: Everyone come hang out in MAC128.
+* 10:22-10:30am: We'll provide brief orienting remarks about the course!
+* 10:30-10:35am: Introduction to the our main activity (see below).
+* 10:35-11:15am: Mapping the Machine Learning Ecosystem
+* 11:15-11:40am: Report out
+* 11:40-12:00pm: Orientation to first assignment and basic course logistics for assignment submissions.  We'll show you the Canvas page, grading options, how to find office hours, etc.
 {% endcapture %}
 
 {% include agenda.html content=agenda %}
