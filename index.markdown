@@ -15,6 +15,7 @@ header:
 | Day # | Activity                                                                      |
 |-------|-------------------------------------------------------------------------------|
 | 1     | [Course intro and welcome to ML!](activities/day01)                            |
+| 2     | [Types of Machine Learning Problems and Exploring Image Transforms](activities/day02)                            |
 
 
 ##  Assignments
