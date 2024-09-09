@@ -28,7 +28,7 @@ layout: problemset
 
 
 # Types of ML and general ML workflow
-
+We will talk about some types of machine learning and the general machine learning workflow.
 
 
 # Explore image transforms
