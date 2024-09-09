@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Day 2 - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,7 +86,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="Machine Learning Fall 2024 @ Olin College">
+<meta property="og:title" content="Day 2">
 <meta property="og:url" content="/activities/day02.html">
 
 
@@ -324,7 +324,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    
+    <meta itemprop="headline" content="Day 2">
     
     
     
@@ -332,14 +332,15 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          
+          <h1 id="page-title" class="page__title" itemprop="headline">Day 2
+</h1>
           
         </header>
       
 
       <section class="page__content" itemprop="text">
         
-          <aside class="sidebar__right ">
+          <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title">
 <i class="fas fa-file-alt"></i> On this page</h4></header>
@@ -348,18 +349,13 @@ $
   <li><a href="#">Agenda</a></li>
   <li><a href="#debrief-on-the-last-assignment">Debrief on the last assignment</a></li>
   <li><a href="#types-of-ml-and-general-ml-workflow">Types of ML and general ML workflow</a></li>
-  <li><a href="#explore-image-transforms">Explore image transforms</a></li>
+  <li><a href="#exploring-image-transforms">Exploring Image Transforms</a></li>
 </ul>
 	      	
             </nav>
           </aside>
         
-        <p>title: Day 1
-toc_sticky: true 
-toc_h_max: 1
-layout: problemset
-—</p>
-
+        
 <div class="tip" style="
     border-left: 6px solid #000000;
     margin: 2em 2em 2em 2em;">
@@ -407,11 +403,38 @@ layout: problemset
 </ol>
 
 <h1 id="types-of-ml-and-general-ml-workflow">Types of ML and general ML workflow</h1>
+
 <p>We will talk about some types of machine learning and the general machine learning workflow.</p>
 
-<h1 id="explore-image-transforms">Explore image transforms</h1>
+<p>There are a few different ways to categorize machine learning problems, but most texts will reference the three main types of machine learning problems.</p>
+
+<h2 id="supervised-learning">Supervised Learning</h2>
+
+<p>In supervised learning, you are given a training set of data points and corresponding desired outputs.  Let's use $\mathbf{x}_i$ to denote the $i$th training input and $y_i$ to denote the $i$th training output.  The training set is $\mlmat{X}_{train} = (\mlvec{x}_1, y_1), (\mlvec{x}_2, y_2), \ldots, (\mlvec{x}_N, y_N)$</p>
+
+<p>We’ll talk about when this type of problem shows up and how the problem changes depending on the values that $y_i$ can take on.</p>
+
+<p>A supervised machine learning algorithm can take as input $\mlmat{X}_{train}$ and produce a model capable of taking in an unseen datapoint, $\mlvec{x}_{test}$, and estimating the corresponding label, $y_{test}$.  In order to evaluate the quality of these predictions, you'll want to have a set of test points, $\mlmat{X}_{test}$ to compute a relevant performance metrix (as we did in assignment 1).</p>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiZ3JhcGggVEI7XG5pZDFbWCBUcmFpbl07XG5pZDJbU3VwZXJ2aXNlZCBMZWFybmluZyBBbGdvcml0aG1dO1xuaWQzW1ByZWRpY3RpdmUgTW9kZWxdO1xuaWQ0W1ggVGVzdF1cbmlkNVtNb2RlbCBNZXRyaWNzXVxuaWQxIC0tPiBpZDI7XG5pZDIgLS0-IGlkMztcbmlkNCAtLT4gaWQzO1xuaWQzIC0tPiBpZDU7IiwibWVybWFpZCI6bnVsbH0"></p>
+
+<p>In addition to having a test set, you may also use a validation set to help tune your machine learning model.  We’ll talk a bit about how this would work.</p>
+
+<h2 id="unsupervised-learning">Unsupervised Learning</h2>
+
+<p>In unsupervised learning, you are given a of data points (there are no corresponding outputs).  The training set is $\mlmat{X}_{train} = \mlvec{x}_1, \mlvec{x}_2 \ldots, \mlvec{x}_N$.</p>
+
+<p>In an unsupervised learning problem, our goal is to understand something about the structure of these training points.  For example, perhaps the data lies in some low dimensional subspace (sounding a little familiar?).  Examples of problems that fit under unsupervised learning are clustering, sequence learning (e.g., as is done in language models), and dimensionality reduction.</p>
+
+<h2 id="reinforcement-learning">Reinforcement Learning</h2>
+
+<p>Reinforcement learning involves an agent learning to interact with an environment in an optimal fashion.  We wont define notation for reinforcement learning as we aren’t planning to cover it in this class (it could be a great final project).  Examples of reinforcement learning problems would be an agent learning to play a game (e.g., Chess), a robot learning to interact with its environment, or even determining treatment regimes in a clincal setting.  The reinforcement learning book has <a href="https://rl-book.com/applications/">a bunch of sample applications</a> if you are curious.</p>
+
+<h1 id="exploring-image-transforms">Exploring Image Transforms</h1>
 
 <p>In the next assignment, you’ll be evaluating some existing models. As part of this, you may apply different transformation to the images that you’ll use to evaluate the model. These same types of transforms can also be used to augment an initial dataset, often making models trained on it more robust. In class, we’ll show a few transforms and how to find documentation for others.</p>
+
+<p>Let’s look at some simple examples in this <a href="https://colab.research.google.com/drive/1lBUjxz5hJleKTt_zTrFwSyER0Er3wA8-?usp=sharing">Google Colab notebook</a>.  Once we’ve gone over these, we’ll jump to <a href="/assignments/assignment02/assignment02.html">Assignment 2</a> and show these same concepts for the dessert classification problem.</p>
 
         
       </section>
