@@ -8,7 +8,7 @@ layout: problemset
 # Learning Objectives
 
 {% capture content %}
-* Learn linear regression using a ``top-down'' approach.
+* Learn linear regression using a "top-down" approach.
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
@@ -73,34 +73,38 @@ In this class we'll be learning about algorithms using both a top-down and a bot
 ## Linear Regression with One Input Variable: Line of Best Fit
 If any of what we've said so far sounds familiar, it is likely because you have seen the idea of a line of best fit in some previous class.  To understand more intuitively what the OLS algorithm is doing, we want you to investigate its behavior when there is a single input variable (i.e., you are computing a line of best fit).  
 
-\begin{externalresources} [(10 minutes)]
-Use the \href{http://www.shodor.org/interactivate/activities/Regression/}{line of best fit online app} to create some datasets, guess the line of best fit, and then compare the results to the OLS solution (line of best fit).
+{% capture content %}
+Use the [line of best fit online app](https://observablehq.com/@yizhe-ang/interactive-visualization-of-linear-regression) to create some datasets, guess the line of best fit, and then compare the results to the OLS solution (line of best fit).
+{% endcapture %}
+{% include external_resources.html content=content %}
 
-\begin{exercise}
-\bes
-\item Examine the role that outliers play in determining the line of best fit.  Does OLS seem sensitive or insensitive to the presence of outliers in the data?
-\begin{boxedsolution}
+
+
+{% capture content %}
+Examine the role that outliers play in determining the line of best fit.  Does OLS seem sensitive or insensitive to the presence of outliers in the data?
+{% endcapture %}
+{% capture part_a_sol %}
 OLS is very sensitive to outliers.  A single outlier can change the slope of the line of best fit dramatically.  Here is an example of this phenomenon.
+[outlier](figures/outlier.png)
+{% endcapture %}
+{% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
 
-\begin{center}
-\includegraphics[width=.6\linewidth]{figures/outlier}
-\end{center}
 
-\end{boxedsolution}
-
-\item Were there any times when the line of best fit didn't seem to really be ``best'' (e.g., it didn't seem to capture the trends in the data)?
-\begin{boxedsolution}
+{% capture part_b %}
+Were there any times when the line of best fit didn't seem to really be "best" (e.g., it didn't seem to capture the trends in the data)?
+{% endcapture %}
+{% capture part_b_sol %}
 This could happen for many reasons.  If the dataset is pieceweise linear (e.g., composed of multiple line segments), if it has some other non-linear form (e.g., if it is quadratic), or if there are outliers.
-\end{boxedsolution}
+{% endcapture %}
+{% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}
 
-\ees
-\end{exercise}
-
-\end{externalresources}
+{% include problem_with_parts.html problem=content %}
 
 
 
-\subsection{Linear Regression with Multiple Input Variables: Explorations in Python}
-\begin{externalresources}[(60 minutes)]
-Work through the \href{https://colab.research.google.com/drive/1QPsD2URWupxWjpBfKsr7AcIZ2m3VD37T?usp=sharing}{Assignment 1 Companion Notebook} to get some practice with {\tt numpy} and explore linear regression using a top-down approach.  You can place your answers directly in the Jupyter notebook so that you have them for your records.
-\end{externalresources}
+## Linear Regression with Multiple Input Variables: Explorations in Python
+(60 minutes)
+{% capture content %}
+Work through the [{Assignment 3 Companion Notebook](https://colab.research.google.com/drive/1QPsD2URWupxWjpBfKsr7AcIZ2m3VD37T?usp=sharing) to get some practice with *numpy* and explore linear regression using a top-down approach.  You can place your answers directly in the Jupyter notebook so that you have them for your records.
+{% endcapture %}
+{% include external_resources.html content=content %}
