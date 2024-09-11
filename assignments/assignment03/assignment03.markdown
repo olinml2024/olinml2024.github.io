@@ -8,7 +8,12 @@ layout: problemset
 # Learning Objectives
 
 {% capture content %}
-* Learn linear regression using a "top-down" approach.
+* Learn linear regression from three angles:
+    * "top-down" (big picture, visual)
+    * "bottom-up" (mathematical derivation)
+    * computational (implementing in python)
+* build python skills of dealing with data and writing functions
+
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
@@ -224,7 +229,7 @@ This second approach requires that you learn some additional mathematical tricks
 [//]: <> 15 minutes estimate
 
 {% capture problem %}
-A quadratic form can be expressed in matrix-vector form as $\mlvec{x}^\top \mlmat{A} \mlvec{x}$.  Written this way, it looks very mysterious, but in this exercise you'll build some intuition about what the expression represents. Further, it turns out that expressions like this show up in all sorts of places in machine learning.   To get a better understanding of what a quadratic form \emph{is} (we'll see what it's good for later), watch this [Khan Academy video](https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/quadratic-approximations/v/expressing-a-quadratic-form-with-a-matrix).
+A quadratic form can be expressed in matrix-vector form as $\mlvec{x}^\top \mlmat{A} \mlvec{x}$.  Written this way, it looks very mysterious, but in this exercise you'll build some intuition about what the expression represents. Further, it turns out that expressions like this show up in all sorts of places in machine learning.   To get a better understanding of what a quadratic form *is* (we'll see what it's good for later), watch this [Khan Academy video](https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/quadratic-approximations/v/expressing-a-quadratic-form-with-a-matrix).
 
 After you've watched the Khan academy video, answer these questions.
 
@@ -292,11 +297,14 @@ $$\left ( \mlmat{A} \mlmat{x}  + \mlmat{y} \right )^\top \left (\mlmat{v} + \mlm
 
 {% capture part_a %}
 Using the definition of the gradient, show that $\nabla \mlvec{c}^\top \mlvec{x} = \mlvec{c}$ where the gradient is taken with respect to $\mlvec{x}$ and $\mlvec{c}$ is a vector of constants.
+
+If you want a hint, but not the full solution, you can click on the "solution" for the hint section below.
+
 {% endcapture %}
 {% capture part_a_sol %}
 $$
 \begin{align}
-\mlvec{c}^\top \mlvec{x} &= \sum_{j=1}^d c_j x_j \\
+\mlvec{c}^\top \mlvec{x} &= \sum_{j=1}^d c_j x_j  \\  
 \frac{\partial}{\partial x_i}  \sum_{j=1}^d c_j x_j  &= c_i  \\
 \nabla \mlvec{c}^\top \mlvec{x} &= \mlvec{c}
 \end{align}
@@ -304,10 +312,18 @@ $$
 {% endcapture %}
 {% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
 
-{% capture part_b %}
-Using the definition of the gradient, show that the $\nabla \mlvec{x}^\top \mlmat{A} \mlvec{x} = 2 \mlmat{A} \mlvec{x}$ where the gradient is taken with respect to $\mlvec{x}$ and $\mlmat{A}$ is a \emph{symmetric} $dxd$ matrix of constants.  Hint: utilize the fact that $\mlvec{x}^\top \mlmat{A} \mlvec{x} = \sum_{i=1}^d\sum_{j=1}^d x_i x_j a_{i, j}$.
+{% capture part_a_hint %}
+Start by writing out the multiplication in the summation form. Then think about the partial derivative with respect to some $i^{th}$ element of $\mlvec{x}$.
+{% endcapture %}
+{% include problem_part.html label="A hint" solution=part_a_hint %}
 
-Depend on your comfort with proofs, this one may be very challenging. 
+
+{% capture part_b %}
+Using the definition of the gradient, show that the $\nabla \mlvec{x}^\top \mlmat{A} \mlvec{x} = 2 \mlmat{A} \mlvec{x}$ where the gradient is taken with respect to $\mlvec{x}$, and $\mlmat{A}$ is a `symmetric` $dxd$ matrix of constants.  
+
+Hint: utilize the fact that $\mlvec{x}^\top \mlmat{A} \mlvec{x} = \sum_{i=1}^d\sum_{j=1}^d x_i x_j a_{i, j}$.
+
+If you are stuck and want a hint, but not the full solution, you can click on the "solution" for the hint section below.
 
 {% endcapture %}
 
@@ -324,9 +340,21 @@ $$
 \nabla \mlvec{x}^\top \mlmat{A} \mlvec{x} &= 2 \mlmat{A}\mlvec{x} \text{         }   \mbox{stacking up the partials gives this form} \nonumber
 \end{align}
 $$
-
 {% endcapture %}
 {% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}
+
+{% capture part_b_hint %}
+You can use the concepts in the first part of this exercise to expand things out to a summation.
+After a little work, you should reach something that looks like:
+$$
+\frac{\partial \mlvec{x}^\top \mlmat{A} \mlvec{x}}{\partial x_k} = \sum_{i=1}^d\sum_{j=1}^d   a_{i,j}  \frac{\partial{x_i }}{\partial x_k} x_j +   \sum_{i=1}^d\sum_{j=1}^d  a_{i,j}  x_i \frac{\partial{x_j}}{\partial x_k}
+$$
+Then, think about how you can simplify the iteration in the summation because of the terms that are zero.
+{% endcapture %}
+{% include problem_part.html label="B hint" solution=part_b_hint %}
+
+
+
 {% endcapture %}
 {% include problem_with_parts.html problem=problem %}
 
@@ -407,6 +435,11 @@ $$
 [//]: <> 60 minutes estimate + 100 minutes
 
 {% capture content %}
+Please note that this part is of non-trivial length (likely 2-5 hours).
 Work through the [Assignment 3 Companion Notebook](https://colab.research.google.com/drive/1OVppkqL-CCpkKWMW2UqUjHYzIU-o37_C?usp=sharing) to get some practice with `numpy` and explore linear regression using a top-down approach.  You can place your answers directly in the Jupyter notebook so that you have them for your records.
 {% endcapture %}
-{% include external_resources.html content=content %}
+{% capture sol%}
+The solutions can be found directly in the notebook.
+{% endcapture %}
+
+{% include problem.html problem=content solution=sol %}
