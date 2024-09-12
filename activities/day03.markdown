@@ -8,7 +8,7 @@ layout: problemset
 {% capture agenda %}
 * 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
 * 10:25-10:45am: Debrief at tables about the dessert assignment.
-* 10:45-10:55am: Supervised Learning Problem SEtup
+* 10:45-10:55am: Supervised Learning Problem Setup
 * 10:55-12:00pm: Start assignment 
 {% endcapture %}
 
