@@ -304,7 +304,7 @@ If you want a hint, but not the full solution, you can click on the "solution" f
 $$
 \begin{align}
 \mlvec{c}^\top \mlvec{x} &= \sum_{j=1}^d c_j x_j  \\  
-\frac{\partial}{\partial x_i}  \sum_{j=1}^d c_j x_j  &= c_i  \\
+\frac{\partial}{\partial x_i}  \sum_{j=1}^d c_j x_j  &= c_i  \\  
 \nabla \mlvec{c}^\top \mlvec{x} &= \mlvec{c}
 \end{align}
 $$
