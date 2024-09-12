@@ -16,6 +16,8 @@ header:
 |-------|-------------------------------------------------------------------------------|
 | 1     | [Course intro and welcome to ML!](activities/day01)                            |
 | 2     | [Types of Machine Learning Problems and Exploring Image Transforms](activities/day02)                            |
+| 3     | [Supervised Learning Model and Beginning Linear Regression](activities/day03)                            |
+
 
 
 ##  Assignments
