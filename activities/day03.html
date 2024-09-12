@@ -348,7 +348,8 @@ $
                 <ul class="toc__menu">
   <li><a href="#">Agenda</a></li>
   <li><a href="#debrief-on-the-last-assignment">Debrief on the last assignment</a></li>
-  <li><a href="#the-supervised-learning-problem-setup">The Supervised Learning Problem Setup</a></li>
+  <li><a href="#the-supervised-learning-problem-setup-learning-as-optimization">The Supervised Learning Problem Setup (Learning as Optimization)</a></li>
+  <li><a href="#getting-started-on-linear-regression">Getting Started on Linear Regression</a></li>
 </ul>
 	      	
             </nav>
@@ -387,23 +388,72 @@ $
 <h1 id="debrief-on-the-last-assignment">Debrief on the last assignment</h1>
 
 <ol>
-  <li>Introduce yourselves.</li>
+  <li>Introduce yourselves (if you already know each other, say one interesting thing that’s happening for you today)</li>
   <li>Present your individual findings regarding the dessert classifier (you don’t have to repeat something someone else has already presented, try to just give the unique things you investigated or found).  Collectively, what are your recommendations in terms of which system might be ready for production?</li>
   <li>If you were continuing to work on this project, what next steps would you take to further validate your model (e.g., having users test the model in realistic conditions, collect more test data, etc.)?</li>
   <li>Note any challenges or unanswered questions regarding Colab and working with an image-based dataset.</li>
 </ol>
 
-<h1 id="the-supervised-learning-problem-setup">The Supervised Learning Problem Setup</h1>
+<p>We’ll return to the idea of machine learning models for image classification later in the course, but for now we wanted to give a little taste (pun intended) of what was under the hood of these dessert models.</p>
 
-<p>Next, we’re going to investigate the mathematical definition of supervised learning (which we touched upon last class).  This is also in the homework, but we wanted to have a chance to go over this together.</p>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>model number</strong></td>
+      <td><strong>identity</strong></td>
+      <td><strong>number of parameters</strong></td>
+      <td><strong>model year</strong></td>
+      <td><strong>Floating Point Operations Per Image</strong></td>
+      <td><strong>image transforms</strong></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>ResNet18</td>
+      <td>11,188,311</td>
+      <td>2015</td>
+      <td>1.81 billion</td>
+      <td>random rotation, random crop, random flips</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>ResNet50</td>
+      <td>23,555,159</td>
+      <td>2015</td>
+      <td>4.09 billion</td>
+      <td>random crops, random flips</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>EfficientNetV2 Large</td>
+      <td>117,263,735</td>
+      <td>2021</td>
+      <td>56.08 billion</td>
+      <td>random rotation, random crop, random flips</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>Suppose you are given a training set of data points, $(\mlvec{x_1}, y_1), (\mlvec{x}_2, y_2), \ldots, (\mlvec{x}_n, y_n)$ where each $\mlvec{x_i}$ represents an element of an input space (e.g., a d-dimensional feature vector) and each $y_i$ represents an element of an output space (e.g., a scalar target value).  In the supervised learning setting, your goal is to determine a function $\hat{f}$ that maps from the input space to the output space.  For example, if we provide an input $\mlvec{x}$ to $\hat{f}$ it would generate the predicted output $\hat{y} = \hat{f}(\mlvec{x})$.</p>
+<h1 id="the-supervised-learning-problem-setup-learning-as-optimization">The Supervised Learning Problem Setup (Learning as Optimization)</h1>
+
+<p>We’re now switching gears to talk about how machine learning can be thought of as an optimization problem.  We’re going to start with a mathematical definition the simplest type of machine learning: supervised learning.  Along the way you’ll get a chance to build your conceptual knowledge about how learning can be thought of as a learning problem.</p>
+
+<blockquote>
+  <p>Note: this next section is also in the homework, but we wanted to have a chance to go over this together.</p>
+</blockquote>
+
+<p>Suppose you are given a set of training data points, $(\mlvec{x_1}, y_1), (\mlvec{x}_2, y_2), \ldots, (\mlvec{x}_n, y_n)$ where each $\mlvec{x_i}$ represents an element of an input space (e.g., a d-dimensional feature vector) and each $y_i$ represents an element of an output space (e.g., a scalar target value).  In the supervised learning setting, your goal is to determine a function $\hat{f}$ that maps from the input space to the output space.  For example, if we provide an input $\mlvec{x}$ to $\hat{f}$ it would generate the predicted output $\hat{y} = \hat{f}(\mlvec{x})$.</p>
 
 <p>We typically also assume that there is some loss function, $\ell$, that determines the amount of loss that a particular prediction $\hat{y_i}$ incurs due to a mismatch with the actual output $y_i$.  We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set.  This notion can be expressed with the following equation  (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin_{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).</p>
 
 <p>\begin{align}
 \hat{f}^\star &amp;= \argmin_{\hat{f}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}), y_i \right )
 \end{align}</p>
+
+<h1 id="getting-started-on-linear-regression">Getting Started on Linear Regression</h1>
+
+<p>A particular type of supervised learning problem is called linear regression or least squares.  You met this algorithm way back in QEA1, but we don’t expect you to recall all of those details!  We’re going to go over linear regression from a different perspective in this class.  We find that it often takes us multiple encounters with the same idea to start to really achieve proficiency (hopefully this is another step along that journey for you).</p>
+
+<p>The way we recommend engaging with this material is by <a href="../assignments/assignment03/assignment03">starting on assignment 3</a>.  We would like to invite those who want to adopt a quieter, more independent work style to travel over to MAC126.  We’ll circulate around to that room and answer any questions.  Those who want to collaborate and work through problems together, can remain here.</p>
 
         
       </section>
