@@ -19,7 +19,7 @@ layout: problemset
 
 # Supervised Learning Problem Setup
 
-Suppose you are given a training set of data points, $(\mlvec{x_1}, y_1), (\mlvec{x}_2, y_2), \ldots, (\mlvec{x}_n, y_n)$ where each $\mlvec{x_i}$ represents an element of an input space (e.g., a d-dimensional feature vector) and each $y_i$ represents an element of an output space (e.g., a scalar target value).  In the supervised learning setting, your goal is to determine a function $\hat{f}$ that maps from the input space to the output space.  For example, if we provide an input $\mlvec{x}$ to $\hat{f}$ it would generate the predicted output $\hat{y} = \hat{f}(\mlvec{x})$.
+Suppose you are given a training set of data points, $(\mlvec{x_1}, y_1), (\mlvec{x}_2, y_2), \ldots, (\mlvec{x}_n, y_n)$ where each $\mlvec{x_i}$ represents an element of an input space (e.g., a d-dimensional feature vector) and each $y_i$ represents an element of an output space (e.g., a scalar target value).  We will consider $\mlvec{x_i}$ to be a row vector of size `1 x d`, representing each of the feature values for one sample/exemplar, as this will make our lives easier when we get more data points.  In the supervised learning setting, your goal is to determine a function $\hat{f}$ that maps from the input space to the output space.  For example, if we provide an input $\mlvec{x}$ to $\hat{f}$ it would generate the predicted output $\hat{y} = \hat{f}(\mlvec{x})$.
 
 We typically also assume that there is some loss function, $\ell$, that determines the amount of loss that a particular prediction $\hat{y_i}$ incurs due to a mismatch with the actual output $y_i$.  We can define the best possible model, $\hat{f}^\star$ as the one that minimizes these losses over the training set.  This notion can be expressed with the following equation  (note: that $\argmin$ in the equation below just means the value that minimizes the expression inside of the $\argmin$, e.g., $\argmin_{x} (x - 2)^2 = 2$, whereas $\min_{x} (x-2)^2 = 0$).
 
@@ -38,9 +38,9 @@ Before we jump into the *what* of linear regression, let's spend a little bit of
 * **Easy to implement:** linear regression can be implemented using a number of different algorithms (e.g., gradient descent, closed-form solution).  Even if the algorithm is not built into your favorite numerical computation library, the algorithm can be implemented in only a couple of lines of code.
 
 
-For linear regression our input data, $\mlvec{x_i}$, are d-dimensional vectors (each entry of these vectors can be thought of as a feature), our output data, $y_i$, are scalars, and our prediction functions, $\hat{f}$, are all of the form $\hat{f}(\mlvec{x}) =\mlvec{w} \cdot \mlvec{x} = \mlvec{w}^\top \mlvec{x} = \sum_{i=1}^d w_i x_i$ for some vector of weights $\mlvec{w}$ (you could think of $\hat{f}$ as also taking $\mlvec{w}$ as an input, e.g., writing $\hat{f}(\mlvec{x}, \mlvec{w}$).  Most of the time we'll leave $\mlvec{w}$ as an implicit input: writing $\hat{f}(\mlvec{x})$).
+For linear regression our input data, $\mlvec{x_i}$, are d-dimensional row vectors (each entry of these vectors can be thought of as a feature), our output data, $y_i$, are scalars, and our prediction functions, $\hat{f}$, are all of the form $\hat{f}(\mlvec{x}) =\mlvec{x} \cdot \mlvec{w} = \mlvec{x} \mlvec{w} = \sum_{i=1}^d x_i w_i$ for some vector of weights $\mlvec{w}$ (you could think of $\hat{f}$ as also taking $\mlvec{w}$ as an input, e.g., writing $\hat{f}(\mlvec{x}, \mlvec{w}$).  Most of the time we'll leave $\mlvec{w}$ as an implicit input: writing $\hat{f}(\mlvec{x})$).
 
-In the function, $\hat{f}$, the elements of the vector $\mlvec{w}$ represent weights that multiply various dimensions of the input.  For instance, if an element of $\mlvec{w}$ is high, that means that as the corresponding element of $\mlvec{x}$ increases, the prediction that $\hat{f}$ generates would also increase (you may want to mentally think through other cases, e.g., what would happen is the element of $\mlvec{x}$ decreases, or what would happen if the entry of $\mlvec{w}$ was large and negative).  The products of the weights and the features are then summed to arrive at an overall prediction.
+In the function, $\hat{f}$, the elements of the vector $\mlvec{w}$ represent weights that multiply various dimensions (features) of the input.  For instance, if an element of $\mlvec{w}$ is high, that means that as the corresponding element of $\mlvec{x}$ increases, the prediction that $\hat{f}$ generates would also increase (you may want to mentally think through other cases, e.g., what would happen is the element of $\mlvec{x}$ decreases, or what would happen if the entry of $\mlvec{w}$ was large and negative).  The products of the weights and the features are then summed to arrive at an overall prediction.
 
 Given this model, we can now define our very first machine learning algorithm: [ordinary least squares](https://en.wikipedia.org/wiki/Ordinary_least_squares) (OLS)!  In the ordinary least squares algorithm, we use our training set to select the $\mlvec{w}$ that minimizes the sum of squared differences between the model's predictions and the training outputs.  Thinking back to the supervised learning problem setup, this corresponds to choosing $\ell(y, \hat{y}) = (y - \hat{y})^2$.
 Therefore, the OLS algorithm will use the training data to select the optimal value of $\mlvec{w}$ (called $\mlvec{w}^\star$), which minimizes the sum of squared differences between the model's predictions and the training outputs.
@@ -49,7 +49,7 @@ $$
 \begin{align}
 \mlvec{w}^\star &= \argmin_{\mlvec{w}} \sum_{i=1}^n \ell \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) , y_i \right) \\ \mlvec{w}^\star \\
 &= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \hat{f}(\mlvec{x_i}, \mlvec{w}) - y_i \right)^2 \\ 
-&= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \mlvec{w}^\top \mlvec{x_i} - y_i \right)^2
+&= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( \mlvec{x_i} \mlvec{w} - y_i \right)^2
 \end{align}
 $$
 
@@ -59,7 +59,7 @@ Digesting mathematical equations like this can be daunting, but your understandi
 {% endcapture %}
 {% include notice.html content=notice %}
 
-While we haven't talked at all about how to find $\mlvec{w}^\star$, that will be the focus of the next assignment, once we have $\mlvec{w}^\star$ we can predict a value for a new input point, $\mlvec{x}$, by predicting the corresponding (unknown) output, $y$, as $\hat{y} = \mlvec{w^\star} \cdot \mlvec{x}$.  In this way, we have used the training data to learn how to make predictions about unseen data, which is the hallmark of supervised machine learning!
+Below, we will talk about how to find $\mlvec{w}^\star$, for now we'll just assume we have it.  With $\mlvec{w}^\star$, we can predict a value for a new input sample, $\mlvec{x_i}$, by predicting the corresponding (unknown) output, $y_i$, as $\hat{y_i} = \mlvec{x_i} \mlvec{w^\star}$. Because $\mlvec{x_i}$ is a row vector, this is equivalent to the dot product. At this point, we have used the training data to learn how to make predictions about unseen data, which is the hallmark of supervised machine learning!
 
 
 {% capture problem %}
@@ -128,15 +128,13 @@ Now that we've built a little intuition on linear regression, we'll be diving in
 {% capture problem %}
 
 {% capture part_a %}
-Given a dataset $(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ (where each $x_i$ and each $y_i$ is a scalar) and a potential value of $w$ (note that $w$ is a scalar in the case where $d=1$), write an expression for the sum of squared errors between the model predictions, $\hat{f}$, and the targets, $y_i$.  \textbf{Note:} In contrast to the line of best fit we saw in the last assignment, here we are not computing a y-intercept (effectively forcing the y-intercept to be $0$).  This choice may result in a worse fit, but it is easier to work out and helps build mathematical intuition.
+Given a dataset $(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ (where each $x_i$ and each $y_i$ is a scalar) and a potential value of $w$ (note that $w$ is a scalar in the case where $d=1$), write an expression for the sum of squared errors between the model predictions, $\hat{f}$, and the targets, $y_i$.  **Note:** In contrast to the line of best fit we saw above, here we are not computing a y-intercept (so we are effectively forcing the y-intercept to be $0$).  This choice may result in a worse fit, but it is easier to work out and helps build mathematical intuition.
 
 {% endcapture %}
 {% capture part_a_sol %}
 $$
-\begin{align}
-\mbox{Sum of Squared Errors} &= e(w) = \sum_{i=1}^n \left (  w x_i - y_i \right)^2~~  \\  \mbox{
+\mbox{Sum of Squared Errors} = e(w) = \sum_{i=1}^n \left (  x_i w - y_i \right)^2~~  \\  \mbox{
 (note: we define error $e(w)$ for convenience)}
-\end{align}
 $$
 
 {% endcapture %}
@@ -148,7 +146,7 @@ Compute the derivative of the expression for the sum of squared errors from part
 {% capture part_b_sol %}
 $$
 \begin{align}
-\frac{de}{dw} & = \sum_{i=1}^n 2 \left (  w x_i - y_i \right)x_i   \\  
+\frac{de}{dw} & = \sum_{i=1}^n 2 \left ( x_i w  - y_i \right)x_i   \\  
 &= w \sum_{i=1}^n 2 x_i^2 - \sum_{i=1}^n 2 x_i y_i
 \end{align}
 $$
@@ -233,6 +231,7 @@ A quadratic form can be expressed in matrix-vector form as $\mlvec{x}^\top \mlma
 
 After you've watched the Khan academy video, answer these questions.
 
+Note: This $\mlvec{x}$ is a generic column vector, not the $\mlvec{x_i}$ sample vector of features that we were talking about above. We are using the generic $\mlvec{x}$ here to align with the way most resources explain this form.
 
 {% capture part_a %}
 Multiply out the expression $\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}^\top \begin{bmatrix} a_{1,1} & a_{1,2} & a_{1,3} \\ a_{2,1} & a_{2,2} & a_{2,3} \\ a_{3,1} & a_{3,2} & a_{3,3} \end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}$.
@@ -364,7 +363,7 @@ Then, think about how you can simplify the iteration in the summation because of
 [//]: <> 60 minutes estimate
 
 {% capture problem %}
-Consider the case where $\mlvec{w}$ is a $d$-dimensional vector.  In this case, it is convenient to represent our $n$ training inputs as an $n \times d$ matrix $\mlmat{X} = \begin{bmatrix} \mlvec{x}_1^\top \\ \mlvec{x}_2^\top \\ \vdots \\ \mlvec{x}_n^\top \end{bmatrix}$ and our $n$ training outputs as an $n$-dimensional vector $\mlvec{y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}$.
+Consider the case where $\mlvec{w}$ is a $d$-dimensional vector.  We will represent our $n$ training inputs as an $n \times d$ matrix $\mlmat{X} = \begin{bmatrix} \mlvec{x}_1 \\ \mlvec{x}_2 \\ \vdots \\ \mlvec{x}_n \end{bmatrix}$, where here we are again treating $\mlvec{x_i}$ as a row vector containing the $d$ features for a single exemplar of our dataset. We will store our $n$ training outputs as an $n$-dimensional vector $\mlvec{y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}$.
 
 In order to solve this problem, you'll be leveraging some of the new mathematical tricks you picked up early in this assignment.  As you go through the derivation, make sure to treat vectors as first-class objects (e.g., work with the gradient instead of the individual partial derivatives).
 
@@ -374,7 +373,7 @@ Given $\mlvec{w}$, write an expression for the vector of predictions $\mlmat{\ha
 
 {% endcapture %}
 {% capture part_a_sol %}
-$$\mlvec{\hat{y}} = \begin{bmatrix} \mlvec{x_1}^\top  \mlvec{w} \\ \mlvec{x_2}^\top \mlvec{w} \\ \vdots \\ \mlvec{x_n}^\top \mlvec{w} \end{bmatrix} = \mlmat{X} \mlvec{w}$$
+$$\mlvec{\hat{y}} = \begin{bmatrix} \mlvec{x_1}  \mlvec{w} \\ \mlvec{x_2} \mlvec{w} \\ \vdots \\ \mlvec{x_n} \mlvec{w} \end{bmatrix} = \mlmat{X} \mlvec{w}$$
 
 {% endcapture %}
 {% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
