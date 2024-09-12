@@ -1095,9 +1095,9 @@ Then, think about how you can simplify the iteration in the summation because of
 
 <p>$$
 \begin{align}
-\mbox{Sum of Squared Errors} &amp;= \sum_{i=1}^n \left ( \hat{y}_i - y_i \right)^2 <br>
-&amp;= \left (\mlvec{\hat y} - \mlvec{y} \right)^\top  \left (\mlvec{\hat y} - \mlvec{y} \right) <br>
-&amp;=\left ( \mlmat{X} \mlvec{w} - \mlvec{y} \right)^\top  \left ( \mlmat{X} \mlvec{w} - \mlvec{y} \right) <br>
+\mbox{Sum of Squared Errors} &amp;= \sum_{i=1}^n \left ( \hat{y}_i - y_i \right)^2  \\<br>
+&amp;= \left (\mlvec{\hat y} - \mlvec{y} \right)^\top  \left (\mlvec{\hat y} - \mlvec{y} \right)  \\<br>
+&amp;=\left ( \mlmat{X} \mlvec{w} - \mlvec{y} \right)^\top  \left ( \mlmat{X} \mlvec{w} - \mlvec{y} \right)  \\<br>
 &amp;= \mlvec{w}^\top \mlmat{X}^\top \mlmat{X} \mlvec{w} - 2 \mlvec{w}^\top \mlmat{X}^\top \mlvec{y} + \mlvec{y}^\top \mlvec{y}
 \end{align}
 $$</p>
@@ -1148,8 +1148,8 @@ $$</p>
 
 <p>$$
 \begin{align}
-\nabla \mbox{Sum of Squared Errors}  &amp;= 0 <br>
-&amp;= 2 \mlvec{X}^\top \mlvec{X} \mlvec{w} - 2 \mlmat{X}^\top \mlvec{y}<br>
+\nabla \mbox{Sum of Squared Errors}  &amp;= 0  \\<br>
+&amp;= 2 \mlvec{X}^\top \mlvec{X} \mlvec{w} - 2 \mlmat{X}^\top \mlvec{y}  \\<br>
 \mlvec{w} &amp;= \left ( \mlmat{X}^\top \mlmat{X} \right )^{-1} \mlmat{X}^\top \mlmat{y}
 \end{align}
 $$</p>
