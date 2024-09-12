@@ -386,9 +386,9 @@ Write an expression for the sum of squared errors for the vector $\mlvec{w}$ on 
 {% capture part_b_sol %}
 $$
 \begin{align}
-\mbox{Sum of Squared Errors} &= \sum_{i=1}^n \left ( \hat{y}_i - y_i \right)^2 \\
-&= \left (\mlvec{\hat y} - \mlvec{y} \right)^\top  \left (\mlvec{\hat y} - \mlvec{y} \right) \\
-&=\left ( \mlmat{X} \mlvec{w} - \mlvec{y} \right)^\top  \left ( \mlmat{X} \mlvec{w} - \mlvec{y} \right) \\
+\mbox{Sum of Squared Errors} &= \sum_{i=1}^n \left ( \hat{y}_i - y_i \right)^2  \\  
+&= \left (\mlvec{\hat y} - \mlvec{y} \right)^\top  \left (\mlvec{\hat y} - \mlvec{y} \right)  \\  
+&=\left ( \mlmat{X} \mlvec{w} - \mlvec{y} \right)^\top  \left ( \mlmat{X} \mlvec{w} - \mlvec{y} \right)  \\  
 &= \mlvec{w}^\top \mlmat{X}^\top \mlmat{X} \mlvec{w} - 2 \mlvec{w}^\top \mlmat{X}^\top \mlvec{y} + \mlvec{y}^\top \mlvec{y}
 \end{align}
 $$
@@ -415,8 +415,8 @@ Set the gradient to 0, and solve for $\mlvec{w}$ (note: you can assume that $\ml
 {% capture part_d_sol %}
 $$
 \begin{align}
-\nabla \mbox{Sum of Squared Errors}  &= 0 \\
-&= 2 \mlvec{X}^\top \mlvec{X} \mlvec{w} - 2 \mlmat{X}^\top \mlvec{y}\\
+\nabla \mbox{Sum of Squared Errors}  &= 0  \\  
+&= 2 \mlvec{X}^\top \mlvec{X} \mlvec{w} - 2 \mlmat{X}^\top \mlvec{y}  \\  
 \mlvec{w} &= \left ( \mlmat{X}^\top \mlmat{X} \right )^{-1} \mlmat{X}^\top \mlmat{y}
 \end{align}
 $$
