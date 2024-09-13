@@ -1,4 +1,4 @@
-{% capture _ %}{% increment figure_number %}{% endcapture %}
+{% assign figure_number = figure_number | plus: 1 %}
 
 <figure id="figure{{ figure_number }}">
     <div style="text-align: center;">

@@ -1,4 +1,4 @@
-{% capture _ %}{% increment problem_number %}{% endcapture %}
+{% assign problem_number = problem_number | plus: 1 %}
 
 <div style="display: normal;
         border-left: 6px solid {{ include.border_color | default:  '#0065B4' }};

@@ -4,15 +4,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const showSolutions = urlParams.get('showSolutions');
+    const showAllSolutions = urlParams.get('showAllSolutions');
     const divs = document.querySelectorAll('button.togglebutton');
 
-    // Loop through the selected divs and manipulate them
-    divs.forEach(div => {
-      // Example: Remove 'hidden' class to show hidden divs
-      if (showSolutions == 'true') {
-        div.removeAttribute('hidden');
-      }
-    });
+    if (showSolutions == 'true') {
+        // Loop through the selected divs and manipulate them
+        divs.forEach(div => {
+            div.removeAttribute('hidden');
+        });
+    }
+
+    const solutionDivs = document.querySelectorAll('[id^=solution]');
+    const subpartSolutionDivs = document.querySelectorAll('[id^=subpartsolution]');
+
+    if (showAllSolutions == 'true') {
+        solutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+
+        subpartSolutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+    }
 });
 </script>
 
