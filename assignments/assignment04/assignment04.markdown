@@ -42,8 +42,8 @@ In the Companion Notebook, you manipulated the value of lambda ($\lambda$) to ch
 Ordinary least squares:
 $$
 \begin{align}
-\mathbf{w^\star} &= \arg\min_\mathbf{w} \sum_{i=1}^n \left ( \mathbf{w}^\top \mathbf{x_i} - y_i \right)^2  \\  
-&= \arg\min_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)
+\mathbf{w^\star} &= \argmin_\mathbf{w} \sum_{i=1}^n \left ( \mathbf{w}^\top \mathbf{x_i} - y_i \right)^2  \\  
+&= \argmin_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)
 \end{align}
 $$
 
@@ -57,8 +57,8 @@ $$
 Ridge regression (note that $\lambda$ is a non-negative parameter that controls how much the algorithm cares about fitting the data and how much it cares about having small weights):
 $$
 \begin{align}
-\mathbf{w^\star} &= \arg\min_\mathbf{w} \sum_{i=1}^n \left ( \mathbf{w}^\top \mathbf{x_i} - y_i \right)^2 + \lambda\sum_{i=1}^d w_i^2  \\  
-&= \arg\min_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} -  \mathbf{y} \right) + \lambda \mathbf{w}^\top \mathbf{w}
+\mathbf{w^\star} &= \argmin_\mathbf{w} \sum_{i=1}^n \left ( \mathbf{w}^\top \mathbf{x_i} - y_i \right)^2 + \lambda\sum_{i=1}^d w_i^2  \\  
+&= \argmin_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} -  \mathbf{y} \right) + \lambda \mathbf{w}^\top \mathbf{w}
 \end{align}
 $$
 
@@ -73,10 +73,10 @@ Derive an expression to compute the optimal weights, $\mathbf{w^\star}$, to the 
 This is very, very similar to an exercise you did on the last assignment. You can click the slow solution button below this for a hint.
 {% endcapture %}
 {% capture part_a_hint1 %}
- If you follow the same steps as you did in ??Exercise 5??, you'll arrive at an expression that looks like this (note: $\mathbf{I}_{d \times d}$ is the $d$ by $d$ identity matrix).
+ If you follow the same steps as you did in the <a href="../assignment03/assignment03?showAllSolutions=true#linearregmultiplevariables">exercise on linear regression with multiple variables from assignment 3</a>, you'll arrive at an expression that looks like this (note: $\mathbf{I}_{d \times d}$ is the $d$ by $d$ identity matrix).
 
 $$
-\mathbf{w^\star} = \arg\min_\mathbf{w} \mathbf{w}^\top \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2\mathbf{w}^\top \mathbf{X}^\top \mathbf{y} + \mathbf{y}^\top \mathbf{y} + \lambda \mathbf{w}^\top  \mathbf{I}_{d \times d} \mathbf{w}
+\mathbf{w^\star} = \argmin_\mathbf{w} \mathbf{w}^\top \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2\mathbf{w}^\top \mathbf{X}^\top \mathbf{y} + \mathbf{y}^\top \mathbf{y} + \lambda \mathbf{w}^\top  \mathbf{I}_{d \times d} \mathbf{w}
 $$
 
 {% endcapture %}
@@ -95,22 +95,18 @@ To get $\mathbf{w^\star}$, take the gradient, set it to 0 and solve for $\mathbf
 Okay, now check against the full solution.
 {% endcapture %}
 {% capture part_c_sol %}
-$$
+<p>
 \begin{align}
-\mathbf{w^\star} &= \arg\min_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} -  \mathbf{y} \right) + \lambda \mathbf{w}^\top \mathbf{w}  \\  
-&= \arg\min_\mathbf{w} \mathbf{w}^\top \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2\mathbf{w}^\top \mathbf{X}^\top \mathbf{y} + \mathbf{y}^\top \mathbf{y} + \lambda \mathbf{w}^\top  \mathbf{I}_{d \times d} \mathbf{w}
+\mathbf{w^\star} &= \argmin_\mathbf{w} \left ( \mathbf{X}\mathbf{w} - \mathbf{y} \right)^\top \left ( \mathbf{X}\mathbf{w} -  \mathbf{y} \right) + \lambda \mathbf{w}^\top \mathbf{w} & \\
+&= \argmin_\mathbf{w} \mathbf{w}^\top \mathbf{X}^\top \mathbf{X} \mathbf{w} - 2\mathbf{w}^\top \mathbf{X}^\top \mathbf{y} + \mathbf{y}^\top \mathbf{y} + \lambda \mathbf{w}^\top  \mathbf{I}_{d \times d} \mathbf{w} & \\
+&= \argmin_{\mathbf{w}} \mathbf{w}^\top \left ( \mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I_{d \times d}} \right )\mathbf{w} - 2\mathbf{w}^\top \mathbf{X}^\top \mathbf{y} + \mathbf{y}^\top \mathbf{y} & \\
+0&= 2 \left (  \mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I_{d \times d}} \right ) \mathbf{w^\star} - 2 \mathbf{X}^\top \mathbf{y} & \textit{(take the gradient and set to 0)}  \\
+\\
+\mathbf{w}^\star &= \left ( \mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I_{d \times d}} \right)^{-1} \mathbf{X}^\top \mathbf{y} & \textit{(solve for \(\mlvec{w}^\star\))}
 \end{align}
-$$
-
-WTF, Please help me with this!?!
-$$
-= \arg\min_\mathbf{w} \mathbf{w}^\top \left ( \mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I_{d \times d}} \right )\mathbf{w} - 2\mathbf{w}^\top \mathbf{X}^\top \mathbf{y} + \mathbf{y}^\top \mathbf{y}  \\  
-2 \left (  \mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I_{d \times d}} \right ) \mathbf{w^\star} - 2 \mathbf{X}^\top \mathbf{y} &=0 \\  
-
-\text{take the gradient and set to 0}  \\  
-\mathbf{w}^\star &= \left ( \mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I_{d \times d}} \right)^{-1} \mathbf{X}^\top \mathbf{y}
-$$
+</p>
 {% endcapture %}
+
 
 {% include problem_part.html label=" - Full Solution" subpart=part_c solution=part_c_sol %}
 

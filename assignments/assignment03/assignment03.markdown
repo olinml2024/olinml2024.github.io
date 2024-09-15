@@ -424,8 +424,9 @@ $$
 {% include problem_part.html label="D" subpart=part_d solution=part_d_sol %}
 
 {% endcapture %}
+<div id="linearregmultiplevariables">
 {% include problem_with_parts.html problem=problem %}
-
+</div>
 
 
 
