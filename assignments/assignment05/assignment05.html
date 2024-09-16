@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Learning Objectives - Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Assignment 5 - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,7 +86,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="Learning Objectives">
+<meta property="og:title" content="Assignment 5">
 <meta property="og:url" content="/assignments/assignment05/assignment05.html">
 
 
@@ -339,7 +339,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Learning Objectives">
+    <meta itemprop="headline" content="Assignment 5">
     
     
     
@@ -347,7 +347,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Learning Objectives
+          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 5
 </h1>
           
         </header>
@@ -355,27 +355,15 @@ $
 
       <section class="page__content" itemprop="text">
         
-          <aside class="sidebar__right ">
+          <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title">
 <i class="fas fa-file-alt"></i> On this page</h4></header>
 	      
                 <ul class="toc__menu">
   <li><a href="#learning-objectives">Learning Objectives</a></li>
-  <li>
-<a href="#logistic-regression-top-down">Logistic Regression (top-down)</a>
-    <ul>
-      <li><a href="#recall">Recall</a></li>
-    </ul>
-  </li>
-  <li>
-<a href="#deriving-the-logistic-regression-learning-rule">Deriving the Logistic Regression Learning Rule</a>
-    <ul>
-      <li><a href="#useful-properties-of-the-sigmoid-function">Useful Properties of the Sigmoid Function</a></li>
-      <li><a href="#chain-rule-for-gradients">Chain Rule for Gradients</a></li>
-      <li><a href="#gradient-descent-for-optimization">Gradient Descent for Optimization</a></li>
-    </ul>
-  </li>
+  <li><a href="#logistic-regression-top-down">Logistic Regression (top-down)</a></li>
+  <li><a href="#deriving-the-logistic-regression-learning-rule">Deriving the Logistic Regression Learning Rule</a></li>
   <li><a href="#machine-learning-for-loans-and-mortgages">Machine learning for loans and mortgages</a></li>
 </ul>
 	      	
@@ -571,9 +559,9 @@ $$</p>
 
 <p>Show that $\sigma(-x) = 1 - \sigma(x)$.</p>
 
-<p><button hidden="true" onclick='HideShowElement("subpartsolution-40")' class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-32")' class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-40" class="solution" style="
+<div id="subpartsolution-32" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -602,9 +590,9 @@ $$</p>
 
 <p>Show that the derivative of the logistic function $\frac{d}{dx} \sigma(x) = \sigma(x) (1 - \sigma(x))$</p>
 
-<p><button hidden="true" onclick='HideShowElement("subpartsolution-41")' class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-33")' class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-41" class="solution" style="
+<div id="subpartsolution-33" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -692,9 +680,9 @@ h(\mlvec{w}) &amp;= g(f(\mlvec{w}))&amp;\mbox{h($\mlvec{w}$) is the composition 
 
 <p>Suppose $h(x) = \sin(x^2)$, compute $h’(x)$ (x is a scalar so you can apply the single-variable chain rule).</p>
 
-<p><button hidden="true" onclick='HideShowElement("subpartsolution-42")' class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-34")' class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-42" class="solution" style="
+<div id="subpartsolution-34" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -718,9 +706,9 @@ $$</p>
 
 <p>Define $h(\mlvec{v}) = (\mlvec{c}^\top \mlvec{v})^2$.  Compute $\nabla_{\mlvec{v}} h(\mlvec{v})$ (the gradient of the function with respect to $\mlvec{v}$).</p>
 
-<p><button hidden="true" onclick='HideShowElement("subpartsolution-43")' class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-35")' class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-43" class="solution" style="
+<div id="subpartsolution-35" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -754,9 +742,9 @@ $$</p>
 
 <p>You can either use the chain rule and the identities you learned about sigmoid, or expand everything out and work from that.</p>
 
-<p><button hidden="true" onclick='HideShowElement("subpartsolution-44")' class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-36")' class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-44" class="solution" style="
+<div id="subpartsolution-36" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -863,9 +851,9 @@ $$</p>
 
 <p>When minimizing a function with gradient descent, which direction should you step along in order to arrive at the next value for your parameters?</p>
 
-<p><button hidden="true" onclick='HideShowElement("subpartsolution-45")' class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-37")' class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-45" class="solution" style="
+<div id="subpartsolution-37" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -885,9 +873,9 @@ $$</p>
 
 <p>What is the learning rate and what role does it serve in gradient descent?</p>
 
-<p><button hidden="true" onclick='HideShowElement("subpartsolution-46")' class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-38")' class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-46" class="solution" style="
+<div id="subpartsolution-38" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -906,9 +894,9 @@ $$</p>
 
 <p>How do you know when an optimization performed using gradient descent has converged?</p>
 
-<p><button hidden="true" onclick='HideShowElement("subpartsolution-47")' class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-39")' class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-47" class="solution" style="
+<div id="subpartsolution-39" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -927,9 +915,9 @@ $$</p>
 
 <p>True or false: provided you tune the learning rate properly, gradient descent guarantees that you will find the global minimum of a function.</p>
 
-<p><button hidden="true" onclick='HideShowElement("subpartsolution-48")' class="togglebutton">Show / Hide Solution</button></p>
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-40")' class="togglebutton">Show / Hide Solution</button></p>
 
-<div id="subpartsolution-48" class="solution" style="
+<div id="subpartsolution-40" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
