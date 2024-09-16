@@ -8,7 +8,7 @@ header:
 
 <!-- ## How-tos
 
-* TODO -->
+*  TODO -->
 
 ## In-class Activities
 
