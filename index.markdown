@@ -17,7 +17,7 @@ header:
 | 1     | [Course intro and welcome to ML!](activities/day01)                            |
 | 2     | [Types of Machine Learning Problems and Exploring Image Transforms](activities/day02)                            |
 | 3     | [Metrics and Meeting ML as Optimization](activities/day03)   
-| 4     | [Linear, Ridge, and Logistic Regression & Train/Test Split](activities/day04)                            |
+| 4     | [Linear, Ridge, and Logistic Regression & Train-Test Split](activities/day04)                            |
 
 ##  Assignments
 
@@ -26,6 +26,7 @@ header:
 | 2                           | [Assignment 1](assignments/assignment01/assignment01) ([with show solution button](assignments/assignment01/assignment01?showSolutions=true))   |
 | 3                           | [Assignment 2](assignments/assignment02/assignment02)    |
 | 4                           | [Assignment 3](assignments/assignment03/assignment03)   ([with show solution button](assignments/assignment03/assignment03?showSolutions=true))    |
+| 4                           | [Assignment 4](assignments/assignment04/assignment04)   ([with show solution button](assignments/assignment04/assignment04?showSolutions=true))    |
 
 
 ## Other Important Documents

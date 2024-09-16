@@ -73,4 +73,4 @@ We've met the idea of classification. Logistic regression is one algorithm for b
         caption="Graphical representation of both linear and logistic regression.  The key difference is the application of the squashing function shown in yellow. [Original Source - Towards Data Science](https://towardsdatascience.com/building-a-logistic-regression-in-python-301d27367c24)" %}
 {% assign graphicaldataflow = figure_number %}
 
-In your assignment, you'll be meeting loss functions for binary classification.
+In [your assignment](../assignments/assignment04/assignment04), you'll be meeting loss functions for binary classification.
