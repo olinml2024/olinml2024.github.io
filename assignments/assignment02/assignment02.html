@@ -166,15 +166,30 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const showSolutions = urlParams.get('showSolutions');
+    const showAllSolutions = urlParams.get('showAllSolutions');
     const divs = document.querySelectorAll('button.togglebutton');
 
-    // Loop through the selected divs and manipulate them
-    divs.forEach(div => {
-      // Example: Remove 'hidden' class to show hidden divs
-      if (showSolutions == 'true') {
-        div.removeAttribute('hidden');
-      }
-    });
+    if (showSolutions == 'true') {
+        // Loop through the selected divs and manipulate them
+        divs.forEach(div => {
+            div.removeAttribute('hidden');
+        });
+    }
+
+    const solutionDivs = document.querySelectorAll('[id^=solution]');
+    const subpartSolutionDivs = document.querySelectorAll('[id^=subpartsolution]');
+
+    if (showAllSolutions == 'true') {
+        solutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+
+        subpartSolutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+    }
 });
 </script>
 
@@ -268,8 +283,8 @@ function HideShowElement(divID) {
 $
 \newcommand{\mlvec}[1]{\mathbf{#1}}
 \newcommand{\mlmat}[1]{\mathbf{#1}}
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+\DeclareMathOperator*{\argmin}{arg\,min\,}
 $
 </div>
 

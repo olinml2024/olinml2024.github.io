@@ -166,15 +166,30 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const showSolutions = urlParams.get('showSolutions');
+    const showAllSolutions = urlParams.get('showAllSolutions');
     const divs = document.querySelectorAll('button.togglebutton');
 
-    // Loop through the selected divs and manipulate them
-    divs.forEach(div => {
-      // Example: Remove 'hidden' class to show hidden divs
-      if (showSolutions == 'true') {
-        div.removeAttribute('hidden');
-      }
-    });
+    if (showSolutions == 'true') {
+        // Loop through the selected divs and manipulate them
+        divs.forEach(div => {
+            div.removeAttribute('hidden');
+        });
+    }
+
+    const solutionDivs = document.querySelectorAll('[id^=solution]');
+    const subpartSolutionDivs = document.querySelectorAll('[id^=subpartsolution]');
+
+    if (showAllSolutions == 'true') {
+        solutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+
+        subpartSolutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+    }
 });
 </script>
 
@@ -268,8 +283,8 @@ function HideShowElement(divID) {
 $
 \newcommand{\mlvec}[1]{\mathbf{#1}}
 \newcommand{\mlmat}[1]{\mathbf{#1}}
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+\DeclareMathOperator*{\argmin}{arg\,min\,}
 $
 </div>
 
@@ -472,16 +487,16 @@ $$</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 3</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
 <p>Draw a scatter plot in 2D (the x-axis is the independent variable and the y-axis is the dependent variable).  In other words, draw five or so data points, placed wherever you like. Next, draw a potential line of best fit, a straight line that is as close to your data points.  On the plot mark the vertical differences between the data points and the line (these differences are called the residuals).  Draw a second potential line of best fit and mark the residuals.  From the point of view of ordinary least-squares, which of these lines is better (i.e. has the smallest residuals)?</p>
 
 
-    <button hidden="true" onclick='HideShowElement("solution-3")' class="togglebutton">Show / Hide Solution</button>
+    <button hidden="true" onclick='HideShowElement("solution-1")' class="togglebutton">Show / Hide Solution</button>
 
-<div id="solution-3" class="solution" style="
+<div id="solution-1" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -522,7 +537,7 @@ $$</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 4</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -606,7 +621,7 @@ $$</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 5</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 3</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -784,7 +799,7 @@ Gradient</a></li>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 6</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 4</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -869,7 +884,7 @@ $$</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 7</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 5</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -879,9 +894,9 @@ $$</p>
 
 
 
-    <button hidden="true" onclick='HideShowElement("solution-7")' class="togglebutton">Show / Hide Solution</button>
+    <button hidden="true" onclick='HideShowElement("solution-5")' class="togglebutton">Show / Hide Solution</button>
 
-<div id="solution-7" class="solution" style="
+<div id="solution-5" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -914,7 +929,7 @@ $$</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 8</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 6</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -1032,6 +1047,9 @@ Then, think about how you can simplify the iteration in the summation because of
 
 <h2 id="linear-regression-with-multiple-variables">Linear Regression with Multiple Variables</h2>
 
+<div id="linearregmultiplevariables">
+
+
 <div style="display: normal;
         border-left: 6px solid #0065B4;
         margin: 2em 0em 2em 0em;">
@@ -1047,7 +1065,7 @@ Then, think about how you can simplify the iteration in the summation because of
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 9</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 7</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -1160,6 +1178,7 @@ $$</p>
 
 </div>
 </div>
+</div>
 
 <h1 id="linear-regression-in-python">Linear Regression in Python</h1>
 
@@ -1178,7 +1197,7 @@ $$</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 10</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 8</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -1186,9 +1205,9 @@ $$</p>
 Work through the <a href="https://colab.research.google.com/drive/1OVppkqL-CCpkKWMW2UqUjHYzIU-o37_C?usp=sharing">Assignment 3 Companion Notebook</a> to get some practice with <code class="language-plaintext highlighter-rouge">numpy</code> and explore linear regression using a top-down approach.  You can place your answers directly in the Jupyter notebook so that you have them for your records.</p>
 
 
-    <button hidden="true" onclick='HideShowElement("solution-10")' class="togglebutton">Show / Hide Solution</button>
+    <button hidden="true" onclick='HideShowElement("solution-8")' class="togglebutton">Show / Hide Solution</button>
 
-<div id="solution-10" class="solution" style="
+<div id="solution-8" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
