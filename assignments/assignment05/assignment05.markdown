@@ -14,29 +14,6 @@ This builds on:
 
 
 
-# Confounding variables
-We discussed confounding variables in class.
-{% capture problem %}
-{% capture part_a %}
-Please watch this video on [Simpson's Paradox](https://www.youtube.com/watch?v=sxYrzzy3cq8). Explain what happen's in Simpson's paradox.
-{% endcapture %}
-{% capture part_a_sol %}
-See the video.
-{% endcapture %}
-{% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
-
-{% capture part_b %}
-Please come up with an example of Simpson's paradox that was not mentioned in the video. You don't have to know for sure that your example falls in to Simpson's paradox-- a reasonable suspicion of a confounding variable is fine. Please describe the paradox and the confounding variable that you suspect. This is a simple question, but I realize it may be challenging to answer. If you are stuck, you might consider studies related to diet or health, the pandemic, or statistics related to elections. You may look up recent studies or articles to spark your imagination. I would discourage you from Googling "Simpson's paradox examples"-- if you do, please adjust your response in the quiz accordingly.
-{% endcapture %}
-
-{% capture part_b_sol %}
- Simpson's paradox has to do with a *lurking* or *confounding* variable that isn't accounted for. 
-{% endcapture %}
-
-{% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}
-
-{% endcapture %}
-{% include problem_with_parts.html problem=problem %}
 
 
 
