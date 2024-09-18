@@ -15,18 +15,14 @@ layout: problemset
 {% include learning_objectives.html content=content %}
 
 This builds on:
-* Supervised learning problem framing.
+* [Supervised learning problem framing](/assignments/assignment03/assignment03?showAllSolutions=true#supervised-learning-problem-setup).
 * Calculating gradients.
-* Log loss.
-
-
-
-
-
-
+* [Log loss](/assignments/assignment04/assignment04?showAllSolutions=true#probability-and-the-log-loss)
 
 
 # Logistic Regression (top-down)
+
+<p style="color: red;">Let's modify this to be something more simple.</p>
 
 In the last part of the [notebook that you started in class](https://colab.research.google.com/drive/1AOUbSKhEvoSTzu_UNm-kq1SBrmmXPHVl?usp=sharing), you saw a quick implementation of logistic regression to classify if a person was looking to the left or to the right. 
 
@@ -369,6 +365,123 @@ You are also welcome to implement logistic regression using gradient descent if 
 {% endcapture %}
 {% include notice.html content=content %}
 
-# Machine learning for loans and mortgages
+<!-- # Machine learning for loans and mortgages
 
-In this course, we'll be exploring machine learning from three different perspectives: the theory, the implementation, and the context, impact, and ethics. 
+In this course, we'll be exploring machine learning from three different perspectives: the theory, the implementation, and the context, impact, and ethics.  -->
+
+
+## Dataflow Diagrams
+
+
+
+$$
+\begin{align}
+x &= x(t) \\
+y &= y(t) \\
+f &= f(x, y) \\
+\end{align}
+$$
+
+```mermaid!
+flowchart BT
+ id1["$$f = f(x,y)~~~~$$"]
+ id2["$$x = x(t)~~$$"]
+ id3["$$y = y(t)~~$$"]
+ id2 --> id1
+ id3 --> id1
+ t --> id2
+ t --> id3
+```
+
+This flow chart represents how data moves from its inputs (in this case $x$ and $y$) to its outputs (in this case $f$).  If we were to take a chart like this and figure out how to evaluate a function given some inputs, you'd have to make sure you always evaluate the inputs to a block before you try to evaluate the block itself.  For instance, I wouldn't be able to evaluate the block $f = f(x,y)$ until I've evaluated the blocks $x = x(t)$ and $y=y(t)$.  To evaluate a block, you can imagine that the output of a block flows along the arrow into the downstream block, which then processes that input further until it arrives at the output.
+
+
+## Data Flow Diagrams and the Chain Rule
+
+{% capture content %}
+This Harvey Mudd College calculus tutorials explain the concept of the chain rule using dataflow diagrams beautifully.  Go and read the [HMC Multivariable Chain Rule Page](https://math.hmc.edu/calculus/hmc-mathematics-calculus-online-tutorials/multivariable-calculus/multi-variable-chain-rule/)
+{% endcapture %}
+{% include external_resources.html content=content %}
+
+We know from the multivariable chain rule, that we can look at the sytem in the previous section and evaluate partial derivatives within our network.  Here is what the process would yield for the non-trivial gradient of $f$ with respect to $t$.
+
+$$
+\begin{align}
+x &= x(t) \\
+y &= y(t) \\
+f &= f(x, y) \\
+\frac{\partial{f(x, y)}}{\partial t} &= \frac{\partial{x}}{\partial{t}} \frac{\partial f}{\partial x} + \frac{\partial{y}}{\partial{t}} \frac{\partial f}{\partial y}
+\end{align}
+$$
+
+It turns out that we can modify the data flow diagram for computing the output of the function to instead compute this gradient automatically.  Here is what the process looks like.
+
+```mermaid!
+flowchart TB
+ id1["$$\frac{\partial f}{\partial f} = 1~~~~$$"]
+ id2["$$\frac{\partial f}{\partial{x}} = \frac{\partial f}{\partial{x}} \times 1 ~~$$"]
+ id3["$$\frac{\partial f}{\partial{y}} = \frac{\partial f}{\partial{y}} \times 1 ~~$$"]
+ id4["$$\frac{\partial f}{\partial t} = \frac{\partial f}{\partial{x}}\frac{\partial x}{\partial{t}} + \frac{\partial f}{\partial{y}}\frac{\partial y}{\partial{t}}~~~~~$$"]
+ id1 --"$$\frac{\partial{f}}{\partial{x}} \times 1$$"--> id2
+ id1 --"$$\frac{\partial{f}}{\partial{y}} \times 1$$"--> id3
+ id2 --"$$\frac{\partial{f}}{\partial{x}} \frac{\partial{x}}{\partial{t}}$$"--> id4
+ id3 --"$$\frac{\partial{f}}{\partial{y}} \frac{\partial{y}}{\partial{t}}$$"--> id4
+```
+
+
+
+```mermaid!
+flowchart BT
+  id1["$$z_0 = z_1 + z_2~~$$"]
+  id2["$$z_1 = \cos\left(z_5\right)~~$$"]
+  id3["$$z_2 = z_3 \times z_4~~$$"]
+  id4["$$z_3 = x^2$$"]
+  id5["$$z_4 = \sqrt{z}~~$$"]
+  id6["$$z_5 = z_3 \times y~~$$"]
+  id2 -- "$$\frac{\partial{z_0}}{\partial{z_1}} = 1$$" --> id1
+  id3 -- "$$\frac{\partial{z_0}}{\partial{z_2}} = 1$$" --> id1
+  id4 --> id3
+  id6 -- "$$\frac{\partial{z_1}}{\partial{z_5}} = -\sin(z_5)~~$$" --> id2
+  id5 -- "$$ $$" --> id3
+  id4 --> id6
+  x -- "$$\frac{\partial{z_3}}{\partial{x}} = 2x~~$$" --> id4
+  y -- "$$\frac{\partial{z_5}}{\partial{y}} = z_3$$" --> id6
+  z --> id5
+```
+
+
+
+{% capture problem %}
+
+{% capture part_a %}
+Draw a dataflow diagram to represent the function $f(x,y,z) = \cos(x^2 y) + x^2 \sqrt{z}$.  Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}$ using the dataflow diagram method.
+{% endcapture %}
+{% capture part_a_sol %}
+
+
+<p>
+\begin{align}
+\frac{\partial f}{\partial x}&= 2x y (-sin(x^2 y)) + 2x{\sqrt z} \nonumber \\
+&= -2x y sin(x^2 y) + 2x{\sqrt z} \\
+\frac{\partial f}{\partial y} &= x^2 (-sin(x^2 y)) \nonumber \\
+&= -x^2 sin(x^2 y) \\
+\frac{\partial f}{\partial z} &= \frac{1}{2 \sqrt z} x^2
+\end{align}
+</p>
+{% endcapture %}
+{% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
+
+{% capture part_b %}
+Draw a dataflow diagram to represent the function $f(\mlvec{x}) = (\mlvec{c}^\top \mlvec{x})^2$.  Compute $\nabla_{\mlvec{x}} f$ using the dataflow diagram method.  Hint: we're generalizing what is on the HMC page a bit.  You can have vector quantities at the leaf nodes in the graph (leaf nodes are those that have no incoming arrows) and all the ideas will carry over except you will have a gradient instead of a partial derivative on the edge.  If you wanted to have a vector quantity at a non-leaf node, that would require modifying the technique on the HMC page a bit (we won't cover that in this class).
+{% endcapture %}
+{% capture part_b_sol %}
+<p>
+\begin{align}
+\nabla_{\mlvec{x}} f = 2(\mlvec{c}^\top \mlvec{x}) \mlvec{c}
+\end{align}
+</p>
+{% endcapture %}
+{% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}
+
+{% endcapture %}
+{% include problem_with_parts.html problem=problem %}
