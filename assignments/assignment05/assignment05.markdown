@@ -391,16 +391,7 @@ Let's say we want to calculate $\frac{\partial f}{\partial t}$.  We've learned a
 
 What is this formula saying???  Well it looks awfully like the single variable chain rule in the sense that we are multiplying derivatives together.  The only difference is that we are having to account for the multiple pathways from the input (independent variable) $t$ to the output (dependent variable) $f$.
 
-Let's see what would happen if we modified our data flow diagram to compute these partial derivatives.
-
-<p>
-\begin{align}
-x &= x(t) \\
-y &= y(t) \\
-f &= f(x, y) \\
-\frac{\partial{f(x, y)}}{\partial t} &= \frac{\partial{x}}{\partial{t}} \frac{\partial f}{\partial x} + \frac{\partial{y}}{\partial{t}} \frac{\partial f}{\partial y}
-\end{align}
-</p>
+In the resources below, you will see how we can use our data flow diagram to compute these partial derivatives.
 
 
 {% capture content %}
