@@ -10,7 +10,7 @@ layout: problemset
 {% capture content %}
 * Learn about the logistic regression algorithm.
 * Learn about gradient descent for optimization.
-* Contemplate an application of machine learning for home loans.
+* Build the foundational undertanding we will need to implement the micrograd algorithm.
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
@@ -20,18 +20,9 @@ This builds on:
 * [Log loss](/assignments/assignment04/assignment04?showAllSolutions=true#probability-and-the-log-loss)
 
 
-# Logistic Regression (top-down)
+# The Logistic Regression Model
 
-<p style="color: red;">Let's modify this to be something more simple.</p>
-
-In the last part of the [notebook that you started in class](https://colab.research.google.com/drive/1AOUbSKhEvoSTzu_UNm-kq1SBrmmXPHVl?usp=sharing), you saw a quick implementation of logistic regression to classify if a person was looking to the left or to the right. 
-
-In this assignment we will formalize the binary classification problem and dig the theory behind `logistic regression`.  You will also see that the logistic regression algorithm is a very natural extension of linear regression.  Our plan for getting there is going to be pretty similar to what we did for linear regression.
-
-* Build some mathematical foundations
-* Introduce logistic regression from a top-down perspective
-* Learn about logistic regression from a bottom-up perspective
-
+In class we went over a simple application of logistic regression to the Titanic Dataset.  So you have it handy, here is a link to the [notebook from class](https://colab.research.google.com/drive/1xpGvY-kg7-HOC7_To0nMZIOOHQ_Yxd89?usp=sharing).  You don't have to do anything with this notebook for this assignment, but we wanted you to have it handy.
 
 {% capture content %}
 ## Recall
@@ -42,12 +33,12 @@ We also explored three possible loss functions for a model that outputs a probab
 
 1. **0-1 loss:** This is an all-or-nothing approach. If the prediction is correct, the loss is zero; if the prediction is incorrect, the loss is 1. This does not take into account the level certainty expressed by the probability (the model gets the same loss if $y = 1$ and it predicted $p = 0.51$ or $p = 1$).
 2. **squared loss:** For squared loss we compute the difference between the outcome and $p$ and square it to arrive at the loss.  For example, if $y = 1$ and the model predicts $p = 0.51$, the loss is $(1 - 0.51)^2$.  If instead $y = 0$, the loss is $(0 - 0.51)^2$.
-3. **log loss:** The log loss also penalizes based on the difference between the outcome and $p$, using the formula below.
-$$
+3. **log loss:** The log loss also penalizes based on the difference between the outcome, $y_i$, and the predicted probabilty, $p_i$, using the formula below.
+<div id="eqlogloss">
 \begin{align}
- logloss = -\frac{1}{N}\sum_{i=1}^n ( (y_i) \ln (p_i) + (1-y_i) \ln (1 - p_i) )\label{eq:loglosseq}
+ \mbox{logloss} = -\frac{1}{N}\sum_{i=1}^n \Big( y_i \ln (p_i) + (1-y_i) \ln (1 - p_i) \Big )\tag{1}
 \end{align}
-$$
+</div>
 
 
 Since $y_i$ is always 0 or 1, we will essentially switch between the two chunks of this equation based on the true value of $y_i$. As the predicted probability, $p_i$ (which is constrained between 0 an 1) gets farther from $y_i$, the log-loss value increases.
@@ -58,7 +49,7 @@ Since $y_i$ is always 0 or 1, we will essentially switch between the two chunks 
 
 Now that you have refreshed on how probabilities can be used as a way of quantifying confidence in predictions, you are ready to learn about the logistic regression algorithm.
 
-As always, we assume we are given a training set of inputs and outputs.  As in linear regression we will assume that each of our inputs is a $d$-dimensional vector $\mathbf{x_i}$ and since we are dealing with binary classification, the outputs, $y_i$, will be binary numbers (indicating whether the input belongs to class 0 or 1).  Our hypothesis functions, $\hat{f}$, output the probability that a given input has an output of 1.  What's cool is that we can borrow a lot of what we did in the last couple of assignments when we learned about linear regression.  In fact, all we're going to do in order to make sure that the output of $\hat{f}$ is between 0 and 1 is pass $\mlvec{w}^\top \mlvec{x}$ through a function that ``squashes'' its input so that it outputs a value between 0 and 1.  This idea is shown graphically in this {% include figure_reference.html fig_num=graphicaldataflow %}.
+As always, we assume we are given a training set of inputs and outputs.  As in linear regression we will assume that each of our inputs is a $d$-dimensional vector $\mathbf{x_i}$ and since we are dealing with binary classification, the outputs, $y_i$, will be binary numbers (indicating whether the input belongs to class 0 or 1).  Our hypothesis functions, $\hat{f}$, output the probability that a given input has an output of 1.  What's cool is that we can borrow a lot of what we did in the last couple of assignments when we learned about linear regression.  In fact, all we're going to do in order to make sure that the output of $\hat{f}$ is between 0 and 1 is pass $\mlvec{w}^\top \mlvec{x}$ through a function that ``squashes'' its input so that it outputs a value between 0 and 1.  This idea is shown graphically in thie following figure.
 
 {% include figure.html
         img="figures/linearandlogistic.png"
@@ -68,24 +59,16 @@ As always, we assume we are given a training set of inputs and outputs.  As in l
 
 To make this intuition concrete, we define each $\hat{f}$ as having the following form (note: this equation looks daunting. We have some tips for interpreting it below).
 
-$$
+<div id="logistichypothesis">
 \begin{align}
 \hat{f}(\mathbf{x}) &= \mbox{probability that output, $y$, is 1} \nonumber  \\  
-&=\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}} \label{eq:logistichypothesis}
+&=\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}} \tag{2}
 \end{align}
-$$
+</div>
 
 Here are a few things to notice about this equation:
 1. The weight vector that we saw in linear regression, $\mlvec{w}$, has made a comeback. We are using the dot product between $\mlvec{x}$ and $\mlvec{w}$ (which creates a weighted sum of the $x_i$'s), just as we did in linear regression!
-2. As indicated in {% include figure_reference.html fig_num=graphicaldataflow %}, the dot product $\mlvec{w}^\top \mlvec{x}$ has been passed through a squashing function known as the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function).  The graph of $\sigma(u) = \frac{1}{1+e^{-u}}$ is shown in {% include figure_reference.html fig_num=sigmoid %}.  $\sigma( \mlvec{w}^\top \mlvec{x})$ is exactly what we have in $$ \hat{f}(\mathbf{x}) =\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}}$$
-
-Equation~\ref{eq:logistichypothesis}. 
-<p>
-\begin{align}
-\hat{f}(\mathbf{x}) &= \mbox{probability that output, $y$, is 1} \nonumber \\
-&=\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}}
-\end{align}
-</p>
+2. As indicated in {% include figure_reference.html fig_num=graphicaldataflow %}, the dot product $\mlvec{w}^\top \mlvec{x}$ has been passed through a squashing function known as the [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function).  The graph of $\sigma(u) = \frac{1}{1+e^{-u}}$ is shown in {% include figure_reference.html fig_num=2 %}.  $\sigma( \mlvec{w}^\top \mlvec{x})$ is exactly what we have in $$ \hat{f}(\mathbf{x}) =\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}}$$
 
 
 {% include figure.html
@@ -95,10 +78,9 @@ Equation~\ref{eq:logistichypothesis}.
 {% assign sigmoid = figure_number %}
 
 
-
 # Deriving the Logistic Regression Learning Rule
 
-Now we will formalize the logistic regression problem and derive a learning rule to solve it (i.e., compute the optimal weights). The formalization of logistic regression will combine Equation~\ref{eq:logistichypothesis} with the selection of $\ell$ to be log loss (Equation~\ref{eq:loglosseq}).  This choice of $\ell$ results in the following objective function.
+Now we will formalize the logistic regression problem and derive a learning rule to solve it (i.e., compute the optimal weights). The formalization of logistic regression will combine [Equation 2](#logistichypothesis) with the selection of $\ell$ to be log loss ([Equation 1](#eqlogloss)).  This choice of $\ell$ results in the following objective function (this is a straightforward substitution.  there's nothing too tricky going on here).
 
 <p>
 \begin{align}
@@ -178,7 +160,7 @@ Solution 2:
 {% include problem_with_parts.html problem=problem %}
 
 ## Chain Rule for Gradients
-We now know how to take derivatives of each of the major pieces of Equation~\ref{eq:objective}.  What we need is a way to put these derivatives together.  You probably remember that in the case of single variable calculus you have just such a tool.  This tool is known as the chain rule.  The chain rule tells us how to compute the derivative of the composition of two single variable functions $f$ and $g$.  
+We now know how to take derivatives of each of the major pieces of the logistic regression loss function.  What we need is a way to put these derivatives together.  You probably remember that in the case of single variable calculus you have just such a tool.  This tool is known as the chain rule.  The chain rule tells us how to compute the derivative of the composition of two single variable functions $f$ and $g$.  
 
 <p>
 \begin{align}
@@ -233,11 +215,11 @@ $$
 
 Compute the gradient of this expression, which comes from the beginning of the section on deriving the logistic regression learning rule:
 
-$$
+<div>
 \begin{align}
  \sum_{i=1}^n -y_i \ln \sigma( \mlvec{w}^\top \mlvec{x_i}) - (1-y_i) \ln  \left (1 - \sigma( \mlvec{w}^\top \mlvec{x_i}) \right ) 
 \end{align}
-$$
+</div>
 
 You can either use the chain rule and the identities you learned about sigmoid, or expand everything out and work from that.
 
@@ -370,9 +352,11 @@ You are also welcome to implement logistic regression using gradient descent if 
 In this course, we'll be exploring machine learning from three different perspectives: the theory, the implementation, and the context, impact, and ethics.  -->
 
 
-## Dataflow Diagrams
+# Dataflow Diagrams and Foundations of Micrograd
 
+Now that we determined a learning rule for logistic regression, we are going to look at another way of representing multivariable functions and computing their partial derivatives.  This way of thinking about multivariable functions may seem a little strange at first, but this notion is going to lay the foundations for being able to derive learning rules for a whole range of machine learning models in an automated fashion!!
 
+First, let's look at a multivariable function defined by the equations below.  We have a single scalar input variable $t$ that affects both input arguments of $f$ (through $x(t)$ and $y(t)$).
 
 $$
 \begin{align}
@@ -381,6 +365,9 @@ y &= y(t) \\
 f &= f(x, y) \\
 \end{align}
 $$
+
+
+Let's represent this system of equations using a data flow ([in some resources](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)/14%3A_Differentiation_of_Functions_of_Several_Variables/14.05%3A_The_Chain_Rule_for_Multivariable_Functions) this is called a tree diagram, in which case it is drawn a bit differently).
 
 ```mermaid!
 flowchart BT
@@ -395,15 +382,15 @@ flowchart BT
 
 This flow chart represents how data moves from its inputs (in this case $x$ and $y$) to its outputs (in this case $f$).  If we were to take a chart like this and figure out how to evaluate a function given some inputs, you'd have to make sure you always evaluate the inputs to a block before you try to evaluate the block itself.  For instance, I wouldn't be able to evaluate the block $f = f(x,y)$ until I've evaluated the blocks $x = x(t)$ and $y=y(t)$.  To evaluate a block, you can imagine that the output of a block flows along the arrow into the downstream block, which then processes that input further until it arrives at the output.
 
+Let's say we want to calculate $\frac{\partial f}{\partial t}$.  We've learned about the chain rule for single variable functions, but this case is a bit different.  It turns out that in this case, we can compute the partial derivative we seek in the following way.
 
-## Data Flow Diagrams and the Chain Rule
+\begin{align}
+\frac{\partial f}{\partial t} &= \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} +  \frac{\partial f}{\partial y} \frac{\partial y}{\partial t}
+\end{align}
 
-{% capture content %}
-This Harvey Mudd College calculus tutorials explain the concept of the chain rule using dataflow diagrams beautifully.  Go and read the [HMC Multivariable Chain Rule Page](https://math.hmc.edu/calculus/hmc-mathematics-calculus-online-tutorials/multivariable-calculus/multi-variable-chain-rule/)
-{% endcapture %}
-{% include external_resources.html content=content %}
+What is this formula saying???  Well it looks awfully like the single variable chain rule in the sense that we are multiplying derivatives together.  The only difference is that we are having to account for the multiple pathways from the input (independent variable) $t$ to the output (dependent variable) $f$.
 
-We know from the multivariable chain rule, that we can look at the sytem in the previous section and evaluate partial derivatives within our network.  Here is what the process would yield for the non-trivial gradient of $f$ with respect to $t$.
+Let's see what woudl happen if we modified our data flow diagram to compute these partial derivatives.
 
 $$
 \begin{align}
@@ -414,25 +401,38 @@ f &= f(x, y) \\
 \end{align}
 $$
 
-It turns out that we can modify the data flow diagram for computing the output of the function to instead compute this gradient automatically.  Here is what the process looks like.
+It turns out that we can modify the data flow diagram for computing the output of the function to instead compute this gradient automatically.  Here is what the process looks like (let's use $grad_v$ to store the result of $\frac{\partial f}{v}$).
 
 ```mermaid!
 flowchart TB
- id1["$$\frac{\partial f}{\partial f} = 1~~~~$$"]
- id2["$$\frac{\partial f}{\partial{x}} = \frac{\partial f}{\partial{x}} \times 1 ~~$$"]
- id3["$$\frac{\partial f}{\partial{y}} = \frac{\partial f}{\partial{y}} \times 1 ~~$$"]
- id4["$$\frac{\partial f}{\partial t} = \frac{\partial f}{\partial{x}}\frac{\partial x}{\partial{t}} + \frac{\partial f}{\partial{y}}\frac{\partial y}{\partial{t}}~~~~~$$"]
- id1 --"$$\frac{\partial{f}}{\partial{x}} \times 1$$"--> id2
- id1 --"$$\frac{\partial{f}}{\partial{y}} \times 1$$"--> id3
- id2 --"$$\frac{\partial{f}}{\partial{x}} \frac{\partial{x}}{\partial{t}}$$"--> id4
- id3 --"$$\frac{\partial{f}}{\partial{y}} \frac{\partial{y}}{\partial{t}}$$"--> id4
+ id1["$$grad_f = 1 ~~~~$$"]
+ id2["$$grad_x = \frac{\partial f}{\partial x} grad_f~~$$"]
+ id3["$$grad_y = \frac{\partial f}{\partial y} grad_f~~$$"]
+ id4["$$grad_t = \frac{\partial x}{\partial t} grad_x + \frac{\partial y}{\partial t} grad_y~~~~~~$$"]
+ id1 --"$$\frac{\partial f}{\partial x} grad_f~~$$"--> id2
+ id1 --"$$\frac{\partial f}{\partial y} grad_f~~$$"--> id3
+ id2 --"$$\frac{\partial x}{\partial t} grad_x ~~$$"--> id4
+ id3 --"$$\frac{\partial y}{\partial t} grad_y ~~$$"--> id4
 ```
 
 
+{% capture content %}
+This Harvey Mudd College calculus tutorials explain the concept of the chain rule using dataflow diagrams.  You can view this at [HMC Multivariable Chain Rule Page](https://math.hmc.edu/calculus/hmc-mathematics-calculus-online-tutorials/multivariable-calculus/multi-variable-chain-rule/).
 
+There is another nice writeup on this at [Math LibreTexts](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)/14%3A_Differentiation_of_Functions_of_Several_Variables/14.05%3A_The_Chain_Rule_for_Multivariable_Functions) (Note: that this writeup uses a slightly different graph structure where inputs that branch to multiple downstream functions are replicated)
+{% endcapture %}
+{% include external_resources.html content=content %}
+
+
+{% capture problem %}
+
+{% capture part_a %}
+Draw a dataflow diagram to represent the function $f(x,y,z) = \cos(x^2 y) + x^2 \sqrt{z}$.  Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}$ using the dataflow diagram method.
+{% endcapture %}
+{% capture part_a_sol %}
 ```mermaid!
 flowchart BT
-  id1["$$z_0 = z_1 + z_2~~$$"]
+  id1["$$f = z_1 + z_2~~$$"]
   id2["$$z_1 = \cos\left(z_5\right)~~$$"]
   id3["$$z_2 = z_3 \times z_4~~$$"]
   id4["$$z_3 = x^2$$"]
@@ -451,26 +451,18 @@ flowchart BT
 
 
 
-{% capture problem %}
-
-{% capture part_a %}
-Draw a dataflow diagram to represent the function $f(x,y,z) = \cos(x^2 y) + x^2 \sqrt{z}$.  Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}$ using the dataflow diagram method.
-{% endcapture %}
-{% capture part_a_sol %}
-
-
 <p>
 \begin{align}
-\frac{\partial f}{\partial x}&= 2x y (-sin(x^2 y)) + 2x{\sqrt z} \nonumber \\
-&= -2x y sin(x^2 y) + 2x{\sqrt z} \\
-\frac{\partial f}{\partial y} &= x^2 (-sin(x^2 y)) \nonumber \\
-&= -x^2 sin(x^2 y) \\
+\frac{\partial f}{\partial x}&= 2x y (-\sin(x^2 y)) + 2x{\sqrt z} \nonumber \\
+&= -2x y \sin(x^2 y) + 2x{\sqrt z} \\
+\frac{\partial f}{\partial y} &= x^2 (-\sin(x^2 y)) \nonumber \\
+&= -x^2 \sin(x^2 y) \\
 \frac{\partial f}{\partial z} &= \frac{1}{2 \sqrt z} x^2
 \end{align}
 </p>
 {% endcapture %}
 {% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
-
+<!--
 {% capture part_b %}
 Draw a dataflow diagram to represent the function $f(\mlvec{x}) = (\mlvec{c}^\top \mlvec{x})^2$.  Compute $\nabla_{\mlvec{x}} f$ using the dataflow diagram method.  Hint: we're generalizing what is on the HMC page a bit.  You can have vector quantities at the leaf nodes in the graph (leaf nodes are those that have no incoming arrows) and all the ideas will carry over except you will have a gradient instead of a partial derivative on the edge.  If you wanted to have a vector quantity at a non-leaf node, that would require modifying the technique on the HMC page a bit (we won't cover that in this class).
 {% endcapture %}
@@ -479,9 +471,9 @@ Draw a dataflow diagram to represent the function $f(\mlvec{x}) = (\mlvec{c}^\to
 \begin{align}
 \nabla_{\mlvec{x}} f = 2(\mlvec{c}^\top \mlvec{x}) \mlvec{c}
 \end{align}
-</p>
+</p
 {% endcapture %}
-{% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}
+{% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}-->
 
 {% endcapture %}
 {% include problem_with_parts.html problem=problem %}
