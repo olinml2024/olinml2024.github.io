@@ -25,6 +25,7 @@ This builds on:
 In class we went over a simple application of logistic regression to the Titanic Dataset.  So you have it handy, here is a link to the [notebook from class](https://colab.research.google.com/drive/1xpGvY-kg7-HOC7_To0nMZIOOHQ_Yxd89?usp=sharing).  You don't have to do anything with this notebook for this assignment, but we wanted you to have it handy.
 
 {% capture content %}
+
 ## Recall
 
 In the last assignment, you were introduced to the idea of binary classification, which based on some input $\mlvec{x}$ has a corresponding output $y$ that is $y= 0$ or $y= 1$. In logistic regression, this model, $\hat{f}$, instead of spitting out either 0 or 1, outputs a confidence that the input $\mlvec{x}$ has an output $y= 1$.  In other words, rather than giving us its best guess (0 or 1), the classifier indicates to us its degree of certainty regarding its prediction as a probability.
@@ -49,7 +50,7 @@ Since $y_i$ is always 0 or 1, we will essentially switch between the two chunks 
 
 Now that you have refreshed on how probabilities can be used as a way of quantifying confidence in predictions, you are ready to learn about the logistic regression algorithm.
 
-As always, we assume we are given a training set of inputs and outputs.  As in linear regression we will assume that each of our inputs is a $d$-dimensional vector $\mathbf{x_i}$ and since we are dealing with binary classification, the outputs, $y_i$, will be binary numbers (indicating whether the input belongs to class 0 or 1).  Our hypothesis functions, $\hat{f}$, output the probability that a given input has an output of 1.  What's cool is that we can borrow a lot of what we did in the last couple of assignments when we learned about linear regression.  In fact, all we're going to do in order to make sure that the output of $\hat{f}$ is between 0 and 1 is pass $\mlvec{w}^\top \mlvec{x}$ through a function that ``squashes'' its input so that it outputs a value between 0 and 1.  This idea is shown graphically in thie following figure.
+As always, we assume we are given a training set of inputs and outputs.  As in linear regression we will assume that each of our inputs is a $d$-dimensional vector $\mathbf{x_i}$ and since we are dealing with binary classification, the outputs, $y_i$, will be binary numbers (indicating whether the input belongs to class 0 or 1).  Our hypothesis functions, $\hat{f}$, output the probability that a given input has an output of 1.  What's cool is that we can borrow a lot of what we did in the last couple of assignments when we learned about linear regression.  In fact, all we're going to do in order to make sure that the output of $\hat{f}$ is between 0 and 1 is pass $\mlvec{w}^\top \mlvec{x}$ through a function that "squashes" its input so that it outputs a value between 0 and 1.  This idea is shown graphically in thie following figure.
 
 {% include figure.html
         img="figures/linearandlogistic.png"
@@ -84,8 +85,8 @@ Now we will formalize the logistic regression problem and derive a learning rule
 
 <p>
 \begin{align}
-\mlvec{w}^\star &= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( - y_i \ln \sigma(\mlvec{w}^\top \mlvec{x_i}) - (1-y_i) \ln (1 - \sigma(\mlvec{w}^\top \mlvec{x_i}) ) \right)  \\  
-&= \argmin_{\mlvec{w}} \sum_{i=1}^n \left (  - y_i \ln \left ( \frac{1}{1+e^{-\mlvec{w}^\top \mlvec{x_i}}} \right) - (1-y_i) \ln  \left (1 - \frac{1}{1+e^{-\mlvec{w}^\top \mlvec{x_i}}} \right ) \right) &\mbox{expanded out if you prefer this form} \label{eq:objective}
+\mlvec{w}^\star &= \argmin_{\mlvec{w}} \sum_{i=1}^n \Big ( - y_i \ln \sigma(\mlvec{w}^\top \mlvec{x_i}) - (1-y_i) \ln (1 - \sigma(\mlvec{w}^\top \mlvec{x_i}) ) \Big)  \\  
+&= \argmin_{\mlvec{w}} \sum_{i=1}^n \Bigg (  - y_i \ln \left ( \frac{1}{1+e^{-\mlvec{w}^\top \mlvec{x_i}}} \right) - (1-y_i) \ln  \left (1 - \frac{1}{1+e^{-\mlvec{w}^\top \mlvec{x_i}}} \right ) \Bigg) &\mbox{expanded out if you prefer this form} \label{eq:objective}
 \end{align}
 </p>
 
@@ -354,20 +355,20 @@ In this course, we'll be exploring machine learning from three different perspec
 
 # Dataflow Diagrams and Foundations of Micrograd
 
-Now that we determined a learning rule for logistic regression, we are going to look at another way of representing multivariable functions and computing their partial derivatives.  This way of thinking about multivariable functions may seem a little strange at first, but this notion is going to lay the foundations for being able to derive learning rules for a whole range of machine learning models in an automated fashion!!
+Now that we have derived a learning rule for logistic regression, we are going to look at another way of representing multivariable functions and computing their partial derivatives.  This way of thinking about multivariable functions may seem a little strange at first, but this notion is going to lay the foundation for being able to derive learning rules for a whole range of machine learning models in an automated fashion!!
 
 First, let's look at a multivariable function defined by the equations below.  We have a single scalar input variable $t$ that affects both input arguments of $f$ (through $x(t)$ and $y(t)$).
 
-$$
+<p>
 \begin{align}
 x &= x(t) \\
 y &= y(t) \\
 f &= f(x, y) \\
 \end{align}
-$$
+</p>
 
 
-Let's represent this system of equations using a data flow ([in some resources](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)/14%3A_Differentiation_of_Functions_of_Several_Variables/14.05%3A_The_Chain_Rule_for_Multivariable_Functions) this is called a tree diagram, in which case it is drawn a bit differently).
+Let's represent this system of equations using a data flow diagram ([in some resources](https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)/14%3A_Differentiation_of_Functions_of_Several_Variables/14.05%3A_The_Chain_Rule_for_Multivariable_Functions) this is called a tree diagram, in which case it is drawn a bit differently).
 
 ```mermaid!
 flowchart BT
@@ -380,9 +381,9 @@ flowchart BT
  t --> id3
 ```
 
-This flow chart represents how data moves from its inputs (in this case $x$ and $y$) to its outputs (in this case $f$).  If we were to take a chart like this and figure out how to evaluate a function given some inputs, you'd have to make sure you always evaluate the inputs to a block before you try to evaluate the block itself.  For instance, I wouldn't be able to evaluate the block $f = f(x,y)$ until I've evaluated the blocks $x = x(t)$ and $y=y(t)$.  To evaluate a block, you can imagine that the output of a block flows along the arrow into the downstream block, which then processes that input further until it arrives at the output.
+This diagram represents how data moves from the inputs of a function (in this case $x$ and $y$) to its output (in this case $f$).  If we were to take a chart like this and figure out how to evaluate a function given some inputs, you'd have to make sure you always evaluate the inputs to a block before you try to evaluate the block itself.  For instance, I wouldn't be able to evaluate the block $f = f(x,y)$ until I've evaluated the blocks $x = x(t)$ and $y=y(t)$.  To evaluate a block, you can imagine that the output of a block flows along the arrow into the downstream block, which then processes that input further until it arrives at the output.
 
-Let's say we want to calculate $\frac{\partial f}{\partial t}$.  We've learned about the chain rule for single variable functions, but this case is a bit different.  It turns out that in this case, we can compute the partial derivative we seek in the following way.
+Let's say we want to calculate $\frac{\partial f}{\partial t}$.  We've learned about the chain rule for single variable functions, but this case is a bit different.  It turns out that, in this case, we can compute the partial derivative we seek in the following way.
 
 \begin{align}
 \frac{\partial f}{\partial t} &= \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} +  \frac{\partial f}{\partial y} \frac{\partial y}{\partial t}
@@ -390,30 +391,16 @@ Let's say we want to calculate $\frac{\partial f}{\partial t}$.  We've learned a
 
 What is this formula saying???  Well it looks awfully like the single variable chain rule in the sense that we are multiplying derivatives together.  The only difference is that we are having to account for the multiple pathways from the input (independent variable) $t$ to the output (dependent variable) $f$.
 
-Let's see what woudl happen if we modified our data flow diagram to compute these partial derivatives.
+Let's see what would happen if we modified our data flow diagram to compute these partial derivatives.
 
-$$
+<p>
 \begin{align}
 x &= x(t) \\
 y &= y(t) \\
 f &= f(x, y) \\
 \frac{\partial{f(x, y)}}{\partial t} &= \frac{\partial{x}}{\partial{t}} \frac{\partial f}{\partial x} + \frac{\partial{y}}{\partial{t}} \frac{\partial f}{\partial y}
 \end{align}
-$$
-
-It turns out that we can modify the data flow diagram for computing the output of the function to instead compute this gradient automatically.  Here is what the process looks like (let's use $grad_v$ to store the result of $\frac{\partial f}{v}$).
-
-```mermaid!
-flowchart TB
- id1["$$grad_f = 1 ~~~~$$"]
- id2["$$grad_x = \frac{\partial f}{\partial x} grad_f~~$$"]
- id3["$$grad_y = \frac{\partial f}{\partial y} grad_f~~$$"]
- id4["$$grad_t = \frac{\partial x}{\partial t} grad_x + \frac{\partial y}{\partial t} grad_y~~~~~~$$"]
- id1 --"$$\frac{\partial f}{\partial x} grad_f~~$$"--> id2
- id1 --"$$\frac{\partial f}{\partial y} grad_f~~$$"--> id3
- id2 --"$$\frac{\partial x}{\partial t} grad_x ~~$$"--> id4
- id3 --"$$\frac{\partial y}{\partial t} grad_y ~~$$"--> id4
-```
+</p>
 
 
 {% capture content %}
@@ -425,55 +412,91 @@ There is another nice writeup on this at [Math LibreTexts](https://math.libretex
 
 
 {% capture problem %}
-
-{% capture part_a %}
 Draw a dataflow diagram to represent the function $f(x,y,z) = \cos(x^2 y) + x^2 \sqrt{z}$.  Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}$ using the dataflow diagram method.
 {% endcapture %}
-{% capture part_a_sol %}
+{% capture solution %}
 ```mermaid!
 flowchart BT
-  id1["$$f = z_1 + z_2~~$$"]
-  id2["$$z_1 = \cos\left(z_5\right)~~$$"]
-  id3["$$z_2 = z_3 \times z_4~~$$"]
-  id4["$$z_3 = x^2$$"]
-  id5["$$z_4 = \sqrt{z}~~$$"]
-  id6["$$z_5 = z_3 \times y~~$$"]
-  id2 -- "$$\frac{\partial{z_0}}{\partial{z_1}} = 1$$" --> id1
-  id3 -- "$$\frac{\partial{z_0}}{\partial{z_2}} = 1$$" --> id1
+  id1["$$f = h_3 + h_5~~$$"]
+  id2["$$h_3 = \cos(h_2)~~$$"]
+  id3["$$h_5 = h_1 \times h_4~~$$"]
+  id4["$$h_1 = x^2$$"]
+  id5["$$h_4 = \sqrt{z}~~$$"]
+  id6["$$h_2 = h_1 \times y~~$$"]
+  id2 --> id1
+  id3 --> id1
   id4 --> id3
-  id6 -- "$$\frac{\partial{z_1}}{\partial{z_5}} = -\sin(z_5)~~$$" --> id2
-  id5 -- "$$ $$" --> id3
+  id6 --> id2
+  id5 --> id3
   id4 --> id6
-  x -- "$$\frac{\partial{z_3}}{\partial{x}} = 2x~~$$" --> id4
-  y -- "$$\frac{\partial{z_5}}{\partial{y}} = z_3$$" --> id6
+  x --> id4
+  y --> id6
   z --> id5
 ```
 
-
-
 <p>
 \begin{align}
-\frac{\partial f}{\partial x}&= 2x y (-\sin(x^2 y)) + 2x{\sqrt z} \nonumber \\
-&= -2x y \sin(x^2 y) + 2x{\sqrt z} \\
-\frac{\partial f}{\partial y} &= x^2 (-\sin(x^2 y)) \nonumber \\
-&= -x^2 \sin(x^2 y) \\
-\frac{\partial f}{\partial z} &= \frac{1}{2 \sqrt z} x^2
+\frac{\partial f}{\partial x}&= \frac{\partial h_1}{\partial x} \frac{\partial h_2}{\partial h_1}  \frac{\partial h_3}{\partial h_2} \frac{\partial h_f}{\partial h_3} +  \frac{\partial h_1}{\partial x} \frac{\partial h_5}{\partial h_1} \frac{\partial f}{\partial h_5} \nonumber \\
+&= 2x \times y \times -\sin(h_2) \times 1 + 2x \times h_4  \times 1 \\
+&= -2xy \sin(x^2 y) + 2x \sqrt{z} \\
+\frac{\partial f}{\partial y} &= \frac{\partial h_2}{\partial y} \frac{\partial h_3}{\partial h_2} \frac{\partial f}{\partial h_3}\nonumber \\
+&= h_1 \times -\sin(h_2) \times 1 \\
+&= -x^2 \sin(x^2 y) \\ 
+\frac{\partial f}{\partial z} &= \frac{\partial h_4}{\partial z} \frac{\partial h_5}{\partial h_4} \frac{\partial f}{\partial h_5} \\
+&= -\frac{1}{2} \frac{1}{\sqrt{z}} \times h_1 \times 1 \\
+&= -\frac{1}{2} \frac{x^2}{\sqrt{z}}
 \end{align}
 </p>
 {% endcapture %}
-{% include problem_part.html label="A" subpart=part_a solution=part_a_sol %}
-<!--
-{% capture part_b %}
-Draw a dataflow diagram to represent the function $f(\mlvec{x}) = (\mlvec{c}^\top \mlvec{x})^2$.  Compute $\nabla_{\mlvec{x}} f$ using the dataflow diagram method.  Hint: we're generalizing what is on the HMC page a bit.  You can have vector quantities at the leaf nodes in the graph (leaf nodes are those that have no incoming arrows) and all the ideas will carry over except you will have a gradient instead of a partial derivative on the edge.  If you wanted to have a vector quantity at a non-leaf node, that would require modifying the technique on the HMC page a bit (we won't cover that in this class).
+{% include problem.html problem=problem solution=solution %}
+
+
+{% capture problem %}
+Come up with your own multivariable function and use a dataflow diagram to compute the partial derivative of the function with respect to each of its inputs.  If doable, sanity check your result by computing derivatives by hand. 
 {% endcapture %}
-{% capture part_b_sol %}
-<p>
-\begin{align}
-\nabla_{\mlvec{x}} f = 2(\mlvec{c}^\top \mlvec{x}) \mlvec{c}
-\end{align}
-</p
+{% capture solution %}
+This is person dependent, so no solution here.  If you have a nice sample, let us know.
 {% endcapture %}
-{% include problem_part.html label="B" subpart=part_b solution=part_b_sol %}-->
+{% include problem.html problem=problem solution=solution %}
+
+{% capture problem %}
+Suppose we have a logistic regression model with two inputs $x_1$ and $x_2$ (each of these are just scalars now) and binary outputs $y$.  Given the data flow diagram for computing the log loss of this logistic regression model, compute the partial derivative of the log loss with respect to each of its weights $w_1$ and $w_2$.
+
+```mermaid!
+flowchart BT
+  x1["$$x_1$$"]
+  x2["$$x_2$$"]
+  w1["$$w_1$$"]
+  w2["$$w_2$$"]
+  h3["$$h_3 = h_1 + h_2$$"]
+  h1["$$h_1 = x_1 w_1$$"]
+  h2["$$h_2 = x_2 w_2$$"]
+  h4["$$h_4 = \sigma(h_3)$$"]
+  h5["$$\ell = -y\,\ln(h_4) - (1-y)\,\ln(1-h_4)~~~~$$"]
+  x1 --> h1
+  w1 --> h1
+  x2 --> h2
+  w2 --> h2
+  h1 --> h3
+  h2 --> h3
+  h3 --> h4
+  h4 --> h5
+  y --> h5
+```
 
 {% endcapture %}
-{% include problem_with_parts.html problem=problem %}
+{% capture solution %}
+<p>
+\begin{align}
+\frac{\partial{\ell}}{w_1} &= \frac{\partial h_1}{\partial w_1} \frac{\partial h_3}{\partial h_1}  \frac{\partial h_4}{\partial h_3} \frac{\partial \ell}{\partial h_4} \\
+&= x_1 \times 1 \times \sigma(h_3) (1-\sigma(h_3)) \times \Bigg(-y \frac{1}{\sigma(h_3)} - (1-y)\frac{1}{1-\sigma(h_3)}\Bigg) \\
+&= - y x_1 \sigma(h_3) (1-\sigma(h_3)) \frac{1}{\sigma(h_3)} - (1-y) x_1 \sigma(h_3) (1-\sigma(h_3)) \frac{1}{1-\sigma(h_3)} \\
+&= -y x_1 (1-\sigma(h_3)) - (1-y) x_1  \sigma(h_3) \\
+&= - x_1 (y-\sigma(h_3))~~~~~\mbox{If you plug in $y=0$ and $y=1$ you will see this is true} \\
+&= - x_1 (y-\sigma(w_1 x_1 + w_2 x_2))
+\end{align}
+</p>
+{% endcapture %}
+
+
+{% include problem.html problem=problem solution=solution %}
