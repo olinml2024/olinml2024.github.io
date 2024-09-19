@@ -274,6 +274,12 @@ function HideShowElement(divID) {
 .toggle-button.hide-solution {
     background-color: #dc3545; /* Red background for hide button */
 }
+
+.mermaid {
+     width:50%;
+     text-align: center;
+}
+
 </style>
 
 <script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.7/tex-mml-chtml.js"></script>
@@ -362,9 +368,9 @@ $
 	      
                 <ul class="toc__menu">
   <li><a href="#learning-objectives">Learning Objectives</a></li>
-  <li><a href="#logistic-regression-top-down">Logistic Regression (top-down)</a></li>
+  <li><a href="#the-logistic-regression-model">The Logistic Regression Model</a></li>
   <li><a href="#deriving-the-logistic-regression-learning-rule">Deriving the Logistic Regression Learning Rule</a></li>
-  <li><a href="#machine-learning-for-loans-and-mortgages">Machine learning for loans and mortgages</a></li>
+  <li><a href="#dataflow-diagrams-and-foundations-of-micrograd">Dataflow Diagrams and Foundations of Micrograd</a></li>
 </ul>
 	      	
             </nav>
@@ -394,7 +400,7 @@ $
 <ul>
   <li>Learn about the logistic regression algorithm.</li>
   <li>Learn about gradient descent for optimization.</li>
-  <li>Contemplate an application of machine learning for home loans.</li>
+  <li>Build the foundational undertanding we will need to implement the micrograd algorithm.</li>
 </ul>
 
 	</div>
@@ -402,22 +408,15 @@ $
 
 <p>This builds on:</p>
 <ul>
-  <li>Supervised learning problem framing.</li>
+  <li>
+<a href="/assignments/assignment03/assignment03?showAllSolutions=true#supervised-learning-problem-setup">Supervised learning problem framing</a>.</li>
   <li>Calculating gradients.</li>
-  <li>Log loss.</li>
+  <li><a href="/assignments/assignment04/assignment04?showAllSolutions=true#probability-and-the-log-loss">Log loss</a></li>
 </ul>
 
-<h1 id="logistic-regression-top-down">Logistic Regression (top-down)</h1>
+<h1 id="the-logistic-regression-model">The Logistic Regression Model</h1>
 
-<p>In the last part of the <a href="https://colab.research.google.com/drive/1AOUbSKhEvoSTzu_UNm-kq1SBrmmXPHVl?usp=sharing">notebook that you started in class</a>, you saw a quick implementation of logistic regression to classify if a person was looking to the left or to the right.</p>
-
-<p>In this assignment we will formalize the binary classification problem and dig the theory behind <code class="language-plaintext highlighter-rouge">logistic regression</code>.  You will also see that the logistic regression algorithm is a very natural extension of linear regression.  Our plan for getting there is going to be pretty similar to what we did for linear regression.</p>
-
-<ul>
-  <li>Build some mathematical foundations</li>
-  <li>Introduce logistic regression from a top-down perspective</li>
-  <li>Learn about logistic regression from a bottom-up perspective</li>
-</ul>
+<p>In class we went over a simple application of logistic regression to the Titanic Dataset.  So you have it handy, here is a link to the <a href="https://colab.research.google.com/drive/1xpGvY-kg7-HOC7_To0nMZIOOHQ_Yxd89?usp=sharing">notebook from class</a>.  You don’t have to do anything with this notebook for this assignment, but we wanted you to have it handy.</p>
 
 <div class="tip" style="
     border-left: 6px solid #000000;
@@ -450,13 +449,13 @@ $
   <li>
 <strong>squared loss:</strong> For squared loss we compute the difference between the outcome and $p$ and square it to arrive at the loss.  For example, if $y = 1$ and the model predicts $p = 0.51$, the loss is $(1 - 0.51)^2$.  If instead $y = 0$, the loss is $(0 - 0.51)^2$.</li>
   <li>
-<strong>log loss:</strong> The log loss also penalizes based on the difference between the outcome and $p$, using the formula below.
-$$
-\begin{align}
- logloss = -\frac{1}{N}\sum_{i=1}^n ( (y_i) \ln (p_i) + (1-y_i) \ln (1 - p_i) )\label{eq:loglosseq}
-\end{align}
-$$</li>
+<strong>log loss:</strong> The log loss also penalizes based on the difference between the outcome, $y_i$, and the predicted probabilty, $p_i$, using the formula below.</li>
 </ol>
+<div id="eqlogloss">
+\begin{align}
+ \mbox{logloss} = -\frac{1}{N}\sum_{i=1}^n \Big( y_i \ln (p_i) + (1-y_i) \ln (1 - p_i) \Big )\tag{1}
+\end{align}
+</div>
 
 <p>Since $y_i$ is always 0 or 1, we will essentially switch between the two chunks of this equation based on the true value of $y_i$. As the predicted probability, $p_i$ (which is constrained between 0 an 1) gets farther from $y_i$, the log-loss value increases.</p>
 
@@ -466,7 +465,7 @@ $$</li>
 
 <p>Now that you have refreshed on how probabilities can be used as a way of quantifying confidence in predictions, you are ready to learn about the logistic regression algorithm.</p>
 
-<p>As always, we assume we are given a training set of inputs and outputs.  As in linear regression we will assume that each of our inputs is a $d$-dimensional vector $\mathbf{x_i}$ and since we are dealing with binary classification, the outputs, $y_i$, will be binary numbers (indicating whether the input belongs to class 0 or 1).  Our hypothesis functions, $\hat{f}$, output the probability that a given input has an output of 1.  What’s cool is that we can borrow a lot of what we did in the last couple of assignments when we learned about linear regression.  In fact, all we’re going to do in order to make sure that the output of $\hat{f}$ is between 0 and 1 is pass $\mlvec{w}^\top \mlvec{x}$ through a function that ``squashes’’ its input so that it outputs a value between 0 and 1.  This idea is shown graphically in this <a href="#figure">Figure </a>.</p>
+<p>As always, we assume we are given a training set of inputs and outputs.  As in linear regression we will assume that each of our inputs is a $d$-dimensional vector $\mathbf{x_i}$ and since we are dealing with binary classification, the outputs, $y_i$, will be binary numbers (indicating whether the input belongs to class 0 or 1).  Our hypothesis functions, $\hat{f}$, output the probability that a given input has an output of 1.  What’s cool is that we can borrow a lot of what we did in the last couple of assignments when we learned about linear regression.  In fact, all we’re going to do in order to make sure that the output of $\hat{f}$ is between 0 and 1 is pass $\mlvec{w}^\top \mlvec{x}$ through a function that “squashes” its input so that it outputs a value between 0 and 1.  This idea is shown graphically in thie following figure.</p>
 
 <figure id="figure1">
     <div style="text-align: center;">
@@ -480,26 +479,18 @@ $$</li>
 
 <p>To make this intuition concrete, we define each $\hat{f}$ as having the following form (note: this equation looks daunting. We have some tips for interpreting it below).</p>
 
-<p>$$
+<div id="logistichypothesis">
 \begin{align}
-\hat{f}(\mathbf{x}) &amp;= \mbox{probability that output, $y$, is 1} \nonumber  \\<br>
-&amp;=\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}} \label{eq:logistichypothesis}
+\hat{f}(\mathbf{x}) &amp;= \mbox{probability that output, $y$, is 1} \nonumber  \\  
+&amp;=\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}} \tag{2}
 \end{align}
-$$</p>
+</div>
 
 <p>Here are a few things to notice about this equation:</p>
 <ol>
   <li>The weight vector that we saw in linear regression, $\mlvec{w}$, has made a comeback. We are using the dot product between $\mlvec{x}$ and $\mlvec{w}$ (which creates a weighted sum of the $x_i$’s), just as we did in linear regression!</li>
-  <li>As indicated in <a href="#figure1">Figure 1</a>, the dot product $\mlvec{w}^\top \mlvec{x}$ has been passed through a squashing function known as the <a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid function</a>.  The graph of $\sigma(u) = \frac{1}{1+e^{-u}}$ is shown in <a href="#figure">Figure </a>.  $\sigma( \mlvec{w}^\top \mlvec{x})$ is exactly what we have in $$ \hat{f}(\mathbf{x}) =\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}}$$</li>
+  <li>As indicated in <a href="#figure1">Figure 1</a>, the dot product $\mlvec{w}^\top \mlvec{x}$ has been passed through a squashing function known as the <a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoid function</a>.  The graph of $\sigma(u) = \frac{1}{1+e^{-u}}$ is shown in <a href="#figure2">Figure 2</a>.  $\sigma( \mlvec{w}^\top \mlvec{x})$ is exactly what we have in $$ \hat{f}(\mathbf{x}) =\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}}$$</li>
 </ol>
-
-<p>Equation~\ref{eq:logistichypothesis}.</p>
-<p>
-\begin{align}
-\hat{f}(\mathbf{x}) &amp;= \mbox{probability that output, $y$, is 1} \nonumber \\
-&amp;=\frac{1}{1 + e^{-\mlvec{w}^\top \mathbf{x}}}
-\end{align}
-</p>
 
 <figure id="figure2">
     <div style="text-align: center;">
@@ -513,12 +504,12 @@ $$</p>
 
 <h1 id="deriving-the-logistic-regression-learning-rule">Deriving the Logistic Regression Learning Rule</h1>
 
-<p>Now we will formalize the logistic regression problem and derive a learning rule to solve it (i.e., compute the optimal weights). The formalization of logistic regression will combine Equation~\ref{eq:logistichypothesis} with the selection of $\ell$ to be log loss (Equation~\ref{eq:loglosseq}).  This choice of $\ell$ results in the following objective function.</p>
+<p>Now we will formalize the logistic regression problem and derive a learning rule to solve it (i.e., compute the optimal weights). The formalization of logistic regression will combine <a href="#logistichypothesis">Equation 2</a> with the selection of $\ell$ to be log loss (<a href="#eqlogloss">Equation 1</a>).  This choice of $\ell$ results in the following objective function (this is a straightforward substitution.  there’s nothing too tricky going on here).</p>
 
 <p>
 \begin{align}
-\mlvec{w}^\star &amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \left ( - y_i \ln \sigma(\mlvec{w}^\top \mlvec{x_i}) - (1-y_i) \ln (1 - \sigma(\mlvec{w}^\top \mlvec{x_i}) ) \right)  \\  
-&amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \left (  - y_i \ln \left ( \frac{1}{1+e^{-\mlvec{w}^\top \mlvec{x_i}}} \right) - (1-y_i) \ln  \left (1 - \frac{1}{1+e^{-\mlvec{w}^\top \mlvec{x_i}}} \right ) \right) &amp;\mbox{expanded out if you prefer this form} \label{eq:objective}
+\mlvec{w}^\star &amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \Big ( - y_i \ln \sigma(\mlvec{w}^\top \mlvec{x_i}) - (1-y_i) \ln (1 - \sigma(\mlvec{w}^\top \mlvec{x_i}) ) \Big)  \\  
+&amp;= \argmin_{\mlvec{w}} \sum_{i=1}^n \Bigg (  - y_i \ln \left ( \frac{1}{1+e^{-\mlvec{w}^\top \mlvec{x_i}}} \right) - (1-y_i) \ln  \left (1 - \frac{1}{1+e^{-\mlvec{w}^\top \mlvec{x_i}}} \right ) \Bigg) &amp;\mbox{expanded out if you prefer this form} \label{eq:objective}
 \end{align}
 </p>
 
@@ -636,7 +627,7 @@ $$</p>
 </div>
 
 <h2 id="chain-rule-for-gradients">Chain Rule for Gradients</h2>
-<p>We now know how to take derivatives of each of the major pieces of Equation~\ref{eq:objective}.  What we need is a way to put these derivatives together.  You probably remember that in the case of single variable calculus you have just such a tool.  This tool is known as the chain rule.  The chain rule tells us how to compute the derivative of the composition of two single variable functions $f$ and $g$.</p>
+<p>We now know how to take derivatives of each of the major pieces of the logistic regression loss function.  What we need is a way to put these derivatives together.  You probably remember that in the case of single variable calculus you have just such a tool.  This tool is known as the chain rule.  The chain rule tells us how to compute the derivative of the composition of two single variable functions $f$ and $g$.</p>
 
 <p>
 \begin{align}
@@ -734,11 +725,11 @@ $$</p>
 
 <p>Compute the gradient of this expression, which comes from the beginning of the section on deriving the logistic regression learning rule:</p>
 
-<p>$$
+<div>
 \begin{align}
  \sum_{i=1}^n -y_i \ln \sigma( \mlvec{w}^\top \mlvec{x_i}) - (1-y_i) \ln  \left (1 - \sigma( \mlvec{w}^\top \mlvec{x_i}) \right ) 
 \end{align}
-$$</p>
+</div>
 
 <p>You can either use the chain rule and the identities you learned about sigmoid, or expand everything out and work from that.</p>
 
@@ -977,9 +968,224 @@ $$</p>
 	</div>
 </div>
 
-<h1 id="machine-learning-for-loans-and-mortgages">Machine learning for loans and mortgages</h1>
+<!-- # Machine learning for loans and mortgages
 
-<p>In this course, we’ll be exploring machine learning from three different perspectives: the theory, the implementation, and the context, impact, and ethics.</p>
+In this course, we'll be exploring machine learning from three different perspectives: the theory, the implementation, and the context, impact, and ethics.  -->
+
+<h1 id="dataflow-diagrams-and-foundations-of-micrograd">Dataflow Diagrams and Foundations of Micrograd</h1>
+
+<p>Now that we have derived a learning rule for logistic regression, we are going to look at another way of representing multivariable functions and computing their partial derivatives.  This way of thinking about multivariable functions may seem a little strange at first, but this notion is going to lay the foundation for being able to derive learning rules for a whole range of machine learning models in an automated fashion!!</p>
+
+<p>First, let’s look at a multivariable function defined by the equations below.  We have a single scalar input variable $t$ that affects both input arguments of $f$ (through $x(t)$ and $y(t)$).</p>
+
+<p>
+\begin{align}
+x &amp;= x(t) \\
+y &amp;= y(t) \\
+f &amp;= f(x, y) \\
+\end{align}
+</p>
+
+<p>Let’s represent this system of equations using a data flow diagram (<a href="https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)/14%3A_Differentiation_of_Functions_of_Several_Variables/14.05%3A_The_Chain_Rule_for_Multivariable_Functions">in some resources</a> this is called a tree diagram, in which case it is drawn a bit differently).</p>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiZmxvd2NoYXJ0IEJUXG5pZDFbXCIkJGYgPSBmKHgseSl-fn5-JCRcIl1cbmlkMltcIiQkeCA9IHgodCl-fiQkXCJdXG5pZDNbXCIkJHkgPSB5KHQpfn4kJFwiXVxuaWQyIC0tPiBpZDFcbmlkMyAtLT4gaWQxXG50IC0tPiBpZDJcbnQgLS0-IGlkMyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19"></p>
+
+<p>This diagram represents how data moves from the inputs of a function (in this case $x$ and $y$) to its output (in this case $f$).  If we were to take a chart like this and figure out how to evaluate a function given some inputs, you’d have to make sure you always evaluate the inputs to a block before you try to evaluate the block itself.  For instance, I wouldn’t be able to evaluate the block $f = f(x,y)$ until I’ve evaluated the blocks $x = x(t)$ and $y=y(t)$.  To evaluate a block, you can imagine that the output of a block flows along the arrow into the downstream block, which then processes that input further until it arrives at the output.</p>
+
+<p>Let’s say we want to calculate $\frac{\partial f}{\partial t}$.  We’ve learned about the chain rule for single variable functions, but this case is a bit different.  It turns out that, in this case, we can compute the partial derivative we seek in the following way.</p>
+
+<p>\begin{align}
+\frac{\partial f}{\partial t} &amp;= \frac{\partial f}{\partial x} \frac{\partial x}{\partial t} +  \frac{\partial f}{\partial y} \frac{\partial y}{\partial t}
+\end{align}</p>
+
+<p>What is this formula saying???  Well it looks awfully like the single variable chain rule in the sense that we are multiplying derivatives together.  The only difference is that we are having to account for the multiple pathways from the input (independent variable) $t$ to the output (dependent variable) $f$.</p>
+
+<p>Let’s see what would happen if we modified our data flow diagram to compute these partial derivatives.</p>
+
+<p>
+\begin{align}
+x &amp;= x(t) \\
+y &amp;= y(t) \\
+f &amp;= f(x, y) \\
+\frac{\partial{f(x, y)}}{\partial t} &amp;= \frac{\partial{x}}{\partial{t}} \frac{\partial f}{\partial x} + \frac{\partial{y}}{\partial{t}} \frac{\partial f}{\partial y}
+\end{align}
+</p>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<p>This Harvey Mudd College calculus tutorials explain the concept of the chain rule using dataflow diagrams.  You can view this at <a href="https://math.hmc.edu/calculus/hmc-mathematics-calculus-online-tutorials/multivariable-calculus/multi-variable-chain-rule/">HMC Multivariable Chain Rule Page</a>.</p>
+
+<p>There is another nice writeup on this at <a href="https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)/14%3A_Differentiation_of_Functions_of_Several_Variables/14.05%3A_The_Chain_Rule_for_Multivariable_Functions">Math LibreTexts</a> (Note: that this writeup uses a slightly different graph structure where inputs that branch to multiple downstream functions are replicated)</p>
+
+	</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 4</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Draw a dataflow diagram to represent the function $f(x,y,z) = \cos(x^2 y) + x^2 \sqrt{z}$.  Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}$ using the dataflow diagram method.</p>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-4")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-4" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiZmxvd2NoYXJ0IEJUXG5pZDFbXCIkJGYgPSBoXzMgKyBoXzV-fiQkXCJdXG5pZDJbXCIkJGhfMyA9IFxcY29zKGhfMil-fiQkXCJdXG5pZDNbXCIkJGhfNSA9IGhfMSBcXHRpbWVzIGhfNH5-JCRcIl1cbmlkNFtcIiQkaF8xID0geF4yJCRcIl1cbmlkNVtcIiQkaF80ID0gXFxzcXJ0e3p9fn4kJFwiXVxuaWQ2W1wiJCRoXzIgPSBoXzEgXFx0aW1lcyB5fn4kJFwiXVxuaWQyIC0tPiBpZDFcbmlkMyAtLT4gaWQxXG5pZDQgLS0-IGlkM1xuaWQ2IC0tPiBpZDJcbmlkNSAtLT4gaWQzXG5pZDQgLS0-IGlkNlxueCAtLT4gaWQ0XG55IC0tPiBpZDZcbnogLS0-IGlkNSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19"></p>
+
+<p>
+\begin{align}
+\frac{\partial f}{\partial x}&amp;= \frac{\partial h_1}{\partial x} \frac{\partial h_2}{\partial h_1}  \frac{\partial h_3}{\partial h_2} \frac{\partial h_f}{\partial h_3} +  \frac{\partial h_1}{\partial x} \frac{\partial h_5}{\partial h_1} \frac{\partial f}{\partial h_5} \nonumber \\
+&amp;= 2x \times y \times -\sin(h_2) \times 1 + 2x \times h_4  \times 1 \\
+&amp;= -2xy \sin(x^2 y) + 2x \sqrt{z} \\
+\frac{\partial f}{\partial y} &amp;= \frac{\partial h_2}{\partial y} \frac{\partial h_3}{\partial h_2} \frac{\partial f}{\partial h_3}\nonumber \\
+&amp;= h_1 \times -\sin(h_2) \times 1 \\
+&amp;= -x^2 \sin(x^2 y) \\ 
+\frac{\partial f}{\partial z} &amp;= \frac{\partial h_4}{\partial z} \frac{\partial h_5}{\partial h_4} \frac{\partial f}{\partial h_5} \\
+&amp;= -\frac{1}{2} \frac{1}{\sqrt{z}} \times h_1 \times 1 \\
+&amp;= -\frac{1}{2} \frac{x^2}{\sqrt{z}}
+\end{align}
+</p>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 5</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Come up with your own multivariable function and use a dataflow diagram to compute the partial derivative of the function with respect to each of its inputs.  If doable, sanity check your result by computing derivatives by hand.</p>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-5")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-5" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>This is person dependent, so no solution here.  If you have a nice sample, let us know.</p>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 6</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Suppose we have a logistic regression model with two inputs $x_1$ and $x_2$ (each of these are just scalars now) and binary outputs $y$.  Given the data flow diagram for computing the log loss of this logistic regression model, compute the partial derivative of the log loss with respect to each of its weights $w_1$ and $w_2$.</p>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiZmxvd2NoYXJ0IEJUXG54MVtcIiQkeF8xJCRcIl1cbngyW1wiJCR4XzIkJFwiXVxudzFbXCIkJHdfMSQkXCJdXG53MltcIiQkd18yJCRcIl1cbmgzW1wiJCRoXzMgPSBoXzEgKyBoXzIkJFwiXVxuaDFbXCIkJGhfMSA9IHhfMSB3XzEkJFwiXVxuaDJbXCIkJGhfMiA9IHhfMiB3XzIkJFwiXVxuaDRbXCIkJGhfNCA9IFxcc2lnbWEoaF8zKSQkXCJdXG5oNVtcIiQkXFxlbGwgPSAteVxcLFxcbG4oaF80KSAtICgxLXkpXFwsXFxsbigxLWhfNCl-fn5-JCRcIl1cbngxIC0tPiBoMVxudzEgLS0-IGgxXG54MiAtLT4gaDJcbncyIC0tPiBoMlxuaDEgLS0-IGgzXG5oMiAtLT4gaDNcbmgzIC0tPiBoNFxuaDQgLS0-IGg1XG55IC0tPiBoNSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19"></p>
+
+
+
+    <button hidden="true" onclick='HideShowElement("solution-6")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-6" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>
+\begin{align}
+\frac{\partial{\ell}}{w_1} &amp;= \frac{\partial h_1}{\partial w_1} \frac{\partial h_3}{\partial h_1}  \frac{\partial h_4}{\partial h_3} \frac{\partial \ell}{\partial h_4} \\
+&amp;= x_1 \times 1 \times \sigma(h_3) (1-\sigma(h_3)) \times \Bigg(-y \frac{1}{\sigma(h_3)} - (1-y)\frac{1}{1-\sigma(h_3)}\Bigg) \\
+&amp;= - y x_1 \sigma(h_3) (1-\sigma(h_3)) \frac{1}{\sigma(h_3)} - (1-y) x_1 \sigma(h_3) (1-\sigma(h_3)) \frac{1}{1-\sigma(h_3)} \\
+&amp;= -y x_1 (1-\sigma(h_3)) - (1-y) x_1  \sigma(h_3) \\
+&amp;= - x_1 (y-\sigma(h_3))~~~~~\mbox{If you plug in $y=0$ and $y=1$ you will see this is true} \\
+&amp;= - x_1 (y-\sigma(w_1 x_1 + w_2 x_2))
+\end{align}
+</p>
+
+     </div>
+</div>
+</div>
+</div>
+
 
         
       </section>
