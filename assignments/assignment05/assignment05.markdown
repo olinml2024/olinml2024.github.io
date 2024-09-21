@@ -434,8 +434,8 @@ flowchart BT
 &= h_1 \times -\sin(h_2) \times 1 \\
 &= -x^2 \sin(x^2 y) \\ 
 \frac{\partial f}{\partial z} &= \frac{\partial h_4}{\partial z} \frac{\partial h_5}{\partial h_4} \frac{\partial f}{\partial h_5} \\
-&= -\frac{1}{2} \frac{1}{\sqrt{z}} \times h_1 \times 1 \\
-&= -\frac{1}{2} \frac{x^2}{\sqrt{z}}
+&= \frac{1}{2} \frac{1}{\sqrt{z}} \times h_1 \times 1 \\
+&= \frac{1}{2} \frac{x^2}{\sqrt{z}}
 \end{align}
 </p>
 {% endcapture %}
