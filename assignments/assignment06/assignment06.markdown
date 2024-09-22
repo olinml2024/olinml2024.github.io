@@ -123,10 +123,10 @@ Optional, read the [Northpointe rebuttal](https://drive.google.com/file/d/1SSbot
 [//]: <> (30 minutes)
 
 
-\item Please summarize what you see as the key parts of the ProPublica and Northpointe cases. You can use words, diagrams, concept maps, or another method that works for you.
-\item Reflect on what you've just read.  We think the themes brought up above will provide good fodder for your response, but please feel free to take it in any direction.  Aim for around two paragraphs in your response.
-\ees
-\end{exercise}
+Please summarize what you see as the key parts of the ProPublica and Northpointe cases. You can use words, diagrams, concept maps, or another method that works for you.
+
+Reflect on what you've just read.  We think the themes brought up above will provide good fodder for your response, but please feel free to take it in any direction.  Aim for around two paragraphs in your response.
+
 
 
 
