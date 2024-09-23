@@ -134,9 +134,16 @@ Reflect on what you've just read.  We think the themes brought up above will pro
 
 # Quality Assessed Assignment (QAA): Model evaluation and basic concepts and terms in ML
 
+
+**Submit each of these question in the QAA: Model evaluation & basic concepts and terms in ML assignment**
+
 ## QAA Part 1: Develop a testing and evaluation plan
 
-You and your team have developed a system to help mushroom foragers identify various species of mushrooms.  What is your testing and evaluation plan for ensuring the system is ready for release? Your testing plan should include specific metrics, plans for data collection, and how would use this data to validate your model.
+You and your team have developed a system to help mushroom foragers identify various species of mushrooms.  What is your testing and evaluation plan for ensuring the system is ready for release? Your testing plan should include specific metrics, plans for data collection, and how would use this data to validate your model. (As a rough estimate, this will probably be 0.5 to 1 page, depending on your writing style.)
+
+## QAA Part 2: 
+
+
 
 
 
