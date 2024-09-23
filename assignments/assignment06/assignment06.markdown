@@ -8,14 +8,15 @@ layout: problemset
 {% capture content %}
 # Everyone should submit all parts of this assignment.
 This assignment contains two major components, each of which has parts that you must submit (regardless of which grading component you chose).
+You can do them in any order.
 
-**Part 1: Model evaluation and basic concepts and terms in ML**
-This is the first of the "Quality Assessed Assignments" (see syllabus). It will be assessed for correctness. 
-
-#TODO: NEED A SOLUTIONS / CHATGPT / WORK ALONE POLICY EXPLICITLY STATED HERE.
-
-**Part 2: Preparation for COMPAS recidivism discussion**
+**Part 1: Preparation for COMPAS recidivism discussion**
 This falls under the "Context & Ethics / Discussion Prep". This will include questions about the assigned readings. The topic we are venturing into is very complex. We ask that you spend real time reading and considering these topics. It is not appropriate to just glance at this and ask ChatGPT for a summary. You are welcome to work with others to read and try to make sense of this together.
+
+**Part 2: Model evaluation and basic concepts and terms in ML**
+This is the first of the "Quality Assessed Assignments" (see syllabus). It will be assessed for correctness. You can find this on Canvas at the end of Module 1. You should work on this independently.
+
+Note that the late penalty for this course is quiet lenient. Please prioritize completing Part 1 on time in order to foster meaningful conversation within the entire class. 
 
 {% endcapture %}
 {% include notice.html content=content %}
@@ -24,30 +25,14 @@ This falls under the "Context & Ethics / Discussion Prep". This will include que
 # Learning Objectives
 
 {% capture content %}
-* 
+* Reflect on potential biases in applications of machine learning.
+* Grapple with complex and difficult decisions that are made as part of the structures of our society.
+* Build a sense of your own understanding of basic concepts of machine learning and model evaluation.
 
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
 
-# Monday class
-* Go over simplification of inserting y=1 and y=0
-* More on logistic regression?? Could do autograd?
-* Conditional probabilities?? (don't actually need this)
-* Fairness metrics??
-
-
-# Potential parts of this assignment
-* Disproportionate policing preamble (context & ethics)
-* ProPublica COMPAS reading (context & ethics)
-* Calculation and graphs of recidivism data (https://predictivemodellingearly.github.io/handout/index.html) (metric assignment)
-* Analysis of another situation - how to assess (metric assignment)
-
-# Thursday class
-* Compas discussion?
-
-
-# Actually start assignment here
 
 # A refresher on key metrics and a primer on subgroup effects.
 
@@ -58,7 +43,6 @@ Read through [this website from Google](https://research.google.com/bigpicture/a
 
 {% capture content %}
 We are going to think about race and criminal justice in the United States. Before we dive into this, we want to acknowledge:
-
 
 * This is a complex and intricate issue that involves policy, society, technology, individual beliefs/values, and history. This topic directly (but not equally) impacts the lives of many people.
 * We all have our own lenses through which we view the world.
@@ -75,10 +59,13 @@ A police officer can place a person under arrest. However, an arrest does not ne
 Legally, a person is considered guilty if they are convicted in court. Practically, innocent people are sometimes convicted. People with a lot of money can hire many lawyers who will work many days, weeks, or years, fighting the case. People without funds for a lawyer will be assigned a public defender. Public defenders are often overwhelmed, and might have just a minute to look over the details of a case, right before trail.
 
 [//]: <> [(20 minutes)] 
-
+{% capture problem %}
 Read the [Report of The Sentencing Project to the United Nations Special Rapporteur on Contemporary Forms of Racism, Racial Discrimination, Xenophobia, and Related Intolerance](https://www.sentencingproject.org/publications/un-report-on-racial-disparities/). This article is intended to provide some background information on criminal justice and race in the US. 
 
+In Canvas, share at least 3 things that you learned from this article. Or if you knew this all, share 3 relevant pieces of information from another source.
+{% endcapture %}
 
+{% include problem.html problem=problem %}
 
 We'll be spending time talking about the Correctional Offender Management Profiling for Alternative Sanctions (COMPAS) algorithm, produced by the company Northpointe, Inc. COMPAS was intended to assess the risk of recidivism. This is a well-known algorithm in machine learning communities. 
 
@@ -91,83 +78,36 @@ Below we will provide you a list of readings on this topic. As you read, please 
 
 
 
-First, read the [ProPublica article](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing).
+[//]: <> (100 minutes)
+{% capture problem %}
 
-Next, please read the technical details of the ProPublica analysis.
+In the articles below, we will read about an assessment of the use of the COMPAS metric. The COMPAS metric  We would like to be clear about when the COMPAS metric is applied. It is applied after someone is arrested, and the prediction COMPAS gives is if that person will be arrested again. A person who was arrested twice could be legally and actually innocent. It is important to be clear in our language that these are arrested people, and not convicted criminals.
 
-We would like to be clear about when the COMPAS metric is applied. It is applied after someone is arrested, and the prediction COMPAS gives is if that person will be arrested again. A person who was arrested twice could be legally and actually innocent. It is important to be clear in our language that these are arrested people, and not convicted criminals. The term recidivism, which is generally defined as a criminal who commits a second crime, is used in the readings. ProPublica actually redefines recidivism as ``a criminal offense that resulted in a jail booking and took place after the crime for which the person was COMPAS scored.'' Here, ProPublica conflates an arrest for a crime with a conviction for that crime. Note that a jail booking is pre-trial, and different than prison, which is post-trial and conviction. This language is also used by the Northpointe rebuttal. Carrie would argue that since these are not people who have been yet convicted of crimes, they are not necessarily recidivists, and the language in the readings should be corrected.
+We would like to note one inconsistency in language: The term recidivism, which is generally defined as a criminal who commits a second crime, is used in the readings. ProPublica actually redefines recidivism as "a criminal offense that resulted in a jail booking and took place after the crime for which the person was COMPAS scored." Here, ProPublica conflates an arrest for a crime with a conviction for that crime. Note that a jail booking is pre-trial, and different than prison, which is post-trial and conviction. This language is also used by the Northpointe rebuttal. We will use this recidivism language to match the data labels, but it is important to note that this should actually be referred to as re-arrests, which we will try to use in conversation.
 
-Please read [How We Analyzed the COMPAS Recidivism Algorithm](https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm).
+Please read: 
+1. the [ProPublica article](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing).
+2. the technical details of the ProPublica analysis: [How We Analyzed the COMPAS Recidivism Algorithm](https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm)
+3. Optional: read the [Northpointe rebuttal](https://drive.google.com/file/d/1SSbotzlsVkj4L2VhPC7R_XH0VBqOQsnT/view?usp=sharing). This is a long reading. It has a lot of jargon, and some acronyms are not defined. We strongly suggest limiting yourself to 60 minutes for this reading (perhaps read the conclusion early on). You may consider working with a classmate on this reading, so you can both discuss what you think the author is saying. We're including this whole reading here because we would like you to engage with the real-world material.
+
+On Canvas: 
+Please summarize what you see as the key parts of the ProPublica case. You can use words, diagrams, concept maps, or another method that works for you. If you read the Northpointe rebuttal, you can include this side too. 
+
+{% endcapture %}
+{% include problem.html problem=problem %}
 
 
-Optional, read the [Northpointe rebuttal](https://drive.google.com/file/d/1SSbotzlsVkj4L2VhPC7R_XH0VBqOQsnT/view?usp=sharing). This is a long reading. It has a lot of jargon, and some acronyms are not defined. We strongly suggest limiting yourself to 60 minutes for this reading (perhaps read the conclusion early on). You may consider working with a classmate on this reading, so you can both discuss what you think the author is saying. We're including this whole reading here because we would like you to engage with the real-world material.
-
-
-[//]: <> (30 minutes)
-
-
-Please summarize what you see as the key parts of the ProPublica and Northpointe cases. You can use words, diagrams, concept maps, or another method that works for you.
-
+{% capture problem %}
+On Canvas:
 Reflect on what you've just read.  We think the themes brought up above will provide good fodder for your response, but please feel free to take it in any direction.  Aim for around two paragraphs in your response.
 
+{% endcapture %}
 
-
-
-
-
-# Quality Assessed Assignment (QAA): Model evaluation and basic concepts and terms in ML
-
-
-**Submit each of these question in the QAA: Model evaluation & basic concepts and terms in ML assignment**
-
-## QAA Part 1: Develop a testing and evaluation plan
-
-You and your team have developed a system to help mushroom foragers identify various species of mushrooms.  What is your testing and evaluation plan for ensuring the system is ready for release? Your testing plan should include specific metrics, plans for data collection, and how would use this data to validate your model. (As a rough estimate, this will probably be 0.5 to 1 page, depending on your writing style.)
-
-## QAA Part 2: COMPAS dataset evaluation
-
-### Auditing the COMPAS score
-Assignment Source (don't use this to complete your work, citing for transparency): Claire S. Lee, Jeremy Du, and Michael Guerzhoy. 2020. Auditing the COMPAS Recidivism Risk Assessment Tool: Predictive Modelling and Algorithmic Fairness in CS1. In Proceedings of the 2020 ACM Conference on Innovation and Technology in Computer Science Education (ITiCSE '20). Association for Computing Machinery, New York, NY, USA, 535–536. https://doi.org/10.1145/3341525.3393998
-
-ProPublica obtained the public record on over 10,000 criminal defendants in Broward County, Florida. They also computed a variable that indicates whether each person was arrested within two years of being assessed. 
-
-The data is available [here](https://github.com/propublica/compas-analysis/raw/master/compas-scores-two-years.csv). Download and read in the data. 
-
-The COMPAS scores you will be analyzing are the "decile scores" in the data frame (the column `decile_score`).
-
-### Part 1: Comparing the scores of black and white defendants
-
-Make two histograms: one with the decile scores for white defendants, and one with the decile scores for black defendants. The histograms should allow the reader to understand how the scores for white defendants and the scores for black defendants differ in a fair comparison.
-
-
-### Part 2: Initial evaluation the COMPAS scores (15 pts)
-
-Suppose that defendants with scores that are greater than or equal to 5 are considered to be "high-risk," and other defendants are considered to be "low-risk."
-
-Compute the false positive rate, the false negative rate, and the correct classification rate for the entire population, for the population of white defendants separately, and for the population of black defendants separately. State the tentative conclusions that you can draw about the fairness of the COMPAS scores.
-
-To obtain the context for the potential informativeness of the scores, compute the overall recidivism rate in the dataset. Comment on the difference between the overall recidivism rate and the correct classification rate using the score. Use `is_recid` as the variable that indicates whether the person recidivated.
-
-### Part 3: Altering the threshold (15 pts)
-
-For the possible thresholds `[0.5, 1, 1.5, 2, 2.5, 3, ..., 9.5]`, compute the FPR, FNR, and correct classification rate (CCR) for the entire population, for white defendants, and for black defendants. Plot the results. You should produce three plots with three curves each (one plot per demographic group), with the thresholds being on the x-axis. 
-
-
-
-
-
-
-
-
-
-
-
-
-
+{% include problem.html problem=problem %}
 
 
 # Acknowledgements 
-Special thanks to Claire S. Lee, Jeremy Du, and Michael Guerzhoy for sharing their version of this assignment. Also thanks to Micah Reid (Olin alum), and Miranda Lao (Olin alum) for their contributions to this assignment as part of a previous ML final project. Also thanks to Carrie Nugent for some of the framing work above.
+Thanks to Micah Reid (Olin alum) and Miranda Lao (Olin alum) for their contributions to this assignment as part of a previous ML final project. Also thanks to Carrie Nugent for some of the framing work above.
 
 
 
