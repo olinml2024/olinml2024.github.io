@@ -151,6 +151,7 @@ flowchart TB
  id5["$$grad_s = grad_q \frac{\partial q}{\partial s} + grad_p \frac{\partial p}{\partial s}~~$$"]
  id6["$$grad_q = grad_f \frac{\partial f}{\partial q}~~$$"]
  id7["$$grad_p = grad_f \frac{\partial f}{\partial p}~~$$"]
+ id8["$$grad_t = grad_x \frac{\partial x}{\partial t} + grad_y \frac{\partial y}{\partial t}~~~~$$"]
  id4 --> id2
  id5 --> id2
  id4 --> id3
@@ -161,8 +162,8 @@ flowchart TB
  id7 --> id5
  id1 --> id6
  id1 --> id7
- id2 --> t
- id3 --> t
+ id2 --> id8
+ id3 --> id8
 ```
 {% endcapture %}
 {% include problem.html problem=problem solution=solution %}
