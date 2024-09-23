@@ -480,9 +480,9 @@ flowchart BT
 <p>
 \begin{align}
 \frac{\partial{\ell}}{w_1} &= \frac{\partial h_1}{\partial w_1} \frac{\partial h_3}{\partial h_1}  \frac{\partial h_4}{\partial h_3} \frac{\partial \ell}{\partial h_4} \\
-&= x_1 \times 1 \times \sigma(h_3) (1-\sigma(h_3)) \times \Bigg(-y \frac{1}{\sigma(h_3)} - (1-y)\frac{1}{1-\sigma(h_3)}\Bigg) \\
-&= - y x_1 \sigma(h_3) (1-\sigma(h_3)) \frac{1}{\sigma(h_3)} - (1-y) x_1 \sigma(h_3) (1-\sigma(h_3)) \frac{1}{1-\sigma(h_3)} \\
-&= -y x_1 (1-\sigma(h_3)) - (1-y) x_1  \sigma(h_3) \\
+&= x_1 \times 1 \times \sigma(h_3) (1-\sigma(h_3)) \times \Bigg(-y \frac{1}{\sigma(h_3)} + (1-y)\frac{1}{1-\sigma(h_3)}\Bigg) \\
+&= - y x_1 \sigma(h_3) (1-\sigma(h_3)) \frac{1}{\sigma(h_3)} + (1-y) x_1 \sigma(h_3) (1-\sigma(h_3)) \frac{1}{1-\sigma(h_3)} \\
+&= -y x_1 (1-\sigma(h_3)) + (1-y) x_1  \sigma(h_3) \\
 &= - x_1 (y-\sigma(h_3))~~~~~\mbox{If you plug in $y=0$ and $y=1$ you will see this is true} \\
 &= - x_1 (y-\sigma(w_1 x_1 + w_2 x_2))
 \end{align}
