@@ -19,7 +19,7 @@ header:
 | 3     | [Metrics and Meeting ML as Optimization](activities/day03)   
 | 4     | [Linear, Ridge, and Logistic Regression & Train-Test Split](activities/day04)                            |
 | 5     | [Logistic Regression Sample Problem, Foundations of Micrograd](activities/day05)                            |
-| 6     | [Starting COMPAS and Building Towards Micrograd](activities/day06)                            |
+| 6     | [Starting COMPAS and Building Towards Autodifferentiation](activities/day06) ([with show solutions button](activities/day06?showSolutions=true))                            |
 
 
 ##  Assignments
