@@ -141,8 +141,33 @@ Reflect on what you've just read.  We think the themes brought up above will pro
 
 You and your team have developed a system to help mushroom foragers identify various species of mushrooms.  What is your testing and evaluation plan for ensuring the system is ready for release? Your testing plan should include specific metrics, plans for data collection, and how would use this data to validate your model. (As a rough estimate, this will probably be 0.5 to 1 page, depending on your writing style.)
 
-## QAA Part 2: 
+## QAA Part 2: COMPAS dataset evaluation
 
+### Auditing the COMPAS score
+Assignment Source (don't use this to complete your work, citing for transparency): Claire S. Lee, Jeremy Du, and Michael Guerzhoy. 2020. Auditing the COMPAS Recidivism Risk Assessment Tool: Predictive Modelling and Algorithmic Fairness in CS1. In Proceedings of the 2020 ACM Conference on Innovation and Technology in Computer Science Education (ITiCSE '20). Association for Computing Machinery, New York, NY, USA, 535–536. https://doi.org/10.1145/3341525.3393998
+
+ProPublica obtained the public record on over 10,000 criminal defendants in Broward County, Florida. They also computed a variable that indicates whether each person was arrested within two years of being assessed. 
+
+The data is available [here](https://github.com/propublica/compas-analysis/raw/master/compas-scores-two-years.csv). Download and read in the data. 
+
+The COMPAS scores you will be analyzing are the "decile scores" in the data frame (the column `decile_score`).
+
+### Part 1: Comparing the scores of black and white defendants
+
+Make two histograms: one with the decile scores for white defendants, and one with the decile scores for black defendants. The histograms should allow the reader to understand how the scores for white defendants and the scores for black defendants differ in a fair comparison.
+
+
+### Part 2: Initial evaluation the COMPAS scores (15 pts)
+
+Suppose that defendants with scores that are greater than or equal to 5 are considered to be "high-risk," and other defendants are considered to be "low-risk."
+
+Compute the false positive rate, the false negative rate, and the correct classification rate for the entire population, for the population of white defendants separately, and for the population of black defendants separately. State the tentative conclusions that you can draw about the fairness of the COMPAS scores.
+
+To obtain the context for the potential informativeness of the scores, compute the overall recidivism rate in the dataset. Comment on the difference between the overall recidivism rate and the correct classification rate using the score. Use `is_recid` as the variable that indicates whether the person recidivated.
+
+### Part 3: Altering the threshold (15 pts)
+
+For the possible thresholds `[0.5, 1, 1.5, 2, 2.5, 3, ..., 9.5]`, compute the FPR, FNR, and correct classification rate (CCR) for the entire population, for white defendants, and for black defendants. Plot the results. You should produce three plots with three curves each (one plot per demographic group), with the thresholds being on the x-axis. 
 
 
 
