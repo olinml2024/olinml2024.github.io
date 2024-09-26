@@ -20,6 +20,7 @@ header:
 | 4     | [Linear, Ridge, and Logistic Regression & Train-Test Split](activities/day04)                            |
 | 5     | [Logistic Regression Sample Problem, Foundations of Micrograd](activities/day05)                            |
 | 6     | [Starting COMPAS and Building Towards Autodifferentiation](activities/day06) ([with show solutions button](activities/day06?showSolutions=true))                            |
+| 7     | [COMPAS discussion](activities/day07)                            |
 
 
 ##  Assignments
