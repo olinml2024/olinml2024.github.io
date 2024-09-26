@@ -32,6 +32,8 @@ header:
 | 5                           | [Assignment 4](assignments/assignment04/assignment04)   ([with show solution button](assignments/assignment04/assignment04?showSolutions=true))    |
 | 6                           | [Assignment 5](assignments/assignment05/assignment05)   ([with show solution button](assignments/assignment05/assignment05?showSolutions=true))    |
 | 6                           | [Assignment 6](assignments/assignment06/assignment06)     |
+| 7                           | [Assignment 7](assignments/assignment07/assignment07)     |
+
 
 
 
