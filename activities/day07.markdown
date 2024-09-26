@@ -21,6 +21,8 @@ On the whiteboard, please gather pieces of information that we learned from the 
 
 # Large group debrief and introduction of the impossibility theorem 
 
+Here are some [summary slides](https://docs.google.com/presentation/d/1I1rMkqJYiOuaYAmzKzj3oshUxqdPa_wiOlqtnt4qbLc/edit?usp=sharing), which also include refernce to the study Sam mentioned with humans attempting to predict re-arrest.
+
 We'll summarize some key takeaways and show an example from an extreme version to help us wrap our heads around different models of fairness.
 [https://medium.com/@alex.liu.roc/understanding-the-impossibility-of-fairness-199bba6c9072](https://medium.com/@alex.liu.roc/understanding-the-impossibility-of-fairness-199bba6c9072)
 
