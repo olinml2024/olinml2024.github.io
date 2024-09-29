@@ -20,6 +20,8 @@ layout: problemset
 
 training loops, forward pass, backward pass
 
+Need to also introduce cross entropy as an extension of log loss.  Talk about Adam versus SGD.
+
 # Conceptual stuff on multilayer neural network
 * Visualization of the fully connected layers
 
