@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Machine Learning Fall 2024 - Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Day 8 - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,8 +86,8 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="Machine Learning Fall 2024">
-<meta property="og:url" content="/">
+<meta property="og:title" content="Day 8">
+<meta property="og:url" content="/activities/day08.html">
 
 
 
@@ -101,7 +101,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 
 
-<link rel="canonical" href="/">
+<link rel="canonical" href="/activities/day08.html">
 
 
 
@@ -338,151 +338,118 @@ $
 
     <div class="initial-content">
       
-  
-
-
-
-
-
-
-
-
-
-
-
-<div class="page__hero--overlay" style="background-color: #000; ">
-  
-    <div class="wrapper">
-      <h1 id="page-title" class="page__title" itemprop="headline">
-        
-          Machine Learning Fall 2024
-
-        
-      </h1>
-      
-      
-      
-      
-    </div>
-  
-  
-</div>
 
 
 
 <div id="main" role="main">
-  <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Machine Learning Fall 2024">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Day 8">
     
     
     
 
-    <section class="page__content" itemprop="text">
-      <!-- ## How-tos
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Day 8
+</h1>
+          
+        </header>
+      
 
-*  TODO -->
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+	      
+                <ul class="toc__menu">
+  <li><a href="#">Agenda</a></li>
+  <li><a href="#instructor-led-debrief">Instructor-led Debrief</a></li>
+  <li><a href="#from-micrograd-to-pytorch">From Micrograd to Pytorch</a></li>
+  <li><a href="#more-resources-on-pytorch">More Resources on Pytorch</a></li>
+</ul>
+	      	
+            </nav>
+          </aside>
+        
+        
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #4c00b0;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #FFFFFF;">
+        <i class="fas fa-list"></i>
+</div>
+	<h1 style="font-size: xx-large; font-weight: 900; color: white;">Agenda</h1>
+    </div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<ul>
+  <li>10:20-10:25am: Everyone come hang out in MAC128, we’ll talk about the plan and answer any logistics questions.</li>
+  <li>10:25-10:45am: Instructor-led debrief of the homework… what just happened?!?</li>
+  <li>10:45-12:00pm: From micrograd to Pytorch</li>
+</ul>
 
-<h2 id="in-class-activities">In-class Activities</h2>
+	</div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Day #</th>
-      <th>Activity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td><a href="activities/day01">Course intro and welcome to ML!</a></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td><a href="activities/day02">Types of Machine Learning Problems and Exploring Image Transforms</a></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td><a href="activities/day03">Metrics and Meeting ML as Optimization</a></td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td><a href="activities/day04">Linear, Ridge, and Logistic Regression &amp; Train-Test Split</a></td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td><a href="activities/day05">Logistic Regression Sample Problem, Foundations of Micrograd</a></td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>
-<a href="activities/day06">Starting COMPAS and Building Towards Autodifferentiation</a> (<a href="activities/day06?showSolutions=true">with show solutions button</a>)</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td><a href="activities/day07">COMPAS discussion</a></td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td><a href="activities/day08">From Micrograd to Pytorch</a></td>
-    </tr>
-  </tbody>
-</table>
+<h1 id="instructor-led-debrief">Instructor-led Debrief</h1>
 
-<h2 id="assignments">Assignments</h2>
+<p>We’ll debrief on what happened in the previous assignment.  The focus will be on connecting mathematical concepts to Python.  We hope that by the end of this everything is coming into focus for you (it may take a little longer to fully click).</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Due at beginning of class #</th>
-      <th>Assignment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2</td>
-      <td>
-<a href="assignments/assignment01/assignment01">Assignment 1</a> (<a href="assignments/assignment01/assignment01?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td><a href="assignments/assignment02/assignment02">Assignment 2</a></td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>
-<a href="assignments/assignment03/assignment03">Assignment 3</a>   (<a href="assignments/assignment03/assignment03?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>
-<a href="assignments/assignment04/assignment04">Assignment 4</a>   (<a href="assignments/assignment04/assignment04?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>
-<a href="assignments/assignment05/assignment05">Assignment 5</a>   (<a href="assignments/assignment05/assignment05?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td><a href="assignments/assignment06/assignment06">Assignment 6</a></td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td><a href="assignments/assignment07/assignment07">Assignment 7</a></td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>
-<a href="assignments/assignment08/assignment08">Assignment 8</a>    (<a href="assignments/assignment08/assignment08?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-  </tbody>
-</table>
+<h1 id="from-micrograd-to-pytorch">From Micrograd to Pytorch</h1>
 
-<h2 id="other-important-documents">Other Important Documents</h2>
-<p><a href="assignments/assignment01/notation_conventions">Notation conventions</a></p>
+<p>While it may be tempting to ride our micrograd framework for the rest of the semester, you can probably tell that there are some good reasons to move to something <em>a little</em> more powerful.  We’re going to be using the <code class="language-plaintext highlighter-rouge">pytorch</code> framework for the remainder of the scaffolded work in this course (it’s possible you might venture into a different framework for the final project).  Machine learning frameworks like <code class="language-plaintext highlighter-rouge">pytorch</code> provide some really important capabilities for us.</p>
 
-    </section>
+<ul>
+  <li>An autograd engine</li>
+  <li>Built-in optimizers (that do, for example, gradient descent)</li>
+  <li>Optimized code that can efficiently handle large models (e.g., by running on a GPU or across several GPUs)</li>
+  <li>Specific building blocks for machine learning algorithms that are used by current state of the art algorithms.</li>
+  <li>The ability to be extended easily when the library doesn’t provide the necessary functionality.</li>
+</ul>
+
+<p>To help introduce <code class="language-plaintext highlighter-rouge">pytorch</code>, we’re going to jump right into a looking at some <code class="language-plaintext highlighter-rouge">pytorch</code> code.  This is a great chance to practice reading code and looking up documentation.  Your goal should be to understand the given code as well as possible.  If there are pieces that you can’t figure out, please ask us or make a note of your confusion so you can revisit it later.  You’ll also get a head start on the assignment (so that is a bonus!).</p>
+
+<p>The code in question is in the <a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_2.ipynb">assignment 8, part 2 Colab notebook</a>. The first two code cells load a dataset of handwritten digits and visualize them.  The third code cell is where the action is, we’d like you to go over that one, read documentation, ask ChatGPT, ask an instructor, etc., so that you leave here today with a solid understanding of a training / testing loop in <code class="language-plaintext highlighter-rouge">pytorch</code>.</p>
+
+<h1 id="more-resources-on-pytorch">More Resources on Pytorch</h1>
+
+<p>We’re going to be introducing Pytorch functionality on an as needed basis, but if you’d like to get some more practice with the basics, we recommend checking out some of <a href="https://pytorch.org/tutorials/">the Pytorch tutorials</a>.  Start with the <a href="https://pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html">basics of using Tensors</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
   </article>
+
+  
+  
 </div>
 
     </div>
