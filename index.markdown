@@ -21,6 +21,7 @@ header:
 | 5     | [Logistic Regression Sample Problem, Foundations of Micrograd](activities/day05)                            |
 | 6     | [Starting COMPAS and Building Towards Autodifferentiation](activities/day06) ([with show solutions button](activities/day06?showSolutions=true))                            |
 | 7     | [COMPAS discussion](activities/day07)                            |
+| 8     | [From Micrograd to Pytorch](activities/day08)                            |
 
 
 ##  Assignments
@@ -34,6 +35,8 @@ header:
 | 6                           | [Assignment 5](assignments/assignment05/assignment05)   ([with show solution button](assignments/assignment05/assignment05?showSolutions=true))    |
 | 7                           | [Assignment 6](assignments/assignment06/assignment06)     |
 | 8                           | [Assignment 7](assignments/assignment07/assignment07)     |
+| 9                           | [Assignment 8](assignments/assignment08/assignment08)    ([with show solution button](assignments/assignment08/assignment08?showSolutions=true))      |
+
 
 
 

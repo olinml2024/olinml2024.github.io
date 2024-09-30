@@ -8,15 +8,15 @@ layout: problemset
 # Learning Objectives
 
 {% capture content %}
-* Implement a multi-layer neural network
-* Gain some practice writing pytorch code
-* Understand how a multi-layer network can solve difficult machine learning problems. 
+* Learn about multi-layer perceptrons (MLPs)
+* Implement an MLP in Pytorch
+* Understand how a multi-layer network can solve problems without the need for feature engineering.
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
 # Neural Networks Motivation
 
-We're going to start out our journey into neural networks by revisiting the Titanic dataset that we saw a couple of classes ago.  The exercises are embedded within the [assignment 8 Colab notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08.ipynb).  Go through those exercises, and then check back here as we unpack things futher.
+We're going to start out our journey into neural networks by revisiting the Titanic dataset that we saw a couple of classes ago.  The exercises are embedded within [assignment 8 Colab notebook part 1](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_1.ipynb).  Go through those exercises, and then check back to unpack things further.
 
 # Neural Networks as Stacked Logistic Regression Models
 
@@ -66,7 +66,7 @@ id8["$$s_2 = w_{2,1} \text{age} + w_{2,2} \text{male} + w_{2,3}~~~$$"]
 id7["$$h_1 = 1/(1+e^{-s_1})$$"]
 id9["$$h_2 = 1/(1+e^{-s_2})$$"]
 id11["1"]
-id12["$$s_3$$"]
+id12["$$s_3 = w_{3,1} h_1 + w_{3,2} h_2 + w_{3,3}$$"]
 id1 --"$$w_{1,1}$$"--> id6
 id2 --"$$w_{1,2}$$"--> id6
 id4 --"$$w_{1,3}$$"--> id6
@@ -134,4 +134,4 @@ Next, we'll go back over to Colab to show how we can tune these weights automati
 * You'll see how overfitting can become an issue for more complex networks
 * We'll introduce (at a very high-level) three methods for dealing with overfitting.
 
-Okay, back to Colab for round 2.
+Okay, back to [Colab for round 2](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_2.ipynb).
