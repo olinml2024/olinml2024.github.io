@@ -135,3 +135,17 @@ Next, we'll go back over to Colab to show how we can tune these weights automati
 * We'll introduce (at a very high-level) three methods for dealing with overfitting.
 
 Okay, back to [Colab for round 2](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_2.ipynb).
+But don't forget about the stuff below!
+
+
+# Dataset exploration
+
+{% capture problem %}
+Shortly, we will begin a mini-project in which you'll perform classification on an existing dataset. We'd like you to take 10-20 minutes to explore potential datasets that you might be interested in and add one to our group slide deck (so others might use it too). The slide deck is linked on Canvas under this assignment on the home page. As you search, think about the size and type of the data (you could always take a small subset of an existing dataset). 
+
+There are lots of data repositories to explore.  [Kaggle](https://www.kaggle.com/datasets), [Hugging Face](https://huggingface.co/datasets), and [OpenML.org](https://openml.org/search?type=data&sort=runs&status=active) might be good places to start. You can often filter by the type of data as well as the topic.
+
+{% endcapture %}
+{% include problem.html problem=problem %}
+
+
