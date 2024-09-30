@@ -25,12 +25,12 @@ Before we get to the main activity of today, we want to extend some of the conce
 p(y = i) = \frac{e^{s_i}}{\sum_{j=1}^{k} e^{s_j}}
 \end{align}
 
-This is a bit of a handful, so let's go through it together.  One special case we can consider is when $k=2$ and we set $s_1 = 0$ (we should recover the same formula is in the binary case).  We should also verify that this gives us a valid probability distribution (all probabilities are between 0 and 1 and sum to 1)/
+This is a bit of a handful, so let's go through it together.  One special case we can consider is when $k=2$ and we set $s_1 = 0$ (we should recover the same formula is in the binary case).  We should also verify that this gives us a valid probability distribution (all probabilities are between 0 and 1 and sum to 1).
 
 Now that we have a way to calculate probabilities, we need to figure out how to assign a loss to any particular prediction.  The loss function we're going to use here is called *cross entropy* and we'll use the notation $ce$ to refer to it.  Let's use the shorthand $\hat{y}_i$ to be $p(y=i)$ (as defined, for example, by the softmax formula).  We can now think of $\mlvec{\hat{y}}$ as a vector of all of these probabilties.
 
 \begin{align}
-ce(\hat{\mlvec{y}}, y) = \sum_{i=1} \log \hat{y}_i -\mathbb{I}[y = i]
+ce(\hat{\mlvec{y}}, y) = \sum_{i=1}^{k} -\mathbb{I}[y = i] \log \hat{y}_i 
 \end{align}
 
 Let's compare this formula to our formula for the log loss in the binary case and draw some parallels.  In this case $\hat{y}$ will be the probability that the class label is $1$.
