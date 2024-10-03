@@ -7,7 +7,7 @@ layout: problemset
 
 {% capture agenda %}
 * 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-10:45am: Demystfying Pytorch
+* 10:25-10:45am: Demystifying Pytorch
 * 10:25-10:55am: Cross entropy and how to interpret the graphs from the homework
 * 11:00-11:20am: Small data mini-project on classification
 * 11:20-12:00pm: Choosing data for your mini-project and start working
