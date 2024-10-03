@@ -6,7 +6,6 @@ layout: problemset
 ---
 
 # TODO
-* decide if we should do interim check-in as part of the project or as part of the regular assignments
 * add details about metrics and use cases
 * update hot tips doc to be less focused on images (probably)
 * revise rubric
@@ -91,23 +90,26 @@ This shared document already has two years of notes from Machine Learning studen
 
 ## Deliverables
 
-1. A clean report in notebook (.ipynb) format with thoughtful explanations of the considerations for your computer vision application and important highlights of your analysis. This should include in-line code and figures. This should **not** include every analysis and figure that you generated. 
+1. A clean report in notebook (.ipynb) format with thoughtful explanations of the considerations for your classification application and important highlights of your analysis. This should include in-line code and figures. This should **not** include every analysis and figure that you generated. 
 
-###TODO: FIX THIS
+###TODO: DISCUSS THIS
 Please choose three interesting things that you investigated and share your code and figures for these. You can mention other things that you investigated in the text and include the code in your repository. 
 
 This is about quality, not quantity. 
 * The submission can be a link to a notebook on Colab (please make sure you have appropriate sharing settings selected and test with someone else so we don't have to request access; let us know if you'd like our Colab account email addresses) or an uploaded .ipynb notebook.
 
-2. A PDF of your clean notebook with all of the cells run and graphs appearing clearly. If you run into issues with this, try a different browser and experiment with the print function within Colab. If you figure something out, add it to [the shared, class-owned, editable document](https://docs.google.com/document/d/15zNjQp32oBqaD4CY4gAsgSnkAWUs3JbTJYNRAEr1H28/edit?usp=sharing).
+2. A PDF of your clean notebook with all of the cells run and graphs appearing clearly. If you run into issues with this, try a different browser and experiment with the print function within Colab. If you have a problem and then figure something out, add it to [the shared, class-owned, editable document](https://docs.google.com/document/d/15zNjQp32oBqaD4CY4gAsgSnkAWUs3JbTJYNRAEr1H28/edit?usp=sharing).
 
 There are rubrics in the appendices in this document. The intention of these rubrics is to create shared expectations about the project, while also giving you lots of latitude to explore and emphasize your own learning.
+
+## Check-in Deliverables (Grading Option B)
+
 
 ## Assessment
 
 Assessment for this project will be based on the **quality of project work**, which will be assessed by the teaching team. 
 
-During the week of October 7, we will have a project check-in. For students who chose assessment partially based on process (grading Option B), this will be an assessed check-in to create an accountability system to help you make progress on your project. Project check-ins will also be available to students who chose grading Option A. 
+During the week of October 7, we will have a project check-in. For students who chose assessment partially based on process (grading Option B), this will be an assessed check-in to create an accountability system to help you make progress on your project. It will count in the "Daily assignments with markup" category. Project check-ins will also be available to students who chose grading Option A. 
 
 At the end of the project, the teaching will assess and provide feedback on your final report. We apologize if this takes us a while, as this is a large class and we're also redesigning many aspects of it given advances in machine learning.
 
