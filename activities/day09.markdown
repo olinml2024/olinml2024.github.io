@@ -23,9 +23,55 @@ We'll be going through [the day 9 notebook](https://colab.research.google.com/gi
 * We can use pytorch to compute a line of best fit.  This will allow us to visualize the optimization process more easily.
 * We can use pytorch modules (e.g., `nn.Linear`) to make our lives easier.
 
-# Cross entropy and how to interpret the graphs from the homework
 
-We're going to look back at the material we didn't cover last class on cross entropy and softmax.  The materials can be found on the [day 8 page](day08#cross-entropy-loss-and-softmax).  Let's go over it together and then we'll be in a good place to interpet the learning curves from this past assignment.
+# Cross entropy loss and softmax
+
+In the previous assignment you generated graphs that showed the cross entropy of a model to classify handwritten digits.  These graphs looked something like this.
+
+{% include figure.html 
+  img="images/learning_curve_ce.png"
+    width="100%"
+    alt="A graph of training and test cross entroyp as a function of gradient descent step.  The curves begin near 2.4 and settle around 1.7"
+    caption="The cross entropy on the handwritten digit classification task.  The x-axis refers to the number of gradient descent steps." %}
+
+Right now we are going to help you interpret what these graphs mean.  The y-axis is cross entropy, which for now we can simply understand as a measure of the model's loss when its predictions are compared to the actual classes of the digits in either the training (blue line) or the test set (orange line).  The x-axis of this graph should be fairly easy to interpret.  The axis is labeled *step*, which refers to how many gradient descent steps have been taken by your optimizer in order to drive down the loss.
+
+In order to interpret these graphs we are going to need two ingredients.  First, we need to understand how a classifier, in response to a given input, can assign a probability of that input being a member of each of $k$ possible classes (notice how this contrasts with the binary classification case where we had to assign a single probability of the input being a $1$).  Second, we need a way to assign a loss value (cross entropy in this case) given a set of predicted probabilities and the actual class label of the digit.
+
+## Assigning probabilities when there are more than 2 classes
+
+Recalling binary logistic regression, we needed a way to assign a probability to the class being 1.  To do this, we passed our weighted sum of features, $s$, through the sigmoid function $\sigma(s) = \frac{1}{1+e^{-s}}$.  In the multi-class case (again, where we have $k$ classes), we assume that we have computed a weighted sum of features for each of these k classes $s_1, s_2, \ldots, s_k$.  We now calculate the probability of each particular class using the following formula called the *softmax* function.
+
+\begin{align}
+p(y = i) = \frac{e^{s_i}}{\sum_{j=1}^{k} e^{s_j}}
+\end{align}
+
+Here are some exercises to help you think through this.
+
+{% capture problem %}
+* Probabilities should always be non-negative and less than or equal to 1.  Additionally, a set of probabilities that forms a probability distribution should add up to 1.  Show that both of these conditions are satisfied for the softmax function.
+* Think about some limiting cases, what happens to the probability for class $i$ when $s_i$ gets really big?  What about when it becomes very negative?
+* Consider the case where $k=2$ and $s_1 = 0$.  How does this relate to the sigmoid function we learned about for log loss?
+{% endcapture %}
+{% include problem.html problem=problem solution="" %}
+
+## Calculating cross entropy
+
+Now that we have a way to calculate probabilities, we need to figure out how to assign a loss to any particular prediction.  The loss function we're going to use here is called *cross entropy* and we'll use the notation $ce$ to refer to it.  Let's use the shorthand $\hat{y}_i$ to be $p(y=i)$ (as defined, for example, by the softmax formula).  We can now think of $\mlvec{\hat{y}}$ as a vector of all of these probabilties.
+
+\begin{align}
+ce(\hat{\mlvec{y}}, y) = \sum_{i=1}^{k} -\mathbb{I}[y = i] \log \hat{y}_i 
+\end{align}
+
+The following exercise will take you through some important takeaways.
+
+{% capture problem %}
+* Make sure you understand the role of the indicator function $\mathbb{I}$, what is it doing to the terms in the summation?
+* The formula for log loss for binary classification is $\ell(\hat{y}, y) = -y \log(\hat{y}) - (1-y)\log(1-\hat{y})$.  Show that this formula is essentially the same as cross entropy when $k=2$.
+* Imagine that at the beginning of the learning process the digit classifier assigns equal probability to each digit (0-9) regardless of what the actual class is (i.e., the model hasn't learned anything yet).  What do you think the model's cross entropy should be in this case?
+{% endcapture %}
+{% include problem.html problem=problem solution="" %}
+
 
 # Small data mini-project on classification
 
