@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Day 8 - Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Day 9 - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,8 +86,8 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="Day 8">
-<meta property="og:url" content="/activities/day08.html">
+<meta property="og:title" content="Day 9">
+<meta property="og:url" content="/activities/day09.html">
 
 
 
@@ -101,7 +101,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 
 
-<link rel="canonical" href="/activities/day08.html">
+<link rel="canonical" href="/activities/day09.html">
 
 
 
@@ -345,7 +345,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Day 8">
+    <meta itemprop="headline" content="Day 9">
     
     
     
@@ -353,7 +353,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Day 8
+          <h1 id="page-title" class="page__title" itemprop="headline">Day 9
 </h1>
           
         </header>
@@ -368,9 +368,10 @@ $
 	      
                 <ul class="toc__menu">
   <li><a href="#">Agenda</a></li>
-  <li><a href="#instructor-led-debrief">Instructor-led Debrief</a></li>
-  <li><a href="#from-micrograd-to-pytorch">From Micrograd to Pytorch</a></li>
-  <li><a href="#more-resources-on-pytorch">More Resources on Pytorch</a></li>
+  <li><a href="#demistifying-pytorch">Demistifying Pytorch</a></li>
+  <li><a href="#cross-entropy-loss-and-softmax">Cross entropy loss and softmax</a></li>
+  <li><a href="#small-data-mini-project-on-classification">Small data mini-project on classification</a></li>
+  <li><a href="#choosing-data-for-your-mini-project-and-start-working">Choosing data for your mini-project and start working</a></li>
 </ul>
 	      	
             </nav>
@@ -398,37 +399,158 @@ $
 	   
 <ul>
   <li>10:20-10:25am: Everyone come hang out in MAC128, we’ll talk about the plan and answer any logistics questions.</li>
-  <li>10:25-10:45am: Instructor-led debrief of the homework… what just happened?!?</li>
-  <li>10:45-11:05am: Cross-entropy loss</li>
-  <li>11:05-12:00pm: From micrograd to Pytorch</li>
+  <li>10:25-10:45am: Demystifying Pytorch</li>
+  <li>10:25-10:55am: Cross entropy and how to interpret the graphs from the homework</li>
+  <li>11:00-11:20am: Small data mini-project on classification</li>
+  <li>11:20-12:00pm: Choosing data for your mini-project and start working</li>
 </ul>
 
 	</div>
 </div>
 
-<h1 id="instructor-led-debrief">Instructor-led Debrief</h1>
+<h1 id="demistifying-pytorch">Demistifying Pytorch</h1>
 
-<p>We’ll debrief on what happened in the previous assignment.  The focus will be on connecting mathematical concepts to Python.  We hope that by the end of this everything is coming into focus for you (it may take a little longer to fully click).</p>
-
-<h1 id="from-micrograd-to-pytorch">From Micrograd to Pytorch</h1>
-
-<p>While it may be tempting to ride our micrograd framework for the rest of the semester, you can probably tell that there are some good reasons to move to something <em>a little</em> more powerful.  We’re going to be using the <code class="language-plaintext highlighter-rouge">pytorch</code> framework for the remainder of the scaffolded work in this course (it’s possible you might venture into a different framework for the final project).  Machine learning frameworks like <code class="language-plaintext highlighter-rouge">pytorch</code> provide some really important capabilities for us.</p>
+<p>We’ll be going through <a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Day09.ipynb">the day 9 notebook</a>.  There are three things we want you to get out of this notebook.</p>
 
 <ul>
-  <li>An autograd engine</li>
-  <li>Built-in optimizers (that do, for example, gradient descent)</li>
-  <li>Optimized code that can efficiently handle large models (e.g., by running on a GPU or across several GPUs)</li>
-  <li>Specific building blocks for machine learning algorithms that are used by current state of the art algorithms.</li>
-  <li>The ability to be extended easily when the library doesn’t provide the necessary functionality.</li>
+  <li>Pytorch is quite similar in its basic concepts to the micrograd framework you implemented.</li>
+  <li>We can use pytorch to compute a line of best fit.  This will allow us to visualize the optimization process more easily.</li>
+  <li>We can use pytorch modules (e.g., <code class="language-plaintext highlighter-rouge">nn.Linear</code>) to make our lives easier.</li>
 </ul>
 
-<p>To help introduce <code class="language-plaintext highlighter-rouge">pytorch</code>, we’re going to jump right into a looking at some <code class="language-plaintext highlighter-rouge">pytorch</code> code.  This is a great chance to practice reading code and looking up documentation.  Your goal should be to understand the given code as well as possible.  If there are pieces that you can’t figure out, please ask us or make a note of your confusion so you can revisit it later.  You’ll also get a head start on the assignment (so that is a bonus!).</p>
+<h1 id="cross-entropy-loss-and-softmax">Cross entropy loss and softmax</h1>
 
-<p>The code in question is in the <a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment08_part_2.ipynb">assignment 8, part 2 Colab notebook</a>. The first two code cells load a dataset of handwritten digits and visualize them.  The third code cell is where the action is, we’d like you to go over that one, read documentation, ask ChatGPT, ask an instructor, etc., so that you leave here today with a solid understanding of a training / testing loop in <code class="language-plaintext highlighter-rouge">pytorch</code>.</p>
+<p>In the previous assignment you generated graphs that showed the cross entropy of a model to classify handwritten digits.  These graphs looked something like this.</p>
 
-<h1 id="more-resources-on-pytorch">More Resources on Pytorch</h1>
+<figure id="figure1">
+    <div style="text-align: center;">
+        <img src="images/learning_curve_ce.png" alt="A graph of training and test cross entroyp as a function of gradient descent step.  The curves begin near 2.4 and settle around 1.7" style="max-width: 100%">
+    </div>
+    <figcaption style="font-size: large">
+        Figure 1: <p>The cross entropy on the handwritten digit classification task.  The x-axis refers to the number of gradient descent steps.</p>
 
-<p>We’re going to be introducing Pytorch functionality on an as needed basis, but if you’d like to get some more practice with the basics, we recommend checking out some of <a href="https://pytorch.org/tutorials/">the Pytorch tutorials</a>.  Start with the <a href="https://pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html">basics of using Tensors</a>.</p>
+    </figcaption>
+</figure>
+
+<p>Right now we are going to help you interpret what these graphs mean.  The y-axis is cross entropy, which for now we can simply understand as a measure of the model’s loss when its predictions are compared to the actual classes of the digits in either the training (blue line) or the test set (orange line).  The x-axis of this graph should be fairly easy to interpret.  The axis is labeled <em>step</em>, which refers to how many gradient descent steps have been taken by your optimizer in order to drive down the loss.</p>
+
+<p>In order to interpret these graphs we are going to need two ingredients.  First, we need to understand how a classifier, in response to a given input, can assign a probability of that input being a member of each of $k$ possible classes (notice how this contrasts with the binary classification case where we had to assign a single probability of the input being a $1$).  Second, we need a way to assign a loss value (cross entropy in this case) given a set of predicted probabilities and the actual class label of the digit.</p>
+
+<h2 id="assigning-probabilities-when-there-are-more-than-2-classes">Assigning probabilities when there are more than 2 classes</h2>
+
+<p>Recalling binary logistic regression, we needed a way to assign a probability to the class being 1.  To do this, we passed our weighted sum of features, $s$, through the sigmoid function $\sigma(s) = \frac{1}{1+e^{-s}}$.  In the multi-class case (again, where we have $k$ classes), we assume that we have computed a weighted sum of features for each of these k classes $s_1, s_2, \ldots, s_k$.  We now calculate the probability of each particular class using the following formula called the <em>softmax</em> function.</p>
+
+<p>\begin{align}
+p(y = i) = \frac{e^{s_i}}{\sum_{j=1}^{k} e^{s_j}}
+\end{align}</p>
+
+<p>Here are some exercises to help you think through this.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<ul>
+  <li>Probabilities should always be non-negative and less than or equal to 1.  Additionally, a set of probabilities that forms a probability distribution should add up to 1.  Show that both of these conditions are satisfied for the softmax function.</li>
+  <li>Think about some limiting cases, what happens to the probability for class $i$ when $s_i$ gets really big?  What about when it becomes very negative?</li>
+  <li>Consider the case where $k=2$ and $s_1 = 0$.  How does this relate to the sigmoid function we learned about for log loss?</li>
+</ul>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-1")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-1" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+<h2 id="calculating-cross-entropy">Calculating cross entropy</h2>
+
+<p>Now that we have a way to calculate probabilities, we need to figure out how to assign a loss to any particular prediction.  The loss function we’re going to use here is called <em>cross entropy</em> and we’ll use the notation $ce$ to refer to it.  Let’s use the shorthand $\hat{y}_i$ to be $p(y=i)$ (as defined, for example, by the softmax formula).  We can now think of $\mlvec{\hat{y}}$ as a vector of all of these probabilties.</p>
+
+<p>\begin{align}
+ce(\hat{\mlvec{y}}, y) = \sum_{i=1}^{k} -\mathbb{I}[y = i] \log \hat{y}_i 
+\end{align}</p>
+
+<p>The following exercise will take you through some important takeaways.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<ul>
+  <li>Make sure you understand the role of the indicator function $\mathbb{I}$, what is it doing to the terms in the summation?</li>
+  <li>The formula for log loss for binary classification is $\ell(\hat{y}, y) = -y \log(\hat{y}) - (1-y)\log(1-\hat{y})$.  Show that this formula is essentially the same as cross entropy when $k=2$.</li>
+  <li>Imagine that at the beginning of the learning process the digit classifier assigns equal probability to each digit (0-9) regardless of what the actual class is (i.e., the model hasn’t learned anything yet).  What do you think the model’s cross entropy should be in this case?</li>
+</ul>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-2")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-2" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+<h1 id="small-data-mini-project-on-classification">Small data mini-project on classification</h1>
+<p>We’ll talk about the <a href="../assignments/assignment09/assignment09">“Small data” mini-project on classification</a>.</p>
+
+<h1 id="choosing-data-for-your-mini-project-and-start-working">Choosing data for your mini-project and start working</h1>
+<p>Our general recommendation is to choose a dataset that has at least one other person working on that dataset. This is not a requirement, so if you have something you’re passionate about, go for it! While this is a solo project, it may be helpful to have others to confer with who are also figuring out the nuances of your dataset. A lot of time in machine learning and data science go into interacting with the data before it even goes into the model. There are many canned (pre-curated data sets) out there which reduce this time, but it’s still important to understand your data, as it drives your model.</p>
+
+<p>We’ll do a little activity to help you find others who have overlapping dataset interest.</p>
 
         
       </section>
