@@ -111,14 +111,16 @@ With constructive engagement, we are asking you to self-assess. One aspect of co
 - Skimming through your dataset, does anything stand out to you about representation in its contents?
 - Do you feel the potential use cases for this dataset justify it being created and published? Why or why not?
 
+# Appendix B: Lessons from those that have come before you  
 
-# Appendix B: Rubrics
+In a prior version of the class, we did a classification project using images with something called a convolutional neural network or CNN, which we'll learn about later. Here we're doing a mini-project with simpler data, though you can use images if you want. At the end, we asked students to reflect on their project. We thought it might be helpful or entertaining to see [what they had to say](https://drive.google.com/file/d/1z5bXMRp2Np30TTa34uQh-GBnKykWI7rJ/view?usp=sharing).
+
+
+# Appendix C: Rubrics
 
 
 ### Jupyter Notebook
-Please submit both a PDF of your Jupyter Notebook (with the code executed) and an executable Jupyter Notebook to Canvas.
-
-We suggest you work in the Google CoLab environment (like you have for the assignments). When you are ready to submit, please download your notebook as an `.ipynb` file, and submit that to Canvas.
+Please submit both a PDF of your Jupyter Notebook (with the code executed) and an executable Jupyter Notebook (or link to Colab with appropriate sharing set and tested) to Canvas.
 
 Your project will be graded on the following aspects.
 
