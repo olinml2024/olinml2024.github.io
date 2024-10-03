@@ -38,6 +38,7 @@ header:
 | 7                           | [Assignment 6](assignments/assignment06/assignment06)     |
 | 8                           | [Assignment 7](assignments/assignment07/assignment07)     |
 | 9                           | [Assignment 8](assignments/assignment08/assignment08)    ([with show solution button](assignments/assignment08/assignment08?showSolutions=true))      |
+| 12                           | [Assignment 9 - "Small data" project on classification](assignments/assignment09/assignment09)         |
 
 
 
