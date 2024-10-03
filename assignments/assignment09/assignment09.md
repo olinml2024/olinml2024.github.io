@@ -139,7 +139,7 @@ In a prior version of the class, we did a classification project using images wi
 ### Jupyter Notebook
 Please submit both a PDF of your Jupyter Notebook (with the code executed) and an executable Jupyter Notebook (or link to Colab with appropriate sharing set and tested) to Canvas.
 
-Your project will be graded on the following aspects.
+You should refer to the Project Description at the top of this document for what to include (we try to refer to that section here). Your project will be graded on the following aspects.
 
 **General**
 
@@ -150,7 +150,7 @@ Your project will be graded on the following aspects.
 5. The notebook demonstrates good coding practices, including but not limited to docstrings, appropriate variable names, and comments as appropriate.
 6. The code demonstrates a significant amount of effort (roughly 3 assignments' worth), made clear by careful consideration of the data, model, and implications for the model you developed.
 
-**Motivation**
+**Motivation (See: Document the important considerations for your application.)**
 
 1. It is clear what data you used.
 2. The application of your algorithm is clear and well-motivated.
@@ -158,17 +158,17 @@ Your project will be graded on the following aspects.
 4. The notebook explains how the algorithm is to be evaluated (how do you know it is working well?).
 5. The notebook explains the implications of this approach (including risks and stakeholders).
 
-**Implementation**
+**Implementation (See: Build and iterate on a classification model as a step toward this application.)**
 
 1. The notebook explains the dataset and the features, in text and/or graphics.
-2. The notebook contains a computer vision model.
-3. The computer vision model is implemented correctly.
-4. There is evidence that iteration has occurred in the model (this can be in the text).
+2. The notebook contains a classification model.
+3. The model(s) are implemented correctly.
+4. The notebook includes experimentation and evaluation of at least two major changes to your model (e.g., comparison of different types of models; manipulate the number of nodes in a hidden layer; manipulate the number of hidden layers; experiment with preprocessing or data augmentation techniques; experiment with different activation functions such as relu, sigmoid, etc.)
 
-**Conclusion**
+**Interpretation and Visualization (See: Build and iterate;  Visualize key aspects of your data/model; Test and evaluate your model.)**
 
-1. The notebook accurately describes the effectiveness of the model in text.
-2. The notebook describes the limitations of the model.
-3. The code generates at least two visualizations of the data.
-4. The visualizations have clear labels and connections to the text.
-
+1. The code generates at least 3 meaningful visualizations of the data, model, and/or outputs.
+2. The visualizations have clear and appropriate labels and connections to the text.
+3. The evaluation uses appropriate key metrics based on the proposed application and dataset.
+4. The notebook accurately describes the effectiveness and limitations of the model on both training and test data in text and numbers.
+5. The text explains the relationship between the effectiveness and limitations of the model and the proposed application.
