@@ -7,14 +7,25 @@ layout: problemset
 
 {% capture agenda %}
 * 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
-* 10:25-11:00am: More on gradients and pytorch
+* 10:25-10:45am: Demystfying Pytorch
+* 10:25-10:55am: Cross entropy and how to interpret the graphs from the homework
 * 11:00-11:20am: Small data mini-project on classification
 * 11:20-12:00pm: Choosing data for your mini-project and start working
 {% endcapture %}
 {% include agenda.html content=agenda %}
 
-# Gradients and PyTorch
 
+# Demistifying Pytorch
+
+We'll be going through [the day 9 notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Day09.ipynb).  There are three things we want you to get out of this notebook.
+
+* Pytorch is quite similar in its basic concepts to the micrograd framework you implemented.
+* We can use pytorch to compute a line of best fit.  This will allow us to visualize the optimization process more easily.
+* We can use pytorch modules (e.g., `nn.Linear`) to make our lives easier.
+
+# Cross entropy and how to interpret the graphs from the homework
+
+We're going to look back at the material we didn't cover last class on cross entropy and softmax.  The materials can be found on the [day 8 page](day08#cross-entropy-loss-and-softmax).  Let's go over it together and then we'll be in a good place to interpet the learning curves from this past assignment.
 
 # Small data mini-project on classification
 

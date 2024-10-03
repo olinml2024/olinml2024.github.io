@@ -22,6 +22,8 @@ header:
 | 6     | [Starting COMPAS and Building Towards Autodifferentiation](activities/day06) ([with show solutions button](activities/day06?showSolutions=true))                            |
 | 7     | [COMPAS discussion](activities/day07)                            |
 | 8     | [From Micrograd to Pytorch](activities/day08)                            |
+| 9     | [Cross Entropy and Small Data Mini Project Kickoff](activities/day09)                            |
+
 
 
 ##  Assignments
