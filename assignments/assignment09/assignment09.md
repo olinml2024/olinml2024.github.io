@@ -5,13 +5,7 @@ toc_h_max: 1
 layout: problemset
 ---
 
-# TODO
-* add details about metrics and use cases
-* update hot tips doc to be less focused on images (probably)
-* revise rubric
-
-
-# The project
+# The project description
 
 You will be working solo on this project (1.5 to 2 weeks). The syllabus calls this a mini-project, but we'll just call it a project here. 
 
@@ -28,12 +22,13 @@ As part of this project, you will:
 * Build and iterate on a classification model as a step toward this application. 
     * We don’t expect you to build the entire application, just to work toward implementing an early version of an algorithm that could be used for this application. Your dataset doesn't need to be sufficient (e.g.,  big or broad enough) to actually make the application.  
     * The iteration aspect is important. You will build and test multiple versions of your model and document the effects of these changes. You will likely manipulate a parameter and see how your results change at different values of that parameter.
+        * For full credit, you should evaluate at least two major changes to your model (e.g., comparison of different types of models; manipulate the number of nodes in a hidden layer; manipulate the number of hidden layers; experiment with preprocessing or data augmentation techniques; experiment with different activation functions such as relu, sigmoid, etc.)
     * You can use pre-built libraries like pytorch. It’s highly likely that you will use a neural network, but not required. Please talk with us if you plan on using a different type of model. 
 * Visualize key aspects of your data/model. Include at least 3 meaningful visualizations in your report with clear labeling and a discussion of their meaning (though you'll likely want more than three visualizations).
     * You’ll probably find it valuable to visualize many aspects of the data and model as you work. This is helpful in sanity checking and can give good insight into how the model is working.
     * It's likely that you'll visualize: some things about your data (before even making the model); a graph that shows the loss of your model as during the training process (see figures and caption at the end of [this page](https://livebook.manning.com/concept/deep-learning/training-loss)); changes in some key metrics as you manipulate a parameter (e.g., number of hidden layers); comparison of key metrics for different versions of your model; final training and testing metrics.
 * Test and evaluate your model. This will likely include accuracy and other key metrics on training and test sets. Depending on your application, you may consider testing with additional data from another source (e.g., data you collect; another internet dataset that's similar; simulated data based on theory). You will also evaluate the effectiveness of this model for your specific application and describe the limitations of your current model and data.
-    * Your accuracy and other metrics don't have to be good enough for your application. The goal here is to iterate on your model, measure its effectiveness, and reflect on this in the context of an application. 
+    * Your accuracy and other metrics of your actual model don't have to be good enough for your application. The goal here is to iterate on your model, measure its effectiveness, and reflect on this in the context of an application. 
 * Document your final analysis pipeline for transparency. (A simplified version that does not need to include every parameter, visualization, or tweak that you tried.) It should be well-organized and easy to follow (this takes time, so budget for it).
 
 
@@ -90,19 +85,19 @@ This shared document already has two years of notes from Machine Learning studen
 
 ## Deliverables
 
-1. A clean report in notebook (.ipynb) format with thoughtful explanations of the considerations for your classification application and important highlights of your analysis. This should include in-line code and figures. This should **not** include every analysis and figure that you generated. 
-
-###TODO: DISCUSS THIS
-Please choose three interesting things that you investigated and share your code and figures for these. You can mention other things that you investigated in the text and include the code in your repository. 
-
-This is about quality, not quantity. 
-* The submission can be a link to a notebook on Colab (please make sure you have appropriate sharing settings selected and test with someone else so we don't have to request access; let us know if you'd like our Colab account email addresses) or an uploaded .ipynb notebook.
+1. A clean report in notebook (.ipynb) format with thoughtful explanations of the considerations for your classification application and important highlights of your analysis. This should include in-line code and figures. This should **not** include every analysis and figure that you generated. Choose the important pieces of information to meet the project description and rubric. You can mention other things that you investigated in the text and include supplemental code in your repository. This is about quality, not quantity. 
+* The submission can be an uploaded .ipynb notebook or link to a notebook on Colab (please make sure you have appropriate sharing settings selected and test with someone else so we don't have to request access; let us know if you'd like our Colab account email addresses).
 
 2. A PDF of your clean notebook with all of the cells run and graphs appearing clearly. If you run into issues with this, try a different browser and experiment with the print function within Colab. If you have a problem and then figure something out, add it to [the shared, class-owned, editable document](https://docs.google.com/document/d/15zNjQp32oBqaD4CY4gAsgSnkAWUs3JbTJYNRAEr1H28/edit?usp=sharing).
 
 There are rubrics in the appendices in this document. The intention of these rubrics is to create shared expectations about the project, while also giving you lots of latitude to explore and emphasize your own learning.
 
 ## Check-in Deliverables (Grading Option B)
+
+By October 4, you will submit a progress goal that you will be accountable to. 
+
+
+Before class on October 10, you will self-evaluate on the progress toward your goal and include a link or copy of your current notebook. In class, we will have a brief meeting with you to review your status and your self-evaluation. 
 
 
 ## Assessment
