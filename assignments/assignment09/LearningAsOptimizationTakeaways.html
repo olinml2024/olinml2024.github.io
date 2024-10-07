@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Day 10 - Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Learning as Optimization - Key takeaways - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,8 +86,8 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="Day 10">
-<meta property="og:url" content="/activities/day10.html">
+<meta property="og:title" content="Learning as Optimization - Key takeaways">
+<meta property="og:url" content="/assignments/assignment09/LearningAsOptimizationTakeaways.html">
 
 
 
@@ -101,7 +101,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 
 
-<link rel="canonical" href="/activities/day10.html">
+<link rel="canonical" href="/assignments/assignment09/LearningAsOptimizationTakeaways.html">
 
 
 
@@ -345,7 +345,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Day 10">
+    <meta itemprop="headline" content="Learning as Optimization - Key takeaways">
     
     
     
@@ -353,7 +353,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Day 10
+          <h1 id="page-title" class="page__title" itemprop="headline">Learning as Optimization - Key takeaways
 </h1>
           
         </header>
@@ -366,56 +366,40 @@ $
               <header><h4 class="nav__title">
 <i class="fas fa-file-alt"></i> On this page</h4></header>
 	      
-                <ul class="toc__menu">
-  <li><a href="#">Agenda</a></li>
-  <li><a href="#mapping-key-concepts-of-learning-as-optimization">Mapping key concepts of learning as optimization</a></li>
-  <li><a href="#overfitting-in-neural-networks">Overfitting in Neural Networks</a></li>
-</ul>
+                
 	      	
             </nav>
           </aside>
         
-        
-<div class="tip" style="
-    border-left: 6px solid #000000;
-    margin: 2em 2em 2em 2em;">
-	<div style="background-color: #4c00b0;
-	                column-gap: 1rem;
-					display: flex;
-					padding: 1em 1em 1em 1em;">
-	<div class="notice-bulb" style="
-	    font-family: 'Font Awesome 5 Free';
-	    vertical-align: middle;
-	    font-weight: 900;
-	    font-size: xx-large;
-	    color: #FFFFFF;">
-        <i class="fas fa-list"></i>
-</div>
-	<h1 style="font-size: xx-large; font-weight: 900; color: white;">Agenda</h1>
-    </div>
-	<div style="padding: 1em 1em 1em 1em;">
-	   
-<ul>
-  <li>10:20-10:25am: Everyone come hang out in MAC128, we’ll talk about the plan and answer any logistics questions.</li>
-  <li>10:25-10:45am: Mapping key concepts of this module</li>
-  <li>10:45-11:05am: Diagnosing and fixing overfitting</li>
-  <li>11:05-12:00pm: Project work time.</li>
-</ul>
-
-	</div>
-</div>
-
-<h1 id="mapping-key-concepts-of-learning-as-optimization">Mapping key concepts of learning as optimization</h1>
-<p>We’ll do a quick class activity to map out the key concepts.</p>
-
-<h1 id="overfitting-in-neural-networks">Overfitting in Neural Networks</h1>
-
-<p>We’ll talk about the common problem of overfitting in neural networks.  Here are some resources to look at to learn more.  We’ll go through <a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/overfit_and_underfit.ipynb">this notebook</a>, but we also have some more resources for you to look at.</p>
-<ul>
-  <li><a href="https://datahacker.rs/018-pytorch-popular-techniques-to-prevent-the-overfitting-in-a-neural-networks/#https://www.kdnuggets.com/2019/12/5-techniques-prevent-overfitting-neural-networks.html">PyTorch – Popular techniques to prevent the Overfitting in a Neural Networks</a></li>
-  <li><a href="https://www.datacamp.com/tutorial/dropout-regularization-using-pytorch-guide">Dropout Regularization Using PyTorch: A Hands-On Guide
-</a></li>
-</ul>
+        <ol>
+  <li>Big picture structural things
+    <ul>
+      <li>Supervised learning problem setup (X, y, model, and loss)</li>
+      <li>Training, validation, and testing</li>
+      <li>Feature engineering - you can pre-process datasets, augment datasets, and even transform data to represent non-linear information in a linear model</li>
+      <li>Model parameters can be turned to reduce loss. This is done using partial derivatives &amp; gradients. We use gradient descent for this optimization.</li>
+    </ul>
+  </li>
+  <li>Linear regression
+    <ul>
+      <li>The model - prediction as a weighted sum of the inputs</li>
+      <li>Squared loss - explain/interpret the loss function (e.g., draw a picture of what this measures)</li>
+    </ul>
+  </li>
+  <li>Logistic regression
+    <ul>
+      <li>The model - linear regression and the sigmoid function to map to a probability in a binary case</li>
+      <li>Log loss - Explain scenarios when a model and examples would give a high or low loss. Compute the log loss of a model given model predictions (probabilities) and ground truth</li>
+    </ul>
+  </li>
+  <li>Multilayer perceptrons / Neural networks
+    <ul>
+      <li>Adding layers can increase your model’s ability to fit the data, can reduce the need for feature engineering, and can increase your chances of overfitting.</li>
+      <li>Drawings of neural networks can be mapped to a series of weighted sums and non-linear functions. These weighted sums can be represented as matrix multiplications, dot products, or summation loops. You should be able to map between drawings of a multilayer perceptron and the layers that you would construct in PyTorch.</li>
+      <li>In neural networks, backpropagation is the application of the chain rule for computing the partial derivatives of the model’s loss with respect to the weights of the network. This can be automated using the concept of dataflow diagrams. Draw a simple data flow diagram and calculate partial derivatives.</li>
+    </ul>
+  </li>
+</ol>
 
         
       </section>
