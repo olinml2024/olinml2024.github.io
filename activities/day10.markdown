@@ -14,6 +14,7 @@ layout: problemset
 {% include agenda.html content=agenda %}
 
 # Mapping key concepts of learning as optimization
+We'll do a quick class activity to map out the key concepts.
 
 # Overfitting in Neural Networks
 
