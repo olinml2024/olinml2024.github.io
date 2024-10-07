@@ -23,6 +23,7 @@ header:
 | 7     | [COMPAS discussion](activities/day07)                            |
 | 8     | [From Micrograd to Pytorch](activities/day08)                            |
 | 9     | [Cross Entropy and Small Data Mini Project Kickoff](activities/day09)                            |
+| 10    | [Concept mapping and overfitting](activities/day10)                            |
 
 
 
