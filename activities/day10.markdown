@@ -14,7 +14,7 @@ layout: problemset
 {% include agenda.html content=agenda %}
 
 # Mapping key concepts of learning as optimization
-We'll do a quick class activity to map out the key concepts.
+We'll do a quick class activity to map out the key concepts.  Here is [a list that the instructors put together](../assignments/assignment09/LearningAsOptimizationTakeaways)
 
 # Overfitting in Neural Networks
 
