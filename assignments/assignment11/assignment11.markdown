@@ -1,5 +1,5 @@
 ---
-title: Assignment 11 - ??
+title: Assignment 11 - Word Embeddings
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset

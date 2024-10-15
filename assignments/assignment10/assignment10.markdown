@@ -1,5 +1,5 @@
 ---
-title: Assignment 10 - ??
+title: Assignment 10 - Bag of Words and Text Classification
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
