@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Machine Learning Fall 2024 - Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Assignment 11 - Word Embeddings - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,8 +86,8 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="Machine Learning Fall 2024">
-<meta property="og:url" content="/">
+<meta property="og:title" content="Assignment 11 - Word Embeddings">
+<meta property="og:url" content="/assignments/assignment11/assignment11.html">
 
 
 
@@ -101,7 +101,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 
 
-<link rel="canonical" href="/">
+<link rel="canonical" href="/assignments/assignment11/assignment11.html">
 
 
 
@@ -338,169 +338,151 @@ $
 
     <div class="initial-content">
       
-  
-
-
-
-
-
-
-
-
-
-
-
-<div class="page__hero--overlay" style="background-color: #000; ">
-  
-    <div class="wrapper">
-      <h1 id="page-title" class="page__title" itemprop="headline">
-        
-          Machine Learning Fall 2024
-
-        
-      </h1>
-      
-      
-      
-      
-    </div>
-  
-  
-</div>
 
 
 
 <div id="main" role="main">
-  <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Machine Learning Fall 2024">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Assignment 11 - Word Embeddings">
     
     
     
 
-    <section class="page__content" itemprop="text">
-      <!-- ## How-tos
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 11 - Word Embeddings
+</h1>
+          
+        </header>
+      
 
-*  TODO -->
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+	      
+                <ul class="toc__menu">
+  <li><a href="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#word-embeddings">Word Embeddings</a></li>
+  <li><a href="#word2vec">Word2vec</a></li>
+</ul>
+	      	
+            </nav>
+          </aside>
+        
+        <h1 id="learning-objectives">Learning Objectives</h1>
 
-<h2 id="in-class-activities">In-class Activities</h2>
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #C6EBD5;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-brain"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Learning Objectives</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<ul>
+  <li>Learn about the concept of word embeddings and contrast them with bag of words</li>
+  <li>Implement the Google word2vec model</li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Day #</th>
-      <th>Activity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td><a href="activities/day01">Course intro and welcome to ML!</a></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td><a href="activities/day02">Types of Machine Learning Problems and Exploring Image Transforms</a></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td><a href="activities/day03">Metrics and Meeting ML as Optimization</a></td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td><a href="activities/day04">Linear, Ridge, and Logistic Regression &amp; Train-Test Split</a></td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td><a href="activities/day05">Logistic Regression Sample Problem, Foundations of Micrograd</a></td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>
-<a href="activities/day06">Starting COMPAS and Building Towards Autodifferentiation</a> (<a href="activities/day06?showSolutions=true">with show solutions button</a>)</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td><a href="activities/day07">COMPAS discussion</a></td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td><a href="activities/day08">From Micrograd to Pytorch</a></td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td><a href="activities/day09">Cross Entropy and Small Data Mini Project Kickoff</a></td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td><a href="activities/day10">Concept mapping and overfitting</a></td>
-    </tr>
-  </tbody>
-</table>
+	</div>
+</div>
 
-<h2 id="assignments">Assignments</h2>
+<h1 id="word-embeddings">Word Embeddings</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Due at beginning of class #</th>
-      <th>Assignment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>2</td>
-      <td>
-<a href="assignments/assignment01/assignment01">Assignment 1</a> (<a href="assignments/assignment01/assignment01?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td><a href="assignments/assignment02/assignment02">Assignment 2</a></td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>
-<a href="assignments/assignment03/assignment03">Assignment 3</a>   (<a href="assignments/assignment03/assignment03?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>
-<a href="assignments/assignment04/assignment04">Assignment 4</a>   (<a href="assignments/assignment04/assignment04?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>
-<a href="assignments/assignment05/assignment05">Assignment 5</a>   (<a href="assignments/assignment05/assignment05?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td><a href="assignments/assignment06/assignment06">Assignment 6</a></td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td><a href="assignments/assignment07/assignment07">Assignment 7</a></td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>
-<a href="assignments/assignment08/assignment08">Assignment 8</a>    (<a href="assignments/assignment08/assignment08?showSolutions=true">with show solution button</a>)</td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td><a href="assignments/assignment09/assignment09">Assignment 9 - “Small data” project on classification</a></td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td><a href="assignments/assignment10/assignment10">Assigment 10 - Text as Data Kickoff and Bag of Words for Text Classification</a></td>
-    </tr>
-  </tbody>
-</table>
+<p>Give a basic overview of why this is important (e.g., helping to train a model using unsupervised learning, better generalization, identification of biases, etc.)</p>
 
-<h2 id="other-important-documents">Other Important Documents</h2>
-<p><a href="assignments/assignment01/notation_conventions">Notation conventions</a></p>
+<h2 id="limitations-of-bag-of-words">Limitations of Bag of Words</h2>
 
-<p><a href="assignments/assignment09/LearningAsOptimizationTakeaways">Learning as Optimization Key Concepts</a></p>
+<p>So far we have learned how to represent text using a bag of words approach.  In the bag of words approach, each unique word was assigned a dimension in our representation of a piece of text.  As we processed each word of the text, we kept track of how many of each unique word was present by adjusting the relevant dimension (corresponding to each word) in our vector representation.  One consequence of this approach is that when we combined bag of words with machine learning, our classifier (let’s use logistic regression as our example) had to learn the association between the class we were trying to predict (e.g., sentiment) and each unique word.  Let’s do a quick exercise to try and understand this better.</p>
 
-    </section>
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>TODO: give a training set with things like <code class="language-plaintext highlighter-rouge">the movie was horrible</code>, <code class="language-plaintext highlighter-rouge">the movie was fantastic</code>, and a test sample <code class="language-plaintext highlighter-rouge">the movie was great</code>.  Have students explain why the classifier cannot predict the sentiment of the test sample despite the fact that we know that great and fantastic are similar words.  This motivates the idea that we need some way to represent words that allows a notion of semantic similarity.</p>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-1")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-1" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>TODO</p>
+
+     </div>
+</div>
+</div>
+</div>
+
+<p>Say something about how bag of words is an example of a sparse representation (mostly zeros in our feature vector).  Contrast this with the idea of a dense representation.</p>
+
+<h1 id="word2vec">Word2vec</h1>
+
+<p>TODO: describe word2vec (possibly by linking to an external source).  Students will implement some facet of it in Pytorch through Colab.</p>
+
+<p>Do some sort of searching for similar words in the word2vec space.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
   </article>
+
+  
+  
 </div>
 
     </div>
