@@ -40,6 +40,8 @@ header:
 | 8                           | [Assignment 7](assignments/assignment07/assignment07)     |
 | 9                           | [Assignment 8](assignments/assignment08/assignment08)    ([with show solution button](assignments/assignment08/assignment08?showSolutions=true))      |
 | 12                           | [Assignment 9 - "Small data" project on classification](assignments/assignment09/assignment09)         |
+| 13                           | [Assigment 10 - Text as Data Kickoff and Bag of Words for Text Classification](assignments/assignment10/assignment10)         |
+
 
 
 
