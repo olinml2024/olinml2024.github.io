@@ -9,7 +9,7 @@ layout: problemset
 
 {% capture content %}
 * Combine attention and an MLP to reduce loss
-* Encapsulate pytorch modules to allow scalin up
+* Encapsulate pytorch modules to allow scaling up
 * Improving optimization performance with residual connections and normalization
 * Ethical issues in training text completion modules
 {% endcapture %}

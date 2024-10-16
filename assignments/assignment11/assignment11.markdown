@@ -35,3 +35,5 @@ Say something about how bag of words is an example of a sparse representation (m
 
 TODO: describe word2vec (possibly by linking to an external source).  Students will implement some facet of it in Pytorch through Colab.
 
+Do some sort of searching for similar words in the word2vec space.
+
