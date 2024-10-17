@@ -38,12 +38,12 @@ Again, thinking back to our input vector $\mlvec{x}$, it had a fixed number of d
 
 Before we get into how to process text, it's important to ask *why* we might want to process text.  Perhaps this almost seems like a silly question given the fact that everywhere you turn these days folk are talking about processing text with large language models (LLMs).  We're going to go over a few of the specific problems that arise in a field called Natural Language Processing, but we're also going to have you do some of your own research.  First, natural language process is a field concerned with, not surprisingly, processing and making sense of natural language.  Don't let the term "natural language" confuse you, all we mean here is that we want to be able to process text that is written in natural form (i.e., how humans communicate).  In this case the world "natural" might be seen as a contrast to the notion of processing text that is constructed in some specific way as to be easily interpretable by a computer (e.g., a programming language is a good example).
 
-* Machine translation: TODO
-* Text completion: TODO
-* Question answering: TODO
-* Named entity recognition: TODO
-* Sentence parsing: TOOD
-* Sentiment analysis: TODO
+* Machine translation: translating text from one language to another.
+* Text completion: given the beginning of a piece of text, complete it (this is at the heart of LLMs)
+* Question answering: given a question, answer it in natural language (again this is a big part of LLMs)
+* Named entity recognition: "seeks to locate and classify named entities mentioned in unstructured text into pre-defined categories such as person names, organizations, locations, medical codes, time expressions, quantities, monetary values, percentages, etc." ([source](https://en.wikipedia.org/wiki/Named-entity_recognition))
+* Sentence parsing: given a sentence, determine parts of speech and how they relate to each other ()
+* Sentiment analysis: given a sentence, determine whether the sentiment contained is postive or negative (this could be generalized to emotion detection or transferred to thinking about other types of text classification, e.g., spam filters for email).
 
 {% capture content %}
 Choose one of the natural language processing tasks listed above (or substitute one of your own).  Do some research to determine what are some applications of algorithms that solve the problems listed above.  The distinction here is between problems and how a solution to that problem can be used for some purpose (an application).  Some of these problems may be harder to find information on than others, so do your best.  Aim for a medium length paragraph, 5-6 sentences, for your response.  If you choose a natural language processing problem not listed above, include a brief description of the problem itself along with the applications you found.
