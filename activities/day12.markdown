@@ -20,10 +20,23 @@ layout: problemset
 We want to celebrate and share about your small data mini-projects. Hooray, you did it! We'll do a little share-out so that you can learn from each other and give high fives!
 
 
+## Share at tables
+
+Let's start out by sharing what you did with the folks around you.  Take about 2 minutes each to go over what you did for the project and how it turned out.
+
+## If you feel inclined, step up to the front
+
+If you have something you want to show the class (could be something you are proud of, a hard fought lesson, advice, etc.), please jump up and connect to the projector.
+
 # Key takeaways from the mini-project
 
-We'll take a moment to summarize some of the key takeaways from this project. 
+Let's mix up the seating.  Please sit with people you don't normally sit with.  As a group make a list of key takeaways for this project.  Some good prompts would be:
 
+1. New things I learned through this project are...
+2. I solidified my knowledge of...
+3. Next time I use machine learning I will be sure to...
+
+Take about 10 minutes for this in groups and then we'll do a 10 minute share out.
 
 # Reflection on the course so far
 
