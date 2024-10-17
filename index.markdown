@@ -24,6 +24,8 @@ header:
 | 8     | [From Micrograd to Pytorch](activities/day08)                            |
 | 9     | [Cross Entropy and Small Data Mini Project Kickoff](activities/day09)                            |
 | 10    | [Concept mapping and overfitting](activities/day10)                            |
+| 12    | [Project shareout and course feedback](activities/day12)                            |
+
 
 
 
