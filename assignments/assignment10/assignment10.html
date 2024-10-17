@@ -419,7 +419,7 @@ $
 
 <h3 id="text-has-sequential-structure">Text has sequential structure</h3>
 
-<p>When we first met the supervised learning problem, we represented our input to the model as $\mlvec{x}$.  Each of the dimensions of this vector represented some characteristic of the data.  In the logistic regression model and the MLP, each dimension of $\mlvec{X}$ was treated more-or-less independently.  That is, we did not assume any specific relationship between $x_i$ and $x_j$ (we could just as easily have shuffeled the dimensions of the data and our learning approaches wouldn’t have behaved any differently).  When processing text, we need to consider that pieces of text have sequential structure.  The order of the symbols (i.e., letters) matter.  Our first attempts (in this assignment) to map machine learning onto text processing will not do a great job encoding this sequential structure, but as we move through the module we will begin to use models that represent this sequential structure in important ways.</p>
+<p>When we first met the supervised learning problem, we represented our input to the model as $\mlvec{x}$.  Each of the dimensions of this vector represented some characteristic of the data.  In the logistic regression model and the MLP, each dimension of $\mlvec{X}$ was treated more-or-less independently.  That is, we did not assume any specific relationship between $x_i$ and $x_j$ (we could just as easily have shuffled the dimensions of the data and our learning approaches wouldn’t have behaved any differently).  When processing text, we need to consider that pieces of text have sequential structure.  The order of the symbols (i.e., letters) matter.  Our first attempts (in this assignment) to map machine learning onto text processing will not do a great job encoding this sequential structure, but as we move through the module we will begin to use models that represent this sequential structure in important ways.</p>
 
 <h3 id="text-has-variable-length">Text has variable length</h3>
 
@@ -430,12 +430,12 @@ $
 <p>Before we get into how to process text, it’s important to ask <em>why</em> we might want to process text.  Perhaps this almost seems like a silly question given the fact that everywhere you turn these days folk are talking about processing text with large language models (LLMs).  We’re going to go over a few of the specific problems that arise in a field called Natural Language Processing, but we’re also going to have you do some of your own research.  First, natural language process is a field concerned with, not surprisingly, processing and making sense of natural language.  Don’t let the term “natural language” confuse you, all we mean here is that we want to be able to process text that is written in natural form (i.e., how humans communicate).  In this case the world “natural” might be seen as a contrast to the notion of processing text that is constructed in some specific way as to be easily interpretable by a computer (e.g., a programming language is a good example).</p>
 
 <ul>
-  <li>Machine translation: TODO</li>
-  <li>Text completion: TODO</li>
-  <li>Question answering: TODO</li>
-  <li>Named entity recognition: TODO</li>
-  <li>Sentence parsing: TOOD</li>
-  <li>Sentiment analysis: TODO</li>
+  <li>Machine translation: translating text from one language to another.</li>
+  <li>Text completion: given the beginning of a piece of text, complete it (this is at the heart of LLMs)</li>
+  <li>Question answering: given a question, answer it in natural language (again this is a big part of LLMs)</li>
+  <li>Named entity recognition: “seeks to locate and classify named entities mentioned in unstructured text into pre-defined categories such as person names, organizations, locations, medical codes, time expressions, quantities, monetary values, percentages, etc.” (<a href="https://en.wikipedia.org/wiki/Named-entity_recognition">source</a>)</li>
+  <li>Sentence parsing: given a sentence, determine parts of speech and how they relate to each other ()</li>
+  <li>Sentiment analysis: given a sentence, determine whether the sentiment contained is positive or negative (this could be generalized to emotion detection or transferred to thinking about other types of text classification, e.g., spam filters for email).</li>
 </ul>
 
 <div style="display: normal;
@@ -462,27 +462,296 @@ $
 </div>
 </div>
 
-<h2 id="beyond-language-non-linguistic-text">Beyond language: non-linguistic text</h2>
+<h2 id="text-processing-beyond-natural-language">Text Processing Beyond Natural Language</h2>
 
-<p>TODO: talk about other forms of text that can be modeled using machine learning (e.g., DNA sequences, proteins, etc.).</p>
+<p>Many of the same techniques we will be learning about can be used to process text data other than natural language.  Examples of this sort of text data could be genomic sequences (where each symbol in the sequence consists of nucleotides A, C, T, and G), amino acid chains (where each symbol is one of the 20 amino acids present in the human body), structured text (e.g., Python code), etc.  For example, the Google’s DeepMind team’s <a href="https://www.nature.com/articles/d41586-024-03214-7">AlphaFold program for protein structure prediction just led to a Nobel prize in chemistry</a>.  <a href="https://www.nature.com/articles/s41586-021-03819-2">AlphaFold</a> predicts protein structure from an Amino acid chain.  We won’t be going into this sort of text processing all that much in this module (although some of the methods we will learn could be adapted fairly easily).  If you are interested in the idea of processing non-linguistic text, this might be a fruitful topic for a final project.</p>
 
 <h1 id="bag-of-words">Bag of Words</h1>
 
-<p>TODO: We’ll talk about the basic representation and have some problems that test understanding.</p>
+<p>Next, we’re going to learn about our first technique for adapting the machine learning approaches from the previous module to processing text.  In doing so, we’re going to find ways of dealing with some of the unique features of text that initially might seem to make text incompatible with the techniques we’ve learned about.  The technique we’re going to learn about is called “bag of words,” and it deals with the issue of how to convert the symbols in a piece of text into a numerical representation and also how to deal with the fact that pieces of text are variable in length.  We hope you will enjoy these great external resources for learning about bag of words.</p>
 
-<h2 id="tf-idf">TF-IDF</h2>
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<p>Okay, we are now ready for our first pass adaptation of the machine learning models from the past module to text.  We’ll begin by having you watch <a href="https://www.youtube.com/embed/pF9wCgUbRtc?si=zd1AYDQTJifqLtcZ">a video from IBM called What is Bag of Words?</a>.  Towards the end, this video gets into two, more advanced topics that we’ll be digging into shortly.  The first is Tf-IDF and you’ll learn about that in the notebook.  The second is the idea of word embeddings (or word2vec), and you’ll see that in the assignment after this one.  If you want one more (shorter video), we also recommend <a href="https://www.youtube.com/embed/kLMhePA3BiY?si=MEfYE_SyhzkGBnch">this video from Socratica</a>.</p>
 
-<p>TODO: show how normalizing features can make the vectors better for learning.</p>
+	</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>As a quick check of your understanding, encode the following three pieces of text using bag of words.  What would you need to do to normalize the data?  What does it mean that the bag of words is a sparse representation?  How do you see that in your solution to the exercise?</p>
+
+<ol>
+  <li>goodnight moon</li>
+  <li>goodnight cow jumping over the moon</li>
+  <li>and a little toy house and a young mouse</li>
+  <li>and goodnight mouse</li>
+</ol>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-2")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-2" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>If we examine the texts as a whole, we can identify the unique words that occur and assign each word to a dimension in our bag of words vector.  As long as we’re consistent in how we do so, It doesn’t matter how we assign words to vector dimensions.  Here is what the sentences would look like.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>dimension</th>
+      <th>word</th>
+      <th>text 1</th>
+      <th>text 2</th>
+      <th>text 3</th>
+      <th>text 4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>goodnight</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>moon</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>cow</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>jumping</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>over</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>the</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>and</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>a</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>little</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>toy</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>house</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>young</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>mouse</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If we were to normalize these representations, we would divide each column by the sum of the column (i.e., the total number of words in each piece of text).</p>
+
+<p>The bag of words representation is sparse as most of the entries in the table are 0.  If we had a larger vocabulary the sparsity would be even more apparent (a higher proportion of entries that are 0).</p>
+
+
+     </div>
+</div>
+</div>
+</div>
 
 <h2 id="text-classification-with-bag-of-words">Text Classification with Bag of Words</h2>
 
-<p>TODO: sentiment analysis is always a good one to start with.  We’ll do a notebook that goes into this.</p>
+<p>In the video from IBM, there were several examples used to motivate the notion of bag of words for text classification.  Let’s use one of the problems mentioned, sentiment analysis, and apply it to analyzing movie reviews.  We’ll be using a fairly old dataset for our analysis, but it is one that is easy to work with and big enough for us to learn some important skills about working with text.  The dataset is Stanford’s <a href="https://ai.stanford.edu/~amaas/data/sentiment/">Large Movie Review Dataset</a>. Here is a snippet from the README.md file that is included with the dataset.</p>
 
-<h2 id="potential-to-introduce-unwanted-bias">Potential to Introduce Unwanted Bias</h2>
+<blockquote>
+  <p>Large Movie Review Dataset v1.0</p>
 
-<p>TODO: something like the Amazon resume evaluator.  Maybe we can find a dataset to show how correlation between words and an outcome becomes causal when fed through an ML model.  This will probably be part of the notebook.</p>
+  <p>Overview</p>
 
-<p>Maybe this one? https://www.kaggle.com/code/drindeng/resume-screening-using-nlp-different-ml-algorithms/notebook</p>
+  <p>This dataset contains movie reviews along with their associated binary
+sentiment polarity labels. It is intended to serve as a benchmark for
+sentiment classification. This document outlines how the dataset was
+gathered, and how to use the files provided.</p>
+
+  <p>Dataset</p>
+
+  <p>The core dataset contains 50,000 reviews split evenly into 25k train
+and 25k test sets. The overall distribution of labels is balanced (25k
+pos and 25k neg). We also include an additional 50,000 unlabeled
+documents for unsupervised learning.</p>
+
+  <p>In the entire collection, no more than 30 reviews are allowed for any
+given movie because reviews for the same movie tend to have correlated
+ratings. Further, the train and test sets contain a disjoint set of
+movies, so no significant performance is obtained by memorizing
+movie-unique terms and their associated with observed labels.  In the
+labeled train/test sets, a negative review has a score &lt;= 4 out of 10,
+and a positive review has a score &gt;= 7 out of 10. Thus reviews with
+more neutral ratings are not included in the train/test sets. In the
+unsupervised set, reviews of any rating are included and there are an
+even number of reviews &gt; 5 and &lt;= 5.</p>
+</blockquote>
+
+<p>In the <a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment10.ipynb">assignment 10 notebook</a>, you’ll be working with this dataset and implementing your own machine learning system for predicting the sentiment of a movie review using a bag of wordsd representation.</p>
+
+<h2 id="bag-of-words-and-machine-learning-bias">Bag of Words and Machine Learning Bias</h2>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 3</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Let’s do a little spiraling back to one of the big ideas in machine learning we started the semester with.  We want to draw your attention to this specific example.</p>
+
+<blockquote>
+  <p>You may have heard that <a href="https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G">Amazon
+scrapped a secret AI recruiting tool that showed bias against women</a>.
+More specifically, the tool performed automatic keyword analysis of job applications to predict whether or not the applicant was worth forwarding on to a human for further evaluation. Early in the development of this system researchers discovered that the model the system had learned placed a negative weight on words such as “women’s” as well as the names of some women’s colleges.</p>
+</blockquote>
+
+<p>Given what you just learned about the bag of words approach and what we learned about <a href="../assignment04/assignment04#confounding-variables">confounding variables in assignment 4</a>, how might Amazon’s system have learned to associate negative feature weights with the gendered words or words associated with women’s colleges.</p>
+
+
+
+    <button hidden="true" onclick='HideShowElement("solution-3")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-3" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>The Amazon engineers probably didn’t think to screen out particular words from their machine learning model.  Likely, they assigned a dimension to all unique words to increase the predictive power of the model.  There was a correlation between resumes not doing as well and the presence of gendered words and the names of women’s colleges.  It’s hard to say why this correlation might have existed without more investigation (e.g., it could have been conscious or subconscious bias on the part of the evaluations that were used to make the training set).  Given this correlation, the machine learning model associated a negative weight with these words and baked it into the model.  In this way a correlation (that having these words in your resume was correlated with being screened out) was made causal by the model (if this model were to be applied to real resumes, then people with these words would be more likely to be discriminated against).</p>
+
+     </div>
+</div>
+</div>
+</div>
 
         
       </section>
