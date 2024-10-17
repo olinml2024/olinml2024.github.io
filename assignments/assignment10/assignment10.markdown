@@ -28,7 +28,7 @@ Pieces of text are comprised of symbols.  For example, the text your reading rig
 
 ### Text has sequential structure
 
-When we first met the supervised learning problem, we represented our input to the model as $\mlvec{x}$.  Each of the dimensions of this vector represented some characteristic of the data.  In the logistic regression model and the MLP, each dimension of $\mlvec{X}$ was treated more-or-less independently.  That is, we did not assume any specific relationship between $x_i$ and $x_j$ (we could just as easily have shuffeled the dimensions of the data and our learning approaches wouldn't have behaved any differently).  When processing text, we need to consider that pieces of text have sequential structure.  The order of the symbols (i.e., letters) matter.  Our first attempts (in this assignment) to map machine learning onto text processing will not do a great job encoding this sequential structure, but as we move through the module we will begin to use models that represent this sequential structure in important ways.
+When we first met the supervised learning problem, we represented our input to the model as $\mlvec{x}$.  Each of the dimensions of this vector represented some characteristic of the data.  In the logistic regression model and the MLP, each dimension of $\mlvec{X}$ was treated more-or-less independently.  That is, we did not assume any specific relationship between $x_i$ and $x_j$ (we could just as easily have shuffled the dimensions of the data and our learning approaches wouldn't have behaved any differently).  When processing text, we need to consider that pieces of text have sequential structure.  The order of the symbols (i.e., letters) matter.  Our first attempts (in this assignment) to map machine learning onto text processing will not do a great job encoding this sequential structure, but as we move through the module we will begin to use models that represent this sequential structure in important ways.
 
 ### Text has variable length
 
@@ -43,7 +43,7 @@ Before we get into how to process text, it's important to ask *why* we might wan
 * Question answering: given a question, answer it in natural language (again this is a big part of LLMs)
 * Named entity recognition: "seeks to locate and classify named entities mentioned in unstructured text into pre-defined categories such as person names, organizations, locations, medical codes, time expressions, quantities, monetary values, percentages, etc." ([source](https://en.wikipedia.org/wiki/Named-entity_recognition))
 * Sentence parsing: given a sentence, determine parts of speech and how they relate to each other ()
-* Sentiment analysis: given a sentence, determine whether the sentiment contained is postive or negative (this could be generalized to emotion detection or transferred to thinking about other types of text classification, e.g., spam filters for email).
+* Sentiment analysis: given a sentence, determine whether the sentiment contained is positive or negative (this could be generalized to emotion detection or transferred to thinking about other types of text classification, e.g., spam filters for email).
 
 {% capture content %}
 Choose one of the natural language processing tasks listed above (or substitute one of your own).  Do some research to determine what are some applications of algorithms that solve the problems listed above.  The distinction here is between problems and how a solution to that problem can be used for some purpose (an application).  Some of these problems may be harder to find information on than others, so do your best.  Aim for a medium length paragraph, 5-6 sentences, for your response.  If you choose a natural language processing problem not listed above, include a brief description of the problem itself along with the applications you found.
@@ -52,14 +52,14 @@ Choose one of the natural language processing tasks listed above (or substitute 
 
 ## Text Processing Beyond Natural Language
 
-Many of the same techniques we will be learing about can be used to process text data other than natural language.  Examples of this sort of text data could be genomic sequences (where each symbol in the sequence consists of nucleotides A, C, T, and G), amino acid chains (where each symbol is one of the 20 amino acids present in the human body), structured text (e.g., Python code), etc.  For example, the Google's DeepMind team's [AlphaFold program for protein structure prediction just led to a Nobel prize in chemistry](https://www.nature.com/articles/d41586-024-03214-7).  [AlphaFold](https://www.nature.com/articles/s41586-021-03819-2) predicts protein structure from an Amino acid chain.  We won't be going into this sort of text processing all that much in this module (although some of the methods we will learn could be adapted fairly easily).  If you are interested in the idea of processing non-linguistic text, this might be a fruitful topic for a final project.
+Many of the same techniques we will be learning about can be used to process text data other than natural language.  Examples of this sort of text data could be genomic sequences (where each symbol in the sequence consists of nucleotides A, C, T, and G), amino acid chains (where each symbol is one of the 20 amino acids present in the human body), structured text (e.g., Python code), etc.  For example, the Google's DeepMind team's [AlphaFold program for protein structure prediction just led to a Nobel prize in chemistry](https://www.nature.com/articles/d41586-024-03214-7).  [AlphaFold](https://www.nature.com/articles/s41586-021-03819-2) predicts protein structure from an Amino acid chain.  We won't be going into this sort of text processing all that much in this module (although some of the methods we will learn could be adapted fairly easily).  If you are interested in the idea of processing non-linguistic text, this might be a fruitful topic for a final project.
 
 # Bag of Words
 
 Next, we're going to learn about our first technique for adapting the machine learning approaches from the previous module to processing text.  In doing so, we're going to find ways of dealing with some of the unique features of text that initially might seem to make text incompatible with the techniques we've learned about.  The technique we're going to learn about is called "bag of words," and it deals with the issue of how to convert the symbols in a piece of text into a numerical representation and also how to deal with the fact that pieces of text are variable in length.  We hope you will enjoy these great external resources for learning about bag of words.
 
 {% capture resources %}
-Okay, we are now ready for our first pass adaptation of the machine learning models from the past module to text.  We'll begin by having you watch [a video from IBM called What is Bag of Words?](https://www.youtube.com/embed/pF9wCgUbRtc?si=zd1AYDQTJifqLtcZ).  Towards the end, this video gets into two, more advanced topics that we'll be digging into shortly.  The first is Tf-IDF and you'll learn about that in the notebook.  The second is the idea of word embeddigns (or word2vec), and you'll see that in the assignment after this one.  If you want one more (shorter video), we also recommend [this video from Socratica](https://www.youtube.com/embed/kLMhePA3BiY?si=MEfYE_SyhzkGBnch).
+Okay, we are now ready for our first pass adaptation of the machine learning models from the past module to text.  We'll begin by having you watch [a video from IBM called What is Bag of Words?](https://www.youtube.com/embed/pF9wCgUbRtc?si=zd1AYDQTJifqLtcZ).  Towards the end, this video gets into two, more advanced topics that we'll be digging into shortly.  The first is Tf-IDF and you'll learn about that in the notebook.  The second is the idea of word embeddings (or word2vec), and you'll see that in the assignment after this one.  If you want one more (shorter video), we also recommend [this video from Socratica](https://www.youtube.com/embed/kLMhePA3BiY?si=MEfYE_SyhzkGBnch).
 {% endcapture %}
 {% include external_resources.html content=resources %}
 
@@ -94,7 +94,7 @@ If we examine the texts as a whole, we can identify the unique words that occur 
 
 If we were to normalize these representations, we would divide each column by the sum of the column (i.e., the total number of words in each piece of text).
 
-The bag of words representation is sparse as most of the entries in the table are 0.  If we had a larger vocabulary the sparsity would be even more apparent (a highe proportion of entries that are 0).
+The bag of words representation is sparse as most of the entries in the table are 0.  If we had a larger vocabulary the sparsity would be even more apparent (a higher proportion of entries that are 0).
 
 
 {% endcapture %}
@@ -144,7 +144,7 @@ Let's do a little spiraling back to one of the big ideas in machine learning we 
 > scrapped a secret AI recruiting tool that showed bias against women](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G).
 More specifically, the tool performed automatic keyword analysis of job applications to predict whether or not the applicant was worth forwarding on to a human for further evaluation. Early in the development of this system researchers discovered that the model the system had learned placed a negative weight on words such as "women's" as well as the names of some women's colleges.
 
-Given what you just learned about the bag of words approach and what we learned about [confounding variables in assignment 4](../assignment04/assignment04#confounding-variables), how do you might Amazon's system have learned to associate negative feature weights with the gendered words or words associated with women's collleges.
+Given what you just learned about the bag of words approach and what we learned about [confounding variables in assignment 4](../assignment04/assignment04#confounding-variables), how might Amazon's system have learned to associate negative feature weights with the gendered words or words associated with women's colleges.
 
 {% endcapture %}
 {% capture solution %}
