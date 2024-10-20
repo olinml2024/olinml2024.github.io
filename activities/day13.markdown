@@ -26,4 +26,4 @@ While we know that you'll be using external resources for any future ML work tha
 
 If you have any accommodations that we need to prepare for to make this assessment work for you, please let us know so we can best support you. Our tentative plan is to give lots of time to complete the assessment in class and have it be the last activity before lunch (so folks can leave when they are done without putting time pressure on folks who want more time). 
 
-Please show up to class for this assessment if you can. If you are out sick, we can schedule a make-up time.
+Please show up to class for this assessment if you can. If you are out sick, we can schedule a make-up time (tentative date is Wednesday afternoon).
