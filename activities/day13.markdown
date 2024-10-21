@@ -20,7 +20,7 @@ Let's bring our heads together and clear up any issues with the previous assignm
 
 # Motivating Example for Our Next Assignment
 
-We'll be going over the concept of word embeddings using a combination of a mini-lecture and [a Colab notebook](https://colab.research.google.com/drive/17CHOlkxb1R31r59r9hqDziEMKRnEF8j3?usp=sharing).
+We'll be going over the concept of word embeddings using a combination of a mini-lecture and [a Colab notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Day13.ipynb).
 
 # Quality Assessed Deliverable - Key concepts of Learning as Optimization
 We will take an in-class quiz on the key concepts of Learning as Optimization.
