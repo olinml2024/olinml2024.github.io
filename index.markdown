@@ -25,6 +25,7 @@ header:
 | 9     | [Cross Entropy and Small Data Mini Project Kickoff](activities/day09)                            |
 | 10    | [Concept mapping and overfitting](activities/day10)                            |
 | 12    | [Project shareout and course feedback](activities/day12)                            |
+| 13    | [Word embeddings introduction](activities/day13)                            |
 
 
 
@@ -43,6 +44,8 @@ header:
 | 9                           | [Assignment 8](assignments/assignment08/assignment08)    ([with show solution button](assignments/assignment08/assignment08?showSolutions=true))      |
 | 12                           | [Assignment 9 - "Small data" project on classification](assignments/assignment09/assignment09)         |
 | 13                           | [Assigment 10 - Text as Data Kickoff and Bag of Words for Text Classification](assignments/assignment10/assignment10)   ([with show solution button](assignments/assignment10/assignment10?showSolutions=true))       |
+| 14                           | [Assigment 11 - Word Embeddings](assignments/assignment11/assignment11)   ([with show solution button](assignments/assignment11/assignment11?showSolutions=true))       |
+
 
 
 
