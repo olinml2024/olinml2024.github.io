@@ -130,8 +130,8 @@ Step 2: Compute each query using the formula $\mlmat{W_q} \mlvec{r}_i$ and each 
 
 $$
 \begin{align}
-\mlmat{Q} &= \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix} \\ 
-\mlmat{K} &= \begin{bmatrix} 0 & 5 & 5 & 5 & 0 \end{bmatrix}
+\mlmat{Q} &= \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \\ 1 \end{bmatrix} \\ 
+\mlmat{K} &= \begin{bmatrix} 0 \\ 5 \\ 5 \\ 5 \\ 0 \end{bmatrix}
 \end{align}
 $$
 
@@ -164,7 +164,7 @@ $$
 {% include problem_part.html subpart=partc_prob solution=partc_sol label="C" %}
 
 {% capture partd_prob %}
-Define the value for the $i$th token as $\mlmat{W_V} \mlvec{r}_i$ where $\mlmat{W_V}$ is the identity matrix and $\mlvec{r}_i$ is the embedding of the token.  Construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix.  Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 & 0 \end{bmatrix}$ if no consonants preceded a token and $\begin{bmatrix} 0 & 1 \end{bmatrix}$ if at least one consonant preceded a token.
+Define the value for the $i$th token as $\mlmat{W_V} \mlvec{r}_i$ where $\mlmat{W_V}$ is the identity matrix and $\mlvec{r}_i$ is the embedding of the token.  Construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix.  Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ if no consonants preceded a token and $\begin{bmatrix} 0 \\ 1 \end{bmatrix}$ if at least one consonant preceded a token.
 {% endcapture %}
 
 {% capture partd_sol %}
@@ -195,8 +195,8 @@ We could keep $\mlmat{W_Q} = \begin{bmatrix} 1 & 1 \end{bmatrix}$ the same.  We 
 
 $$
 \begin{align}
-\mlmat{Q} &= \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix} \\ 
-\mlmat{K} &= \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix}
+\mlmat{Q} &= \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \\ 1 \end{bmatrix} \\ 
+\mlmat{K} &= \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \\ 1 \end{bmatrix}
 \end{align}
 $$
 
@@ -301,8 +301,8 @@ Step 2: Compute each query using the formula $\mlmat{W_q} \mlvec{r}_i$ and each 
 
 $$
 \begin{align}
-\mlmat{Q} &= \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix} \\ 
-\mlmat{K} &= \begin{bmatrix} 5 & 0 & 0 & 0 & 0 \end{bmatrix}
+\mlmat{Q} &= \begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \\ 1 \end{bmatrix} \\ 
+\mlmat{K} &= \begin{bmatrix} 5 \\ 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}
 \end{align}
 $$
 
@@ -335,7 +335,7 @@ $$
 {% include problem_part.html subpart=partc_prob solution=partc_sol label="C" %}
 
 {% capture partd_prob %}
-Determine the of $\mlmat{W_V}$ in order to construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix. Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 & 0 \end{bmatrix}$ if the third token is a consonant and close to $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.
+Determine the of $\mlmat{W_V}$ in order to construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix. Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ if the first token is a consonant and close to $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.
 {% endcapture %}
 
 {% capture partd_sol %}
