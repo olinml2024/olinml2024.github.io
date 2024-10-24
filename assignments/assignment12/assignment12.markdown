@@ -124,7 +124,7 @@ Come up with a short sequence of characters, $s$, consisting of some vowels and 
 {% capture partc_sol %}
 Let's take our string to be $s = \mbox{abcce}$.
 
-Step 1: Compute our embeddings by picking out appropriate columns of our matrix. $r_1 = \begin{bmatrix} 1 & 0 \end{bmatrix}$, $r_2 = \begin{bmatrix} 0 & 1 \end{bmatrix}$, $r_3 = \begin{bmatrix} 0 & 1 \end{bmatrix}$, $r_4 = \begin{bmatrix} 0 & 1 \end{bmatrix}$, and $r_5 = \begin{bmatrix} 1 & 0 \end{bmatrix}$.
+Step 1: Compute our embeddings by picking out appropriate columns of our matrix. $r_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $r_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$, $r_3 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$, $r_4 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$, and $r_5 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$.
 
 Step 2: Compute each query using the formula $\mlmat{W_q} \mlvec{r}_i$ and each key using the formula $\mlmat{W_k} \mlvec{r}_i$ and put each query as a row to form $\mlmat{Q}$ and each key as a row to form $\mlmat{K}$.
 
@@ -164,7 +164,7 @@ $$
 {% include problem_part.html subpart=partc_prob solution=partc_sol label="C" %}
 
 {% capture partd_prob %}
-Define the value for the $i$th token as $\mlmat{W_V} \mlvec{r}_i$ where $\mlmat{W_V}$ is the identity matrix and $r$ is the embedding of the token.  Construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix where each the $i$th row is the value of token $i$ given by the formula $\mlmat{W_V} \mlvec{r}_i$.  Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 & 0 \end{bmatrix}$ if no consonants preceded a token and $\begin{bmatrix} 0 & 1 \end{bmatrix}$ if at least one consonant preceded a token.
+Define the value for the $i$th token as $\mlmat{W_V} \mlvec{r}_i$ where $\mlmat{W_V}$ is the identity matrix and $\mlvec{r}_i$ is the embedding of the token.  Construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix.  Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 & 0 \end{bmatrix}$ if no consonants preceded a token and $\begin{bmatrix} 0 & 1 \end{bmatrix}$ if at least one consonant preceded a token.
 {% endcapture %}
 
 {% capture partd_sol %}
@@ -176,7 +176,7 @@ $$
 \end{align}
 $$
 
-We get the final outputs of our attention head by multiply our matrix from part C by $\mlmat{V}$.
+We get the final outputs of our attention head by multiplying our matrix from part C by $\mlmat{V}$.
 
 $$
 \begin{align}
@@ -231,9 +231,140 @@ $$
 {% endcapture %}
 {% include problem_with_parts.html problem=problem %}
 
+Next, let's see how a position embedding might help us.
+
+{% capture problem %}
+Suppose we want our attention head to take in a sequence of letters and output the vector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ if there is a consonant at position 1 (where 1 is the first position in the sequence) and $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.
+
+1. Input text: "eacia", our attention head should output $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ (token 1 is a vowel).
+2. Input text: "ccrs", our attention head should output $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ (the first token is a consonant).
+
+Let's use the same tokenization scheme as in the previous exercise. That is, each letter is mapped to its position in the alphabet (starting with $a \rightarrow 0$ and ending with $z \rightarrow 25$).
+
+{% capture parta_prob %}
+Explain what each of the features (the rows) of the input tokens (the columns) in the embedding matrix $\mlmat{W_E}$ captures.
+
+$$
+\mlmat{W_E} = \begin{bmatrix} 1 & 0 & 0 &  0 & 1 & 0 &  0 &  0 & 1 &  0 &  0 &  0 &  0 &  0 & 1 &  0 &  0 &  0 &  0 &  0 & 1 & 0 &  0 &  0 &  0 &  0 \\ 0 &  1& 1 &  1 & 0 & 1 &  1 &  1 & 0 &  1 &  1 &  1 &  1 &  1 & 0 &  1 &  1 &  1 &  1 &  1 & 0 & 1 &  1 &  1 &  1 &  1 \\ 0 &  0 & 0 &  0 & 0 & 0 &  0 &  0 & 0 &  0 &  0 &  0 &  0 &  0 & 0 &  0 &  0 &  0 &  0 &  0 & 0 & 0 &  0 &  0 &  0 &  0  \end{bmatrix}
+$$
+
+We can also specify our position embeddings for each token position (we'll stop at position $8$ since the pattern should be obvious).  Explain what the positional embedding matrix is representing.
+
+$$
+\mlmat{W_P} = \begin{bmatrix} 0 & 0 & 0 &  0 & 0 & 0 &  0 &  0 \\ 0 & 0 & 0 &  0 & 0 & 0 &  0 &  0  \\ 1 & 0 & 0 &  0 & 0 & 0 &  0 &  0  \end{bmatrix}
+$$
+
+{% endcapture %}
+{% capture parta_sol %}
+We have the same embedding as the previous problem but we've added a dimension that is always zero for the token embedding.  The positional embedding places a 1 in this dimension if the position is 1.
+{% endcapture %}
+{% include problem_part.html subpart=parta_prob solution=parta_sol label="A" %}
+
+{% capture partb_prob %}
+Define a query ($\mlmat{W_q}$) and key ($\mlmat{W_k}$) matrix pair that causes all letters to attend to only the first position in the sequence.
+
+$\mlmat{W_q}$ and $\mlmat{W_k}$ are both matrices with $n_{q}$ rows and $n_{e}$ columns, where $n_q$ is the query dimension (you can choose this) and $n_e$ is the dimensionality our embeddings (in this example, 3).
+
+Hint 1: You should be able to solve the problem with $n_{q} = 1$ (that is, the key and query matrices are both 1 row and 2 columns).
+
+Hint 2: The key equation you'll want to use is that the degree to which token $i$ attends to token $j$ can be computed from the embeddings (both position and token embedding) $\mlvec{r}_i$ and $\mlvec{r}_j$ (these would be found in the appropriate columns of $\mlmat{W_E}$ and $\mlmat{W_P}$) of tokens $i$ and $j$ respectively using the following formula.
+
+\begin{align}
+attention &= \mlmat{W_q} \mlvec{r}_i (\mlmat{W_k} \mlvec{r}_j)^\top
+\end{align}
+
+{% endcapture %}
+{% capture partb_sol %}
+Let's define the matrices as follows.
+$$
+\begin{align}
+\mlmat{W_q} &= \begin{bmatrix} 1 & 1 & 0 \end{bmatrix} \\ 
+\mlmat{W_k} &= \begin{bmatrix} 0 & 0 & 5 \end{bmatrix}
+\end{align}
+$$
+
+We leave it to you to validate that these matrices will do the job (sorry!).
+
+{% endcapture %}
+{% include problem_part.html subpart=partb_prob solution=partb_sol label="B" %}
+
+{% capture partc_prob %}
+Come up with a short sequence of characters, $s$, consisting of some vowels and some consonants (keep the length pretty small).  Compute the matrix of all queries corresponding to your sequence, $\mlmat{Q}$, where the number of rows of $\mlmat{Q}$ is equal to the number of tokens (the length of $s$) and the number of rows is equal to the query dimension.  Compute the matrix of all keys corresponding to your sequence, $\mlmat{K}$, where the number of rows of $\mlmat{K}$ is equal to the number of tokens (the length of $s$) and the number of rows is equal to the query dimension.  Compute the (pre-masking) attention of each token to each other token using the formula $\mlmat{Q} \mlmat{K}^\top$.  Apply masking to ensure that keys (columns) corresponding to later tokens do not influence earlier queries (rows).  Note: that the visualization in the 3B1B video (at [this time stamp](https://youtu.be/eMlx5fFNoYc?t=514)) has this matrix laid out with query tokens as columns and the keys as rows (we wanted to let you know to minimize confusion).  Apply a softmax across each row (as before, this is shown on columns in the 3B1B video) to determine a weight for each token and show the resultant matrix.
+{% endcapture %}
+
+{% capture partc_sol %}
+Let's take our string to be $s = \mbox{cbcce}$.
+
+Step 1: Compute our embeddings by picking out appropriate columns of our matrices (for both token and position embeddings). $r_1 = \begin{bmatrix} 0 \\ 1 \\ 1  \end{bmatrix}$, $r_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$, $r_3 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$, $r_4 = \begin{bmatrix} 0  \\ 1 \\ 0 \end{bmatrix}$, and $r_5 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$.
+
+Step 2: Compute each query using the formula $\mlmat{W_q} \mlvec{r}_i$ and each key using the formula $\mlmat{W_k} \mlvec{r}_i$ and put each query as a row to form $\mlmat{Q}$ and each key as a row to form $\mlmat{K}$.
+
+$$
+\begin{align}
+\mlmat{Q} &= \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix} \\ 
+\mlmat{K} &= \begin{bmatrix} 5 & 0 & 0 & 0 & 0 \end{bmatrix}
+\end{align}
+$$
+
+Step 3: Compute the unmasked attention $\mlmat{Q} \mlmat{K}^\top$.
+
+$$
+\begin{align}
+\mlmat{Q} \mlmat{K}^\top &= \begin{bmatrix} 5 & 0 & 0 & 0 & 0 \\ 5 & 0 & 0 & 0 & 0 \\ 5 & 0 & 0 & 0 & 0 \\ 5 & 0 & 0 & 0 & 0 \\ 5 & 0 & 0 & 0 & 0 \end{bmatrix}
+\end{align}
+$$
+
+Step 4: Mask the matrix so that future tokens can't influence past tokens.
+
+$$
+\begin{align}
+mask(\mlmat{Q} \mlmat{K}^\top) &= \begin{bmatrix} 5 & -\infty & -\infty & -\infty & -\infty \\ 5 & 0 & -\infty & -\infty & -\infty \\ 5 & 0 & 0 & -\infty & -\infty \\ 5 & 0 & 0 & 0 & -\infty \\ 5 & 0 & 0 & 0 & 0 \end{bmatrix}
+\end{align}
+$$
+
+Step 5: Take softmax along the rows.
+
+$$
+\begin{align}
+softmax(mask(\mlmat{Q} \mlmat{K}^\top)) &= \begin{bmatrix}    1.0000     &    0     &    0      &   0     &    0 \\   0.9933 &   0.0067    &     0     &    0      &   0 \\   0.9867  &  0.0066  &  0.0066     &    0    &     0 \\    0.9802  &  0.0066  &  0.0066 &   0.0066     &    0 \\  0.9738  &  0.0066  &   0.0066 &   0.0066  &  0.0066 \end{bmatrix}
+\end{align}
+$$
 
 
-TODO (if time): introduce position embedding.
+{% endcapture %}
+{% include problem_part.html subpart=partc_prob solution=partc_sol label="C" %}
+
+{% capture partd_prob %}
+Determine the of $\mlmat{W_V}$ in order to construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix. Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 & 0 \end{bmatrix}$ if the third token is a consonant and close to $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.
+{% endcapture %}
+
+{% capture partd_sol %}
+$$
+\begin{align}
+\mlmat{W_V} &= \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}
+\end{align}
+$$
+
+This gives us $\mlmat{V}$.
+
+$$
+\begin{align}
+\mlmat{V} &= \begin{bmatrix} 0 & 1 \\ 0 & 1 \\ 0 & 1 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}
+\end{align}
+$$
+
+We get the final outputs of our attention head by multiplying our matrix from part C by $\mlmat{V}$.
+
+$$
+\begin{align}
+\begin{bmatrix}    1.0000     &    0     &    0      &   0     &    0 \\   0.9933 &   0.0067    &     0     &    0      &   0 \\   0.9867  &  0.0066  &  0.0066     &    0    &     0 \\    0.9802  &  0.0066  &  0.0066 &   0.0066     &    0 \\  0.9738  &  0.0066  &   0.0066 &   0.0066  &  0.0066 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 0 & 1 \\ 0 & 1 \\ 0 & 1 \\ 0 & 0 \end{bmatrix} &= \begin{bmatrix}         0   & 1.0000 \\  0  &  1.0000 \\      0  &  1.0000 \\ 0  &  1.0000 \\  0   & 0.9934 \end{bmatrix}
+\end{align}
+$$
+
+{% endcapture %}
+{% include problem_part.html subpart=partd_prob solution=partd_sol label="D" %}
+{% endcapture %}
+{% include problem_with_parts.html problem=problem %}
 
 # Implementing Self-Attention
 
