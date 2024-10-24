@@ -26,7 +26,7 @@ header:
 | 10    | [Concept mapping and overfitting](activities/day10)                            |
 | 12    | [Project shareout and course feedback](activities/day12)                            |
 | 13    | [Word embeddings introduction](activities/day13)                            |
-
+| 13    | [GPTs part 1](activities/day14)                            |
 
 
 
