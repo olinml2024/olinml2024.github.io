@@ -368,7 +368,10 @@ $
 	      
                 <ul class="toc__menu">
   <li><a href="#learning-objectives">Learning Objectives</a></li>
-  <li><a href="#attention-by-hand">Attention By Hand</a></li>
+  <li><a href="#demystifying-gpt">Demystifying GPT</a></li>
+  <li><a href="#word-embbeddings-and-predicting-the-next-word">Word Embbeddings and Predicting the Next Word</a></li>
+  <li><a href="#self-attention-under-the-hood">Self-attention Under the Hood</a></li>
+  <li><a href="#implementing-self-attention">Implementing Self-Attention</a></li>
 </ul>
 	      	
             </nav>
@@ -396,41 +399,631 @@ $
 	<div style="padding: 1em 1em 1em 1em;">
 	   
 <ul>
-  <li>Learn about sequence prediction for text</li>
-  <li>Learn about different types of tokenization</li>
-  <li>Bigram model as a stepping stone to GPTs</li>
-  <li>Understand and build a self-attention block</li>
+  <li>Learn about the concept of self-attention in neural networks and the role it plays in Generative Pre-trained Transformers (GPTs)</li>
+  <li>Implement self-attention in Pytorch</li>
 </ul>
 
 	</div>
 </div>
 
-<h1 id="attention-by-hand">Attention By Hand</h1>
+<h1 id="demystifying-gpt">Demystifying GPT</h1>
 
-<p>For all problems our tokens consist of a-z, 0, and 1.</p>
+<p>This assignment and the next one are building towards the goal of demystifying large lanuage models (LLMs) like ChatGPT.  While we won’t be able to learn everything there is to know about these models, we will be learning, in-depth, about the concept of Generative Pre-Trained Transformers (GPTs).  We hope that by seeing the GPT mechanism up close, you are able to develop a better understanding of how LLMs work and potential explore LLMs further in your final projects.  You’ll also learn some useful, generalizable tricks for text processing along the way.</p>
 
+<p>The roadmap for our work (over this and the next assignment) is that we are going to use two video resources.  First, we’ll watch a sequence of two videos from 3B1B that will help us build a conceptual understanding of GPTs through a visual approach. The second, is a walkthrough of how to turn our conceptual understanding into an implementation of a GPT in Pytorch (we’ll use NanoGPT from Andrej Karpathy for that).</p>
+
+<h1 id="word-embbeddings-and-predicting-the-next-word">Word Embbeddings and Predicting the Next Word</h1>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<p>Let’s start off by watching the 3B1B video <a href="https://www.youtube.com/watch?v=wjZofJX0v4M">How large language models work, a visual intro to transformers</a>.</p>
+
+<p>Here are some of the key things we would like you to take away from this video.</p>
 <ul>
-  <li>Toy problem 1
-Our text obeys the following rules.
-    <ol>
-      <li>0 and 1 don’t appear.</li>
-      <li>The probability of the next character being a vowel increases based on the proportion of consonants encountered in the text thus far (up to and including the current token)</li>
-    </ol>
-  </li>
-  <li>Toy problem 2
-Our text obeys the following rules.
-    <ol>
-      <li>The text always starts with a consonant or a vowel.</li>
-      <li>If a consonant appears, any letter can follow with equal probability</li>
-      <li>If a vowel appears, the digit 1 follows as long as a consonant has appeared previously and 0 otherwise.</li>
-      <li>After a 0 or a 1, any letter can follow with equal probability.</li>
-    </ol>
-  </li>
+  <li>That text can be tokenized in different ways (either as letters, chunks of words, or whole words)</li>
+  <li>How predicting the next token (or word) given a piece of text can be used repeatedly to do text completion.</li>
+  <li>That we can use the concept of embeddings to represent tokens in a high-dimensional space (make sure you understand how this connects to word embeddings)</li>
+  <li>Why the context that surrounds a word might be important for updating its embedding vector (e.g., to disambiguate between multiple meanings of the same word).</li>
+  <li>That the last layer of a GPT model maps from the embedding space to a real number for each possible next token (this is called the “unembedding matrix” in the video).  These numbers are called “logits”.</li>
+  <li>To take our real numbers from the previous step into a probability of the next token, we use the softmax function.</li>
+  <li>Make a note of what materials are review from this video (based on things we’ve already done).</li>
 </ul>
 
-<p>Let’s use self-attention to solve this problem.</p>
+	</div>
+</div>
 
-<p><a href="https://colab.research.google.com/drive/16vJqAEMOr-9U1pt67Xx-oCr8owM2hj3x?usp=sharing">Notebook for toy problems</a></p>
+<h1 id="self-attention-under-the-hood">Self-attention Under the Hood</h1>
+
+<p>Hopefully, you found that video to connect some dots from the last assignment and set the stage nicely for where we are going next.  Our next move is going to be to watch the next chapter in the 3B1B series on deep learning.  This is where we will meet the concept of self-attention, which is going to be at the heart of our GPT model.</p>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<p>Now, let’s watch the 3B1B video <a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Attention in transformers, visually explained</a>.</p>
+
+<p>Here are some of the key things we would like you to take away from this video.</p>
+<ul>
+  <li>That the initial embedding of a token also encodes its position (not just the token’s identity)</li>
+  <li>That it is useful for words to be able to ask questions (query) of other words.</li>
+  <li>That queries can be specified as vectors and the answers to those queries can also be specified as vectors (called keys).</li>
+  <li>That the degree to witch a key answers a query can be determined by taking the dot product of the key vector and the query vector and that we can compute the dot product of each query token and each query key as $QK^\top$.</li>
+  <li>Applying a softmax to the matrix of dot products of queries and keys gives us a probability distribution of what tokens each token shoudl attend to.</li>
+  <li>That the idea of causal attention (where we are predicting future tokens from past tokens) requires that future tokens are not allowed to send information to past tokens.  Further, to accomplish this goal, we can force entries in our query-key matrix corresponding to future tokens influencing past tokens to negative infinity (before applying softmax).  This is called “masking”.</li>
+  <li>That the token embeddings are updated by adding the value vectors from other tokens (weighted by attention).  (Note: this is presented in the video through the example of using adjectives to update the meaning of a noun.)</li>
+  <li>Note: there is a discussion of how to cut down the number of parameters in the value map by decomposing it into the product of the value up and the value down matrices ($V_{\uparrow}$ and $V_{\downarrow}$).  While this is interesting, and we are happy to talk about it,  we don’t advise getting hung up on this detail (we will not be using this architecture in the implementation to follow).  Similarly, don’t worry about the note about how the $V_{\uparrow}$ matrices are all combined into one matrix called the output matrix.</li>
+  <li>That multiple heads of attention can be used to capture multiple ways in which token embeddings can influence each other.  Note: you shouldn’t have a super precise notion of what this means, but you should have a notion that multiple heads of attention might be useful.</li>
+</ul>
+
+	</div>
+</div>
+
+<p>Alright, hopefully you are starting to put the pieces together.  We are going to some more steps to help thing solidify.  First, let’s do some exercises to help you with your understanding of self-attention.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Let’s use a toy problem to make sure we have a handle on the mechanics of self-attention.  Instead of words, let’s think of individual letters as our tokens (again, sorry for this sleight-of-hand.  We are doing this to make the problem as simple as possible to highlight the important bits of self-attention.  We’ll also be using a resource called NanoGPT that will implement a GPT, at first, on the character level).  Let’s imagine that we want our attention head to take in a sequence of letters and compute for each token whether a consonant has occurred at any point up to and including the current token.  Here are some examples.</p>
+
+<ol>
+  <li>Input text: “eaeia”, our attention head should output no, no, no, no, no (none of our token have the property that they are or are preceded by a consonant).</li>
+  <li>Input text: “ccrs”, our attention head should output yes, yes, yes, yes (all tokens either are or are preceded by a consonant)</li>
+  <li>Input text: “aeri”, our attention head should output no, no, yes, yes (starting with the third token, “r”, we have at least one consonant).</li>
+</ol>
+
+<p>We haven’t quite defined how the responses “no” and “yes” will be represented as vectors, but we will get to that shortly.</p>
+
+<p>Let’s use a tokenization scheme where each letter is mapped to its position in the alphabet (starting with $a \rightarrow 0$ and ending with $z \rightarrow 25$).</p>
+
+<p style="font-size: x-large; font-weight: 700;">Part A</p>
+
+<p>Explain what each of the features (the rows) of the input tokens (the columns) in the embedding matrix $\mlmat{W_E}$ captures.</p>
+
+<p>$$
+\mlmat{W_E} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp;  0 &amp; 1 &amp; 0 &amp;  0 &amp;  0 &amp; 1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp; 1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp; 1 &amp; 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  1&amp; 1 &amp;  1 &amp; 0 &amp; 1 &amp;  1 &amp;  1 &amp; 0 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp; 0 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp; 0 &amp; 1 &amp;  1 &amp;  1 &amp;  1 &amp;  1  \end{bmatrix}
+$$</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-44")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-44" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>The first row of the matrix encodes whether the token is a vowel (1) or consonant (0).  The second row of the matrix encodes whether the token is a consonant (1) or a vowel (0).</p>
+
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part B</p>
+
+<p>Define a query ($\mlmat{W_q}$) and key ($\mlmat{W_k}$) matrix pair that causes all letters to attend to consonants.</p>
+
+<p>$\mlmat{W_q}$ and $\mlmat{W_k}$ are both matrices with $n_{q}$ rows and $n_{e}$ columns, where $n_q$ is the query dimension (you can choose this) and $n_e$ is the dimensionality our embeddings (in this example, 2).</p>
+
+<p>Hint 1: You should be able to solve the problem with $n_{q} = 1$ (that is, the key and query matrices are both 1 row and 2 columns).</p>
+
+<p>Hint 2: The key equation you’ll want to use is that the degree to which token $i$ attends to token $j$ can be computed from the embeddings $\mlvec{r}_i$ and $\mlvec{r}_j$ (these would be found in the appropriate column of $\mlmat{W_E}$) of tokens $i$ and $j$ respectively using the following formula.</p>
+
+<p>\begin{align}
+attention &amp;= \mlmat{W_q} \mlvec{r}_i (\mlmat{W_k} \mlvec{r}_j)^\top
+\end{align}</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-45")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-45" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Let’s define the matrices as follows.
+$$
+\begin{align}
+\mlmat{W_q} &amp;= \begin{bmatrix} 1 &amp; 1 \end{bmatrix} \\ 
+\mlmat{W_k} &amp;= \begin{bmatrix} 0 &amp; 5 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>Taking it for a test spin, let’s look at the different cases.</p>
+
+<ul>
+  <li>query is vowel and key is vowel $\bigg (\mlmat{W_q}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \bigg(\mlmat{W_k} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg)^\top = \bigg (\begin{bmatrix} 1 &amp; 1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \bigg(\begin{bmatrix} 0 &amp; 5 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg)^\top = (1)(0) = 0$</li>
+  <li>query is consonant and key is vowel $\bigg (\mlmat{W_q}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \bigg(\mlmat{W_k} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg)^\top = \bigg (\begin{bmatrix} 1 &amp; 1 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \bigg(\begin{bmatrix} 0 &amp; 5 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg)^\top = (1)(0) = 0$</li>
+  <li>query is vowel and key is consonant $\bigg (\mlmat{W_q}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \bigg(\mlmat{W_k} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg)^\top = \bigg (\begin{bmatrix} 1 &amp; 1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \bigg(\begin{bmatrix} 0 &amp; 5 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg)^\top = (1)(5) = 5$</li>
+  <li>query is consonant and key is consonant $\bigg (\mlmat{W_q}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \bigg(\mlmat{W_k} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg)^\top = \bigg (\begin{bmatrix} 1 &amp; 1 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \bigg(\begin{bmatrix} 0 &amp; 5 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg)^\top = (1)(5) = 5$</li>
+</ul>
+
+<p>Why $5$?  This helps make the attention to consonants higher relative to attention to vowels (remember, this has to get passed through a softmax).</p>
+
+
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part C</p>
+
+<p>Come up with a short sequence of characters, $s$, consisting of some vowels and some consonants (keep the length pretty small).  Compute the matrix of all queries corresponding to your sequence, $\mlmat{Q}$, where the number of rows of $\mlmat{Q}$ is equal to the number of tokens (the length of $s$) and the number of rows is equal to the query dimension.  Compute the matrix of all keys corresponding to your sequence, $\mlmat{K}$, where the number of rows of $\mlmat{K}$ is equal to the number of tokens (the length of $s$) and the number of rows is equal to the query dimension.  Compute the (pre-masking) attention of each token to each other token using the formula $\mlmat{Q} \mlmat{K}^\top$.  Apply masking to ensure that keys (columns) corresponding to later tokens do not influence earlier queries (rows).  Note: that the visualization in the 3B1B video (at <a href="https://youtu.be/eMlx5fFNoYc?t=514">this time stamp</a>) has this matrix laid out with query tokens as columns and the keys as rows (we wanted to let you know to minimize confusion).  Apply a softmax across each row (as before, this is shown on columns in the 3B1B video) to determine a weight for each token and show the resultant matrix.</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-46")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-46" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Let’s take our string to be $s = \mbox{abcce}$.</p>
+
+<p>Step 1: Compute our embeddings by picking out appropriate columns of our matrix. $r_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $r_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$, $r_3 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$, $r_4 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$, and $r_5 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$.</p>
+
+<p>Step 2: Compute each query using the formula $\mlmat{W_q} \mlvec{r}_i$ and each key using the formula $\mlmat{W_k} \mlvec{r}_i$ and put each query as a row to form $\mlmat{Q}$ and each key as a row to form $\mlmat{K}$.</p>
+
+<p>$$
+\begin{align}
+\mlmat{Q} &amp;= \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix} \\ 
+\mlmat{K} &amp;= \begin{bmatrix} 0 &amp; 5 &amp; 5 &amp; 5 &amp; 0 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>Step 3: Compute the unmasked attention $\mlmat{Q} \mlmat{K}^\top$.</p>
+
+<p>$$
+\begin{align}
+\mlmat{Q} \mlmat{K}^\top &amp;= \begin{bmatrix} 0 &amp; 5 &amp; 5 &amp; 5 &amp; 0 \\ 0 &amp; 5 &amp; 5 &amp; 5 &amp; 0 \\ 0 &amp; 5 &amp; 5 &amp; 5 &amp; 0 \\ 0 &amp; 5 &amp; 5 &amp; 5 &amp; 0 \\ 0 &amp; 5 &amp; 5 &amp; 5 &amp; 0 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>Step 4: Mask the matrix so that future tokens can’t influence past tokens.</p>
+
+<p>$$
+\begin{align}
+mask(\mlmat{Q} \mlmat{K}^\top) &amp;= \begin{bmatrix} 0 &amp; -\infty &amp; -\infty &amp; -\infty &amp; -\infty \\ 0 &amp; 5 &amp; -\infty &amp; -\infty &amp; -\infty \\ 0 &amp; 5 &amp; 5 &amp; -\infty &amp; -\infty \\ 0 &amp; 5 &amp; 5 &amp; 5 &amp; -\infty \\ 0 &amp; 5 &amp; 5 &amp; 5 &amp; 0 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>Step 5: Take softmax along the rows.</p>
+
+<p>$$
+\begin{align}
+softmax(mask(\mlmat{Q} \mlmat{K}^\top)) &amp;= \begin{bmatrix}    1 &amp;  0 &amp;  0 &amp; 0 &amp; 0 \\ 0.0067 &amp;  0.9933  &amp; 0   &amp;      0   &amp;    0 \\ 0.0034   &amp; 0.4983 &amp;   0.4983     &amp;    0     &amp;    0 \\   0.0022  &amp;  0.3326  &amp;  0.3326  &amp;  0.3326    &amp;     0 \\ 0.0022  &amp;  0.3318  &amp;  0.3318  &amp;  0.3318  &amp;  0.0022 \end{bmatrix}
+\end{align}
+$$</p>
+
+
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part D</p>
+
+<p>Define the value for the $i$th token as $\mlmat{W_V} \mlvec{r}_i$ where $\mlmat{W_V}$ is the identity matrix and $\mlvec{r}_i$ is the embedding of the token.  Construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix.  Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 &amp; 0 \end{bmatrix}$ if no consonants preceded a token and $\begin{bmatrix} 0 &amp; 1 \end{bmatrix}$ if at least one consonant preceded a token.</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-47")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-47" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>The values are going to be the same as our embeddings.  We can lay them out as the rows of $\mlmat{V}$.</p>
+
+<p>$$
+\begin{align}
+\mlmat{V} &amp;= \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>We get the final outputs of our attention head by multiplying our matrix from part C by $\mlmat{V}$.</p>
+
+<p>$$
+\begin{align}
+\begin{bmatrix}    1 &amp;  0 &amp;  0 &amp; 0 &amp; 0 \\ 0.0067 &amp;  0.9933  &amp; 0    &amp;     0   &amp;    0 \\ 0.0034   &amp; 0.4983 &amp;   0.4983     &amp;    0     &amp;    0 \\   0.0022  &amp;  0.3326  &amp;  0.3326  &amp;  0.3326    &amp;     0 \\ 0.0022  &amp;  0.3318  &amp;  0.3318  &amp;  0.3318  &amp;  0.0022 \end{bmatrix} \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} &amp;= \begin{bmatrix} 1.0000     &amp;    0 \\ 0.0067  &amp;  0.9933 \\ 0.0034  &amp;  0.9966 \\ 0.0022  &amp; 0.9978 \\  0.0045  &amp;  0.9955 \end{bmatrix}
+\end{align}
+$$</p>
+
+
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part E</p>
+
+<p>Suppose you wanted the attention head to determine the proportion of consonants that precede (rather than just whether a consonant precedes a word or not).  How would you modify $\mlmat{W_Q}$ and $\mlmat{W_K}$ to achieve this result?  You should not need to change $\mlmat{V}$.</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-48")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-48" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>We could keep $\mlmat{W_Q} = \begin{bmatrix} 1 &amp; 1 \end{bmatrix}$ the same.  We can now modify the key so that all tokens have the same key (all respond to the query) by setting $\mlmat{W_K} = \begin{bmatrix} 1 &amp; 1 \end{bmatrix}$. Let’s turn the crank.</p>
+
+<p>$$
+\begin{align}
+\mlmat{Q} &amp;= \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix} \\ 
+\mlmat{K} &amp;= \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>$$
+\begin{align}
+\mlmat{Q} \mlmat{K}^\top &amp;= \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>$$
+\begin{align}
+mask(\mlmat{Q} \mlmat{K}^\top) &amp;= \begin{bmatrix} 1 &amp; -\infty &amp; -\infty &amp; -\infty &amp; -\infty \\ 1 &amp; 1 &amp; -\infty &amp; -\infty &amp; -\infty \\ 1 &amp; 1 &amp; 1 &amp; -\infty &amp; -\infty \\ 1 &amp; 1 &amp; 1 &amp; 1 &amp; -\infty \\ 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>$$
+\begin{align}
+softmax(mask(\mlmat{Q} \mlmat{K}^\top)) &amp;= \begin{bmatrix}    1 &amp;  0 &amp;  0 &amp; 0 &amp; 0 \\ 0.5 &amp;  0.5  &amp; 0   &amp;      0   &amp;    0 \\ 0.3333   &amp; 0.3333 &amp;   0.3333     &amp;    0     &amp;    0 \\   0.25  &amp;  0.25  &amp;  0.25  &amp;  0.25    &amp;     0 \\ 0.2  &amp;  0.2  &amp;  0.2  &amp;  0.2  &amp;  0.2 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>Finally, combine our attention with our values (since they haven’t changed from part D, let’s just use those).
+$$
+\begin{align}
+\begin{bmatrix}    1 &amp;  0 &amp;  0 &amp; 0 &amp; 0 \\ 0.5 &amp;  0.5  &amp; 0   &amp;      0   &amp;    0 \\ 0.3333   &amp; 0.3333 &amp;   0.3333     &amp;    0     &amp;    0 \\   0.25  &amp;  0.25  &amp;  0.25  &amp;  0.25    &amp;     0 \\ 0.2  &amp;  0.2  &amp;  0.2  &amp;  0.2  &amp;  0.2 \end{bmatrix}\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} &amp;= \begin{bmatrix}  1.0000   &amp;      0 \\    0.5000  &amp;  0.5000 \\ 0.3333  &amp;  0.6667 \\   0.2500  &amp;  0.7500 \\   0.4000 &amp;   0.6000 \end{bmatrix}
+\end{align}
+$$</p>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+<p>Next, let’s see how a position embedding might help us.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Suppose we want our attention head to take in a sequence of letters and output the vector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ if there is a consonant at position 1 (where 1 is the first position in the sequence) and $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.</p>
+
+<ol>
+  <li>Input text: “eacia”, our attention head should output $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ (token 1 is a vowel).</li>
+  <li>Input text: “ccrs”, our attention head should output $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$, $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ (the first token is a consonant).</li>
+</ol>
+
+<p>Let’s use the same tokenization scheme as in the previous exercise. That is, each letter is mapped to its position in the alphabet (starting with $a \rightarrow 0$ and ending with $z \rightarrow 25$).</p>
+
+<p style="font-size: x-large; font-weight: 700;">Part A</p>
+
+<p>Explain what each of the features (the rows) of the input tokens (the columns) in the embedding matrix $\mlmat{W_E}$ captures.</p>
+
+<p>$$
+\mlmat{W_E} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp;  0 &amp; 1 &amp; 0 &amp;  0 &amp;  0 &amp; 1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp; 1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp; 1 &amp; 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  1&amp; 1 &amp;  1 &amp; 0 &amp; 1 &amp;  1 &amp;  1 &amp; 0 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp; 0 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp;  1 &amp; 0 &amp; 1 &amp;  1 &amp;  1 &amp;  1 &amp;  1 \\ 0 &amp;  0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp;  0 &amp; 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp; 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp;  0 &amp;  0 &amp;  0  \end{bmatrix}
+$$</p>
+
+<p>We can also specify our position embeddings for each token position (we’ll stop at position $8$ since the pattern should be obvious).  Explain what the positional embedding matrix is representing.</p>
+
+<p>$$
+\mlmat{W_P} = \begin{bmatrix} 0 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp;  0 \\ 0 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp;  0  \\ 1 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp;  0 &amp;  0  \end{bmatrix}
+$$</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-49")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-49" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>We have the same embedding as the previous problem but we’ve added a dimension that is always zero for the token embedding.  The positional embedding places a 1 in this dimension if the position is 1.</p>
+
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part B</p>
+
+<p>Define a query ($\mlmat{W_q}$) and key ($\mlmat{W_k}$) matrix pair that causes all letters to attend to only the first position in the sequence.</p>
+
+<p>$\mlmat{W_q}$ and $\mlmat{W_k}$ are both matrices with $n_{q}$ rows and $n_{e}$ columns, where $n_q$ is the query dimension (you can choose this) and $n_e$ is the dimensionality our embeddings (in this example, 3).</p>
+
+<p>Hint 1: You should be able to solve the problem with $n_{q} = 1$ (that is, the key and query matrices are both 1 row and 2 columns).</p>
+
+<p>Hint 2: The key equation you’ll want to use is that the degree to which token $i$ attends to token $j$ can be computed from the embeddings (both position and token embedding) $\mlvec{r}_i$ and $\mlvec{r}_j$ (these would be found in the appropriate columns of $\mlmat{W_E}$ and $\mlmat{W_P}$) of tokens $i$ and $j$ respectively using the following formula.</p>
+
+<p>\begin{align}
+attention &amp;= \mlmat{W_q} \mlvec{r}_i (\mlmat{W_k} \mlvec{r}_j)^\top
+\end{align}</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-50")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-50" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Let’s define the matrices as follows.
+$$
+\begin{align}
+\mlmat{W_q} &amp;= \begin{bmatrix} 1 &amp; 1 &amp; 0 \end{bmatrix} \\ 
+\mlmat{W_k} &amp;= \begin{bmatrix} 0 &amp; 0 &amp; 5 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>We leave it to you to validate that these matrices will do the job (sorry!).</p>
+
+
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part C</p>
+
+<p>Come up with a short sequence of characters, $s$, consisting of some vowels and some consonants (keep the length pretty small).  Compute the matrix of all queries corresponding to your sequence, $\mlmat{Q}$, where the number of rows of $\mlmat{Q}$ is equal to the number of tokens (the length of $s$) and the number of rows is equal to the query dimension.  Compute the matrix of all keys corresponding to your sequence, $\mlmat{K}$, where the number of rows of $\mlmat{K}$ is equal to the number of tokens (the length of $s$) and the number of rows is equal to the query dimension.  Compute the (pre-masking) attention of each token to each other token using the formula $\mlmat{Q} \mlmat{K}^\top$.  Apply masking to ensure that keys (columns) corresponding to later tokens do not influence earlier queries (rows).  Note: that the visualization in the 3B1B video (at <a href="https://youtu.be/eMlx5fFNoYc?t=514">this time stamp</a>) has this matrix laid out with query tokens as columns and the keys as rows (we wanted to let you know to minimize confusion).  Apply a softmax across each row (as before, this is shown on columns in the 3B1B video) to determine a weight for each token and show the resultant matrix.</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-51")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-51" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Let’s take our string to be $s = \mbox{cbcce}$.</p>
+
+<p>Step 1: Compute our embeddings by picking out appropriate columns of our matrices (for both token and position embeddings). $r_1 = \begin{bmatrix} 0 \\ 1 \\ 1  \end{bmatrix}$, $r_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$, $r_3 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$, $r_4 = \begin{bmatrix} 0  \\ 1 \\ 0 \end{bmatrix}$, and $r_5 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$.</p>
+
+<p>Step 2: Compute each query using the formula $\mlmat{W_q} \mlvec{r}_i$ and each key using the formula $\mlmat{W_k} \mlvec{r}_i$ and put each query as a row to form $\mlmat{Q}$ and each key as a row to form $\mlmat{K}$.</p>
+
+<p>$$
+\begin{align}
+\mlmat{Q} &amp;= \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \end{bmatrix} \\ 
+\mlmat{K} &amp;= \begin{bmatrix} 5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>Step 3: Compute the unmasked attention $\mlmat{Q} \mlmat{K}^\top$.</p>
+
+<p>$$
+\begin{align}
+\mlmat{Q} \mlmat{K}^\top &amp;= \begin{bmatrix} 5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>Step 4: Mask the matrix so that future tokens can’t influence past tokens.</p>
+
+<p>$$
+\begin{align}
+mask(\mlmat{Q} \mlmat{K}^\top) &amp;= \begin{bmatrix} 5 &amp; -\infty &amp; -\infty &amp; -\infty &amp; -\infty \\ 5 &amp; 0 &amp; -\infty &amp; -\infty &amp; -\infty \\ 5 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty \\ 5 &amp; 0 &amp; 0 &amp; 0 &amp; -\infty \\ 5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>Step 5: Take softmax along the rows.</p>
+
+<p>$$
+\begin{align}
+softmax(mask(\mlmat{Q} \mlmat{K}^\top)) &amp;= \begin{bmatrix}    1.0000     &amp;    0     &amp;    0      &amp;   0     &amp;    0 \\   0.9933 &amp;   0.0067    &amp;     0     &amp;    0      &amp;   0 \\   0.9867  &amp;  0.0066  &amp;  0.0066     &amp;    0    &amp;     0 \\    0.9802  &amp;  0.0066  &amp;  0.0066 &amp;   0.0066     &amp;    0 \\  0.9738  &amp;  0.0066  &amp;   0.0066 &amp;   0.0066  &amp;  0.0066 \end{bmatrix}
+\end{align}
+$$</p>
+
+
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part D</p>
+
+<p>Determine the of $\mlmat{W_V}$ in order to construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix. Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 &amp; 0 \end{bmatrix}$ if the third token is a consonant and close to $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-52")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-52" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>$$
+\begin{align}
+\mlmat{W_V} &amp;= \begin{bmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>This gives us $\mlmat{V}$.</p>
+
+<p>$$
+\begin{align}
+\mlmat{V} &amp;= \begin{bmatrix} 0 &amp; 1 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 0 &amp; 0 \end{bmatrix}
+\end{align}
+$$</p>
+
+<p>We get the final outputs of our attention head by multiplying our matrix from part C by $\mlmat{V}$.</p>
+
+<p>$$
+\begin{align}
+\begin{bmatrix}    1.0000     &amp;    0     &amp;    0      &amp;   0     &amp;    0 \\   0.9933 &amp;   0.0067    &amp;     0     &amp;    0      &amp;   0 \\   0.9867  &amp;  0.0066  &amp;  0.0066     &amp;    0    &amp;     0 \\    0.9802  &amp;  0.0066  &amp;  0.0066 &amp;   0.0066     &amp;    0 \\  0.9738  &amp;  0.0066  &amp;   0.0066 &amp;   0.0066  &amp;  0.0066 \end{bmatrix} \begin{bmatrix} 0 &amp; 1 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 0 &amp; 1 \\ 0 &amp; 0 \end{bmatrix} &amp;= \begin{bmatrix}         0   &amp; 1.0000 \\  0  &amp;  1.0000 \\      0  &amp;  1.0000 \\ 0  &amp;  1.0000 \\  0   &amp; 0.9934 \end{bmatrix}
+\end{align}
+$$</p>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+<h1 id="implementing-self-attention">Implementing Self-Attention</h1>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<p>Hopefully the last problem got you thinking about how attention can cause tokens to attend to other tokens in a flexible manner.  While setting weights by hand can buidl intuition, we of course want to fit these to data.  Next, we’re going to see how we can do that by implementing self-attention in Pytorch.  We are going to consult our old friend Karpathy (of micrograd fame) and go through his video <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let’s build GPT: from scratch, in code, spelled out</a>.  In this assignment, we’re going to go from the beginning to time stamp 1:11:39.  Watching videos like this is way more valuable when you actively try things out as the video is unfolding.  To help scaffold this, below we have a sequence of time stamps in the video along with things to think about or try.</p>
+
+<p>Before you start the video, you should probaby pull up the <a href="https://colab.research.google.com/drive/1JMLa53HDuA-i7ZBmqV7ZnA3c_fvtXnx-?usp=sharing">gpt-dev.ipynb Colab notebook</a> (linked in the video description).</p>
+
+<ul>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=613">10:13</a>: make sure you understand the encoder and decoder for characters.  Try it out in the notebook on some sequences you feed in.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=834">13:45</a>: (something to ponder if you’d like, but not super critical) think through what Karpathy is doing when choosing the train / test split.  Is it a good idea to choose the first 90% of the data as train and the last 10% as test?</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=1019">16:59</a>: make sure to understand the role of <code class="language-plaintext highlighter-rouge">block_size</code> as an upperbound on context length as well as the importance of extracting shorter contexts for training to allow the transformer to generate text starting from just a little bit of context.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=1259">20:59</a>: make sure to notice how the print outs of “inputs” and “targets” relate to each other.  Notice that targets(i,j) is what needs to be predicted given the context represented in the $i$th row of inputs up to column $j$.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=1364">22:44</a>: at this point Karpathy introduces the bigram language model.  The implementation of this Bigram model is Karpathy’s way of starting with a simple model and gradually transforming it into a GPT.  This move may be a little bit unintuitive given where we are coming from, but we think it will all gel as the video goes on.  While we haven’t seen the bigram model in this class, it’s a pretty straightforward idea.  Imagine training a multiclass logistic regression model (linear layer followed by a softmax) that predicts the probability of the next token given the current token.  To represent these probabilities, we’ll use a lookup table (implemented as a pytorch embedding) where the entry $i$, $j$ will be larger (more positive) if token $j$ often follows token $i$ and negative if token $j$ is unlikely to follow token $i$.  The entries of this lookup table will be learned from data (these would be the weights in our logistic regression model).</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=1645">27:25</a>: you may want to play around (meaning running code in the notebook) with the the <code class="language-plaintext highlighter-rouge">tensor.view</code> function to get a sense for how Karpathy is using it to “unroll” the tensor with dimensions <code class="language-plaintext highlighter-rouge">B, T, C</code>.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=1693">28:13</a>: notice that Karpathy is actually passing the loss as an output from the forward function.  That’s a bit different to what we’ve been doing, but it’s just a stylistic difference.  Don’t get to hung up on it.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=1747">29:07</a>: Karpathy shows code for generating text (basically, continuously feeding the models predictions back into itself).  How this happens is a bit beside the point for us, so we recommend not worrying about the details of how he does this.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=2134">35:34</a>: now we are setting up our training loop.  This should look very familiar to what we’ve done earlier in this class.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=2417">40:17</a>: we’ve now transitioned to using a script.  We are estimating loss by averaging over multiple batches.  This is to avoid computing loss on the entire training set (which we’ve tended to do since our datasets have been relatively small).  Notice the cool decorator he uses on the <code class="language-plaintext highlighter-rouge">estimate_loss</code> function though (that could be handy to avoid having to using <code class="language-plaintext highlighter-rouge">with torch.no_grad():</code>)</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=2596">43:16</a>: notice that Karpathy is now switching to thinking of embedding the tokens in a space (in this case a 2-dimensional space) rather than using the embeddings as a convenient way to implement a bigram model.  This is similar to what we did when we thought about embeddings is the last assignment.  Instead of computing embeddings using <code class="language-plaintext highlighter-rouge">nn.Embedding</code>, we’re just generating them randomly to allow us to focus on the machinery of self-attention.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=2712">45:12</a>: our old friend the bag of words!  As mentioned in the video, we’re only doing this simple averaging step as a brief stepping stone to the attention mechanism we learned about in the 3B1B videos.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=2868">47:48</a>: Karpathy really breaks this down nicely.  We recommend you interact with this toy example by running it yourself and making sure you understand the connection between the code and the matrix math.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=3215">53:35</a>: a quick note that if you actually run this code <code class="language-plaintext highlighter-rouge">torch.allclose</code> will actually give false!  Presumably some of the default values have changed in pytorch since this video was made.  Passing the keyword argument <code class="language-plaintext highlighter-rouge">atol=10**-7</code> along with the two matrices should give you <code class="language-plaintext highlighter-rouge">True</code>.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=3332">55:35</a>: this should look familiar!  This is the masking we saw earlier.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=3550">59:10</a>: now we are making our bigram model look more like self-attention!  Notice how we are introducing the idea of <code class="language-plaintext highlighter-rouge">n_embd</code> to capture the number of embedding dimensions (this was 2 in the toy problem we did earlier).</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=3617">1:00:17</a>: the version run at this point is still not doing any attention, but we have added some of the machinery necessary to implement self-attention.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=3657">1:00:57</a>: we are introducing position embedding, which was mentioned briefly in 3B1B videos since it can be important to self-attention.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=3911">1:05:11</a>: we now introduce the variable <code class="language-plaintext highlighter-rouge">head_size</code>, which we previously referred to as the query dimension ($n_q$).  Also, not that if we didn’t set <code class="language-plaintext highlighter-rouge">bias=False</code> we would have a constant added to the computation of our queries and keys, which we don’t want.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=4028">1:07:08</a>: the way that the multiplication of two tensors works is a bit confusing for us, but hopefully we can leverage what we know about matrix multiplication.  If you want to go into this, you can check out <a href="https://www.geeksforgeeks.org/understanding-broadcasting-in-pytorch/">Understanding Broadcasting in Pytorch</a>.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=4297">1:11:37</a>: we made it to our stopping point for this assignment.  Look at the code to compute <code class="language-plaintext highlighter-rouge">out</code>.  Can you connect the dots to the equation we learned about earlier for computing the output of our attention head, $softmax(mask(\mlvec{Q}\mlvec{K}^\top))\mlvec{V}$, and see how it corresponds?</li>
+</ul>
+
+	</div>
+</div>
 
         
       </section>
