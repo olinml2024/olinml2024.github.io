@@ -948,6 +948,27 @@ $$</p>
 </div>
 </div>
 
+<p style="font-size: x-large; font-weight: 700;">Part E</p>
+
+<p>Why was it important to have a position embedding in order to get this attention head to behave (i.e., have the output) the way we wanted it to?</p>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-53")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-53" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Without the position embedding, we wouldn’t be able to only attend to the first token.  We could have tried to attend only to consonants, but that would still attend to any consonant (not just ones that are in the first position).</p>
+
+</div>
+</div>
+
 
 </div>
 </div>
