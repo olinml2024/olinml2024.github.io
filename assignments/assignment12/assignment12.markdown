@@ -363,6 +363,15 @@ $$
 
 {% endcapture %}
 {% include problem_part.html subpart=partd_prob solution=partd_sol label="D" %}
+
+{% capture parte_prob %}
+Why was it important to have a position embedding in order to get this attention head to behave (i.e., have the output) the way we wanted it to?
+{% endcapture %}
+{% capture parte_sol %}
+Without the position embedding, we wouldn't be able to only attend to the first token.  We could have tried to attend only to consonants, but that would still attend to any consonant (not just ones that are in the first position).
+{% endcapture %}
+{% include problem_part.html subpart=parte_prob solution=parte_sol label="E" %}
+
 {% endcapture %}
 {% include problem_with_parts.html problem=problem %}
 
