@@ -155,7 +155,7 @@ Step 5: Take softmax along the rows.
 
 $$
 \begin{align}
-softmax(mask(\mlmat{Q} \mlmat{K}^\top)) &= \begin{bmatrix}    1 &  0 &  0 & 0 & 0 \\ 0.0067 &  0.9933  & 0         0   &    0 \\ 0.0034   & 0.4983 &   0.4983     &    0     &    0 \\   0.0022  &  0.3326  &  0.3326  &  0.3326    &     0 \\ 0.0022  &  0.3318  &  0.3318  &  0.3318  &  0.0022 \end{bmatrix}
+softmax(mask(\mlmat{Q} \mlmat{K}^\top)) &= \begin{bmatrix}    1 &  0 &  0 & 0 & 0 \\ 0.0067 &  0.9933  & 0   &      0   &    0 \\ 0.0034   & 0.4983 &   0.4983     &    0     &    0 \\   0.0022  &  0.3326  &  0.3326  &  0.3326    &     0 \\ 0.0022  &  0.3318  &  0.3318  &  0.3318  &  0.0022 \end{bmatrix}
 \end{align}
 $$
 
@@ -187,27 +187,50 @@ $$
 {% endcapture %}
 {% include problem_part.html subpart=partd_prob solution=partd_sol label="D" %}
 
+{% capture parte_prob %}
+Suppose you wanted the attention head to determine the proportion of consonants that precede (rather than just whether a consonant precedes a word or not).  How would you modify $\mlmat{W_Q}$ and $\mlmat{W_K}$ to achieve this result?  You should not need to change $\mlmat{V}$.
+{% endcapture %}
+{% capture parte_sol %}
+We could keep $\mlmat{W_Q} = \begin{bmatrix} 1 & 1 \end{bmatrix}$ the same.  We can now modify the key so that all tokens have the same key (all respond to the query) by setting $\mlmat{W_K} = \begin{bmatrix} 1 & 1 \end{bmatrix}$. Let's turn the crank.
+
+$$
+\begin{align}
+\mlmat{Q} &= \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix} \\ 
+\mlmat{K} &= \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \end{bmatrix}
+\end{align}
+$$
+
+$$
+\begin{align}
+\mlmat{Q} \mlmat{K}^\top &= \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 1 & 1 \end{bmatrix}
+\end{align}
+$$
+
+$$
+\begin{align}
+mask(\mlmat{Q} \mlmat{K}^\top) &= \begin{bmatrix} 1 & -\infty & -\infty & -\infty & -\infty \\ 1 & 1 & -\infty & -\infty & -\infty \\ 1 & 1 & 1 & -\infty & -\infty \\ 1 & 1 & 1 & 1 & -\infty \\ 1 & 1 & 1 & 1 & 1 \end{bmatrix}
+\end{align}
+$$
+
+$$
+\begin{align}
+softmax(mask(\mlmat{Q} \mlmat{K}^\top)) &= \begin{bmatrix}    1 &  0 &  0 & 0 & 0 \\ 0.5 &  0.5  & 0   &      0   &    0 \\ 0.3333   & 0.3333 &   0.3333     &    0     &    0 \\   0.25  &  0.25  &  0.25  &  0.25    &     0 \\ 0.2  &  0.2  &  0.2  &  0.2  &  0.2 \end{bmatrix}
+\end{align}
+$$
+
+Finally, combine our attention with our values (since they haven't changed from part D, let's just use those).
+$$
+\begin{align}
+\begin{bmatrix}    1 &  0 &  0 & 0 & 0 \\ 0.5 &  0.5  & 0   &      0   &    0 \\ 0.3333   & 0.3333 &   0.3333     &    0     &    0 \\   0.25  &  0.25  &  0.25  &  0.25    &     0 \\ 0.2  &  0.2  &  0.2  &  0.2  &  0.2 \end{bmatrix}\begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 1 \\ 0 & 1 \\ 1 & 0 \end{bmatrix} &= \begin{bmatrix}  1.0000   &      0 \\    0.5000  &  0.5000 \\ 0.3333  &  0.6667 \\   0.2500  &  0.7500 \\   0.4000 &   0.6000 \end{bmatrix}
+\end{align}
+$$
+
+{% endcapture %}
+{% include problem_part.html subpart=parte_prob solution=parte_sol label="E" %}
+
 {% endcapture %}
 {% include problem_with_parts.html problem=problem %}
 
-
-For all problems our tokens consist of a-z, 0, and 1.
-
-* Toy problem 1
-Our text obeys the following rules.
-1. 0 and 1 don't appear.
-2. The probability of the next character being a vowel increases based on the proportion of consonants encountered in the text thus far (up to and including the current token)
-
-* Toy problem 2
-Our text obeys the following rules.
-1. The text always starts with a consonant or a vowel.
-2. If a consonant appears, any letter can follow with equal probability
-3. If a vowel appears, the digit 1 follows as long as a consonant has appeared previously and 0 otherwise.
-4. After a 0 or a 1, any letter can follow with equal probability.
-
-Let's use self-attention to solve this problem.
-
-[Notebook for toy problems](https://colab.research.google.com/drive/16vJqAEMOr-9U1pt67Xx-oCr8owM2hj3x?usp=sharing)
 
 Karpathy examples
 * Note that the masking looks like the transpose (upper triangular is masked rather than the lower triangular).
