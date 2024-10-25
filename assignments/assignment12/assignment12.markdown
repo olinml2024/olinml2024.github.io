@@ -39,7 +39,6 @@ Here are some of the key things we would like you to take away from this video.
 
 Hopefully, you found that video to connect some dots from the last assignment and set the stage nicely for where we are going next.  Our next move is going to be to watch the next chapter in the 3B1B series on deep learning.  This is where we will meet the concept of self-attention, which is going to be at the heart of our GPT model.
 
-
 {% capture externalresource %}
 Now, let's watch the 3B1B video [Attention in transformers, visually explained](https://www.youtube.com/watch?v=eMlx5fFNoYc).
 
@@ -47,7 +46,8 @@ Here are some of the key things we would like you to take away from this video.
 * That the initial embedding of a token also encodes its position (not just the token's identity)
 * That it is useful for words to be able to ask questions (query) of other words.
 * That queries can be specified as vectors and the answers to those queries can also be specified as vectors (called keys).
-* That the degree to which a key answers a query can be determined by taking the dot product of the key vector and the query vector and that we can compute the dot product of each query token and each query key as $QK^\top$.
+* That the degree to which a key answers a query can be determined by taking the dot product of the key vector and the query vector and that we can compute the dot product of each query token and each query key as $QK^\top$.  Note that the way Grant Sanderson (the creator of the video) has defined the matrices Q and K, the correct equation for him woudl be $K^\top Q$ (he discusses this issue in the video's top comment).  In our presentation, we are sticking with the original equation $QK^\top$.
+* At 9:04, Grant Sanderson talks about the key attending to the query.  This is backwards from our understanding of how this language is typically used (there is some discussion of this in the comments).  We think of the query as attending to the key.
 * Applying a softmax to the matrix of dot products of queries and keys gives us a probability distribution of which tokens each token should attend to.
 * That the idea of causal attention (where we are predicting future tokens from past tokens) requires that future tokens are not allowed to send information to past tokens.  Further, to accomplish this goal, we can force entries in our query-key matrix corresponding to future tokens influencing past tokens to negative infinity (before applying softmax).  This is called "masking".
 * That the token embeddings are updated by adding the value vectors from other tokens (weighted by attention).  (Note: this is presented in the video through the example of using adjectives to update the meaning of a noun.)
@@ -91,7 +91,7 @@ Hint 1: You should be able to solve the problem with $n_{q} = 1$ (that is, the k
 Hint 2: The key equation you'll want to use is that the degree to which token $i$ attends to token $j$ can be computed from the embeddings $\mlvec{r}_i$ and $\mlvec{r}_j$ (these would be found in the appropriate column of $\mlmat{W_E}$) of tokens $i$ and $j$ respectively using the following formula.
 
 \begin{align}
-attention &= \mlmat{W_q} \mlvec{r}_i (\mlmat{W_k} \mlvec{r}_j)^\top
+attention &= (\mlmat{W_q} \mlvec{r}_i) \cdot (\mlmat{W_k} \mlvec{r}_j)
 \end{align}
 
 {% endcapture %}
@@ -103,13 +103,14 @@ $$
 \mlmat{W_k} &= \begin{bmatrix} 0 & 5 \end{bmatrix}
 \end{align}
 $$
+Notice how no matter whether we have a consonant or a vowel, our query will always be $1$.  This makes sense since all tokens issue the same query (is there a consonant in front of me).  In contrast, our keys will only be non-zero if the token is a consonant.  This is also consistent with what we want.
 
 Taking it for a test spin, let's look at the different cases.
 
-* query is vowel and key is vowel $\bigg (\mlmat{W_q}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \bigg(\mlmat{W_k} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg)^\top = \bigg (\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \bigg(\begin{bmatrix} 0 & 5 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg)^\top = (1)(0) = 0$
-* query is consonant and key is vowel $\bigg (\mlmat{W_q}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \bigg(\mlmat{W_k} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg)^\top = \bigg (\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \bigg(\begin{bmatrix} 0 & 5 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg)^\top = (1)(0) = 0$
-* query is vowel and key is consonant $\bigg (\mlmat{W_q}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \bigg(\mlmat{W_k} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg)^\top = \bigg (\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \bigg(\begin{bmatrix} 0 & 5 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg)^\top = (1)(5) = 5$
-* query is consonant and key is consonant $\bigg (\mlmat{W_q}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \bigg(\mlmat{W_k} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg)^\top = \bigg (\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \bigg(\begin{bmatrix} 0 & 5 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg)^\top = (1)(5) = 5$
+* query is vowel and key is vowel $\bigg (\mlmat{W_q}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \cdot \bigg(\mlmat{W_k} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg) = \bigg (\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \cdot \bigg(\begin{bmatrix} 0 & 5 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg) = (1)(0) = 0$
+* query is consonant and key is vowel $\bigg (\mlmat{W_q}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \cdot \bigg(\mlmat{W_k} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg) = \bigg (\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \cdot \bigg(\begin{bmatrix} 0 & 5 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix}\bigg) = (1)(0) = 0$
+* query is vowel and key is consonant $\bigg (\mlmat{W_q}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \cdot \bigg(\mlmat{W_k} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg) = \bigg (\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} \bigg ) \cdot \bigg(\begin{bmatrix} 0 & 5 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg) = (1)(5) = 5$
+* query is consonant and key is consonant $\bigg (\mlmat{W_q}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \cdot \bigg(\mlmat{W_k} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg) = \bigg (\begin{bmatrix} 1 & 1 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix} \bigg ) \cdot \bigg(\begin{bmatrix} 0 & 5 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix}\bigg) = (1)(5) = 5$
 
 Why $5$?  This helps make the attention to consonants higher relative to attention to vowels (remember, this has to get passed through a softmax).
 
@@ -261,7 +262,7 @@ We have the same embedding as the previous problem but we've added a dimension t
 {% include problem_part.html subpart=parta_prob solution=parta_sol label="A" %}
 
 {% capture partb_prob %}
-Define a query ($\mlmat{W_q}$) and key ($\mlmat{W_k}$) matrix pair that causes all letters to attend to only the first position in the sequence.
+Define a query ($\mlmat{W_q}$) and key ($\mlmat{W_k}$) matrix pair that causes all letters to attend to only the first position in the sequence.  In this example, each key might emit the same query (no matter if it is a consonant or value), but the key would only match in the case where the key corresponds to the first token in the sequence.
 
 $\mlmat{W_q}$ and $\mlmat{W_k}$ are both matrices with $n_{q}$ rows and $n_{e}$ columns, where $n_q$ is the query dimension (you can choose this) and $n_e$ is the dimensionality our embeddings (in this example, 3).
 
@@ -270,7 +271,7 @@ Hint 1: You should be able to solve the problem with $n_{q} = 1$ (that is, the k
 Hint 2: The key equation you'll want to use is that the degree to which token $i$ attends to token $j$ can be computed from the embeddings (both position and token embedding) $\mlvec{r}_i$ and $\mlvec{r}_j$ (these would be found in the appropriate columns of $\mlmat{W_E}$ and $\mlmat{W_P}$) of tokens $i$ and $j$ respectively using the following formula.
 
 \begin{align}
-attention &= \mlmat{W_q} \mlvec{r}_i (\mlmat{W_k} \mlvec{r}_j)^\top
+attention &= (\mlmat{W_q} \mlvec{r}_i ) \cdot (\mlmat{W_k} \mlvec{r}_j)
 \end{align}
 
 {% endcapture %}
@@ -283,7 +284,9 @@ $$
 \end{align}
 $$
 
-We leave it to you to validate that these matrices will do the job (sorry!).
+Thinking of this intuitively, each token will emit the same query (a value of $1$) no matter if it is a consonant or a vowel.  This is consistent with the fact that all tokens want to attend to the same type of token (the first token).  The key will only be non-zero for tokens that are in the first position (since all others will have a value of $0$ for the final dimension).
+
+We leave it to you to further validate that these matrices will do the job (sorry!).
 
 {% endcapture %}
 {% include problem_part.html subpart=partb_prob solution=partb_sol label="B" %}
@@ -335,7 +338,9 @@ $$
 {% include problem_part.html subpart=partc_prob solution=partc_sol label="C" %}
 
 {% capture partd_prob %}
-Determine the of $\mlmat{W_V}$ in order to construct the matrix $\mlmat{V}$ by computing the values of each token using the formula $\mlmat{W_V} \mlvec{r}_i$ and then transforming each value to a row of a matrix. Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ if the first token is a consonant and close to $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.
+Determine $\mlmat{W_V}$ to compute the value of each token as $\mlmat{W_V} \mlvec{r}_i$.  $\mlmat{V}$ will be formed by laying out each of these values as a row of the matrix. Show that taking your attention matrix from Part C and multiplying it on the right by $\mlmat{V}$ computes the output of the attention head which will give a vector close to $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ if the first token is a consonant and close to $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ otherwise.
+
+**Hint:** you'll want to construct $\mlmat{V}$ so consonants are mapped to the vector $\begin{bmatrix} 1 \\ 0 \end{bmatrix}$ and vowels are mapped to the vector $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$.
 {% endcapture %}
 
 {% capture partd_sol %}
@@ -344,8 +349,9 @@ $$
 \mlmat{W_V} &= \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}
 \end{align}
 $$
+(Notice how if we have a consonant, regardless of position, our output will be the second column of the matrix.  Similarly, if we have a consonant, the output will be the zero vector).
 
-This gives us $\mlmat{V}$.
+Applying our formula for the value of each token, $\mlmat{W_V} \mlvec{r}_i$, and transforming these into rows gives us $\mlmat{V}$.
 
 $$
 \begin{align}

@@ -8,12 +8,16 @@ layout: problemset
 # Learning Objectives
 
 {% capture content %}
-* Combine attention and an MLP to reduce loss
-* Encapsulate pytorch modules to allow scaling up
-* Improving optimization performance with residual connections and normalization
-* Ethical issues in training text completion modules
+* Generalize from single-headed to multi-headed attention
+* Interleave attention and MLPs to create a transformer
+* Understand that optimization performance can be improved through residual connections and normalization
+* Think through some ethical issues around selecting sources for a text dataset
 {% endcapture %}
 {% include learning_objectives.html content=content %}
+
+# Building on Single-headed Self-attention
+
+Let's take a minute to reflect on where we ended our last assignment.
 
 TODO: follow Karpathy for the most part.  Probably mostly we are understanding rather than writing code for this part.
 
