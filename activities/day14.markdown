@@ -6,6 +6,7 @@ layout: problemset
 ---
 
 {% capture agenda %}
+* 10:20-10:25am: Everyone come hang out in MAC128, we'll talk about the plan and answer any logistics questions.
 * 10:25-10:40am: Brief additional reflection on assessment 
 * 10:40-12:00pm: GPT party
 {% endcapture %}
