@@ -76,3 +76,37 @@ $$ \frac{64 - 5 + (2 * 0)}{2} + 1$$
 The output will be 30 x 30. 
 {% endcapture %}
 {% include problem.html problem=problem solution=sol %}
+
+{% capture problem %}
+Calculate the output from the following filter by hand:
+
+{% endcapture %}
+
+{% capture sol %}
+
+{% endcapture %}
+
+{% include problem.html problem=problem solution=sol %}
+
+
+
+
+
+{% capture problem %}
+Draw a filter that detects vertical edges. 
+{% endcapture %}
+
+{% capture sol %}
+
+{% endcapture %}
+
+{% include problem.html problem=problem solution=sol %}
+
+
+Draw on-center off-surround
+
+Write your own code to implement a vertical, horizontal, diagonal, on-center off-surround, and off-center on-surround as 5x5 filters that you create.
+Your code should load your image. We suggest you crop it to be square.
+You should make a set of subplots that shows the original image, each of your filters, and a filtered version of your image for each filter.
+You can choose whatever type of padding and stride you want. Your filtered images should have the same image width and height (but can shift from color to grayscale).
+Your code does not need to be computationally efficient and does not need to use PyTorch (probably easiest to do this with numpy). 
