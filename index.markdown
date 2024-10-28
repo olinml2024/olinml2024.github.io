@@ -27,7 +27,7 @@ header:
 | 12    | [Project shareout and course feedback](activities/day12)                            |
 | 13    | [Word embeddings introduction](activities/day13)                            |
 | 14    | [GPTs part 1](activities/day14)                            |
-
+| 15    | [GPTs part 2](activities/day15)                            |
 
 
 ##  Assignments
