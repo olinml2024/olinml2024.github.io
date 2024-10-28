@@ -46,7 +46,7 @@ header:
 | 13                           | [Assigment 10 - Text as Data Kickoff and Bag of Words for Text Classification](assignments/assignment10/assignment10)   ([with show solution button](assignments/assignment10/assignment10?showSolutions=true))       |
 | 14                           | [Assigment 11 - Word Embeddings](assignments/assignment11/assignment11)   ([with show solution button](assignments/assignment11/assignment11?showSolutions=true))       |
 | 16                           | [Assigment 12 - GPTs (part 1)](assignments/assignment12/assignment12)   ([with show solution button](assignments/assignment12/assignment12?showSolutions=true))       |
-| 17                           | [Assigment 13 - GPTs (part2)](assignments/assignment13/assignment13)   ([with show solution button](assignments/assignment13/assignment13?showSolutions=true))       |
+| 16                           | [Assigment 13 - GPTs (part2)](assignments/assignment13/assignment13)   ([with show solution button](assignments/assignment13/assignment13?showSolutions=true))       |
 
 
 

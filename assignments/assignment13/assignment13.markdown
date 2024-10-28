@@ -27,10 +27,10 @@ Now, let's watch the 3B1B video [How might LLMs store facts](https://www.youtube
 {% endcapture %}
 {% include external_resources.html content=resources %}
 
-# Issues in Dataset Collection for LLMs
+# Issues in Regulation, Minimizing Harms, and Maximizing Benefits for AI
 
-As we've seen so far in this module, in order to train GPT models we need a lot of text data for the pretraining process.  An essential question is where this data comes from and what sorts of ethical frameworks should we utilize when sourcing this data ourselves.  Here are some readings to get you thinking through some of these important issues.
-
+A year ago, President Biden issues [an executive order on artificial intelligence](https://www.whitehouse.gov/briefing-room/statements-releases/2023/10/30/fact-sheet-president-biden-issues-executive-order-on-safe-secure-and-trustworthy-artificial-intelligence/).  Since we're interested in this class about issues surrounding ethical use and mitigating harms of machine learning models (which is also a major goal of the executive order), we thought it would be worthwhile to see what has happened since the order was issued.  
 {% capture resources %}
+Read [FACT SHEET: Biden-⁠Harris Administration Announces New AI Actions and Receives Additional Major Voluntary Commitment on AI](https://www.whitehouse.gov/briefing-room/statements-releases/2024/07/26/fact-sheet-biden-harris-administration-announces-new-ai-actions-and-receives-additional-major-voluntary-commitment-on-ai/).  Take notes on the main takeaways.  If you have time, follow at least one link from the document and writeup the main points of that report or resource.
 {% endcapture %}
 {% include external_resources.html content=resources %}
