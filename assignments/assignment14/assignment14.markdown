@@ -30,8 +30,15 @@ We'll continue to work through Karpathy's video [Let's build GPT: from scratch, 
 
 {% capture external %}
 * [1:11:37](https://youtu.be/kCc8FmEb1nY?t=4297): this is our starting point for this assignment.
+* Touch on layer norm (link to notebook)
+* Touch on residual connections (discuss ablation experiment)
 {% endcapture %}
 {% include external_resources.html content=external %}
+
+# Visualizing NanoGPT
+
+https://bbycroft.net/llm
+* Mapping the visualization to a class in ``model.py``.
 
 # Ablation and NanoGPT
 
@@ -39,6 +46,9 @@ We'll continue to work through Karpathy's video [Let's build GPT: from scratch, 
 * Peform some code surgery
 * Plot the results
 
-# Creating a Bot to Help First-years On-board to College
+Focus on having them interpret the graph and identify the line of code.
 
-Todo
+# Proposing an LLM for an Application and Context You Care About
+
+* What would an application of large language models either at Olin or outside?  What would be valuable about it.
+* What would the considerations be in developing such an application?  What issues of data managmeent might come up? This could be privacy, legal, bias,  What value would the system provide and who would benefit.  What guardrails would you put in place?
