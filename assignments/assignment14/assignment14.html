@@ -368,6 +368,7 @@ $
 	      
                 <ul class="toc__menu">
   <li><a href="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#optional-exploring-ai-building-equity-into-innovation-at-wellesley-on-sunday">Optional: Exploring AI, Building Equity into Innovation at Wellesley on Sunday</a></li>
   <li><a href="#review-of-what-weve-done-so-far">Review of What We’ve Done So Far</a></li>
   <li><a href="#finishing-our-implementation-of-nanogpt">Finishing Our Implementation of NanoGPT</a></li>
   <li><a href="#visualizing-nanogpt-and-connecting-to-nanogpt">Visualizing NanoGPT and Connecting to NanoGPT</a></li>
@@ -409,6 +410,19 @@ $
 
 	</div>
 </div>
+
+<h1 id="optional-exploring-ai-building-equity-into-innovation-at-wellesley-on-sunday">Optional: Exploring AI, Building Equity into Innovation at Wellesley on Sunday</h1>
+<p>Sunday, November 3, 2024, 3-5pm<br>
+Wellesley College, Tishman Commons<br>
+Register here: https://forms.gle/C5REwqZ4B5f7Jx5y6</p>
+
+<p>Please join us for the 2024 World of Wellesley Community Book Read of Unmasking AI: My Mission to Protect What Is Human in a World of Machines by Joy Buolamwini. In her research, Dr. Joy Buolamwini uncovered what she calls “the coded gaze”, evidence of encoded discrimination and exclusion in tech products. How can we benefit from AI and also build equity into innovation? Come hear from a panel of Artificial Intelligence experts including:<br>
+Aaron Pressman, The Boston Globe, Technology Industry Journalist<br>
+Tanuj Barman, WHS student class of 2025, Co-founder nextgenkids.ai<br>
+Carolyn Anderson, Wellesley College, Asst. Professor of Computer Science<br>
+Michael Dupin, Wolters Kluwer, Director Technology - Generative AI, Merrimack<br>
+College, Data Science Adjunct Professor<br>
+Zachary Ziegler, Co-founder and CTO, OpenEvidence</p>
 
 <h1 id="review-of-what-weve-done-so-far">Review of What We’ve Done So Far</h1>
 <p>Before getting into some new stuff, let’s review what we did in assignments 12 and 13.</p>
@@ -461,7 +475,7 @@ $
   <li>
 <a href="https://youtu.be/kCc8FmEb1nY?t=5279">1:27:59</a>: now we will introduce the idea of skip connections (or residual connections).  There are many reasons why this helps with the performance of the network, which the video touches upon.  The 3B1B videos give us one more way to think about this.  In those videos we talk about self-attention computing a vector that we can add onto our original embedding to modify a word’s meaning in some way.  Up until now, we have actually used attention to completely overwrite the original embedding. These skip connections allow us to, instead, compute a vector that we add to our embedding to get our output.  We’ll be seeing in more detail how important these connections are later in this assignment.  The concept of the projection self-attention / MLP block back into the residual pathway is confusing.  As with most matrices in neural networks, we can add this project matrix to give our network a bit more flexibility in how it integrates the results of self-attention / MLP with the original embedding.</li>
   <li>
-<a href="https://youtu.be/kCc8FmEb1nY?t=5576">1:32:56</a>: next we are going to meet the concept of layer norm (this is <a href="https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html">the link to the documentation page he pulls up on layer norm</a>).  The explanation given here is not particular accessible since we didn’t go through the original video on batch norm that Karpathy references.  For our purposes we can unerstand that layer norm is a way of standardizing the inputs to various parts of our model.  Given a batch of data, we would like each of the input features of our data to have mean 0 and standard deviation 1.  This standardization is achieved with <code class="language-plaintext highlighter-rouge">LayerNorm</code>, which builds on some additional bells and whistles that we don’t really need to worry about.  This sort of normalization can significantly improve the performance of deep (meaning with lots of layers) neural networks.</li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=5576">1:32:56</a>: next we are going to meet the concept of layer norm (this is <a href="https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html">the link to the documentation page he pulls up on layer norm</a>).  The explanation given here is not particular accessible since we didn’t go through the original video on batch norm that Karpathy references.  For our purposes we can understand that layer norm is a way of standardizing the inputs to various parts of our model.  Given a batch of data, we would like each of the input features of our data to have mean 0 and standard deviation 1.  This standardization is achieved with <code class="language-plaintext highlighter-rouge">LayerNorm</code>, which builds on some additional bells and whistles that we don’t really need to worry about.  This sort of normalization can significantly improve the performance of deep (meaning with lots of layers) neural networks.</li>
   <li>
 <a href="https://youtu.be/kCc8FmEb1nY?t=5877">1:37:57</a>: now we’ll have some fun scaling up our network!</li>
   <li>
@@ -498,7 +512,7 @@ $
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
-<p>There are some fantastic visualizations of LLMs out there.  Please check out <a href="https://bbycroft.net/llm">this visualiation</a>, which shows the structure of the model from the video we just watched.  The visualizer also allows you to step through the main steps of the model and has some explanations of what’s going on as well as animations that show the computations happening at each stage.</p>
+<p>There are some fantastic visualizations of LLMs out there.  Please check out <a href="https://bbycroft.net/llm">this visualization</a>, which shows the structure of the model from the video we just watched.  The visualizer also allows you to step through the main steps of the model and has some explanations of what’s going on as well as animations that show the computations happening at each stage.</p>
 
 <ul>
   <li>Please step through the visualizations and try to link what you are seeing to Karpathy’s video.  Take some notes about anything that you don’t understand.</li>
@@ -974,7 +988,7 @@ $
 <p>Before closing out this module, we’d like to give some creative space to think through how LLMs might apply in some context you care about.  Please think respond to the following prompts.</p>
 <ul>
   <li>What do you think is an interesting application of of LLMs (either at Olin or in some other context you care about).  You can choose something you think is positive, negative, or neutral (no judgment).  Describe your chosen application.  What value does it create and for whom?</li>
-  <li>If you were to develop such an application, at a high-level how would you come about doing so.  Some areas to focus on could be dataset collection and curation and model evaluation and testing.  When sourcing your data to train your model, how would you navigate risks of data privacy, legal / regulator compliance, avoidign model bias, while achieving good performance with respect to the application you’ve chosen.  What guardrails would you need to put in place to make sure your system is not used in a harmful way that, presumably, you did not intend.  These guardrails could be technical in nature or specific licensing conditions you would impose on your system.</li>
+  <li>If you were to develop such an application, at a high-level how would you come about doing so.  Some areas to focus on could be dataset collection and curation and model evaluation and testing.  When sourcing your data to train your model, how would you navigate risks of data privacy, legal / regulator compliance, avoiding model bias, while achieving good performance with respect to the application you’ve chosen.  What guardrails would you need to put in place to make sure your system is not used in a harmful way that, presumably, you did not intend.  These guardrails could be technical in nature or specific licensing conditions you would impose on your system.</li>
   <li>For many of these prompts you will probably not have a very detailed idea of how to go about achieving these outcomes.  That’s okay.  Please write at a high level and make a note if you don’t know something or would need to do more research.</li>
 </ul>
 
