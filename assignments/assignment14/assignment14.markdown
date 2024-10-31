@@ -46,20 +46,240 @@ We'll continue to work through Karpathy's video [Let's build GPT: from scratch, 
 {% endcapture %}
 {% include external_resources.html content=external %}
 
-# Visualizing NanoGPT
+# Visualizing NanoGPT and Connecting to NanoGPT
 
-https://bbycroft.net/llm
-* Mapping the visualization to a class in ``model.py``.
+{% capture prob %}
+There are some fantastic visualizations of LLMs out there.  Please check out [this visualiation](https://bbycroft.net/llm), which shows the structure of the model from the video we just watched.  The visualizer also allows you to step through the main steps of the model and has some explanations of what's going on as well as animations that show the computations happening at each stage.
+
+* Please step through the visualizations and try to link what you are seeing to Karpathy's video.  Take some notes about anything that you don't understand.
+* Below we have reproduced a selection of ``model.py``, which defines the NanoGPT model.  Try to find as many pieces of the visualization of NanoGPT in the code for ``model.py``.  For example, you might determine which class implements a particular box in the visualization.
+
+{% highlight python linenos %}
+class LayerNorm(nn.Module):
+    """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """
+
+    def __init__(self, ndim, bias):
+        super().__init__()
+        self.weight = nn.Parameter(torch.ones(ndim))
+        self.bias = nn.Parameter(torch.zeros(ndim)) if bias else None
+
+    def forward(self, input):
+        return F.layer_norm(input, self.weight.shape, self.weight, self.bias, 1e-5)
+
+class CausalSelfAttention(nn.Module):
+
+    def __init__(self, config):
+        super().__init__()
+        assert config.n_embd % config.n_head == 0
+        # key, query, value projections for all heads, but in a batch
+        self.c_attn = nn.Linear(config.n_embd, 3 * config.n_embd, bias=config.bias)
+        # output projection
+        self.c_proj = nn.Linear(config.n_embd, config.n_embd, bias=config.bias)
+        # regularization
+        self.attn_dropout = nn.Dropout(config.dropout)
+        self.resid_dropout = nn.Dropout(config.dropout)
+        self.n_head = config.n_head
+        self.n_embd = config.n_embd
+        self.dropout = config.dropout
+        # flash attention make GPU go brrrrr but support is only in PyTorch >= 2.0
+        self.flash = hasattr(torch.nn.functional, 'scaled_dot_product_attention')
+        if not self.flash:
+            print("WARNING: using slow attention. Flash Attention requires PyTorch >= 2.0")
+            # causal mask to ensure that attention is only applied to the left in the input sequence
+            self.register_buffer("bias", torch.tril(torch.ones(config.block_size, config.block_size))
+                                        .view(1, 1, config.block_size, config.block_size))
+
+    def forward(self, x):
+        B, T, C = x.size() # batch size, sequence length, embedding dimensionality (n_embd)
+
+        # calculate query, key, values for all heads in batch and move head forward to be the batch dim
+        q, k, v  = self.c_attn(x).split(self.n_embd, dim=2)
+        k = k.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+        q = q.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+        v = v.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+
+        # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -> (B, nh, T, T)
+        if self.flash:
+            # efficient attention using Flash Attention CUDA kernels
+            y = torch.nn.functional.scaled_dot_product_attention(q, k, v, attn_mask=None, dropout_p=self.dropout if self.training else 0, is_causal=True)
+        else:
+            # manual implementation of attention
+            att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
+            att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
+            att = F.softmax(att, dim=-1)
+            att = self.attn_dropout(att)
+            y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)
+        y = y.transpose(1, 2).contiguous().view(B, T, C) # re-assemble all head outputs side by side
+
+        # output projection
+        y = self.resid_dropout(self.c_proj(y))
+        return y
+
+class MLP(nn.Module):
+
+    def __init__(self, config):
+        super().__init__()
+        self.c_fc    = nn.Linear(config.n_embd, 4 * config.n_embd, bias=config.bias)
+        self.gelu    = nn.GELU()
+        self.c_proj  = nn.Linear(4 * config.n_embd, config.n_embd, bias=config.bias)
+        self.dropout = nn.Dropout(config.dropout)
+
+    def forward(self, x):
+        x = self.c_fc(x)
+        x = self.gelu(x)
+        x = self.c_proj(x)
+        x = self.dropout(x)
+        return x
+
+class Block(nn.Module):
+
+    def __init__(self, config):
+        super().__init__()
+        self.ln_1 = LayerNorm(config.n_embd, bias=config.bias)
+        self.attn = CausalSelfAttention(config)
+        self.ln_2 = LayerNorm(config.n_embd, bias=config.bias)
+        self.mlp = MLP(config)
+
+    def forward(self, x):
+        x = x + self.attn(self.ln_1(x))
+        x = x + self.mlp(self.ln_2(x))
+        return x
+
+class GPT(nn.Module):
+
+    def __init__(self, config):
+        super().__init__()
+        assert config.vocab_size is not None
+        assert config.block_size is not None
+        self.config = config
+
+        self.transformer = nn.ModuleDict(dict(
+            wte = nn.Embedding(config.vocab_size, config.n_embd),
+            wpe = nn.Embedding(config.block_size, config.n_embd),
+            drop = nn.Dropout(config.dropout),
+            h = nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
+            ln_f = LayerNorm(config.n_embd, bias=config.bias),
+        ))
+        self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
+        # with weight tying when using torch.compile() some warnings get generated:
+        # "UserWarning: functional_call was passed multiple values for tied weights.
+        # This behavior is deprecated and will be an error in future versions"
+        # not 100% sure what this is, so far seems to be harmless. TODO investigate
+        self.transformer.wte.weight = self.lm_head.weight # https://paperswithcode.com/method/weight-tying
+
+        # init all weights
+        self.apply(self._init_weights)
+        # apply special scaled init to the residual projections, per GPT-2 paper
+        for pn, p in self.named_parameters():
+            if pn.endswith('c_proj.weight'):
+                torch.nn.init.normal_(p, mean=0.0, std=0.02/math.sqrt(2 * config.n_layer))
+
+        # report number of parameters
+        print("number of parameters: %.2fM" % (self.get_num_params()/1e6,))
+
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
+            if module.bias is not None:
+                torch.nn.init.zeros_(module.bias)
+        elif isinstance(module, nn.Embedding):
+            torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
+
+    def forward(self, idx, targets=None):
+        device = idx.device
+        b, t = idx.size()
+        assert t <= self.config.block_size, f"Cannot forward sequence of length {t}, block size is only {self.config.block_size}"
+        pos = torch.arange(0, t, dtype=torch.long, device=device) # shape (t)
+
+        # forward the GPT model itself
+        tok_emb = self.transformer.wte(idx) # token embeddings of shape (b, t, n_embd)
+        pos_emb = self.transformer.wpe(pos) # position embeddings of shape (t, n_embd)
+        x = self.transformer.drop(tok_emb + pos_emb)
+        for block in self.transformer.h:
+            x = block(x)
+        x = self.transformer.ln_f(x)
+
+        if targets is not None:
+            # if we are given some desired targets also calculate the loss
+            logits = self.lm_head(x)
+            loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
+        else:
+            # inference-time mini-optimization: only forward the lm_head on the very last position
+            logits = self.lm_head(x[:, [-1], :]) # note: using list [-1] to preserve the time dim
+            loss = None
+
+        return logits, loss
+{% endhighlight %}
+{% endcapture %}
+{% capture sol %}
+Here are a few notes to get you started (more could be said).
+* The class ``GPT`` is the overall model shown in the visualization
+* All of the ``V Output``s are computed on line 54 (doing this all at once instead of once per head is an optimization that Karpathy did for computational reasoning).
+* The ``Attention Output`` is computed on line 58 (notice the projection there)
+* The layer norms in the visualization are shown at a few lines in the code (e.g., 87 and 88).
+* The ``Attention Residual`` is computed on line 87.
+* The input embeddings are computed on lines 138 and 139.
+* etc.
+{% endcapture %}
+{% include problem.html problem=prob solution=sol %}
 
 # Ablation and NanoGPT
 
-* Identify key pieces of the model
-* Perform some code surgery
-* Plot the results
+An [ablation experiment in machine learning](https://en.wikipedia.org/wiki/Ablation_(artificial_intelligence)#:~:text=In%20artificial%20intelligence%20(AI)%2C,resultant%20performance%20of%20the%20system.) seeks to "to determine the contribution of a component to an AI system by removing the component, and then analyzing the resultant performance of the system." (Wikipedia).  We think that this is a particularly interesting idea to apply to the NanoGPT model.  We saw, as the model was being built up, that adding on new features seemed to improve performance.  Now that we have the entire model built, we will take away several aspects of the model and analyze the change in performance.  This can give us a sense for how important each aspect of the model is to the overall functioning of the system.
 
-Focus on having them interpret the graph and identify the line of code.
+{% capture prob %}
+{% capture parta %}
+Describe how you would modify the excerpt from ``model.py`` shown in Exercise 1 to remove each of the following components from the model.
+1. Remove the residual (or skip) connections from the self-attention and MLP steps.
+2. Remove the layer norms from the self-attention and MLP steps.
+3. Remove the position embedding
+4. Use a head size of 1 (instead of multiheaded attention)
+{% endcapture %}
+{% capture partasol %}
+<ol>
+<li>Lines 87-88 would become
+{% highlight python %}
+        x = self.attn(self.ln_1(x))
+        x = self.mlp(self.ln_2(x))
+{% endhighlight %}
+</li>
+<li>Lines 87-88 would become
+{% highlight python %}
+        x = x + self.attn(x)
+        x = x + self.mlp(x)
+{% endhighlight %}
+</li>
+<li>Line 140 would become
+{% highlight python %}
+        x = self.transformer.drop(tok_emb)
+{% endhighlight %}
+</li>
+<li>There are a few places you could introduce this.  An easy way is to have Line 24 become
+{% highlight python %}
+        self.n_head = 1
+{% endhighlight %}
+</li>
+</ol>
+{% endcapture %}
+{% include problem_part.html subpart=parta solution=partasol label="A" %}
+{% capture partb %}
+We went ahead and [performed the ablation experiments described](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment14.ipynb) above (removing each of the aforementioned components of the model, indpendently, and then training the model on the Shakespeare character-level dataset).  We'd like you to look at our results and provide your interpretation of the results.  What have you learned about the model from these experiments?  For example, what model components are the most important?
+
+> ***Optional:*** If you'd like to run these ablation experiments yourself, you can do so either in your own environment or on Colab.  If you do this on Colab, we highly recommend you upgrade to Colab Pro (details on reimbursement for this are on Canvas) and use an L4 or an A100 GPU runtime when training.  We've made [a starter notebook for you to build from](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_assignment14_optional.ipynb).
+{% endcapture %}
+{% capture partbsol %}
+The experiments show that the skip connections are tremendously important.  Without them the model loss is quite bad.  The model seems to converge to a good solution even without layer norm (although it takes longer to get there).  Not having position embedding seems to be detrimental (the loss never gets as low as the unablated model).  Having just one head of attention also does suprisingly well.  It's probably best not to extrapolate too much from these results.  These features might be more important on a larger dataset.
+{% endcapture %}
+{% include problem_part.html subpart=partb solution=partbsol label="B" %}
+{% endcapture %}
+{% include problem_with_parts.html problem=prob %}
 
 # Proposing an LLM for an Application and Context You Care About
 
-* What would an application of large language models either at Olin or outside?  What would be valuable about it.
-* What would the considerations be in developing such an application?  What issues of data management might come up? This could be privacy, legal, bias,  What value would the system provide and who would benefit.  What guardrails would you put in place?
+{% capture problem %}
+Before closing out this module, we'd like to give some creative space to think through how LLMs might apply in some context you care about.  Please think respond to the following prompts. 
+* What do you think is an interesting application of of LLMs (either at Olin or in some other context you care about).  You can choose something you think is positive, negative, or neutral (no judgment).  Describe your chosen application.  What value does it create and for whom?
+* If you were to develop such an application, at a high-level how would you come about doing so.  Some areas to focus on could be dataset collection and curation and model evaluation and testing.  When sourcing your data to train your model, how would you navigate risks of data privacy, legal / regulator compliance, avoidign model bias, while achieving good performance with respect to the application you've chosen.  What guardrails would you need to put in place to make sure your system is not used in a harmful way that, presumably, you did not intend.  These guardrails could be technical in nature or specific licensing conditions you would impose on your system.
+* For many of these prompts you will probably not have a very detailed idea of how to go about achieving these outcomes.  That's okay.  Please write at a high level and make a note if you don't know something or would need to do more research.
+{% endcapture %}
+{% include problem_with_parts.html problem=problem %}
