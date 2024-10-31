@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Assignment 13 - Generative Pre-Trained Transformers (GPTs) Part 2 - Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Assignment 14 - Generative Pre-Trained Transformers (GPTs) Part 3 - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,7 +86,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="Assignment 13 - Generative Pre-Trained Transformers (GPTs) Part 2">
+<meta property="og:title" content="Assignment 14 - Generative Pre-Trained Transformers (GPTs) Part 3">
 <meta property="og:url" content="/assignments/assignment14/assignment14.html">
 
 
@@ -345,7 +345,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Assignment 13 - Generative Pre-Trained Transformers (GPTs) Part 2">
+    <meta itemprop="headline" content="Assignment 14 - Generative Pre-Trained Transformers (GPTs) Part 3">
     
     
     
@@ -353,7 +353,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 13 - Generative Pre-Trained Transformers (GPTs) Part 2
+          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 14 - Generative Pre-Trained Transformers (GPTs) Part 3
 </h1>
           
         </header>
@@ -368,7 +368,11 @@ $
 	      
                 <ul class="toc__menu">
   <li><a href="#learning-objectives">Learning Objectives</a></li>
-  <li><a href="#building-on-single-headed-self-attention">Building on Single-headed Self-attention</a></li>
+  <li><a href="#review-of-what-weve-done-so-far">Review of What We’ve Done So Far</a></li>
+  <li><a href="#finishing-our-implementation-of-nanogpt">Finishing Our Implementation of NanoGPT</a></li>
+  <li><a href="#visualizing-nanogpt-and-connecting-to-nanogpt">Visualizing NanoGPT and Connecting to NanoGPT</a></li>
+  <li><a href="#ablation-and-nanogpt">Ablation and NanoGPT</a></li>
+  <li><a href="#proposing-an-llm-for-an-application-and-context-you-care-about">Proposing an LLM for an Application and Context You Care About</a></li>
 </ul>
 	      	
             </nav>
@@ -396,22 +400,586 @@ $
 	<div style="padding: 1em 1em 1em 1em;">
 	   
 <ul>
-  <li>Generalize from single-headed to multi-headed attention</li>
-  <li>Interleave attention and MLPs to create a transformer</li>
-  <li>Understand that optimization performance can be improved through residual connections and normalization</li>
-  <li>Think through some ethical issues around selecting sources for a text dataset</li>
+  <li>How to generalize from single-headed to multi-headed attention</li>
+  <li>How to Interleave attention and MLPs to create a transformer</li>
+  <li>Understand the importance of skip connections and layer normalization</li>
+  <li>Perform an ablation experiment to understand the parts of the NanoGPT model that are relevant to text generation</li>
+  <li>Consider issues in dataset collection and curation for training and LLM</li>
 </ul>
 
 	</div>
 </div>
 
-<h1 id="building-on-single-headed-self-attention">Building on Single-headed Self-attention</h1>
+<h1 id="review-of-what-weve-done-so-far">Review of What We’ve Done So Far</h1>
+<p>Before getting into some new stuff, let’s review what we did in assignments 12 and 13.</p>
+<ul>
+  <li>We learned that GPT stands for “Generative Pre-trained Transform”</li>
+  <li>A GPT model consists of a pipeline of interleaving two major types of layers: attention and MLPs.</li>
+  <li>The attention layers are responsible for allowing tokens to pass information to other tokens. The degree to which a token passes information to another token depends on taking a dot product between a key and query vector, which is then passed through a softmax.  The specific value passed to the other token depends on a value vector which is computed from the input to the attention layer multiplied by a matrix ($W_V$).</li>
+  <li>While we haven’t gotten our hands dirty with MLPs in this module, we’ve seen them in previous parts of the course.  The MLPs in a GPT take the output of the attention block and perform computation on them.  In the 3B1B video, we saw that one theory of what these MLPs are doing is that they are representing facts that the GPT has learned.</li>
+  <li>We started to implement NanoGPT by starting with a simple Bigram model and then adding in a self-attention mechanism so that tokens could communicate with each other.</li>
+</ul>
 
-<p>Let’s take a minute to reflect on where we ended our last assignment.</p>
+<h1 id="finishing-our-implementation-of-nanogpt">Finishing Our Implementation of NanoGPT</h1>
 
-<p>TODO: follow Karpathy for the most part.  Probably mostly we are understanding rather than writing code for this part.</p>
+<p>We’ll continue to work through Karpathy’s video <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY">Let’s build GPT: from scratch, in code, spelled out</a>.  Follow along with our notes and suggestions for things to try below.</p>
 
-<p>TODO: Ask class to suggest data sources and discuss ethical considerations.  We can come up with a high-level framing like creating a system to allow new students to learn about Olin.   Maybe (probably) we don’t actually train it (although it might be cool, although a lot of work).  Could be a good discussion starter.</p>
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #FFD1DC;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-external-link-alt"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">External Resources</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<ul>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=4297">1:11:37</a>: this is our starting point for this assignment.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=4328">1:12:08</a>: Karpathy is now linking the concept of attention to a more general idea of information flowing between nodes in a graph.  We don’t think you need to be too concerned about this concept as we haven’t learned the necessary background to think about graphs (although, you may have seen this in DSA, FOCS, or Discrete).</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=4541">1:15:41</a>: self-attention is not the only type of attention (as has we’ve already heard about, e.g., cross attention is used in language translation tasks). This could be an interesting thing to explore in a final project if you find this concept interesting.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=4616">1:16:56</a>: we are now seeing why the normalization term $\frac{1}{\sqrt{d_k}}$ is needed.  Karpathy does a nice job showing that this term allows us to achieve the variance we want (this is called <em>scaled attention</em>).</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=4758">1:19:18</a>: we can now take our self-attention code and package it up into the class <code class="language-plaintext highlighter-rouge">Head</code>.  As we’ve seen before in this class, in <code class="language-plaintext highlighter-rouge">pytorch</code> you can create your own machine learning modules by inheriting from <code class="language-plaintext highlighter-rouge">nn.Module</code> (e.g., as we did with our <code class="language-plaintext highlighter-rouge">MLP</code> implementation).  In this part of the video, we also modify our text generation code, which you don’t need to worry about.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=4919">1:21:59</a>: we’ll now scale up from a single head of attention to multiple heads of attention.  Notice the use of the <code class="language-plaintext highlighter-rouge">nn.ModuleList</code> class, which allows multiple <code class="language-plaintext highlighter-rouge">nn.Module</code> objects to be grouped together into a single list.  The key idea here is that our query dimension $n_q$ and the space that our value vectors live in (also $n_q$) is now different than the number of embedding dimensions.  We concatenate the output from each attention head together to get back to the same number of dimensions as our original embedding.  Karpathy makes a reference to this idea of convolutions, which we’ll learn about in the next module of this class.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=5067">1:24:27</a>: now we are going to bring in the concept of the multi-layer perceptron.  Based on the 3B1B videos, we have a conceptual idea of where these MLPs fit in and what they might do (e.g., store facts that the LLM has learned).  For the MLPs in our model, we’ll follow a pretty similar implementation to what we’ve done previously in the course.  Initially, the MLP that Karpathy implements will look a little strange (it will be a linear layer followed by a non-linearity with no subsequent linear layer), but eventually the second linear layer will be added (matching what we did in the previous module).  Karpathy also abstracts the sequence of self-attention and an MLP into a block which can be reused / repeated.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=5279">1:27:59</a>: now we will introduce the idea of skip connections (or residual connections).  There are many reasons why this helps with the performance of the network, which the video touches upon.  The 3B1B videos give us one more way to think about this.  In those videos we talk about self-attention computing a vector that we can add onto our original embedding to modify a word’s meaning in some way.  Up until now, we have actually used attention to completely overwrite the original embedding. These skip connections allow us to, instead, compute a vector that we add to our embedding to get our output.  We’ll be seeing in more detail how important these connections are later in this assignment.  The concept of the projection self-attention / MLP block back into the residual pathway is confusing.  As with most matrices in neural networks, we can add this project matrix to give our network a bit more flexibility in how it integrates the results of self-attention / MLP with the original embedding.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=5576">1:32:56</a>: next we are going to meet the concept of layer norm (this is <a href="https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html">the link to the documentation page he pulls up on layer norm</a>).  The explanation given here is not particular accessible since we didn’t go through the original video on batch norm that Karpathy references.  For our purposes we can unerstand that layer norm is a way of standardizing the inputs to various parts of our model.  Given a batch of data, we would like each of the input features of our data to have mean 0 and standard deviation 1.  This standardization is achieved with <code class="language-plaintext highlighter-rouge">LayerNorm</code>, which builds on some additional bells and whistles that we don’t really need to worry about.  This sort of normalization can significantly improve the performance of deep (meaning with lots of layers) neural networks.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=5877">1:37:57</a>: now we’ll have some fun scaling up our network!</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=5926">1:38:46</a>: we touch on the idea of dropout, which we discussed a bit in our class on preventing overfitting.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=6160">1:42:40</a>: don’t worry about this part.  We are just connecting back to the “Attention is All You Need” paper with its focus on cross-attention.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=6391">1:46:31</a>: Karpathy walks through of the NanoGPT repo.  The quick summary is that some changes have been made to clean up the code and make it more efficient.</li>
+  <li>
+<a href="https://youtu.be/kCc8FmEb1nY?t=6535">1:48:55</a>: Karpathy talks about some important steps that would happen after the pre-training step that we’ve learned about if you were going to train a ChatGPT-like system.  This is fascinating stuff, and it could be great fodder for a final project!</li>
+</ul>
+
+	</div>
+</div>
+
+<h1 id="visualizing-nanogpt-and-connecting-to-nanogpt">Visualizing NanoGPT and Connecting to NanoGPT</h1>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>There are some fantastic visualizations of LLMs out there.  Please check out <a href="https://bbycroft.net/llm">this visualiation</a>, which shows the structure of the model from the video we just watched.  The visualizer also allows you to step through the main steps of the model and has some explanations of what’s going on as well as animations that show the computations happening at each stage.</p>
+
+<ul>
+  <li>Please step through the visualizations and try to link what you are seeing to Karpathy’s video.  Take some notes about anything that you don’t understand.</li>
+  <li>Below we have reproduced a selection of <code class="language-plaintext highlighter-rouge">model.py</code>, which defines the NanoGPT model.  Try to find as many pieces of the visualization of NanoGPT in the code for <code class="language-plaintext highlighter-rouge">model.py</code>.  For example, you might determine which class implements a particular box in the visualization.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+</pre></td>
+<td class="code"><pre><span class="k">class</span> <span class="nc">LayerNorm</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="s">""" LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">bias</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">ndim</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ndim</span><span class="p">))</span> <span class="k">if</span> <span class="n">bias</span> <span class="k">else</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">F</span><span class="p">.</span><span class="n">layer_norm</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">weight</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">bias</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">CausalSelfAttention</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">config</span><span class="p">.</span><span class="n">n_embd</span> <span class="o">%</span> <span class="n">config</span><span class="p">.</span><span class="n">n_head</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="c1"># key, query, value projections for all heads, but in a batch
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">c_attn</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">bias</span><span class="p">)</span>
+        <span class="c1"># output projection
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">c_proj</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">bias</span><span class="p">)</span>
+        <span class="c1"># regularization
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">attn_dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">resid_dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n_head</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">n_head</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n_embd</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">n_embd</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">dropout</span>
+        <span class="c1"># flash attention make GPU go brrrrr but support is only in PyTorch &gt;= 2.0
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">flash</span> <span class="o">=</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">functional</span><span class="p">,</span> <span class="s">'scaled_dot_product_attention'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">.</span><span class="n">flash</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"WARNING: using slow attention. Flash Attention requires PyTorch &gt;= 2.0"</span><span class="p">)</span>
+            <span class="c1"># causal mask to ensure that attention is only applied to the left in the input sequence
+</span>            <span class="bp">self</span><span class="p">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s">"bias"</span><span class="p">,</span> <span class="n">torch</span><span class="p">.</span><span class="n">tril</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">block_size</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">block_size</span><span class="p">))</span>
+                                        <span class="p">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">block_size</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">block_size</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="c1"># batch size, sequence length, embedding dimensionality (n_embd)
+</span>
+        <span class="c1"># calculate query, key, values for all heads in batch and move head forward to be the batch dim
+</span>        <span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span>  <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">c_attn</span><span class="p">(</span><span class="n">x</span><span class="p">).</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">n_head</span><span class="p">,</span> <span class="n">C</span> <span class="o">//</span> <span class="bp">self</span><span class="p">.</span><span class="n">n_head</span><span class="p">).</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># (B, nh, T, hs)
+</span>        <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">n_head</span><span class="p">,</span> <span class="n">C</span> <span class="o">//</span> <span class="bp">self</span><span class="p">.</span><span class="n">n_head</span><span class="p">).</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># (B, nh, T, hs)
+</span>        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">n_head</span><span class="p">,</span> <span class="n">C</span> <span class="o">//</span> <span class="bp">self</span><span class="p">.</span><span class="n">n_head</span><span class="p">).</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># (B, nh, T, hs)
+</span>
+        <span class="c1"># causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -&gt; (B, nh, T, T)
+</span>        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">flash</span><span class="p">:</span>
+            <span class="c1"># efficient attention using Flash Attention CUDA kernels
+</span>            <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">functional</span><span class="p">.</span><span class="n">scaled_dot_product_attention</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">attn_mask</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dropout_p</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dropout</span> <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">training</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span> <span class="n">is_causal</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># manual implementation of attention
+</span>            <span class="n">att</span> <span class="o">=</span> <span class="p">(</span><span class="n">q</span> <span class="o">@</span> <span class="n">k</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+            <span class="n">att</span> <span class="o">=</span> <span class="n">att</span><span class="p">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">bias</span><span class="p">[:,:,:</span><span class="n">T</span><span class="p">,:</span><span class="n">T</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s">'-inf'</span><span class="p">))</span>
+            <span class="n">att</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">att</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">att</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">attn_dropout</span><span class="p">(</span><span class="n">att</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">att</span> <span class="o">@</span> <span class="n">v</span> <span class="c1"># (B, nh, T, T) x (B, nh, T, hs) -&gt; (B, nh, T, hs)
+</span>        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="n">contiguous</span><span class="p">().</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span> <span class="c1"># re-assemble all head outputs side by side
+</span>
+        <span class="c1"># output projection
+</span>        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">resid_dropout</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">c_proj</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">y</span>
+
+<span class="k">class</span> <span class="nc">MLP</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">c_fc</span>    <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">bias</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">gelu</span>    <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">GELU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">c_proj</span>  <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">bias</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">dropout</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">c_fc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">gelu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">c_proj</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">class</span> <span class="nc">Block</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">ln_1</span> <span class="o">=</span> <span class="n">LayerNorm</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">bias</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">attn</span> <span class="o">=</span> <span class="n">CausalSelfAttention</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">ln_2</span> <span class="o">=</span> <span class="n">LayerNorm</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">bias</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">mlp</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">attn</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">ln_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">mlp</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">ln_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">class</span> <span class="nc">GPT</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">config</span><span class="p">.</span><span class="n">vocab_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+        <span class="k">assert</span> <span class="n">config</span><span class="p">.</span><span class="n">block_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">transformer</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">ModuleDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">wte</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">),</span>
+            <span class="n">wpe</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">block_size</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">),</span>
+            <span class="n">drop</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">dropout</span><span class="p">),</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">ModuleList</span><span class="p">([</span><span class="n">Block</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">n_layer</span><span class="p">)]),</span>
+            <span class="n">ln_f</span> <span class="o">=</span> <span class="n">LayerNorm</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">bias</span><span class="p">),</span>
+        <span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lm_head</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="c1"># with weight tying when using torch.compile() some warnings get generated:
+</span>        <span class="c1"># "UserWarning: functional_call was passed multiple values for tied weights.
+</span>        <span class="c1"># This behavior is deprecated and will be an error in future versions"
+</span>        <span class="c1"># not 100% sure what this is, so far seems to be harmless. TODO investigate
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">transformer</span><span class="p">.</span><span class="n">wte</span><span class="p">.</span><span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">lm_head</span><span class="p">.</span><span class="n">weight</span> <span class="c1"># https://paperswithcode.com/method/weight-tying
+</span>
+        <span class="c1"># init all weights
+</span>        <span class="bp">self</span><span class="p">.</span><span class="nb">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_init_weights</span><span class="p">)</span>
+        <span class="c1"># apply special scaled init to the residual projections, per GPT-2 paper
+</span>        <span class="k">for</span> <span class="n">pn</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">named_parameters</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">pn</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'c_proj.weight'</span><span class="p">):</span>
+                <span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">init</span><span class="p">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">0.02</span><span class="o">/</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">config</span><span class="p">.</span><span class="n">n_layer</span><span class="p">))</span>
+
+        <span class="c1"># report number of parameters
+</span>        <span class="k">print</span><span class="p">(</span><span class="s">"number of parameters: %.2fM"</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">get_num_params</span><span class="p">()</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">_init_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">init</span><span class="p">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">module</span><span class="p">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">module</span><span class="p">.</span><span class="n">bias</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">init</span><span class="p">.</span><span class="n">zeros_</span><span class="p">(</span><span class="n">module</span><span class="p">.</span><span class="n">bias</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">nn</span><span class="p">.</span><span class="n">Embedding</span><span class="p">):</span>
+            <span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">init</span><span class="p">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">module</span><span class="p">.</span><span class="n">weight</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">targets</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">idx</span><span class="p">.</span><span class="n">device</span>
+        <span class="n">b</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">idx</span><span class="p">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">block_size</span><span class="p">,</span> <span class="sa">f</span><span class="s">"Cannot forward sequence of length </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s">, block size is only </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">block_size</span><span class="si">}</span><span class="s">"</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># shape (t)
+</span>
+        <span class="c1"># forward the GPT model itself
+</span>        <span class="n">tok_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">transformer</span><span class="p">.</span><span class="n">wte</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="c1"># token embeddings of shape (b, t, n_embd)
+</span>        <span class="n">pos_emb</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">transformer</span><span class="p">.</span><span class="n">wpe</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="c1"># position embeddings of shape (t, n_embd)
+</span>        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">transformer</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">tok_emb</span> <span class="o">+</span> <span class="n">pos_emb</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">transformer</span><span class="p">.</span><span class="n">h</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">block</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">transformer</span><span class="p">.</span><span class="n">ln_f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">targets</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># if we are given some desired targets also calculate the loss
+</span>            <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">lm_head</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">logits</span><span class="p">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">logits</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span> <span class="n">targets</span><span class="p">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ignore_index</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># inference-time mini-optimization: only forward the lm_head on the very last position
+</span>            <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">lm_head</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">:])</span> <span class="c1"># note: using list [-1] to preserve the time dim
+</span>            <span class="n">loss</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">return</span> <span class="n">logits</span><span class="p">,</span> <span class="n">loss</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+
+
+    <button hidden="true" onclick='HideShowElement("solution-1")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-1" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Here are a few notes to get you started (more could be said).</p>
+<ul>
+  <li>The class <code class="language-plaintext highlighter-rouge">GPT</code> is the overall model shown in the visualization</li>
+  <li>All of the <code class="language-plaintext highlighter-rouge">V Output</code>s are computed on line 54 (doing this all at once instead of once per head is an optimization that Karpathy did for computational reasoning).</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Attention Output</code> is computed on line 58 (notice the projection there)</li>
+  <li>The layer norms in the visualization are shown at a few lines in the code (e.g., 87 and 88).</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Attention Residual</code> is computed on line 87.</li>
+  <li>The input embeddings are computed on lines 138 and 139.</li>
+  <li>etc.</li>
+</ul>
+
+     </div>
+</div>
+</div>
+</div>
+
+<h1 id="ablation-and-nanogpt">Ablation and NanoGPT</h1>
+
+<p>An <a href="https://en.wikipedia.org/wiki/Ablation_(artificial_intelligence)#:~:text=In%20artificial%20intelligence%20(AI)%2C,resultant%20performance%20of%20the%20system.">ablation experiment in machine learning</a> seeks to “to determine the contribution of a component to an AI system by removing the component, and then analyzing the resultant performance of the system.” (Wikipedia).  We think that this is a particularly interesting idea to apply to the NanoGPT model.  We saw, as the model was being built up, that adding on new features seemed to improve performance.  Now that we have the entire model built, we will take away several aspects of the model and analyze the change in performance.  This can give us a sense for how important each aspect of the model is to the overall functioning of the system.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p style="font-size: x-large; font-weight: 700;">Part A</p>
+
+<p>Describe how you would modify the excerpt from <code class="language-plaintext highlighter-rouge">model.py</code> shown in Exercise 1 to remove each of the following components from the model.</p>
+<ol>
+  <li>Remove the residual (or skip) connections from the self-attention and MLP steps.</li>
+  <li>Remove the layer norms from the self-attention and MLP steps.</li>
+  <li>Remove the position embedding</li>
+  <li>Use a head size of 1 (instead of multiheaded attention)</li>
+</ol>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-54")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-54" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<ol>
+<li>Lines 87-88 would become
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">attn</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">ln_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">mlp</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">ln_2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span></code></pre></figure>
+
+</li>
+<li>Lines 87-88 would become
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">attn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">mlp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></code></pre></figure>
+
+</li>
+<li>Line 140 would become
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">transformer</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="n">tok_emb</span><span class="p">)</span></code></pre></figure>
+
+</li>
+<li>There are a few places you could introduce this.  An easy way is to have Line 24 become
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">        <span class="bp">self</span><span class="p">.</span><span class="n">n_head</span> <span class="o">=</span> <span class="mi">1</span></code></pre></figure>
+
+</li>
+</ol>
+
+</div>
+</div>
+
+<p style="font-size: x-large; font-weight: 700;">Part B</p>
+
+<p>We went ahead and <a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_Assignment14.ipynb">performed the ablation experiments described</a> above (removing each of the aforementioned components of the model, indpendently, and then training the model on the Shakespeare character-level dataset).  We’d like you to look at our results and provide your interpretation of the results.  What have you learned about the model from these experiments?  For example, what model components are the most important?</p>
+
+<blockquote>
+  <p><strong><em>Optional:</em></strong> If you’d like to run these ablation experiments yourself, you can do so either in your own environment or on Colab.  If you do this on Colab, we highly recommend you upgrade to Colab Pro (details on reimbursement for this are on Canvas) and use an L4 or an A100 GPU runtime when training.  We’ve made <a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML24_assignment14_optional.ipynb">a starter notebook for you to build from</a>.</p>
+</blockquote>
+
+<p><button hidden="true" onclick='HideShowElement("subpartsolution-55")' class="togglebutton">Show / Hide Solution</button></p>
+
+<div id="subpartsolution-55" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>The experiments show that the skip connections are tremendously important.  Without them the model loss is quite bad.  The model seems to converge to a good solution even without layer norm (although it takes longer to get there).  Not having position embedding seems to be detrimental (the loss never gets as low as the unablated model).  Having just one head of attention also does suprisingly well.  It’s probably best not to extrapolate too much from these results.  These features might be more important on a larger dataset.</p>
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+<h1 id="proposing-an-llm-for-an-application-and-context-you-care-about">Proposing an LLM for an Application and Context You Care About</h1>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 3</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Before closing out this module, we’d like to give some creative space to think through how LLMs might apply in some context you care about.  Please think respond to the following prompts.</p>
+<ul>
+  <li>What do you think is an interesting application of of LLMs (either at Olin or in some other context you care about).  You can choose something you think is positive, negative, or neutral (no judgment).  Describe your chosen application.  What value does it create and for whom?</li>
+  <li>If you were to develop such an application, at a high-level how would you come about doing so.  Some areas to focus on could be dataset collection and curation and model evaluation and testing.  When sourcing your data to train your model, how would you navigate risks of data privacy, legal / regulator compliance, avoidign model bias, while achieving good performance with respect to the application you’ve chosen.  What guardrails would you need to put in place to make sure your system is not used in a harmful way that, presumably, you did not intend.  These guardrails could be technical in nature or specific licensing conditions you would impose on your system.</li>
+  <li>For many of these prompts you will probably not have a very detailed idea of how to go about achieving these outcomes.  That’s okay.  Please write at a high level and make a note if you don’t know something or would need to do more research.</li>
+</ul>
+
+</div>
+</div>
 
         
       </section>
