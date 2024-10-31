@@ -20,7 +20,7 @@ layout: problemset
 Before getting into some new stuff, let's review what we did in assignments 12 and 13.
 * We learned that GPT stands for "Generative Pre-trained Transform"
 * A GPT model consists of a pipeline of interleaving two major types of layers: attention and MLPs.
-* The attention layers are responsbile for allowing tokens to pass information to other tokens. The degree to which a token passes information to another token depends on taking a dot prodcut between a key and query vector, which is then passed through a softmax.  The specfic value passed to the other token depends on a value vector which is computed from the input to the attenion layer multiplied by a matrix ($W_V$).
+* The attention layers are responsible for allowing tokens to pass information to other tokens. The degree to which a token passes information to another token depends on taking a dot product between a key and query vector, which is then passed through a softmax.  The specific value passed to the other token depends on a value vector which is computed from the input to the attention layer multiplied by a matrix ($W_V$).
 * While we haven't gotten our hands dirty with MLPs in this module, we've seen them in previous parts of the course.  The MLPs in a GPT take the output of the attention block and perform computation on them.  In the 3B1B video, we saw that one theory of what these MLPs are doing is that they are representing facts that the GPT has learned.
 * We started to implement NanoGPT by starting with a simple Bigram model and then adding in a self-attention mechanism so that tokens could communicate with each other.
 
@@ -43,7 +43,7 @@ https://bbycroft.net/llm
 # Ablation and NanoGPT
 
 * Identify key pieces of the model
-* Peform some code surgery
+* Perform some code surgery
 * Plot the results
 
 Focus on having them interpret the graph and identify the line of code.
@@ -51,4 +51,4 @@ Focus on having them interpret the graph and identify the line of code.
 # Proposing an LLM for an Application and Context You Care About
 
 * What would an application of large language models either at Olin or outside?  What would be valuable about it.
-* What would the considerations be in developing such an application?  What issues of data managmeent might come up? This could be privacy, legal, bias,  What value would the system provide and who would benefit.  What guardrails would you put in place?
+* What would the considerations be in developing such an application?  What issues of data management might come up? This could be privacy, legal, bias,  What value would the system provide and who would benefit.  What guardrails would you put in place?
