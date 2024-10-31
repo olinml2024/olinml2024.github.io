@@ -16,6 +16,21 @@ layout: problemset
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
+# Optional: Exploring AI, Building Equity into Innovation at Wellesley on Sunday
+Sunday, November 3, 2024, 3-5pm  
+Wellesley College, Tishman Commons  
+Register here: https://forms.gle/C5REwqZ4B5f7Jx5y6  
+
+Please join us for the 2024 World of Wellesley Community Book Read of Unmasking AI: My Mission to Protect What Is Human in a World of Machines by Joy Buolamwini. In her research, Dr. Joy Buolamwini uncovered what she calls “the coded gaze”, evidence of encoded discrimination and exclusion in tech products. How can we benefit from AI and also build equity into innovation? Come hear from a panel of Artificial Intelligence experts including:  
+Aaron Pressman, The Boston Globe, Technology Industry Journalist  
+Tanuj Barman, WHS student class of 2025, Co-founder nextgenkids.ai  
+Carolyn Anderson, Wellesley College, Asst. Professor of Computer Science  
+Michael Dupin, Wolters Kluwer, Director Technology - Generative AI, Merrimack  
+College, Data Science Adjunct Professor  
+Zachary Ziegler, Co-founder and CTO, OpenEvidence  
+
+
+
 # Review of What We've Done So Far
 Before getting into some new stuff, let's review what we did in assignments 12 and 13.
 * We learned that GPT stands for "Generative Pre-trained Transform"
@@ -23,6 +38,7 @@ Before getting into some new stuff, let's review what we did in assignments 12 a
 * The attention layers are responsible for allowing tokens to pass information to other tokens. The degree to which a token passes information to another token depends on taking a dot product between a key and query vector, which is then passed through a softmax.  The specific value passed to the other token depends on a value vector which is computed from the input to the attention layer multiplied by a matrix ($W_V$).
 * While we haven't gotten our hands dirty with MLPs in this module, we've seen them in previous parts of the course.  The MLPs in a GPT take the output of the attention block and perform computation on them.  In the 3B1B video, we saw that one theory of what these MLPs are doing is that they are representing facts that the GPT has learned.
 * We started to implement NanoGPT by starting with a simple Bigram model and then adding in a self-attention mechanism so that tokens could communicate with each other.
+
 
 # Finishing Our Implementation of NanoGPT
 
@@ -37,7 +53,7 @@ We'll continue to work through Karpathy's video [Let's build GPT: from scratch, 
 * [1:21:59](https://youtu.be/kCc8FmEb1nY?t=4919): we'll now scale up from a single head of attention to multiple heads of attention.  Notice the use of the ``nn.ModuleList`` class, which allows multiple ``nn.Module`` objects to be grouped together into a single list.  The key idea here is that our query dimension $n_q$ and the space that our value vectors live in (also $n_q$) is now different than the number of embedding dimensions.  We concatenate the output from each attention head together to get back to the same number of dimensions as our original embedding.  Karpathy makes a reference to this idea of convolutions, which we'll learn about in the next module of this class.
 * [1:24:27](https://youtu.be/kCc8FmEb1nY?t=5067): now we are going to bring in the concept of the multi-layer perceptron.  Based on the 3B1B videos, we have a conceptual idea of where these MLPs fit in and what they might do (e.g., store facts that the LLM has learned).  For the MLPs in our model, we'll follow a pretty similar implementation to what we've done previously in the course.  Initially, the MLP that Karpathy implements will look a little strange (it will be a linear layer followed by a non-linearity with no subsequent linear layer), but eventually the second linear layer will be added (matching what we did in the previous module).  Karpathy also abstracts the sequence of self-attention and an MLP into a block which can be reused / repeated.
 * [1:27:59](https://youtu.be/kCc8FmEb1nY?t=5279): now we will introduce the idea of skip connections (or residual connections).  There are many reasons why this helps with the performance of the network, which the video touches upon.  The 3B1B videos give us one more way to think about this.  In those videos we talk about self-attention computing a vector that we can add onto our original embedding to modify a word's meaning in some way.  Up until now, we have actually used attention to completely overwrite the original embedding. These skip connections allow us to, instead, compute a vector that we add to our embedding to get our output.  We'll be seeing in more detail how important these connections are later in this assignment.  The concept of the projection self-attention / MLP block back into the residual pathway is confusing.  As with most matrices in neural networks, we can add this project matrix to give our network a bit more flexibility in how it integrates the results of self-attention / MLP with the original embedding.
-* [1:32:56](https://youtu.be/kCc8FmEb1nY?t=5576): next we are going to meet the concept of layer norm (this is [the link to the documentation page he pulls up on layer norm](https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html)).  The explanation given here is not particular accessible since we didn't go through the original video on batch norm that Karpathy references.  For our purposes we can unerstand that layer norm is a way of standardizing the inputs to various parts of our model.  Given a batch of data, we would like each of the input features of our data to have mean 0 and standard deviation 1.  This standardization is achieved with ``LayerNorm``, which builds on some additional bells and whistles that we don't really need to worry about.  This sort of normalization can significantly improve the performance of deep (meaning with lots of layers) neural networks.
+* [1:32:56](https://youtu.be/kCc8FmEb1nY?t=5576): next we are going to meet the concept of layer norm (this is [the link to the documentation page he pulls up on layer norm](https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html)).  The explanation given here is not particular accessible since we didn't go through the original video on batch norm that Karpathy references.  For our purposes we can understand that layer norm is a way of standardizing the inputs to various parts of our model.  Given a batch of data, we would like each of the input features of our data to have mean 0 and standard deviation 1.  This standardization is achieved with ``LayerNorm``, which builds on some additional bells and whistles that we don't really need to worry about.  This sort of normalization can significantly improve the performance of deep (meaning with lots of layers) neural networks.
 * [1:37:57](https://youtu.be/kCc8FmEb1nY?t=5877): now we'll have some fun scaling up our network!
 * [1:38:46](https://youtu.be/kCc8FmEb1nY?t=5926): we touch on the idea of dropout, which we discussed a bit in our class on preventing overfitting.
 * [1:42:40](https://youtu.be/kCc8FmEb1nY?t=6160): don't worry about this part.  We are just connecting back to the "Attention is All You Need" paper with its focus on cross-attention.
@@ -49,7 +65,7 @@ We'll continue to work through Karpathy's video [Let's build GPT: from scratch, 
 # Visualizing NanoGPT and Connecting to NanoGPT
 
 {% capture prob %}
-There are some fantastic visualizations of LLMs out there.  Please check out [this visualiation](https://bbycroft.net/llm), which shows the structure of the model from the video we just watched.  The visualizer also allows you to step through the main steps of the model and has some explanations of what's going on as well as animations that show the computations happening at each stage.
+There are some fantastic visualizations of LLMs out there.  Please check out [this visualization](https://bbycroft.net/llm), which shows the structure of the model from the video we just watched.  The visualizer also allows you to step through the main steps of the model and has some explanations of what's going on as well as animations that show the computations happening at each stage.
 
 * Please step through the visualizations and try to link what you are seeing to Karpathy's video.  Take some notes about anything that you don't understand.
 * Below we have reproduced a selection of ``model.py``, which defines the NanoGPT model.  Try to find as many pieces of the visualization of NanoGPT in the code for ``model.py``.  For example, you might determine which class implements a particular box in the visualization.
@@ -279,7 +295,7 @@ The experiments show that the skip connections are tremendously important.  With
 {% capture problem %}
 Before closing out this module, we'd like to give some creative space to think through how LLMs might apply in some context you care about.  Please think respond to the following prompts. 
 * What do you think is an interesting application of of LLMs (either at Olin or in some other context you care about).  You can choose something you think is positive, negative, or neutral (no judgment).  Describe your chosen application.  What value does it create and for whom?
-* If you were to develop such an application, at a high-level how would you come about doing so.  Some areas to focus on could be dataset collection and curation and model evaluation and testing.  When sourcing your data to train your model, how would you navigate risks of data privacy, legal / regulator compliance, avoidign model bias, while achieving good performance with respect to the application you've chosen.  What guardrails would you need to put in place to make sure your system is not used in a harmful way that, presumably, you did not intend.  These guardrails could be technical in nature or specific licensing conditions you would impose on your system.
+* If you were to develop such an application, at a high-level how would you come about doing so.  Some areas to focus on could be dataset collection and curation and model evaluation and testing.  When sourcing your data to train your model, how would you navigate risks of data privacy, legal / regulator compliance, avoiding model bias, while achieving good performance with respect to the application you've chosen.  What guardrails would you need to put in place to make sure your system is not used in a harmful way that, presumably, you did not intend.  These guardrails could be technical in nature or specific licensing conditions you would impose on your system.
 * For many of these prompts you will probably not have a very detailed idea of how to go about achieving these outcomes.  That's okay.  Please write at a high level and make a note if you don't know something or would need to do more research.
 {% endcapture %}
 {% include problem_with_parts.html problem=problem %}

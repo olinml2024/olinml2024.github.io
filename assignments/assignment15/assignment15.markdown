@@ -1,5 +1,5 @@
 ---
-title: Assignment 14 - Images as Data and Meet Convolution
+title: Assignment 15 - Images as Data and Meet Convolution
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset

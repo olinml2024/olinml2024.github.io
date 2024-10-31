@@ -27,7 +27,8 @@ header:
 | 12    | [Project shareout and course feedback](activities/day12)                            |
 | 13    | [Word embeddings introduction](activities/day13)                            |
 | 14    | [GPTs part 1](activities/day14)                            |
-| 15    | [GPTs part 2](activities/day15)                            |
+| 15    | [GPTs part 2](activities/day15) 
+| 16    | [GPTs part 3 and discussion](activities/day16)                            |
 
 
 ##  Assignments
@@ -43,11 +44,11 @@ header:
 | 8                           | [Assignment 7](assignments/assignment07/assignment07)     |
 | 9                           | [Assignment 8](assignments/assignment08/assignment08)    ([with show solution button](assignments/assignment08/assignment08?showSolutions=true))      |
 | 12                           | [Assignment 9 - "Small data" project on classification](assignments/assignment09/assignment09)         |
-| 13                           | [Assigment 10 - Text as Data Kickoff and Bag of Words for Text Classification](assignments/assignment10/assignment10)   ([with show solution button](assignments/assignment10/assignment10?showSolutions=true))       |
-| 14                           | [Assigment 11 - Word Embeddings](assignments/assignment11/assignment11)   ([with show solution button](assignments/assignment11/assignment11?showSolutions=true))       |
-| 16                           | [Assigment 12 - GPTs (part 1)](assignments/assignment12/assignment12)   ([with show solution button](assignments/assignment12/assignment12?showSolutions=true))       |
-| 16                           | [Assigment 13 - GPTs (part 2)](assignments/assignment13/assignment13)   ([with show solution button](assignments/assignment13/assignment13?showSolutions=true))       |
-| 17                           | [Assigment 14 - GPTs (part 3)](assignments/assignment14/assignment14)   ([with show solution button](assignments/assignment14/assignment14?showSolutions=true))       |
+| 13                           | [Assignment 10 - Text as Data Kickoff and Bag of Words for Text Classification](assignments/assignment10/assignment10)   ([with show solution button](assignments/assignment10/assignment10?showSolutions=true))       |
+| 14                           | [Assignment 11 - Word Embeddings](assignments/assignment11/assignment11)   ([with show solution button](assignments/assignment11/assignment11?showSolutions=true))       |
+| 16                           | [Assignment 12 - GPTs (part 1)](assignments/assignment12/assignment12)   ([with show solution button](assignments/assignment12/assignment12?showSolutions=true))       |
+| 16                           | [Assignment 13 - GPTs (part 2)](assignments/assignment13/assignment13)   ([with show solution button](assignments/assignment13/assignment13?showSolutions=true))       |
+| 17                           | [Assignment 14 - GPTs (part 3)](assignments/assignment14/assignment14)   ([with show solution button](assignments/assignment14/assignment14?showSolutions=true))       |
 
 
 
