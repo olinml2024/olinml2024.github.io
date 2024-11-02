@@ -8,30 +8,44 @@ layout: problemset
 # Learning Objectives
 
 {% capture content %}
-* Learn!
+* Identify and explain key components of a convolutional neural network (CNN)
+* Create and apply filters like a CNN
+* Calculate the output size and values resulting from a given filter
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
 # TO DO
-* clean up writing
-* add exercises
-* add some initial fodder on images, or put in the in-class part
+* Make notebook without solutions.
+* Decide if we will give solutions for this notebook (Sam is leaning no, since there are lots of correct solutions, and it might be more interesting to discuss the filters they created in class if we don't give them a "correct" filter, and I'd like to have something like this in the QAD).
+* 
 
 
 # Meet Convolutional Neural Networks
+Convolutional neural networks were a major step in the world of computer vision (and image generation). In [class 17](../../activities/day17), we did some exploration of why these are cool and how they work. If you missed class, please review these materials. Now, you'll spend some more time solidifying your understanding. 
 
-[1.1 hours]
-Watch this lecture by Serena Yeung (Stanford) explaining convolutional neural networks. This lecture provides a little bit of history and does a nice job explaining some key terms and concepts. 
 
-Some terms and ideas from this that you'll need for the rest of the assignment are:
+There are a huge number of resources out there. We suggest you look at two types: We strongly suggest these two, but you're always welcome to find alternatives (and share them with everyone if they are awesome):
+1. One that gives a high level overview and a visualization. We suggest one of these two:
+    * This [interactive visual overview of CNNs from a collaboration between Georgia Tech and Oregon State](https://poloclub.github.io/cnn-explainer/). This one will allow you to explore each of the layers and functions. You can click on each of the parts to see more. There's a little video at the end that shows how to use the tool. 
+    * This [write-up with some helpful visualizations by Ujjwal Karn](https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets).
+2. This [lecture by Serena Yeung of Stanford (part of one of the most famous academic AI labs) explaining convolutional neural networks](https://www.youtube.com/watch?v=bNb2fEVKeEo&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&index=6). This lecture provides a little bit of history and does a nice job explaining some key terms and concepts, getting into the specifics and the math. This also gives you a taste of a classic academic lecture on this topic. Here's the [website from their class](https://cs231n.github.io/convolutional-networks/#conv), which may also be a helpful but not required resource.
+
+{% capture problem %}
+Based on the materials above, explain the following terms/concepts:
+* Convolution (conceptually and as a dot product)
 * Filter size (F)
 * Stride
 * Padding (e.g., zero padding)
-* Calculate the output size on a convolutional layer based on the terms above
-* Convolution as a dot product
+* Max pool 
+* ReLu
+* Flatten
 
+{% endcapture %}
 
-
+{% capture sol %}
+The questions below will help you figure out if you understand some of these terms. The answers are in the suggested resources or you can look them up from other resources. We're intentionally not providing them here as we want you to practice making sense of other resources and summarizing, but feel free to use other resources or an LLM to check your understanding.
+{% endcapture %}
+{% include problem.html problem=problem solution=sol %}
 
 {% capture problem %}
 {% capture part_a %}
@@ -78,11 +92,40 @@ The output will be 30 x 30.
 {% include problem.html problem=problem solution=sol %}
 
 {% capture problem %}
-Calculate the output from the following filter by hand:
+Calculate the output from the following filter by hand (calculator fine).  
+  
+Filter:  
+$$
+\begin{bmatrix}
+0 & -1 & 0 \\  
+-1 & 4 & -1 \\  
+0 & -1 & 0 \\  
+\end{bmatrix}
+$$
+
+Image:  
+$$
+\begin{bmatrix}
+10 & 0 & 10 & 0 \\  
+10 & 0 & 10 & 0 \\  
+10 & 10 & 10 & 10 \\  
+0 & 0 & 10 & 60 \\  
+\end{bmatrix}
+$$
 
 {% endcapture %}
 
 {% capture sol %}
+Because there is no padding, the output image will be smaller. You might realize that the setup for the top right and the bottom left have the same numbers, so you only have to do the math once. Notice how the relevant values in the bottom right are all 10s, so the filter outputs zero. Also notice how the big number in the bottom right corner makes no difference at all in this filtering.
+
+$$
+\begin{bmatrix}
+-30 & 20 \\  
+20 & 0  \\  
+\end{bmatrix}
+$$
+
+Please note that ChatGPT4o got this wrong when we put it in, but ChatGPTo1-preview got it correct. 
 
 {% endcapture %}
 
@@ -93,20 +136,14 @@ Calculate the output from the following filter by hand:
 
 
 {% capture problem %}
-Draw a filter that detects vertical edges. 
+In this notebook, you will create your own filters and apply them like they are part of a convolutional neural network. You will need to do a little research on filter types. 
+
 {% endcapture %}
 
 {% capture sol %}
 
+[Here is a notebook with the solutions, which we might not actually provide in the real assignment, as it might be part of the QAD, so this is just for Paul to review. If we're good with this notebook, then I'll make a version w/o solutions.   ](https://colab.research.google.com/drive/1m0QRA92yrEQ0D2u2g5gh8ox8fsIb_g7k?usp=sharing)
+
 {% endcapture %}
 
 {% include problem.html problem=problem solution=sol %}
-
-
-Draw on-center off-surround
-
-Write your own code to implement a vertical, horizontal, diagonal, on-center off-surround, and off-center on-surround as 5x5 filters that you create.
-Your code should load your image. We suggest you crop it to be square.
-You should make a set of subplots that shows the original image, each of your filters, and a filtered version of your image for each filter.
-You can choose whatever type of padding and stride you want. Your filtered images should have the same image width and height (but can shift from color to grayscale).
-Your code does not need to be computationally efficient and does not need to use PyTorch (probably easiest to do this with numpy). 
