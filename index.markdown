@@ -23,12 +23,23 @@ header:
 | 7     | [COMPAS discussion](activities/day07)                            |
 | 8     | [From Micrograd to Pytorch](activities/day08)                            |
 | 9     | [Cross Entropy and Small Data Mini Project Kickoff](activities/day09)                            |
-| 10    | [Concept mapping and overfitting](activities/day10)                            |
-| 12    | [Project shareout and course feedback](activities/day12)                            |
-| 13    | [Word embeddings introduction](activities/day13)                            |
-| 14    | [GPTs part 1](activities/day14)                            |
-| 15    | [GPTs part 2](activities/day15) 
-| 16    | [GPTs part 3 and discussion](activities/day16)                            |
+| 10    | [Concept Mapping and Overfitting](activities/day10)                            |
+| 12    | [Project Shareout and Course Feedback](activities/day12)                            |
+| 13    | [Word Embeddings Introduction](activities/day13)                            |
+| 14    | [GPTs Part 1](activities/day14)                            |
+| 15    | [GPTs Part 2](activities/day15) 
+| 16    | [GPTs Part 3 and Discussion](activities/day16)                            |
+| 17    | Goodbye Text, Hello Images and Convolution[]() -  Monday, Nov 4, 2024                         |
+| 18    | CNNs []() - Thursday, Nov 7, 2024                           |
+| 19    | CNNs and beyond []()  - Monday, Nov 11, 2024                          |
+| 20    | Goodbye CNNs, Hello Project []()  - Thursday, Nov 14, 2024                           |
+| 21    | Project and Other Fun Stuff[]()  - Monday, Nov 18, 2024                           |
+| 22    | Project and Other Fun Stuff[]()  - Thursday, Nov 21, 2024                           |
+| 23    | Project and Other Fun Stuff[]()  - Monday, Dec 2, 2024                           |
+| 24    | Project and Other Fun Stuff[]()  - Thursday, Dec 5, 2024                           |
+| 25    | Project and Other Fun Stuff[]()  - Monday, Dec 9, 2024                           |
+| 26    | Project and Other Fun Stuff []()  - Thursday, Dec 12, 2024                           |
+| Final    | Final Project Share-Out and Course Reflection []()  - Thursday, Dec 19, 2024 from noon to 3 pm                 |
 
 
 ##  Assignments
