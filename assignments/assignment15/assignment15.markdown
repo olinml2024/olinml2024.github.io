@@ -24,11 +24,18 @@ layout: problemset
 Convolutional neural networks were a major step in the world of computer vision (and image generation). In [class 17](../../activities/day17), we did some exploration of why these are cool and how they work. If you missed class, please review these materials. Now, you'll spend some more time solidifying your understanding. 
 
 
-There are a huge number of resources out there. We suggest you look at two types: We strongly suggest these two, but you're always welcome to find alternatives (and share them with everyone if they are awesome):
-1. One that gives a high level overview and a visualization. We suggest one of these two:
-    * This [interactive visual overview of CNNs from a collaboration between Georgia Tech and Oregon State](https://poloclub.github.io/cnn-explainer/). This one will allow you to explore each of the layers and functions. You can click on each of the parts to see more. There's a little video at the end that shows how to use the tool. 
-    * This [write-up with some helpful visualizations by Ujjwal Karn](https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets).
-2. This [lecture by Serena Yeung of Stanford (part of one of the most famous academic AI labs) explaining convolutional neural networks](https://www.youtube.com/watch?v=bNb2fEVKeEo&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&index=6). This lecture provides a little bit of history and does a nice job explaining some key terms and concepts, getting into the specifics and the math. This also gives you a taste of a classic academic lecture on this topic. Here's the [website from their class](https://cs231n.github.io/convolutional-networks/#conv), which may also be a helpful but not required resource.
+There are a huge number of resources out there. We suggest you look at two types: 
+1. One that gives a high level overview and a visualization. We suggest the first one, but are providing a few other great options:
+    * This [interactive visual overview of CNNs from a collaboration between Georgia Tech and Oregon State](https://poloclub.github.io/cnn-explainer/){:target="_blank"}. This one will allow you to explore each of the layers and functions. You can click on each of the parts to see more. There's a little video at the end that shows how to use the tool. 
+    * This [write-up with some helpful visualizations by Ujjwal Karn](https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets){:target="_blank"}.
+    * [One of the earlier types of these visualizations focused on handwritten numbers](https://adamharley.com/nn_vis/){:target="_blank"}  by Adam Harley.
+    * [Training on MNIST in the browser by Karpathy](https://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html){:target="_blank"}. This one shows the weights and the gradients.
+2. This [lecture by Serena Yeung of Stanford (part of one of the most famous academic AI labs) explaining convolutional neural networks](https://www.youtube.com/watch?v=bNb2fEVKeEo&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&index=6){:target="_blank"}. This lecture provides a little bit of history and does a nice job explaining some key terms and concepts, getting into the specifics and the math. This also gives you a taste of a classic academic lecture on this topic. Here's the [website from their class](https://cs231n.github.io/convolutional-networks/#conv){:target="_blank"}, which may also be a helpful but not required resource.
+
+As always, you're welcome to find alternative resources (and share them with everyone if they are awesome)!  
+
+
+For these first two exercises, we'd like you to **attempt to recall the answers based on what you learned above (without immediately looking back at these resources)**. The act of trying to recall things from your memory helps slow the forgetting process (see this [article by researcher Dr. Kathleen McDermott](https://www.annualreviews.org/content/journals/10.1146/annurev-psych-010419-051019){:target="_blank"} if you want evidence of this). Then you can check your answers with the resources and make your answers better.  
 
 {% capture problem %}
 Based on the materials above, explain the following terms/concepts:
@@ -44,6 +51,15 @@ Based on the materials above, explain the following terms/concepts:
 
 {% capture sol %}
 The questions below will help you figure out if you understand some of these terms. The answers are in the suggested resources or you can look them up from other resources. We're intentionally not providing them here as we want you to practice making sense of other resources and summarizing, but feel free to use other resources or an LLM to check your understanding.
+{% endcapture %}
+{% include problem.html problem=problem solution=sol %}
+
+{% capture problem %}
+Describe the general architecture of a convolutional neural network for image classification. You don't need to go into a lot of detail here, we just want to draw your attention to the major things that happen and the order that they happen in. 
+
+{% endcapture %}
+{% capture sol %}
+In CNNs, we start with an input image. We then apply a series of filters by sliding them across the image and getting a set of outputs that preserve the spatial information. This is typically followed by a non-linear activation function (e.g., ReLU). We often shrink the overall size by using some combination of pooling (e.g., max pool) and stride during the convolution. This can be repeated multiple times depending on the depth of the model. Finally, the output layers (that still have spatial information in their organization) are flattened (put into a vector) and then go through a series of multilayer perceptrons (or other linear layers) until a final classification layer.
 {% endcapture %}
 {% include problem.html problem=problem solution=sol %}
 
@@ -142,7 +158,7 @@ In this notebook, you will create your own filters and apply them like they are 
 
 {% capture sol %}
 
-[Here is a notebook with the solutions, which we might not actually provide in the real assignment, as it might be part of the QAD, so this is just for Paul to review. If we're good with this notebook, then I'll make a version w/o solutions.   ](https://colab.research.google.com/drive/1m0QRA92yrEQ0D2u2g5gh8ox8fsIb_g7k?usp=sharing)
+[Here is a notebook with the solutions, which we might not actually provide in the real assignment, as it might be part of the QAD, so this is just for Paul to review. If we're good with this notebook, then I'll make a version w/o solutions.   ](https://colab.research.google.com/drive/1m0QRA92yrEQ0D2u2g5gh8ox8fsIb_g7k?usp=sharing){:target="_blank"}
 
 {% endcapture %}
 
