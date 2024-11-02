@@ -355,7 +355,7 @@ Applying our formula for the value of each token, $\mlmat{W_V} \mlvec{r}_i$, and
 
 $$
 \begin{align}
-\mlmat{V} &= \begin{bmatrix} 0 & 1 \\ 0 & 1 \\ 0 & 1 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}
+\mlmat{V} &= \begin{bmatrix} 1 & 0 \\ 1 & 0 \\ 1 & 0 \\ 1 & 0 \\ 0 & 0 \end{bmatrix}
 \end{align}
 $$
 
@@ -363,7 +363,7 @@ We get the final outputs of our attention head by multiplying our matrix from pa
 
 $$
 \begin{align}
-\begin{bmatrix}    1.0000     &    0     &    0      &   0     &    0 \\   0.9933 &   0.0067    &     0     &    0      &   0 \\   0.9867  &  0.0066  &  0.0066     &    0    &     0 \\    0.9802  &  0.0066  &  0.0066 &   0.0066     &    0 \\  0.9738  &  0.0066  &   0.0066 &   0.0066  &  0.0066 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 0 & 1 \\ 0 & 1 \\ 0 & 1 \\ 0 & 0 \end{bmatrix} &= \begin{bmatrix}         0   & 1.0000 \\  0  &  1.0000 \\      0  &  1.0000 \\ 0  &  1.0000 \\  0   & 0.9934 \end{bmatrix}
+\begin{bmatrix}    1.0000     &    0     &    0      &   0     &    0 \\   0.9933 &   0.0067    &     0     &    0      &   0 \\   0.9867  &  0.0066  &  0.0066     &    0    &     0 \\    0.9802  &  0.0066  &  0.0066 &   0.0066     &    0 \\  0.9738  &  0.0066  &   0.0066 &   0.0066  &  0.0066 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 1 & 0 \\ 1 & 0 \\ 1 & 0 \\ 0 & 0 \end{bmatrix} &= \begin{bmatrix}       1.0000 &  0   \\  1.0000  & 0  \\    1.0000 &   0   \\  1.0000 & 0  \\   0.9934 & 0  \end{bmatrix}
 \end{align}
 $$
 
