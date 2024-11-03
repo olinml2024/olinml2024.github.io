@@ -1,5 +1,5 @@
 ---
-title: Day 17 - Images and Convolution
+title: Day 17 (Nov 4) - Goodbye Text, Hello Images and Convolution
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
@@ -13,8 +13,13 @@ layout: problemset
 {% include agenda.html content=agenda %}
 
 
+# Share-out your application of LLMs
+In [Assignment 14](../assignments/assignment14/assignment14#proposing-an-llm-for-an-application-and-context-you-care-about), we asked you to propose an application of an LLM for a context that you care about. We'll do a share-out about our applications and possibly think about where they fall on some axes (e.g., at Olin or beyond; positive to negative; practical to whimsical). 
 
-# Refresh on the rest of the semester
+
+# LLM Quality Assessed Deliverable? 
+
+
 
 # Images as data
 
