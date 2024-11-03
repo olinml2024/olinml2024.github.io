@@ -501,7 +501,7 @@ $$
 
 {% capture partb %}
 Suppose $\mlvec{x} = \begin{bmatrix} 3 \\ -1 \\ 4 \end{bmatrix}$ and
-$\mlvec{y} = \begin{b} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
+$\mlvec{y} = \begin{bmatrix} 2 \\  7 \\ 4 \end{bmatrix}$. Calculate
 $\mlvec{x} \cdot \mlvec{y}$, $\mlvec{x}^\top \mlvec{y}$, and
 $\mlvec{x} \mlvec{y}^\top$.
 
@@ -521,7 +521,7 @@ $$
 
 {% capture partc %}
 Let
-$\mlmat{A} = \begin{b} \mlvec{a_1} & \mlvec{a_2} & \ldots & \mlvec{a_n} \end{bmatrix} = \begin{bmatrix} \mlvec{row_1} \\ \mlvec{row_2} \\ \vdots \\ \mlvec{row}_m \end{bmatrix}$
+$\mlmat{A} = \begin{bmatrix} \mlvec{a_1} & \mlvec{a_2} & \ldots & \mlvec{a_n} \end{bmatrix} = \begin{bmatrix} \mlvec{row_1} \\ \mlvec{row_2} \\ \vdots \\ \mlvec{row}_m \end{bmatrix}$
 
 where each $\mlvec{row_{i}}$ is a row vector (vectors in this class will default to being column vectors, so here we're giving it a special name to indicate it's a row vector).
 
