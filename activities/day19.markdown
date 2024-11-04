@@ -1,5 +1,5 @@
 ---
-title: Day 19 (Nov 11) - Convolutional Neural Networks
+title: Day 19 (Nov 11) - Convolutional Neural Networks (applied)
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset

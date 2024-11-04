@@ -1,5 +1,5 @@
 ---
-title: Day 18 (Nov 7) - Goodbye Text, Hello Images and Convolution
+title: Day 18 (Nov 7) - Convolutional Neural Networks 
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
@@ -11,3 +11,21 @@ layout: problemset
 * 10:40-12:00pm: 
 {% endcapture %}
 {% include agenda.html content=agenda %}
+
+
+# Overview of a ConvNet/CNN/Convolutional Neural Network
+
+* I looked at the architecture, but I'm not sure if I could explain in. Can you help?
+* Why not do this whole thing as a bunch of fully connected layer?
+* Everyone loves to make these brain analogies, is this really what the brain does?
+
+# Image filter debrief
+
+Filters: Not just to keep you from saying something you'll regret. They also help ConvNets process images!
+
+In your assignment, you manually created filters to detect different properties of images (e.g., vertical lines). There are many correct ways to do this, and they may lead to different results. At tables, compare your filters and results with others. Be prepared to share one observation or comparison with the larger group. 
+
+
+
+
+# 

@@ -60,8 +60,7 @@ header:
 | 16                           | [Assignment 12 - GPTs (part 1)](assignments/assignment12/assignment12)   ([with show solution button](assignments/assignment12/assignment12?showSolutions=true))       |
 | 16                           | [Assignment 13 - GPTs (part 2)](assignments/assignment13/assignment13)   ([with show solution button](assignments/assignment13/assignment13?showSolutions=true))       |
 | 17                           | [Assignment 14 - GPTs (part 3)](assignments/assignment14/assignment14)   ([with show solution button](assignments/assignment14/assignment14?showSolutions=true))       |
-
-
+| 18                           | [Assignment 15 - Images as Data and Convolutions](assignments/assignment15/assignment15)   ([with show solution button](assignments/assignment15/assignment145?showSolutions=true))       |
 
 
 

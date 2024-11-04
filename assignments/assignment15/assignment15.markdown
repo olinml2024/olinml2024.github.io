@@ -1,5 +1,5 @@
 ---
-title: Assignment 15 - Images as Data and Meet Convolution
+title: Assignment 15 - Images as Data and Convolutions
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
@@ -13,11 +13,6 @@ layout: problemset
 * Calculate the output size and values resulting from a given filter
 {% endcapture %}
 {% include learning_objectives.html content=content %}
-
-# TO DO
-* Make notebook without solutions.
-* Decide if we will give solutions for this notebook (Sam is leaning no, since there are lots of correct solutions, and it might be more interesting to discuss the filters they created in class if we don't give them a "correct" filter, and I'd like to have something like this in the QAD).
-* 
 
 
 # Meet Convolutional Neural Networks
@@ -108,7 +103,7 @@ The output will be 30 x 30.
 {% include problem.html problem=problem solution=sol %}
 
 {% capture problem %}
-Calculate the output from the following filter by hand (calculator fine).  
+Calculate the output from the following filter by hand (calculator fine).  There is no padding for the image. 
   
 Filter:  
 $$
@@ -154,11 +149,12 @@ Please note that ChatGPT4o got this wrong when we put it in, but ChatGPTo1-previ
 {% capture problem %}
 In this notebook, you will create your own filters and apply them like they are part of a convolutional neural network. You will need to do a little research on filter types. 
 
+[https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_Assignment_15_Manual_Convolutions.ipynb](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_Assignment_15_Manual_Convolutions.ipynb){:target="_blank"}
+
 {% endcapture %}
 
 {% capture sol %}
-
-[Here is a notebook with the solutions, which we might not actually provide in the real assignment, as it might be part of the QAD, so this is just for Paul to review. If we're good with this notebook, then I'll make a version w/o solutions.   ](https://colab.research.google.com/drive/1m0QRA92yrEQ0D2u2g5gh8ox8fsIb_g7k?usp=sharing){:target="_blank"}
+We are not giving solutions here because we want you to come up with your own filters so we can discuss and compare variations of the filters in class. If you're stuck on how to write any of the functions, please come to office hours or post in the Slack.
 
 {% endcapture %}
 

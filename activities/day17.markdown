@@ -23,6 +23,12 @@ In [Assignment 14](../assignments/assignment14/assignment14#proposing-an-llm-for
 
 # Images as data
 
+[McKinney, S.M., Sieniek, M., Godbole, V. et al. International evaluation of an AI system for breast cancer screening. Nature 577, 89–94 (2020). https://doi.org/10.1038/s41586-019-1799-6](https://www.nature.com/articles/s41586-019-1799-6)
+
+
+[Esteva, A., Chou, K., Yeung, S. et al. Deep learning-enabled medical computer vision. npj Digit. Med. 4, 5 (2021). https://doi.org/10.1038/s41746-020-00376-2](https://rdcu.be/dYXIV)
+
+[Abràmoff, M.D., Lavin, P.T., Birch, M. et al. Pivotal trial of an autonomous AI-based diagnostic system for detection of diabetic retinopathy in primary care offices. npj Digital Med 1, 39 (2018). https://doi.org/10.1038/s41746-018-0040-6](https://www.nature.com/articles/s41746-018-0040-6)
 
 # Hello, convolution
 
