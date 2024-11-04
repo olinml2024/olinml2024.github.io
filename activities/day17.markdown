@@ -16,11 +16,13 @@ layout: problemset
 # Share-out your application of LLMs
 In [Assignment 14](../assignments/assignment14/assignment14#proposing-an-llm-for-an-application-and-context-you-care-about), we asked you to propose an application of an LLM for a context that you care about. We'll do a share-out about our applications and possibly think about where they fall on some axes (e.g., at Olin or beyond; positive to negative; practical to whimsical). 
 
+# Identifying Gaps in Knowledge
+
+Let's return to the visualization from the exercise 1 of assignment 14.  With folks around you, identify aspects of the visualization that you don't understand.  That is, what are the pieces in this diagram that we did not touch on in class thus far?
 
 # LLM Quality Assessed Deliverable and plans for the rest of the semester
 
 We'll talk about the timeline (some details now added to the homepage).
-
 
 # Images as data
 
