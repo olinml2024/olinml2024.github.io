@@ -78,7 +78,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 
 </script>
 
-<!-- begin _includes/seo.html --><title>Assignment 15 - Images as Data and Meet Convolution - Machine Learning Fall 2024 @ Olin College</title>
+<!-- begin _includes/seo.html --><title>Assignment 15 - Images as Data and Convolutions - Machine Learning Fall 2024 @ Olin College</title>
 <meta name="description" content="">
 
 
@@ -86,7 +86,7 @@ customElements.define("confirm-link", ConfirmLink, { extends: "a" });
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
-<meta property="og:title" content="Assignment 15 - Images as Data and Meet Convolution">
+<meta property="og:title" content="Assignment 15 - Images as Data and Convolutions">
 <meta property="og:url" content="/assignments/assignment15/assignment15.html">
 
 
@@ -345,7 +345,7 @@ $
   
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Assignment 15 - Images as Data and Meet Convolution">
+    <meta itemprop="headline" content="Assignment 15 - Images as Data and Convolutions">
     
     
     
@@ -353,7 +353,7 @@ $
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 15 - Images as Data and Meet Convolution
+          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 15 - Images as Data and Convolutions
 </h1>
           
         </header>
@@ -368,7 +368,6 @@ $
 	      
                 <ul class="toc__menu">
   <li><a href="#learning-objectives">Learning Objectives</a></li>
-  <li><a href="#to-do">TO DO</a></li>
   <li><a href="#meet-convolutional-neural-networks">Meet Convolutional Neural Networks</a></li>
 </ul>
 	      	
@@ -397,32 +396,35 @@ $
 	<div style="padding: 1em 1em 1em 1em;">
 	   
 <ul>
-  <li>Learn!</li>
+  <li>Identify and explain key components of a convolutional neural network (CNN)</li>
+  <li>Create and apply filters like a CNN</li>
+  <li>Calculate the output size and values resulting from a given filter</li>
 </ul>
 
 	</div>
 </div>
 
-<h1 id="to-do">TO DO</h1>
-<ul>
-  <li>clean up writing</li>
-  <li>add exercises</li>
-  <li>add some initial fodder on images, or put in the in-class part</li>
-</ul>
-
 <h1 id="meet-convolutional-neural-networks">Meet Convolutional Neural Networks</h1>
+<p>Convolutional neural networks were a major step in the world of computer vision (and image generation). In <a href="../../activities/day17">class 17</a>, we did some exploration of why these are cool and how they work. If you missed class, please review these materials. Now, you’ll spend some more time solidifying your understanding.</p>
 
-<p>[1.1 hours]
-Watch this lecture by Serena Yeung (Stanford) explaining convolutional neural networks. This lecture provides a little bit of history and does a nice job explaining some key terms and concepts.</p>
+<p>There are a huge number of resources out there. We suggest you look at two types:</p>
+<ol>
+  <li>One that gives a high level overview and a visualization. We suggest the first one, but are providing a few other great options:
+    <ul>
+      <li>This <a href="https://poloclub.github.io/cnn-explainer/" target="_blank">interactive visual overview of CNNs from a collaboration between Georgia Tech and Oregon State</a>. This one will allow you to explore each of the layers and functions. You can click on each of the parts to see more. There’s a little video at the end that shows how to use the tool.</li>
+      <li>This <a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets" target="_blank">write-up with some helpful visualizations by Ujjwal Karn</a>.</li>
+      <li>
+<a href="https://adamharley.com/nn_vis/" target="_blank">One of the earlier types of these visualizations focused on handwritten numbers</a>  by Adam Harley.</li>
+      <li>
+<a href="https://cs.stanford.edu/people/karpathy/convnetjs/demo/mnist.html" target="_blank">Training on MNIST in the browser by Karpathy</a>. This one shows the weights and the gradients.</li>
+    </ul>
+  </li>
+  <li>This <a href="https://www.youtube.com/watch?v=bNb2fEVKeEo&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&index=6" target="_blank">lecture by Serena Yeung of Stanford (part of one of the most famous academic AI labs) explaining convolutional neural networks</a>. This lecture provides a little bit of history and does a nice job explaining some key terms and concepts, getting into the specifics and the math. This also gives you a taste of a classic academic lecture on this topic. Here’s the <a href="https://cs231n.github.io/convolutional-networks/#conv" target="_blank">website from their class</a>, which may also be a helpful but not required resource.</li>
+</ol>
 
-<p>Some terms and ideas from this that you’ll need for the rest of the assignment are:</p>
-<ul>
-  <li>Filter size (F)</li>
-  <li>Stride</li>
-  <li>Padding (e.g., zero padding)</li>
-  <li>Calculate the output size on a convolutional layer based on the terms above</li>
-  <li>Convolution as a dot product</li>
-</ul>
+<p>As always, you’re welcome to find alternative resources (and share them with everyone if they are awesome)!</p>
+
+<p>For these first two exercises, we’d like you to <strong>attempt to recall the answers based on what you learned above (without immediately looking back at these resources)</strong>. The act of trying to recall things from your memory helps slow the forgetting process (see this <a href="https://www.annualreviews.org/content/journals/10.1146/annurev-psych-010419-051019" target="_blank">article by researcher Dr. Kathleen McDermott</a> if you want evidence of this). Then you can check your answers with the resources and make your answers better.</p>
 
 <div style="display: normal;
         border-left: 6px solid #0065B4;
@@ -440,6 +442,99 @@ Watch this lecture by Serena Yeung (Stanford) explaining convolutional neural ne
         <i class="fas fa-question"></i>
 </div>
 	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Based on the materials above, explain the following terms/concepts:</p>
+<ul>
+  <li>Convolution (conceptually and as a dot product)</li>
+  <li>Filter size (F)</li>
+  <li>Stride</li>
+  <li>Padding (e.g., zero padding)</li>
+  <li>Max pool</li>
+  <li>ReLu</li>
+  <li>Flatten</li>
+</ul>
+
+
+
+    <button hidden="true" onclick='HideShowElement("solution-1")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-1" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>The questions below will help you figure out if you understand some of these terms. The answers are in the suggested resources or you can look them up from other resources. We’re intentionally not providing them here as we want you to practice making sense of other resources and summarizing, but feel free to use other resources or an LLM to check your understanding.</p>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Describe the general architecture of a convolutional neural network for image classification. You don’t need to go into a lot of detail here, we just want to draw your attention to the major things that happen and the order that they happen in.</p>
+
+
+
+    <button hidden="true" onclick='HideShowElement("solution-2")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-2" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>In CNNs, we start with an input image. We then apply a series of filters by sliding them across the image and getting a set of outputs that preserve the spatial information. This is typically followed by a non-linear activation function (e.g., ReLU). We often shrink the overall size by using some combination of pooling (e.g., max pool) and stride during the convolution. This can be repeated multiple times depending on the depth of the model. Finally, the output layers (that still have spatial information in their organization) are flattened (put into a vector) and then go through a series of multilayer perceptrons (or other linear layers) until a final classification layer.</p>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 3</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -504,16 +599,16 @@ Watch this lecture by Serena Yeung (Stanford) explaining convolutional neural ne
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 4</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
 <p>For an RGB image of size 28x28, apply 6 different 7x7x3 filters with zero-padding of 3 and a stride of 1. What is the size of the output (give all dimensions)?</p>
 
 
-    <button hidden="true" onclick='HideShowElement("solution-2")' class="togglebutton">Show / Hide Solution</button>
+    <button hidden="true" onclick='HideShowElement("solution-4")' class="togglebutton">Show / Hide Solution</button>
 
-<div id="solution-2" class="solution" style="
+<div id="solution-4" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -545,7 +640,7 @@ Watch this lecture by Serena Yeung (Stanford) explaining convolutional neural ne
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 3</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 5</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
@@ -556,9 +651,9 @@ Padding: 0 (no padding) <br>
 Calculate the size of the output feature map after applying this convolution.</p>
 
 
-    <button hidden="true" onclick='HideShowElement("solution-3")' class="togglebutton">Show / Hide Solution</button>
+    <button hidden="true" onclick='HideShowElement("solution-5")' class="togglebutton">Show / Hide Solution</button>
 
-<div id="solution-3" class="solution" style="
+<div id="solution-5" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -592,17 +687,36 @@ The output will be 30 x 30.</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 4</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 6</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
-<p>Calculate the output from the following filter by hand:</p>
+<p>Calculate the output from the following filter by hand (calculator fine).  There is no padding for the image.</p>
+
+<p>Filter:<br>
+$$
+\begin{bmatrix}
+0 &amp; -1 &amp; 0 \\<br>
+-1 &amp; 4 &amp; -1 \\<br>
+0 &amp; -1 &amp; 0 \\<br>
+\end{bmatrix}
+$$</p>
+
+<p>Image:<br>
+$$
+\begin{bmatrix}
+10 &amp; 0 &amp; 10 &amp; 0 \\<br>
+10 &amp; 0 &amp; 10 &amp; 0 \\<br>
+10 &amp; 10 &amp; 10 &amp; 10 \\<br>
+0 &amp; 0 &amp; 10 &amp; 60 \\<br>
+\end{bmatrix}
+$$</p>
 
 
 
-    <button hidden="true" onclick='HideShowElement("solution-4")' class="togglebutton">Show / Hide Solution</button>
+    <button hidden="true" onclick='HideShowElement("solution-6")' class="togglebutton">Show / Hide Solution</button>
 
-<div id="solution-4" class="solution" style="
+<div id="solution-6" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -611,6 +725,17 @@ The output will be 30 x 30.</p>
     margin: 2em 2em 2em 2em;">
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
+
+<p>Because there is no padding, the output image will be smaller. You might realize that the setup for the top right and the bottom left have the same numbers, so you only have to do the math once. Notice how the relevant values in the bottom right are all 10s, so the filter outputs zero. Also notice how the big number in the bottom right corner makes no difference at all in this filtering.</p>
+
+<p>$$
+\begin{bmatrix}
+-30 &amp; 20 \\<br>
+20 &amp; 0  \\<br>
+\end{bmatrix}
+$$</p>
+
+<p>Please note that ChatGPT4o got this wrong when we put it in, but ChatGPTo1-preview got it correct.</p>
 
 
      </div>
@@ -633,16 +758,19 @@ The output will be 30 x 30.</p>
 	    color: #ff6f00;">
         <i class="fas fa-question"></i>
 </div>
-	<div style="font-size: xx-large; font-weight: 900;">Exercise 5</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 7</div>
     </div>
 <div style="display: normal; padding: 1em 1em 1em 1em;">
 	
-<p>Draw a filter that detects vertical edges.</p>
+<p>In this notebook, you will create your own filters and apply them like they are part of a convolutional neural network. You will need to do a little research on filter types.</p>
+
+<p><a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_Assignment_15_Manual_Convolutions.ipynb" target="_blank">https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_Assignment_15_Manual_Convolutions.ipynb</a></p>
 
 
-    <button hidden="true" onclick='HideShowElement("solution-5")' class="togglebutton">Show / Hide Solution</button>
 
-<div id="solution-5" class="solution" style="
+    <button hidden="true" onclick='HideShowElement("solution-7")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-7" class="solution" style="
     background-color: #cefad0;
     border-left: 6px solid #6500B4;
     padding: 1em 1em 1em 1em;
@@ -652,19 +780,14 @@ The output will be 30 x 30.</p>
     <div style="display: normal">
 <p style="font-weight: 900; font-size: x-large">Solution</p>
 
+<p>We are not giving solutions here because we want you to come up with your own filters so we can discuss and compare variations of the filters in class. If you’re stuck on how to write any of the functions, please come to office hours or post in the Slack.</p>
+
 
      </div>
 </div>
 </div>
 </div>
 
-<p>Draw on-center off-surround</p>
-
-<p>Write your own code to implement a vertical, horizontal, diagonal, on-center off-surround, and off-center on-surround as 5x5 filters that you create.
-Your code should load your image. We suggest you crop it to be square.
-You should make a set of subplots that shows the original image, each of your filters, and a filtered version of your image for each filter.
-You can choose whatever type of padding and stride you want. Your filtered images should have the same image width and height (but can shift from color to grayscale).
-Your code does not need to be computationally efficient and does not need to use PyTorch (probably easiest to do this with numpy).</p>
 
         
       </section>
