@@ -29,7 +29,7 @@ header:
 | 14    | [GPTs Part 1](activities/day14)                            |
 | 15    | [GPTs Part 2](activities/day15) 
 | 16    | [GPTs Part 3 and Discussion](activities/day16)                            |
-| 17    | Goodbye Text, Hello Images and Convolution[]() -  Monday, Nov 4, 2024                         |
+| 17    | [Goodbye Text, Hello Images and Convolution](activities/day17) -  Monday, Nov 4, 2024                         |
 | 18    | CNNs []() - Thursday, Nov 7, 2024                           |
 | 19    | CNNs and beyond []()  - Monday, Nov 11, 2024                          |
 | 20    | Goodbye CNNs, Hello Project []()  - Thursday, Nov 14, 2024                           |
