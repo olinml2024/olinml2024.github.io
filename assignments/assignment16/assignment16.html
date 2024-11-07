@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<script>
+class AnchorNoProxy extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this._$a = null;
+  }
+  connectedCallback() {
+    const href = this.getAttribute("href") || "#";
+    if (this.dataset.hasOwnProperty('canvas')) {
+        const canvasURL = this.dataset.canvas;
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}" data-canvas="${canvasURL}"><slot></slot></a>`;
+    } else {
+        this.shadowRoot.innerHTML = `<style>a:hover, a:active { outline: 0; }\na { color: #5197ad; }\na:visited { color: #5197ad; }\na:hover { color: #266477; outline: 0; }</style><a href="${href}"><slot></slot></a>`;
+    }
+    this._$a = this.shadowRoot.querySelector("a");
+    this._$a.addEventListener("click", e => {
+      var url = this.getAttribute('href');
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+        window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+        window.open(url, '_blank');
+      }
+    });
+  }
+  static get observedAttributes() { return ["href"]; }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      if (this._$a === null) return;
+      this._$a.setAttribute("href", newValue);
+    }
+  }
+}
+
+customElements.define("a-no-proxy", AnchorNoProxy);
+
+class NoProxy extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      e.preventDefault();
+      if (document.referrer.startsWith('https://lms.hypothes.is') && this.dataset.hasOwnProperty('canvas')) {
+        // get rid of proxy if it was added
+        var n = this.dataset.canvas.search('https://olin.instructure.com');
+      	window.open(this.dataset.canvas.substring(n), '_blank');
+      } else {
+      	window.open(this.href, '_blank');
+      }
+    });
+  }
+}
+
+customElements.define("no-proxy", NoProxy, { extends: "a" });
+
+class ConfirmLink extends HTMLAnchorElement {
+  connectedCallback() {
+    this.addEventListener("click", e => {
+      const result = confirm(`Are you sure you want to go to '${this.href}'?`);
+      if (!result) e.preventDefault();
+    });
+  }
+}
+
+customElements.define("confirm-link", ConfirmLink, { extends: "a" });
+
+</script>
+
+<!-- begin _includes/seo.html --><title>Assignment 16 - Convolutional Neural Networks (ConvNets, CNNs) in Code - Machine Learning Fall 2024 @ Olin College</title>
+<meta name="description" content="">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Machine Learning Fall 2024 @ Olin College">
+<meta property="og:title" content="Assignment 16 - Convolutional Neural Networks (ConvNets, CNNs) in Code">
+<meta property="og:url" content="/assignments/assignment16/assignment16.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="/assignments/assignment16/assignment16.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": null,
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Machine Learning Fall 2024 @ Olin College Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const showSolutions = urlParams.get('showSolutions');
+    const showAllSolutions = urlParams.get('showAllSolutions');
+    const divs = document.querySelectorAll('button.togglebutton');
+
+    if (showSolutions == 'true') {
+        // Loop through the selected divs and manipulate them
+        divs.forEach(div => {
+            div.removeAttribute('hidden');
+        });
+    }
+
+    const solutionDivs = document.querySelectorAll('[id^=solution]');
+    const subpartSolutionDivs = document.querySelectorAll('[id^=subpartsolution]');
+
+    if (showAllSolutions == 'true') {
+        solutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+
+        subpartSolutionDivs.forEach(div => {
+            console.log('test')
+            div.style.display = 'block';
+        });
+    }
+});
+</script>
+
+<script type="text/javascript">
+function HideShowElement(divID) {
+    const x = document.getElementById(divID);
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+<style>
+:root {
+    --box-bg-color: #fff; /* Default background color */
+}
+
+.homework-box {
+    background-color: var(--box-bg-color);
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.homework-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.homework-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Handle missing or empty src attribute */
+.homework-icon[src=""],
+.homework-icon:not([src]) {
+    content: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Games_for_Learning_%2827470%29_-_The_Noun_Project.svg');
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.homework-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.homework-content {
+    font-size: 16px;
+    color: #333;
+}
+</style>
+
+<style>
+.solution {
+    display: none; /* Hide solutions by default */
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #007bff;
+    margin-top: 10px;
+}
+
+.toggle-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.toggle-button.hide-solution {
+    background-color: #dc3545; /* Red background for hide button */
+}
+
+img.mermaid {
+     max-width:500px;
+     text-align: center;
+}
+
+</style>
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.7/tex-mml-chtml.js"></script>
+</head>
+<body>
+<div style="display:none;">
+$
+\newcommand{\mlvec}[1]{\mathbf{#1}}
+\newcommand{\mlmat}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{arg\,max\,}
+\DeclareMathOperator*{\argmin}{arg\,min\,}
+$
+</div>
+
+  
+
+  
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="https://qeacourse.github.io/RoboNinjaWarrior/website_graphics/olinlogo.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Machine Learning Fall 2024 @ Olin College
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Assignment 16 - Convolutional Neural Networks (ConvNets, CNNs) in Code">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Assignment 16 - Convolutional Neural Networks (ConvNets, CNNs) in Code
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+	      
+                <ul class="toc__menu">
+  <li><a href="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#a-cnn-notebook">A CNN notebook</a></li>
+  <li><a href="#what-to-submit">What to submit</a></li>
+  <li><a href="#what-to-do-and-what-to-answer">What to do and what to answer</a></li>
+  <li><a href="#transfer-learning">Transfer learning</a></li>
+</ul>
+	      	
+            </nav>
+          </aside>
+        
+        <h1 id="learning-objectives">Learning Objectives</h1>
+
+<div class="tip" style="
+    border-left: 6px solid #000000;
+    margin: 2em 2em 2em 2em;">
+	<div style="background-color: #C6EBD5;
+	                column-gap: 1rem;
+					display: flex;
+					padding: 1em 1em 1em 1em;">
+	<div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #000000;">
+        <i class="fas fa-brain"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Learning Objectives</div>
+	</div>
+	<div style="padding: 1em 1em 1em 1em;">
+	   
+<ul>
+  <li>Identify and explain key components of a convolutional neural network (CNN)</li>
+  <li>Implement convolutional neural networks, understanding the sizes of data</li>
+  <li>Learn about transfer learning and apply it to data</li>
+</ul>
+
+	</div>
+</div>
+
+<p>This assignment is very open ended with the intent of creating space for you experiment and learn and then share back in class.</p>
+
+<h1 id="a-cnn-notebook">A CNN notebook</h1>
+<p>For this assignment, we have created a detailed notebook for you that give you almost all the code that you need to experiment with CNNs. Our goal here is to help you to experiment and build some intuition without spending tons of time troubleshooting code.</p>
+
+<p>However, for some of you, you might get a deeper sense of the material if you code the whole thing from scratch. There’s nothing in here that you can’t do, so please feel free to write your own code from scratch if it will help your learning.</p>
+
+<p>Here is the <a href="https://colab.research.google.com/github/olinml2024/notebooks/blob/main/Assignment_16_Convolutional_Neural_Networks_in_PyTorch.ipynb">notebook</a></p>
+
+<h1 id="what-to-submit">What to submit</h1>
+<p>For your quality assessed deliverable, we may to ask you to submit answers to some of these questions, so keep that in mind as you document your work.</p>
+
+<p>For people using assessment option B, you don’t need to submit all of your code. We aren’t giving you solutions here, so you also don’t need to do the corrections. Please submit a document that answers the questions below. You will need to include some key figures (which are mostly generated for you).</p>
+
+<h1 id="what-to-do-and-what-to-answer">What to do and what to answer</h1>
+
+<p>Start by looking through the whole notebook to get the gist of what is there. Be sure to note where models are defined, where training happens, how a subset of the data is selected, and what variables you can change.</p>
+
+<h2 id="mnist-dataset">MNIST dataset</h2>
+<p>The MNIST dataset has grayscale images of digits.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 1</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<ol>
+  <li>Choose 3 digits to include in your model and change the code to select these.</li>
+  <li>Create a very small training set (e.g. 16 examples per class).</li>
+  <li>Train the model called FC_only for enough epochs that the loss curve flattens (and ideally begins to overfit).</li>
+  <li>In your write-up, show the loss over epochs plot, the test confusion matrix, and the training and test accuracy.</li>
+</ol>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-1")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-1" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 2</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<ol>
+  <li>Research CNNs in PyTorch</li>
+  <li>Create a model called Grayscale1Convolution. The model should include 1 convolution layer and 1 max pooling layer that reduces the image size by 1/2. You will need to do some math on the sizes of each of the inputs and outputs to make this work.</li>
+  <li>Train the model called Grayscale1Convolution for enough epochs that the loss curve flattens (and ideally begins to overfit).</li>
+  <li>In your write-up, show your model code for Grayscale1Convolution, the loss over epochs plot, the test confusion matrix, and the training and test accuracy.</li>
+</ol>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-2")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-2" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 3</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Experiment with at least 2 activation functions and explain how they affect your model results.</p>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-3")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-3" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 4</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<ol>
+  <li>Increase the amount of data significantly and rerun both models.</li>
+  <li>In your write-up, show the loss over epochs plot, the test confusion matrix, and the training and test accuracy.</li>
+  <li>Make observations comparing to the last experiments.</li>
+</ol>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-4")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-4" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+<h2 id="cifar10-dataset">CIFAR10 dataset</h2>
+<p>This dataset shows 10 categories of images. While you are building your model, you may want to work with a small subset of the data. At the end, you should run it with a larger version of the data.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 5</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Create, train, and document a model with 1 convolution layer and 1 max pooling layer.</p>
+
+
+
+    <button hidden="true" onclick='HideShowElement("solution-5")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-5" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 6</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<ol>
+  <li>Create at least two other models that work better than this original model on your dataset.</li>
+  <li>Document your experiments by including the loss plot, confusion matrices, and relevant metrics.
+If you are stuck on what to do, you might experiment with increasing the model complexity (more layers), adding dropout, changing the pooling, augmenting the data, etc.</li>
+</ol>
+
+
+    <button hidden="true" onclick='HideShowElement("solution-6")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-6" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+<h1 id="transfer-learning">Transfer learning</h1>
+<p>People often use transfer learning, where we build on a pre-trained model (that was trained on a huge dataset) and then tweak it for our own purpose. This is incredibly powerful. Here’s <a href="https://youtu.be/MQkVIYzpK-Y">one video</a> on transfer learning, but feel free to find your own resource (and skip ahead in this video).</p>
+
+<p>The PyTorch documentation has a <a href="https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html">nice description and example of transfer learning</a>. Note that you can open it in a Colab notebook at the top of the page.</p>
+
+<p>You can modify our existing notebook to do transfer learning. You’ll need to read through the given transfer learning example and extract relevant parts of the code.</p>
+
+<div style="display: normal;
+        border-left: 6px solid #0065B4;
+        margin: 2em 0em 2em 0em;">
+    <div class="tip" style="background-color: #ECF7FF;
+        padding: 1em 1em 1em 1em;
+        display: flex;
+        column-gap: 1rem;">
+        <div class="notice-bulb" style="
+	    font-family: 'Font Awesome 5 Free';
+	    vertical-align: middle;
+	    font-weight: 900;
+	    font-size: xx-large;
+	    color: #ff6f00;">
+        <i class="fas fa-question"></i>
+</div>
+	<div style="font-size: xx-large; font-weight: 900;">Exercise 7</div>
+    </div>
+<div style="display: normal; padding: 1em 1em 1em 1em;">
+	
+<p>Research transfer learning. Apply transfer learning to the CIFAR10 and our dessert dataset (our notebook should help you with loading these), comparing how well it works on these two datasets under a few different conditions (e.g., small number of epochs, small number of training images).</p>
+
+<p>Write a short summary what you experimented with and what you learned (including key figures or pieces of information). You do not need to share your full code (and it’s fine to run things and then copy an image).</p>
+
+
+
+    <button hidden="true" onclick='HideShowElement("solution-7")' class="togglebutton">Show / Hide Solution</button>
+
+<div id="solution-7" class="solution" style="
+    background-color: #cefad0;
+    border-left: 6px solid #6500B4;
+    padding: 1em 1em 1em 1em;
+    display: none;
+    column-gap: 2rem;
+    margin: 2em 2em 2em 2em;">
+    <div style="display: normal">
+<p style="font-weight: 900; font-size: x-large">Solution</p>
+
+
+     </div>
+</div>
+</div>
+</div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2024 Machine Learning Fall 2024 @ Olin College.</div>
+
+      </footer>
+    </div>
+
+    <script src="/assets/js/copyCode.js"></script>
+
+
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  
+</body>
+</html>
