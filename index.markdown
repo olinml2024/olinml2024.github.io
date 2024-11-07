@@ -30,7 +30,7 @@ header:
 | 15    | [GPTs Part 2](activities/day15) 
 | 16    | [GPTs Part 3 and Discussion](activities/day16)                            |
 | 17    | [Goodbye Text, Hello Images and Convolution](activities/day17) -  Monday, Nov 4, 2024                         |
-| 18    | CNNs []() - Thursday, Nov 7, 2024                           |
+| 18    | [Convolutional Neural Networks (CNNs)](activities/day18) - Thursday, Nov 7, 2024                           |
 | 19    | CNNs and beyond []()  - Monday, Nov 11, 2024                          |
 | 20    | Goodbye CNNs, Hello Project []()  - Thursday, Nov 14, 2024                           |
 | 21    | Project and Other Fun Stuff[]()  - Monday, Nov 18, 2024                           |
@@ -61,6 +61,7 @@ header:
 | 16                           | [Assignment 13 - GPTs (part 2)](assignments/assignment13/assignment13)   ([with show solution button](assignments/assignment13/assignment13?showSolutions=true))       |
 | 17                           | [Assignment 14 - GPTs (part 3)](assignments/assignment14/assignment14)   ([with show solution button](assignments/assignment14/assignment14?showSolutions=true))       |
 | 18                           | [Assignment 15 - Images as Data and Convolutions](assignments/assignment15/assignment15)   ([with show solution button](assignments/assignment15/assignment145?showSolutions=true))       |
+| 19                           | [Assignment 16 - Convolutional Neural Networks](assignments/assignment16/assignment16)       |
 
 
 
