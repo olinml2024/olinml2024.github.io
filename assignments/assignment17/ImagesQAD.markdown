@@ -18,5 +18,10 @@ Most of the questions pull directly or indirectly from your prior assignments. T
 {% endcapture %}
 {% include learning_objectives.html content=content %}
 
+Will be a Canvas quiz.
 
+1. Calculate the output size of an image after some filter.
+2. Manually calculate a particular value in an image given some filter and some image.
+3. Write code that will result in any vertical edges showing up as positive values if the the edge is darker on the right and lighter on the left and as negative values if the edge is darker on the left and lighter on the right.  
+4. 
 

@@ -23,7 +23,7 @@ For this assignment, we have created a detailed notebook for you that give you a
 
 However, for some of you, you might get a deeper sense of the material if you code the whole thing from scratch. There's nothing in here that you can't do, so please feel free to write your own code from scratch if it will help your learning.   
 
-Here is the [notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/Assignment_16_Convolutional_Neural_Networks_in_PyTorch.ipynb)
+Here is the [notebook](https://colab.research.google.com/github/olinml2024/notebooks/blob/main/Assignment_16_Convolutional_Neural_Networks_in_PyTorch.ipynb){:target="_blank"}.
 
 # What to submit
 For your quality assessed deliverable, we may to ask you to submit answers to some of these questions, so keep that in mind as you document your work.
@@ -83,9 +83,9 @@ If you are stuck on what to do, you might experiment with increasing the model c
 {% include problem.html problem=problem %}
 
 # Transfer learning
-People often use transfer learning, where we build on a pre-trained model (that was trained on a huge dataset) and then tweak it for our own purpose. This is incredibly powerful. Here's [one video](https://youtu.be/MQkVIYzpK-Y) on transfer learning, but feel free to find your own resource (and skip ahead in this video).  
+People often use transfer learning, where we build on a pre-trained model (that was trained on a huge dataset) and then tweak it for our own purpose. This is incredibly powerful. Here's [one video](https://youtu.be/MQkVIYzpK-Y){:target="_blank"} on transfer learning, but feel free to find your own resource (and skip ahead in this video).  
 
-The PyTorch documentation has a [nice description and example of transfer learning](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html). Note that you can open it in a Colab notebook at the top of the page.
+The PyTorch documentation has a [nice description and example of transfer learning](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html){:target="_blank"}. Note that you can open it in a Colab notebook at the top of the page.
 
 You can modify our existing notebook to do transfer learning. You'll need to read through the given transfer learning example and extract relevant parts of the code. 
 
