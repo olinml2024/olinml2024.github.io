@@ -24,6 +24,14 @@ Will be a Canvas quiz.
 
 
 Filter:
+$$ 
+\begin{bmatrix}
+0 & 1 & 0 \\
+1 & -4 & 1 \\
+0 & 1 & 0 \\
+\end{bmatrix}
+$$
+
 
 
 1. What is the name for this kind of filter? 
