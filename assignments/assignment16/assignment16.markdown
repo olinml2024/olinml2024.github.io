@@ -48,7 +48,7 @@ The MNIST dataset has grayscale images of digits.
 
 {% capture problem %}
 1. Research CNNs in PyTorch
-2. Create a model called Grayscale1Convolution. The model should include 1 convolution layer and 1 max pooling layer that reduces the image size by 1/2. You will need to do some math on the sizes of each of the inputs and outputs to make this work. 
+2. Create a model called Grayscale1Convolution. The model should include 1 convolution layer and 1 max pooling layer that reduces the image size by 1/2. You will need to do some math on the sizes of each of the inputs and outputs to make this work. (This model should also have 1 fully connected layer.)
 3. Train the model called Grayscale1Convolution for enough epochs that the loss curve flattens (and ideally begins to overfit).
 4. In your write-up, show your model code for Grayscale1Convolution, the loss over epochs plot, the test confusion matrix, and the training and test accuracy.
 {% endcapture %}
@@ -70,7 +70,7 @@ Experiment with at least 2 activation functions and explain how they affect your
 This dataset shows 10 categories of images. While you are building your model, you may want to work with a small subset of the data. At the end, you should run it with a larger version of the data.
 
 {% capture problem %}
-Create, train, and document a model with 1 convolution layer and 1 max pooling layer.
+Create, train, and document a model with 1 convolution layer and 1 max pooling layer. (This model should also have 1 fully connected layer.)
 
 {% endcapture %}
 {% include problem.html problem=problem %}
