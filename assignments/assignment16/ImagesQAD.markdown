@@ -21,6 +21,13 @@ Most of the questions pull directly or indirectly from your prior assignments. T
 Will be a Canvas quiz.
 
 1. Manually calculate a particular value in an image given some filter and some image.
+
+
+Filter:
+
+
+1. What is the name for this kind of filter? 
+
 2. How many weights (parameters, excluding biases) need to be learned for a convolutional layer that starts with a 10x10x3 a.k.a a 10x10 RGB color image and results in an output  with a size of 6x6x10, using no padding and a stride of 1?
     * Solution: This question requires knowledge of the effects of the filter size on output image size, knowledge that an RGB image has a depth of 3, knowledge that each filter on a color image has size fxfx3, knowledge of how stride affects output size.
         * To go from a 10x10 to a 6x6 with a stride of 1 and no padding requires a 5x5 filter (losing 2 on each side).
@@ -30,6 +37,9 @@ Will be a Canvas quiz.
         * If 250, you may have forgotten about the RGB part.
         * If 300*360 = 108000, then you're probably doing a fully connected layer
         * if 25*7 = 175, then you may have misunderstood what happens with color images and a kernel.
+        * if 270, then you assumed a filter size of 3x3 (ChatGPT 4o mini made this error)
+        * 
+
 3. Compared to the situation in the previous question (convolutional layer), how would the number of weights change if you instead had a fully connected weights between each node in the input layer and each node in the output?
     a. The number of weights would stay the same.
     b. The number of weights would increase significantly (fully connected weights needed are more than 10x what is needed for convolutional layer)
@@ -64,7 +74,7 @@ g. C, then A, then B
 h. C, then A and B are the same
 i. They are all the same
 
-6. Write code that will result in any vertical edges showing up as positive values if the the edge is darker on the right and lighter on the left and as negative values if the edge is darker on the left and lighter on the right.  
+6. Write code for a 5x5 filter that will result in any vertical edges showing up as positive values if the the edge is darker on the right and lighter on the left and as negative values if the edge is darker on the left and lighter on the right.  
 
 7. Match the loss curve to what is happening 
 
