@@ -20,7 +20,7 @@ Most of the questions pull directly or indirectly from your prior assignments. T
 
 Will be a Canvas quiz.
 
-1. a. Manually calculate the output matrix resulting from applying the following filter:
+1. a. Manually calculate the output matrix resulting from applying the following filter. Do not add padding.
 $$ 
 \begin{bmatrix}
 0 & ~~~1 & ~~~0 \\  
@@ -42,7 +42,7 @@ $$
 
 1. b. What is the name for this kind of filter? 
 
-2. How many weights (parameters, excluding biases) need to be learned for a convolutional layer that starts with a 10x10x3 a.k.a a 10x10 RGB color image and results in an output  with a size of 6x6x10, using no padding and a stride of 1?
+2. How many weights (parameters, excluding biases) need to be learned for a convolutional layer that starts with a 10x10x3 a.k.a a 10x10 RGB color image and results in an output with a size of 6x6x10, using no padding and a stride of 1?
     * Solution: This question requires knowledge of the effects of the filter size on output image size, knowledge that an RGB image has a depth of 3, knowledge that each filter on a color image has size fxfx3, knowledge of how stride affects output size.
         * To go from a 10x10 to a 6x6 with a stride of 1 and no padding requires a 5x5 filter (losing 2 on each side).
         * Each filter (kernel) therefore is a 5x5x3, so 75 weights to be learned.
