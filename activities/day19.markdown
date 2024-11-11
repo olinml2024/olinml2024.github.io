@@ -40,7 +40,9 @@ We will rotate which table is the decider (you have 6 seconds to decide).
 
 
 ## GAN simulation activity (30 minutes)
-https://youtu.be/X994dDnmRmY
+A short video with a very general overview: https://youtu.be/X994dDnmRmY
+
+There is lots of code out there with varying degrees of complexity, but one thing to note is that we've learned many of the basic building blocks. Example: https://github.com/sw-song/PyTorch-GAN/blob/master/implementations/dcgan/dcgan.py
 
 
 ## Bonus: Explore some fun image generation applications (alternative activity)
