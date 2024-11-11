@@ -88,15 +88,16 @@ g. C, then A, then B
 h. C, then A and B are the same  
 i. They are all the same  
 
-6. Write code for a 5x5 filter that will result in any vertical edges showing up as positive values if the the edge is darker on the right and lighter on the left and as negative values if the edge is darker on the left and lighter on the right.  Apply appropriate zero padding to maintain image size and use a stride of 1.
+6. Write code for a 5x5 filter that will result in any vertical edges showing up as positive values if the the edge is darker on the right and lighter on the left and as negative values if the edge is darker on the left and lighter on the right.  Apply no padding and use a stride of 1.
 
 You should be able to copy your padding and apply filter code from Assignment 15 directly into this and then just add the filter. 
 Please note that if you were getting a swirly looking penguin in Assignment 15, this was likely due to an issue with the datatype when you created the image. To solve this, you can either start with:
-image_filtered= np.zeros((image.shape[0], image.shape[1]))  
+image_filtered= np.zeros((output_size,output_size))  
 or 
-image_filtered = np.zeros_like(image, dtype = np.float32)  
+image_filtered = np.zeros_like(image, dtype = np.float32)  (this also gives you the wrong size for this exercise)
 If you're still getting something like this, please reach out to us.
 
+https://colab.research.google.com/github/olinml2024/notebooks/blob/main/ML2024_ML_with_Images_As_Data_Manual_Convolutions.ipynb
 
 Put the values of your filter here.  
 
