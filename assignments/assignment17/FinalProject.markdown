@@ -16,7 +16,7 @@ The deliverables for this project will consist of the following.
 * Your **project deliverables** (as appropriate to your project and following the plan put forth in your deliverables proposal).
 * A **final reflection** on the project and your contributions to it.
 
-
+Please see [this spreadsheet](https://docs.google.com/spreadsheets/d/1ow6NdGBVwGfbKodVWADiMyDMihfhUjAyeRDo0Li-FXo/edit?usp=sharing) for due dates and grading percentages
 
 # Choosing a Project Topic and Possibly a Partner
 
@@ -32,19 +32,19 @@ Describe the project you plan to do.  As part of this discussion, make sure to e
 
 What are your learning goals for this project? How might they relate to the broad categories of implementation, context, and theory? (Just to be clear, we are not suggesting you have to address all of these categories).  Identity, in terms of percentages, in each of these three categories (they should add to 100%, because math), where your ideal project would land.  We've also requested that your project is no more than 70% in one category.
 
-## Collaboration / Execution plan
+## Collaboration / Execution Plan
 
 Discuss how you are going to get the work for this project done.  This should include a definition of your best guess as to what the deliverables of your project will entail (apart from the deliverables we discuss here).  For each deliverable, you may want to define your MVP (minimum viable product) as well as stretch goals.  You should also identify  initial steps to take to get off to a strong start (this is an area where we can help you quite a bit if you give us some details).  For team-based projects you should include a discussion about how you anticipate communicating and coordinating work with your partner.  For example, you could discuss your plans for synchronous versus asynchronous work, layout a specific strategy for managing / tracking tasks, and discuss your planned communication channels.
 
 Rubric:
-* 20%: the project topic is well-described and some reasoning for why you want to investigate it is given.
-* 20%: your learning goals for the project are provided and the learning goals are appropriate to the project, specific, and measurable.
+* 20%: The project topic is well-described and some reasoning for why you want to investigate it is given.
+* 20%: Your learning goals for the project are provided and the learning goals are appropriate to the project, specific, and measurable.
 * 10%: The proportion of emphasis on the themes of theory, implementation, and context and ethics is included (and explained) and no theme is more than 70% of the total work.
-* 20%: initial steps are provided and appropriate
-* 20%: for each deliverable you have specified an MVP and stretch goals.
-* 10%: you have a plan for coordinate work and (if applicable) communicating with your partner, or, you have a plan to make sure you make progress
+* 20%: Initial steps are provided and appropriate.
+* 20%: For each deliverable you have specified an MVP and stretch goals.
+* 10%: You have a plan for coordinate work and (if applicable) communicating with your partner, or, you have a plan to make sure you make progress if working alone
 
-# Deliverable proposal (5% of total grade)
+# Deliverable proposal
 
 Your projects have a lot of variability in their topics and learning goals, and we want to give you the freedom to choose deliverables that are appropriate for your project and best support your learning. We also want to make sure that you feel you are being fairly assessed and that we (your team and the teaching team) have a shared sense of what a "good" output looks like. Therefore, at some point in your project, you will propose what you think appropriate final deliverables will look like for your project, and we will discuss this together (probably via a check-in conversation). 
 
@@ -56,13 +56,13 @@ We strongly suggest that you point to some existing source to give an example of
 
 We generally suggest that this conversation happens during the week of November 29. However, it might be appropriate to have this conversation earlier (pre-Thanksgiving) or later (Dec 10 at the latest.).  When you are ready to have this conversation, you should sign-up for a meeting slot on the spreadsheet Links to an external site.and submit the proposal here at least 24 hours in advance (therefore, this assignment is due on Dec 9 at the latest).
 
-# Deliverable: Video Summary (10% of total grade)
+# Video Summary
 
 Prepare a 1-minute video that summarizes your project topic and your primary accomplishments (e.g., what you built, what you learned, etc.).  Your video should be professional and polished and accessible to folks who have some familiarity with machine learning but are not experts in the particular area that you investigated.  As the project unfolds, we will provide more guidance, examples, and a peer review process to help you make a great video.
 
 We will post a detailed rubric for the video summary soon.
 
-# Final project Deliverable submission (70% of total grade)
+# Project Deliverables
 
 We'll post an assignment on Canvas to allow you to turn in appropriate, project-specific deliverables.  Depending on the project you chose, these may take on a variety of forms.  Here are some other important guidelines for your project deliverables to keep in mind.
 
@@ -74,87 +74,29 @@ We'll post an assignment on Canvas to allow you to turn in appropriate, project-
 
 **Guideline 4:** Please attribute to others appropriately (including a link when possible). When writing about context or theory, this means citing your sources (format of this depends on your deliverable). You do not need to write all of your own code from scratch (for many situations, it's actually a great choice to build off of the code of others, depending on what your learning goals are). However, you should be clear about what you wrote and what was taken directly from other sources. This gets a little fuzzy in code-land, so we'll try to provide some guidance here. You don't need to attribute to every stackoverflow page that helped you solve a problem (even if it means you copied a few lines of code to fix something). If you are working with a kaggle dataset and used someone else's code as a guide for your data loading and analysis, you should be sure to note this.
 
-Paul: rubric for these?
+The two major things that we will assess your final project deliverables on are:
+* Quality: Is this a high-quality project and set of deliverable appropriate to a course at this level
+* Demonstration of understanding: Do the project deliverables appropriately demonstrate your understanding of the material (in such a way that it is clear to us that you understand what you did)?
 
-# Final Event (10% of total grade)
+The assessment will also include smaller allocation to:
+* Intellectual difficulty of work (challenge given course)
+* Deliverable clarity / communication
+* Completeness and submission of work agreed upon in Deliverables Proposal
+* Ability of work to standalone and tell the story
+* Appropriate attribution 
+* Wow factor (only a bonus, no detriment for not having a wow factor, learning is more important than flashiness, this is just a place for us to use our judgement to give bonus to some notable work if that isn't effectively captured by our rubric)
+
+
+# Final Event
 
 During the final event, we will celebrate your work with a project expo.  We'll have stations setup for you to show your work to your fellow classmates (and instructors).  If you'd like, you can make a poster for this event, but you can also use a laptop to show your final deliverables.
 
 Rubric: attendance and full participation in the final will earn a 100%.  If you cannot attend the final event, you must make arrangements to meet with Sam or Paul to go over your final project (similarly to what you would do for folks who come by our station if you were to be there for the final event).
 
-# Reflection (Paul: do we want this for this year?  It seems good, but it might be )
+# Final Reflection
 
-In this assignment you will reflect on what you learned through the course of doing this project and on your process / constructive engagement with the project.
+In this assignment you will reflect on the course and the project. We will give you some specific prompts. You will be assessed on completion and thoughtfulness, but not on if we agree with you or like what you say.  
 
-There is no specific format that your reflection must take, but it should contain the following content.
+For you, this process of reflection is intended to help you grow and to understand more about yourself.  
 
-What did you learn / take away from this project?  You might touch on specific content knowledge, teaming skills, new ways of thinking about the world, etc.  In addition to telling us what you learned, please provide some specific examples / pointers to evidence that helps us understand, in detail, what this meant in the context of your project.
-
-What went well for you in this project? And how would you like to improve your approach for future projects / classes / life?
-
-What new things do you want to learn after working on this project?  (think of these as jumping off points or key takeaways for you as you continue your journey at Olin and beyond!).
-
-How would you grade your personal (i.e., not team), constructive engagement on this project?  As guidance, you might consider our class rubric on constructive engagement [past rubric](https://docs.google.com/spreadsheets/d/137LKE5SBLGwmQfQOFcwmIesLeGqv5UYEtp9o0Jw573o/edit?gid=1612299881#gid=1612299881). Please assign yourself a grade out of 100.  (Even though this assignment is worth 75 points, we want the grade out of 100.  We will rescale your grade appropriately).
-
-How could the project be set up to better support learning? (this one is to help us in future iterations of the class).
-
-# Project check-in (Paul: I didn't get into this one)
-
-In order to effectively use this short meeting time, we plan to read through this submission beforehand, so you must have it done before 8 am. It is important that your status document contain a detailed picture of where you are in the project along with any roadblocks or major questions that you have.  
-
-Please break your status report into sections to support quick reading. Your project status check should contain the following elements:
-
-Project title
-Your names
-1-3 sentence description of your project
-Current detailed status of your project (what you have accomplished so far)
-How do you view your progress so far on a scale of 1 to 7? 1 means you have made very little progress; 4 means you have made good progress; 7 means you have made amazing progress.
-Estimate of how many hours have you spent working on this project since last Friday (11/12)?  Include class time. If partners, report for each person separately.
-What would you like help with? What would you like feedback on? (Try to provide some detail here if possible so we can have a little time to contemplate your questions before we talk.)
-You current work for our reference (code, notes, reading list, whatever is appropriate for your project).  You can upload this to Canvas or submit links to shared document or github (just please make sure we have access). You don't have to include everything, but having access to this will help us understand your current status and give you better help (especially since everyone is working on very different projects).
-
-
-"Amount of work per # members
-(-1, 0 , 1)"	"Intellectual difficulty of work (challenge given course)
-(-1, 0, 1)"	"Deliverable clarity / communication
-(1-6)"	"Quality
-(1-6)"	"Dem understanding
-()"	"Wow factor
-(0,1)"	"Complete / Submitted what agreed
-(0,1)"	"Standalone/TTS
-(0,1)"	"Attribution
-(0,1)"
-
-
-Purposes:
-* Something for your resume / portfolio
-* Learn about something interesting and/or meaningful
-* Build specific skills
-
-
-Our commitments:
-* Support your learning / growth (enable your purposes)
-* Certify to external stakeholders that graduates of this class have appropriate learning (build trust with external stakeholders that Olin grades are meaningful)
-* Potentially provide extrinsic motivation and accountability for you to learn in a situation with other external pressures (other classes)
-
-Purposes of deliverables:
-
-Project deliverable:
-* For us, the primary purpose of this is to practice producing a high quality piece of work that demonstrates your understanding of material. This enables us to build a better estimate of your understanding. This enables you to practice an important skill and to provide accountability and understanding of your own knowledge.
-* This may serve an optional secondary purpose for you, such as creating a portfolio or resume piece.
-
-Verbal interview:
-For you, this is an opportunity to practice a very short technical interview and to demonstrate your understanding of the material. Potentially, this also creates a sense of personal accountability for you to make sure that you understand the content of your project, especially in a world where it is 
-For us, this gives us a second data point in evaluating your understanding. 
-
-OR
-Project deliverable:
-This is a final presentation 
-
-
-Project reflection:
-* For you, this process of reflection will help you improve your abilities and to understand more about yourself.
-* For us, this helps us have more context about your experience in the project. We acknowledge that assessments of "quality" and "demonstrating understanding" are somewhat subjective, that project work is not always distributed equally, and that people come to the class with different levels of experience. 
-
-
-
+For us, this reflection will help us have more context about your experience in the project and the course. We acknowledge that assessments of "quality" and "demonstrating understanding" are somewhat subjective, that project work is not always distributed equally, and that people come to the class with different levels of experience. Additionally, this reflection will help us think about the class next time and grow as instructors (we went back and looked at prior final reflections when designing this project).
