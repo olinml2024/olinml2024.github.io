@@ -22,7 +22,7 @@ Please see [this spreadsheet](https://docs.google.com/spreadsheets/d/1ow6NdGBVwG
 
 On Canvas (Project Topic Brainstorm assignment), we gave you a link to the 2019 project posters. We also have [some slides](https://docs.google.com/presentation/d/1akIhFbNFulvfhqR_4A5tHM_oXKQtMw5akulwpdXB3RU/edit?usp=sharing) we'd like to go through to help introduce the final project.
 
-# Deliverable: Project Proposal (5% of total grade)
+# Deliverable: Project Proposal
 
 ## Project Topic
 
