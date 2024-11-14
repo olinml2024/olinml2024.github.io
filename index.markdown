@@ -32,7 +32,7 @@ header:
 | 17    | [Goodbye Text, Hello Images and Convolution](activities/day17) -  Monday, Nov 4, 2024                         |
 | 18    | [Convolutional Neural Networks (CNNs)](activities/day18) - Thursday, Nov 7, 2024                           |
 | 19    | [CNNs and GANs](activities/day19)  - Monday, Nov 11, 2024                          |
-| 20    | Goodbye CNNs, Hello Project []()  - Thursday, Nov 14, 2024                           |
+| 20    | [Hello Project](activities/day20)  - Thursday, Nov 14, 2024                           |
 | 21    | Project and Other Fun Stuff[]()  - Monday, Nov 18, 2024                           |
 | 22    | Project and Other Fun Stuff[]()  - Thursday, Nov 21, 2024                           |
 | 23    | Project and Other Fun Stuff[]()  - Monday, Dec 2, 2024                           |
