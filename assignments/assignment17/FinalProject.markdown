@@ -1,17 +1,17 @@
 ---
-title: Final Project - Draft
+title: Final Project
 toc_sticky: true 
 toc_h_max: 1
 layout: problemset
 ---
 
+# Choosing a Project Topic and Possibly a Partner
 
-# Project preparation
-2021 project introduction slides: https://docs.google.com/presentation/d/1HpM0y2HsGfo1TXsuFyO0vMEtslppUZ5xBWlEcGdpl5s/edit#slide=id.g6adfb7b0f7_0_12
-Projects from 2019: https://drive.google.com/drive/folders/1BtQyiIGtgpxS7DzGq9KvPVhyGggo0UKx 
+We gave you a link to [the 2019 project posters](https://drive.google.com/drive/folders/1BtQyiIGtgpxS7DzGq9KvPVhyGggo0UKx). We also have [some slides](https://docs.google.com/presentation/d/1akIhFbNFulvfhqR_4A5tHM_oXKQtMw5akulwpdXB3RU/edit?usp=sharing) we'd like to go through to help introudce the final project.
 
-What are your learning goals for this project? How might they relate to the Venn diagram? 
-(Just to be clear, we are not suggesting that you need to try to be in the center of the Venn diagram.)
+## Identifying learning goals
+
+What are your learning goals for this project? How might they relate to the broad categories of implementation, context, and theory? (Just to be clear, we are not suggesting you have to address all of these categories).
 
 Given your reflection on where I hope to grown in this project, where on the Venn diagram does your ideal project land?
 
@@ -23,20 +23,13 @@ Context & Impact : [context]
 
 Theory: [theory]
 
-Which of these statements best aligns with your current thinking about the project?
-I want to reinforce some skills I've started to learn already.	
-12 respondents
-29 %	
-I want to explore something completely new in machine leanring, (Incorrect answer)I want to explore something completely new in machine leanring	
-19 respondents
-46 %	
-I'm not sure, (Incorrect answer)I'm not sure
+## Identifying a Partner
 
-How would you prefer to work on this project regarding finding a partner?
 
-Anything else we should know?
+
 
 # Deliverable proposal
+
 Your projects have a lot of variability in their topics and learning goals, and we want to give you the freedom to choose deliverables that are appropriate for your project and best support your learning. We also want to make sure that you feel you are being fairly assessed and that we (your team and the teaching team) have a shared sense of what a "good" output looks like. Therefore, at some point in your project, you will propose what you think appropriate final deliverables will look like for your project, and we will discuss this together (probably via a check-in conversation). 
 
 You should be sure to read  this: Report and/or Code Submission
@@ -48,8 +41,8 @@ We strongly suggest that you point to some existing source to give an example of
 We generally suggest that this conversation happens during the week of November 29. However, it might be appropriate to have this conversation earlier (pre-Thanksgiving) or later (Dec 10 at the latest.).  When you are ready to have this conversation, you should sign-up for a meeting slot on the spreadsheet Links to an external site.and submit the proposal here at least 24 hours in advance (therefore, this assignment is due on Dec 9 at the latest).
 
 
-
 # Final project Deliverable submission
+
 Use this assignment to turn in appropriate, project-specific deliverables.  Depending on the project you chose, these may take on a variety of forms.  You will propose appropriate deliverables for your project in this assignment (Deliverable proposal and discussion (final project)). Here are some other important guidelines for your project deliverables to keep in mind.
 
 Guideline 1: Any aspect of the project that you would like us to assess should be included in your submission with clear guidance on what is what (e.g., a repository of code, Colab notebooks, a final report). Deliverable should be uploaded instead of linked (e.g., please upload a pdf of a report instead of linking to a google drive); for some deliverables, a link may be more appropriate, so chat with us if this is the case (e.g., you made a huge dataset and can't upload it to canvas; or your code is written with a large number of function files).
@@ -58,6 +51,7 @@ Guideline 3: In your individual final reflection you will be able to help us und
 Guideline 4: Please attribute to others appropriately (including a link when possible). When writing about context or theory, this means citing your sources (format of this depends on your deliverable). You do not need to write all of your own code from scratch (for many situations, it's actually a great choice to build off of the code of others, depending on what your learning goals are). However, you should be clear about what you wrote and what was taken directly from other sources. This gets a little fuzzy in code-land, so we'll try to provide some guidance here. You don't need to attribute to every stackoverflow page that helped you solve a problem (even if it means you copied a few lines of code to fix something). If you are working with a kaggle dataset and used someone else's code as a guide for your data loading and analysis, you should be sure to note this.
 
 # 2021 Reflection
+
 In this assignment you will reflect on what you learned through the course of doing this project and on your process / constructive engagement with the project.
 
 There is no specific format that your reflection must take, but it should contain the following content.
@@ -74,6 +68,7 @@ How could the project be set up to better support learning? (this one is to help
 
 
 # Project check-in
+
 In order to effectively use this short meeting time, we plan to read through this submission beforehand, so you must have it done before 8 am. It is important that your status document contain a detailed picture of where you are in the project along with any roadblocks or major questions that you have.  
 
 Please break your status report into sections to support quick reading. Your project status check should contain the following elements:
