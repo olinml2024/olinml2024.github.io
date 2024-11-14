@@ -14,10 +14,13 @@ The deliverables for this project will consist of the following.
 * A **deliverables proposal** that fleshes out the deliverables you expect to produce by the end of the project.
 * A **video summary** that presents the main results of your project in a polished manner.
 * Your **project deliverables** (as appropriate to your project and following the plan put forth in your deliverables proposal).
+* A **final reflection** on the project and your contributions to it.
+
+
 
 # Choosing a Project Topic and Possibly a Partner
 
-We gave you a link to [the 2019 project posters](https://drive.google.com/drive/folders/1BtQyiIGtgpxS7DzGq9KvPVhyGggo0UKx). We also have [some slides](https://docs.google.com/presentation/d/1akIhFbNFulvfhqR_4A5tHM_oXKQtMw5akulwpdXB3RU/edit?usp=sharing) we'd like to go through to help introudce the final project.
+On Canvas (Project Topic Brainstorm assignment), we gave you a link to the 2019 project posters. We also have [some slides](https://docs.google.com/presentation/d/1akIhFbNFulvfhqR_4A5tHM_oXKQtMw5akulwpdXB3RU/edit?usp=sharing) we'd like to go through to help introduce the final project.
 
 # Deliverable: Project Proposal (5% of total grade)
 
@@ -34,22 +37,22 @@ What are your learning goals for this project? How might they relate to the broa
 Discuss how you are going to get the work for this project done.  This should include a definition of your best guess as to what the deliverables of your project will entail (apart from the deliverables we discuss here).  For each deliverable, you may want to define your MVP (minimum viable product) as well as stretch goals.  You should also identify  initial steps to take to get off to a strong start (this is an area where we can help you quite a bit if you give us some details).  For team-based projects you should include a discussion about how you anticipate communicating and coordinating work with your partner.  For example, you could discuss your plans for synchronous versus asynchronous work, layout a specific strategy for managing / tracking tasks, and discuss your planned communication channels.
 
 Rubric:
-* 20%: the projec topic is well-described and some reasoning for why you want to investigate it is given.
+* 20%: the project topic is well-described and some reasoning for why you want to investigate it is given.
 * 20%: your learning goals for the project are provided and the learning goals are appropriate to the project, specific, and measurable.
-* 10%: The proportion of emphasis on the themes of theory, implementation, and context and ethics is included (and justified) and no theme is more than 70% of the total work.
+* 10%: The proportion of emphasis on the themes of theory, implementation, and context and ethics is included (and explained) and no theme is more than 70% of the total work.
 * 20%: initial steps are provided and appropriate
 * 20%: for each deliverable you have specified an MVP and stretch goals.
-* 10%: you have a plan for coordinate work and (if applicable) communciating with your partner.
+* 10%: you have a plan for coordinate work and (if applicable) communicating with your partner, or, you have a plan to make sure you make progress
 
 # Deliverable proposal (5% of total grade)
 
 Your projects have a lot of variability in their topics and learning goals, and we want to give you the freedom to choose deliverables that are appropriate for your project and best support your learning. We also want to make sure that you feel you are being fairly assessed and that we (your team and the teaching team) have a shared sense of what a "good" output looks like. Therefore, at some point in your project, you will propose what you think appropriate final deliverables will look like for your project, and we will discuss this together (probably via a check-in conversation). 
 
-You should be sure to read  this: Report and/or Code Submission
+You should be sure to read this: Report and/or Code Submission
 
 This proposal should reference your learning goals. (Since what you are doing should probably support your learning goals.)
 
-We strongly suggest that you point to some existing source to give an example of what you might model your deliverables on. For example, if you wanted to make a blog entry to give a detailed explanation of the theory behind a new method (convolutions on graphs), you might point to this example and say "I'm thinking about doing something like this: https://distill.pub/2021/understanding-gnns/".  Or, you might be focusing on implementation and context, and you could decide to point back toward your report from module 1 as an example.  You don't have to find the perfect deliverable template, but showing us an example might help clarify your own thinking and also lead to a clearer conversation with us.
+We strongly suggest that you point to some existing source to give an example of what you might model your deliverables on. For example, if you wanted to make a blog entry to give a detailed explanation of the theory behind a new method (convolutions on graphs), you might point to this example and say "I'm thinking about doing something like this: https://distill.pub/2021/understanding-gnns/".  Or, you might be focusing on implementation and context, and you could decide to point back toward your small data mini project as an example.  You don't have to find the perfect deliverable template, but showing us an example might help clarify your own thinking and also lead to a clearer conversation with us.
 
 We generally suggest that this conversation happens during the week of November 29. However, it might be appropriate to have this conversation earlier (pre-Thanksgiving) or later (Dec 10 at the latest.).  When you are ready to have this conversation, you should sign-up for a meeting slot on the spreadsheet Links to an external site.and submit the proposal here at least 24 hours in advance (therefore, this assignment is due on Dec 9 at the latest).
 
@@ -57,7 +60,7 @@ We generally suggest that this conversation happens during the week of November 
 
 Prepare a 1-minute video that summarizes your project topic and your primary accomplishments (e.g., what you built, what you learned, etc.).  Your video should be professional and polished and accessible to folks who have some familiarity with machine learning but are not experts in the particular area that you investigated.  As the project unfolds, we will provide more guidance, examples, and a peer review process to help you make a great video.
 
-We will post a detailed rubric for the video summmary soon.
+We will post a detailed rubric for the video summary soon.
 
 # Final project Deliverable submission (70% of total grade)
 
