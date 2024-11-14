@@ -7,7 +7,7 @@ layout: problemset
 
 # Overview
 
-The final project is your chance to really customize this learning experience.  In contrast to prevous projects, you have substantially more autonomy to choose a project topic that is exciting / important / valuable to you.  As a result, you will be charting your own course, exercising and practicing your independent learning skills, and potentially working with a partner.
+The final project is your chance to really customize this learning experience.  In contrast to previous projects, you have substantially more autonomy to choose a project topic that is exciting / important / valuable to you.  As a result, you will be charting your own course, exercising and practicing your independent learning skills, and potentially working with a partner.
 
 The deliverables for this project will consist of the following.
 * A **project proposal** detailing your learning goals for the project, your project topic, initial steps, MVP, stretch goals, and whether or not you are working with another person.
