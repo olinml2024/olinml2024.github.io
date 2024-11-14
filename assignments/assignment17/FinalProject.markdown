@@ -79,6 +79,7 @@ The two major things that we will assess your final project deliverables on are:
 * Demonstration of understanding: Do the project deliverables appropriately demonstrate your understanding of the material (in such a way that it is clear to us that you understand what you did)?
 
 The assessment will also include smaller allocation to:
+* Appropriate amount of work given number of team members
 * Intellectual difficulty of work (challenge given course)
 * Deliverable clarity / communication
 * Completeness and submission of work agreed upon in Deliverables Proposal
