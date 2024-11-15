@@ -54,7 +54,6 @@ This proposal should reference your learning goals. (Since what you are doing sh
 
 We strongly suggest that you point to some existing source to give an example of what you might model your deliverables on. For example, if you wanted to make a blog entry to give a detailed explanation of the theory behind a new method (convolutions on graphs), you might point to this example and say "I'm thinking about doing something like this: https://distill.pub/2021/understanding-gnns/".  Or, you might be focusing on implementation and context, and you could decide to point back toward your small data mini project as an example.  You don't have to find the perfect deliverable template, but showing us an example might help clarify your own thinking and also lead to a clearer conversation with us.
 
-We generally suggest that this conversation happens during the week of November 29. However, it might be appropriate to have this conversation earlier (pre-Thanksgiving) or later (Dec 10 at the latest.).  When you are ready to have this conversation, you should sign-up for a meeting slot on the spreadsheet Links to an external site.and submit the proposal here at least 24 hours in advance (therefore, this assignment is due on Dec 9 at the latest).
 
 # Video Summary
 
