@@ -48,7 +48,7 @@ Rubric:
 
 Your projects have a lot of variability in their topics and learning goals, and we want to give you the freedom to choose deliverables that are appropriate for your project and best support your learning. We also want to make sure that you feel you are being fairly assessed and that we (your team and the teaching team) have a shared sense of what a "good" output looks like. Therefore, at some point in your project, you will propose what you think appropriate final deliverables will look like for your project, and we will discuss this together (probably via a check-in conversation). 
 
-You should be sure to read this: Report and/or Code Submission
+You should be sure to read the Project Deliverables section. 
 
 This proposal should reference your learning goals. (Since what you are doing should probably support your learning goals.)
 
