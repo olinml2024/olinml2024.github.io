@@ -39,7 +39,7 @@ header:
 | 21    | Project and Other Fun Stuff[]()  - Monday, Nov 18, 2024                           |
 | 22    | Project and Other Fun Stuff[]()  - Thursday, Nov 21, 2024                           |
 | 23    | Project and Other Fun Stuff[]()  - Monday, Dec 2, 2024                           |
-| 24    | Project and Other Fun Stuff[]()  - Thursday, Dec 5, 2024                           |
+| 24    | [AI and energy use and project time](activities/day24)  - Thursday, Dec 5, 2024                           |
 | 25    | Project and Other Fun Stuff[]()  - Monday, Dec 9, 2024                           |
 | 26    | Project and Other Fun Stuff []()  - Thursday, Dec 12, 2024                           |
 | Final    | Final Project Share-Out and Course Reflection []()  - Thursday, Dec 19, 2024 from noon to 3 pm                 |
